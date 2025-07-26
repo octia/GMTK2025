@@ -1,0 +1,137 @@
+# This is the root .editorconfig file. No parent .editorconfig files will be inherited.
+root = true
+
+# Apply rules only to C# files inside the GMTK2025 folder (and subfolders)
+[Assets/GMTK2025/**/*.cs]
+generated_code = false
+
+# IDE0005: Remove unnecessary using directives
+dotnet_diagnostic.IDE0005.severity = warning
+
+# IDE0060: Review unused parameters
+dotnet_diagnostic.IDE0060.severity = warning
+
+# Warn for unused private members (including properties)
+dotnet_diagnostic.IDE0051.severity = warning
+
+#### Core EditorConfig Options ####
+
+# Indentation and spacing
+indent_size = 4
+tab_width = 4
+indent_style = space
+charset = utf-8
+end_of_line = lf
+max_line_length = 100
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+#### .NET Code Style Rules (IDExxxx) ####
+
+#### Naming Conventions ####
+
+# Camel and Pascal case styles.
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+dotnet_naming_style.all_caps_style.capitalization = all_caps
+
+# I-Prefix PascalCase for Interfaces (e.g., IMyInterface)
+dotnet_naming_style.interface_style.capitalization = pascal_case
+dotnet_naming_style.interface_style.required_prefix = I
+
+# Interfaces must start with 'I' and be PascalCase
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+
+dotnet_naming_rule.interfaces_I_prefix.symbols = interfaces
+dotnet_naming_rule.interfaces_I_prefix.style = interface_style, all_caps_style
+dotnet_naming_rule.interfaces_I_prefix.severity = warning
+
+# Symbol always using PascalCase
+dotnet_naming_symbols.pascal_symbols.applicable_kinds = class, struct, enum, delegate, method, event
+
+dotnet_naming_rule.symbols_always_pascal.symbols = pascal_symbols
+dotnet_naming_rule.symbols_always_pascal.style = pascal_case_style, all_caps_style
+dotnet_naming_rule.symbols_always_pascal.severity = warning
+
+# Internal and up members must be PascalCase
+dotnet_naming_symbols.public_members.applicable_kinds = field, property
+dotnet_naming_symbols.public_members.applicable_accessibilities = public, internal
+
+dotnet_naming_rule.public_fields_pascal.symbols = public_members
+dotnet_naming_rule.public_fields_pascal.style = pascal_case_style
+dotnet_naming_rule.public_fields_pascal.severity = warning
+
+# Private and protected members must be camelCase
+dotnet_naming_symbols.private_members.applicable_kinds = field, property
+dotnet_naming_symbols.private_members.applicable_accessibilities = protected, protected_internal, private
+
+dotnet_naming_rule.private_fields_camel.symbols = private_members
+dotnet_naming_rule.private_fields_camel.style = camel_case_style
+dotnet_naming_rule.private_fields_camel.severity = warning
+
+# Local variables and parameters must be camelCase
+dotnet_naming_symbols.local_variables_and_parameters.applicable_kinds = local_variables, parameter
+
+dotnet_naming_rule.local_variables_parameters_camel.symbols = local_variables_and_parameters
+dotnet_naming_rule.local_variables_parameters_camel.style = camel_case_style
+dotnet_naming_rule.local_variables_parameters_camel.severity = warning
+
+#### Style Conventions ####
+# For full list see https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/
+
+# Enforce braces even on single-line control blocks.
+csharp_prefer_braces = true :error
+
+# Discourage parentheses around arithmetic binary operators.
+csharp_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary
+
+# Prefer expression body for methods.
+csharp_style_expression_bodied_methods = true :suggestion
+
+# Prefer switch expressions over switch statements.
+csharp_style_prefer_switch_expression = true :suggestion
+
+# Prefer not pattern.
+csharp_style_prefer_not_pattern = true :suggestion
+
+# Enforce explicit accessibility modifiers.
+dotnet_style_require_accessibility_modifiers = always:warning
+
+# Prefer readonly for fields that are only assigned in the constructor.
+csharp_style_readonly_field = true :warning
+
+# Prefer inline variable declarations in lambda expressions.
+csharp_style_inline_local_variables = true :suggestion
+
+# Sort System.* using directives alphabetically, and place them before other using directives.
+dotnet_sort_system_directives_first = true :warning
+
+# Use explicit tuple names versus implicit 'ItemX' properties when accessing tuple fields.
+dotnet_style_explicit_tuple_names = true :warning
+
+# Remove unnecessary qualification to simplify code and improve readability.
+dotnet_diagnostic.IDE0002.severity = warning
+
+# Prefer out variables to be declared inline in the argument list of a method call when possible.
+csharp_style_inlined_variable_declaration = true :suggestion
+
+# Prefer pattern matching to determine if something is of a particular type.
+csharp_style_pattern_matching_over_as_with_null_check = true :suggestion
+
+# Prefer pattern matching instead of is expressions with type casts.
+csharp_style_pattern_matching_over_is_with_cast_check = true :suggestion
+
+# Prefer expression bodies for properties when they will be a single line
+csharp_style_expression_bodied_properties = true :warning
+
+# Prefer expression bodies for indexers when they will be a single line.
+csharp_style_expression_bodied_indexers = true :warning
+
+# Prefer assignments with a ternary conditional.
+dotnet_diagnostic.IDE0045.severity = warning
+
+# Prefer return statements to use a ternary conditional
+dotnet_diagnostic.IDE0046.severity = warning
+
+csharp_preferred_modifier_order = public,internal,protected,private,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
+dotnet_diagnostic.IDE0036.severity = warning
