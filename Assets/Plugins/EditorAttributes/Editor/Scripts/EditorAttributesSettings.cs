@@ -1,110 +1,153 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
 using FilePath = UnityEditor.FilePathAttribute;
 
 namespace EditorAttributes.Editor
 {
-	[@FilePath("ProjectSettings/EditorAttributes/EditorAttributesSettings.asset", FilePath.Location.ProjectFolder)]
-	internal class EditorAttributesSettings : ScriptableSingleton<EditorAttributesSettings>
-	{
-		[SerializeField] internal bool disableBuildValidation;
-		[Space]
-		[SerializeField, DataTable] internal UnitDefinition[] customUnitDefinitions;
+    [@FilePath(
+        "ProjectSettings/EditorAttributes/EditorAttributesSettings.asset",
+        FilePath.Location.ProjectFolder
+    )]
+    internal class EditorAttributesSettings : ScriptableSingleton<EditorAttributesSettings>
+    {
+        [SerializeField]
+        internal bool disableBuildValidation;
 
-		void OnValidate() => UnitConverter.UNIT_CONVERSION_MAP = UnitConverter.GenerateConversionMap();
+        [Space]
+        [SerializeField, DataTable]
+        internal UnitDefinition[] customUnitDefinitions;
 
-		internal void AddCustomDefinitions()
-		{
-			foreach (var customUnitDefinition in customUnitDefinitions)
-			{
-				if (customUnitDefinition.category != UnitCategory.Custom)
-					customUnitDefinition.categoryName = customUnitDefinition.category.ToString();
-			}
+        void OnValidate() =>
+            UnitConverter.UNIT_CONVERSION_MAP = UnitConverter.GenerateConversionMap();
 
-			var unitDefinitions = UnitConverter.UNIT_DEFINITIONS;
+        internal void AddCustomDefinitions()
+        {
+            foreach (var customUnitDefinition in customUnitDefinitions)
+            {
+                if (customUnitDefinition.category != UnitCategory.Custom)
+                    customUnitDefinition.categoryName = customUnitDefinition.category.ToString();
+            }
 
-			unitDefinitions.RemoveWhere((unitDefinition) => unitDefinition.unit == Unit.Custom);
-			unitDefinitions.UnionWith(customUnitDefinitions);
-		}
+            var unitDefinitions = UnitConverter.UNIT_DEFINITIONS;
 
-		internal void SaveSettings() => Save(true);
-	}
+            unitDefinitions.RemoveWhere((unitDefinition) => unitDefinition.unit == Unit.Custom);
+            unitDefinitions.UnionWith(customUnitDefinitions);
+        }
 
-	internal class EditorAttributesSettingsProvider : SettingsProvider
-	{
-		internal EditorAttributesSettingsProvider(string path, SettingsScope scope) : base(path, scope) { }
+        internal void SaveSettings() => Save(true);
+    }
 
-		public override void OnActivate(string searchContext, VisualElement rootElement)
-		{
-			var serializedObject = new SerializedObject(EditorAttributesSettings.instance);
+    internal class EditorAttributesSettingsProvider : SettingsProvider
+    {
+        internal EditorAttributesSettingsProvider(string path, SettingsScope scope)
+            : base(path, scope) { }
 
-			var header = new Label("Editor Attributes")
-			{
-				style =
-				{
-					fontSize = 19f,
-					unityFontStyleAndWeight = FontStyle.Bold,
-					justifyContent = Justify.FlexEnd,
-					height = 19f,
-					marginBottom = 12f,
-					paddingLeft = 1f
-				}
-			};
+        public override void OnActivate(string searchContext, VisualElement rootElement)
+        {
+            var serializedObject = new SerializedObject(EditorAttributesSettings.instance);
 
-			var helpButton = new Button(() => Application.OpenURL("https://editorattributesdocs.readthedocs.io/en/latest/GettingStarted/editorattributessettings.html"))
-			{
-				tooltip = "Open reference for EditorAttributes Settings.",
-				style =
-				{
-					borderTopLeftRadius = 0f, borderTopRightRadius = 0f, borderBottomLeftRadius = 0f, borderBottomRightRadius = 0f,
-					borderTopWidth = 0f, borderBottomWidth = 0f, borderLeftWidth = 0f, borderRightWidth = 0f,
-					paddingBottom = 0f, paddingTop = 0f, paddingLeft = 0f, paddingRight = 0f,
-					marginTop = 0f, marginBottom = 0f, marginLeft = 0f, marginRight = 0f,
-					width = 16.6f, height = 16.6f,
-					alignSelf = Align.FlexEnd,
-					backgroundColor = Color.clear,
-					backgroundImage = (StyleBackground)EditorGUIUtility.IconContent("d__Help@2x").image
-				}
-			};
+            var header = new Label("Editor Attributes")
+            {
+                style =
+                {
+                    fontSize = 19f,
+                    unityFontStyleAndWeight = FontStyle.Bold,
+                    justifyContent = Justify.FlexEnd,
+                    height = 19f,
+                    marginBottom = 12f,
+                    paddingLeft = 1f,
+                },
+            };
 
-			helpButton.RegisterCallback<MouseOverEvent>((callack) => helpButton.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f));
-			helpButton.RegisterCallback<MouseOutEvent>((callack) => helpButton.style.backgroundColor = Color.clear);
+            var helpButton = new Button(() =>
+                Application.OpenURL(
+                    "https://editorattributesdocs.readthedocs.io/en/latest/GettingStarted/editorattributessettings.html"
+                )
+            )
+            {
+                tooltip = "Open reference for EditorAttributes Settings.",
+                style =
+                {
+                    borderTopLeftRadius = 0f,
+                    borderTopRightRadius = 0f,
+                    borderBottomLeftRadius = 0f,
+                    borderBottomRightRadius = 0f,
+                    borderTopWidth = 0f,
+                    borderBottomWidth = 0f,
+                    borderLeftWidth = 0f,
+                    borderRightWidth = 0f,
+                    paddingBottom = 0f,
+                    paddingTop = 0f,
+                    paddingLeft = 0f,
+                    paddingRight = 0f,
+                    marginTop = 0f,
+                    marginBottom = 0f,
+                    marginLeft = 0f,
+                    marginRight = 0f,
+                    width = 16.6f,
+                    height = 16.6f,
+                    alignSelf = Align.FlexEnd,
+                    backgroundColor = Color.clear,
+                    backgroundImage = (StyleBackground)
+                        EditorGUIUtility.IconContent("d__Help@2x").image,
+                },
+            };
 
-			var settingsContainer = new VisualElement() { style = { marginLeft = 9f, marginTop = 1f } };
+            helpButton.RegisterCallback<MouseOverEvent>(
+                (callack) => helpButton.style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1f)
+            );
+            helpButton.RegisterCallback<MouseOutEvent>(
+                (callack) => helpButton.style.backgroundColor = Color.clear
+            );
 
-			var disableBuildValidationPropertyField = PropertyDrawerBase.CreatePropertyField(serializedObject.FindProperty("disableBuildValidation"));
+            var settingsContainer = new VisualElement()
+            {
+                style = { marginLeft = 9f, marginTop = 1f },
+            };
 
-			disableBuildValidationPropertyField.tooltip = "Disables automatic validation when building the project";
+            var disableBuildValidationPropertyField = PropertyDrawerBase.CreatePropertyField(
+                serializedObject.FindProperty("disableBuildValidation")
+            );
 
-			var customUnitDefinitionsPropertyField = PropertyDrawerBase.CreatePropertyField(serializedObject.FindProperty("customUnitDefinitions"));
+            disableBuildValidationPropertyField.tooltip =
+                "Disables automatic validation when building the project";
 
-			customUnitDefinitionsPropertyField.tooltip = "Define custom units for use with UnitField Attribute";
+            var customUnitDefinitionsPropertyField = PropertyDrawerBase.CreatePropertyField(
+                serializedObject.FindProperty("customUnitDefinitions")
+            );
 
-			var clearParamsButton = new Button(() => ButtonDrawer.ClearAllParamsData())
-			{
-				text = "Delete Buttons Parameter Data",
-				tooltip = "Deletes all buttons parameter data stored in ProjectSettings/EditorAttributes",
-				style = { marginTop = 10f }
-			};
+            customUnitDefinitionsPropertyField.tooltip =
+                "Define custom units for use with UnitField Attribute";
 
-			header.Add(helpButton);
+            var clearParamsButton = new Button(() => ButtonDrawer.ClearAllParamsData())
+            {
+                text = "Delete Buttons Parameter Data",
+                tooltip =
+                    "Deletes all buttons parameter data stored in ProjectSettings/EditorAttributes",
+                style = { marginTop = 10f },
+            };
 
-			settingsContainer.Add(header);
-			settingsContainer.Add(disableBuildValidationPropertyField);
-			settingsContainer.Add(customUnitDefinitionsPropertyField);
-			settingsContainer.Add(clearParamsButton);
+            header.Add(helpButton);
 
-			rootElement.Add(settingsContainer);
-		}
+            settingsContainer.Add(header);
+            settingsContainer.Add(disableBuildValidationPropertyField);
+            settingsContainer.Add(customUnitDefinitionsPropertyField);
+            settingsContainer.Add(clearParamsButton);
 
-		public override void OnDeactivate() => EditorAttributesSettings.instance.SaveSettings();
+            rootElement.Add(settingsContainer);
+        }
 
-		[SettingsProvider]
-		internal static SettingsProvider CreateSettingsProvider() => new EditorAttributesSettingsProvider("Project/EditorAttributes", SettingsScope.Project)
-		{
-			keywords = new HashSet<string>(new[] { "EditorAttributes", "Editor", "Attributes" })
-		};
-	}
+        public override void OnDeactivate() => EditorAttributesSettings.instance.SaveSettings();
+
+        [SettingsProvider]
+        internal static SettingsProvider CreateSettingsProvider() =>
+            new EditorAttributesSettingsProvider("Project/EditorAttributes", SettingsScope.Project)
+            {
+                keywords = new HashSet<string>(
+                    new[] { "EditorAttributes", "Editor", "Attributes" }
+                ),
+            };
+    }
 }

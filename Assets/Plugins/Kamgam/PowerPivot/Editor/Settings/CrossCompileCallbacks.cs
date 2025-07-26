@@ -35,17 +35,21 @@ namespace Kamgam.PowerPivot
         static string typeName() => typeof(CrossCompileCallbacks).FullName;
 
         const string _maxIndexKey = ".MaxIndex";
+
         static string maxIndexKey() => typeName() + _maxIndexKey;
 
         const string _lastReleasedIndexKey = ".LastReleasedIndex";
+
         static string lastReleasedIndexKey() => typeName() + _lastReleasedIndexKey;
 
         const string _indexTypeKey = ".Index[{0}].Type";
+
         static string indexTypeKey(int index) => string.Format(typeName() + _indexTypeKey, index);
 
         const string _indexMethodKey = ".Index[{0}].Method";
-        static string indexMethodKey(int index) => string.Format(typeName() + _indexMethodKey, index);
 
+        static string indexMethodKey(int index) =>
+            string.Format(typeName() + _indexMethodKey, index);
 
         static int getMaxIndex()
         {
@@ -63,7 +67,7 @@ namespace Kamgam.PowerPivot
                 SessionState.SetInt(lastReleasedIndexKey(), -1);
 
                 maxIndex = getMaxIndex();
-                if(maxIndex < reusableIndex)
+                if (maxIndex < reusableIndex)
                     SessionState.SetInt(maxIndexKey(), reusableIndex);
 
                 return reusableIndex;
@@ -88,10 +92,10 @@ namespace Kamgam.PowerPivot
 
             // Decrease or erase max index if needed.
             int maxIndex = getMaxIndex();
-            if(index == maxIndex)
+            if (index == maxIndex)
             {
                 maxIndex--;
-                if(maxIndex < 0)
+                if (maxIndex < 0)
                     SessionState.EraseInt(maxIndexKey());
                 else
                     SessionState.SetInt(maxIndexKey(), maxIndex);
@@ -109,7 +113,7 @@ namespace Kamgam.PowerPivot
                 string typeName;
                 GetCallbackInfo(i, out typeName, out _);
 
-                if(typeName == type.FullName)
+                if (typeName == type.FullName)
                 {
                     ReleaseIndex(i);
                 }
@@ -161,18 +165,27 @@ namespace Kamgam.PowerPivot
                 var methodInfo = type.GetMethod(staticMethodName, flags);
                 if (methodInfo == null)
                 {
-                    Debug.LogError("No static method '" + staticMethodName + "' found in '" + type.FullName + "'.");
+                    Debug.LogError(
+                        "No static method '"
+                            + staticMethodName
+                            + "' found in '"
+                            + type.FullName
+                            + "'."
+                    );
                     return -1;
                 }
                 if (methodInfo.GetParameters().Length > 0)
                 {
                     Debug.Assert(methodInfo.GetParameters().Length == 0);
                     return -1;
-                } 
+                }
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"CrossCompileCallbacks: Error while checking '{staticMethodName}' method parameters. Error:\n" + e.Message);
+                Debug.LogError(
+                    $"CrossCompileCallbacks: Error while checking '{staticMethodName}' method parameters. Error:\n"
+                        + e.Message
+                );
             }
 
             int index = getNextIndex();
@@ -217,7 +230,7 @@ namespace Kamgam.PowerPivot
                 string methodName;
                 GetCallbackInfo(i, out typeName, out methodName);
 
-                try 
+                try
                 {
                     ReleaseIndex(i);
 
@@ -230,11 +243,14 @@ namespace Kamgam.PowerPivot
                 catch (System.Exception e)
                 {
                     string errorMsg = e.Message;
-                    if(errorMsg.Contains("invocation") && e.InnerException != null)
+                    if (errorMsg.Contains("invocation") && e.InnerException != null)
                     {
                         errorMsg += "\n" + e.InnerException.Message;
                     }
-                    Debug.LogError($"CrossCompileCallbacks: Calling '{typeName}.{methodName}' failed. Error:\n" + errorMsg);
+                    Debug.LogError(
+                        $"CrossCompileCallbacks: Calling '{typeName}.{methodName}' failed. Error:\n"
+                            + errorMsg
+                    );
                 }
             }
         }
@@ -264,7 +280,9 @@ namespace Kamgam.PowerPivot
                     return t;
             }
 
-            throw new ArgumentException("Type " + fullTypeName + " doesn't exist in the current app domain.");
+            throw new ArgumentException(
+                "Type " + fullTypeName + " doesn't exist in the current app domain."
+            );
         }
 
         /// <summary>
@@ -285,7 +303,7 @@ namespace Kamgam.PowerPivot
 
             if (!methodInfo.IsStatic)
             {
-                Debug.Log("Method '"+ methodInfo.Name + "'needs to be static.");
+                Debug.Log("Method '" + methodInfo.Name + "'needs to be static.");
                 return false;
             }
 
@@ -318,7 +336,7 @@ namespace Kamgam.PowerPivot
             if (methodInfo == null)
                 return null;
 
-            return (Action) Delegate.CreateDelegate(typeof(Action), methodInfo);
+            return (Action)Delegate.CreateDelegate(typeof(Action), methodInfo);
         }
 
         public static void ClearStoredAction(string sessionStorageKey)
@@ -340,17 +358,17 @@ namespace Kamgam.PowerPivot
             ClearStoredAction("storedActionA");
             if (action != null)
                 action.Invoke();
-            StoreAction("storedActionA", storedActionA);            
+            StoreAction("storedActionA", storedActionA);
         }
 
         static void testCallbackA()
         {
-            Debug.Log("Test callback A executed."); 
+            Debug.Log("Test callback A executed.");
         }
 
         static void testCallbackB()
         {
-            Debug.Log("Test callback B executed."); 
+            Debug.Log("Test callback B executed.");
         }
 
         static void storedActionA()

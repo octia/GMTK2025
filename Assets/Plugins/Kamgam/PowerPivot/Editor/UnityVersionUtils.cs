@@ -7,13 +7,17 @@ namespace Kamgam.PowerPivot
 {
     public static class UnityVersionUtils
     {
-        public static T[] FindObjectsOfType<T>(bool includeInactive = false) where T : UnityEngine.Object
+        public static T[] FindObjectsOfType<T>(bool includeInactive = false)
+            where T : UnityEngine.Object
         {
 #if UNITY_2023_1_OR_NEWER
-            return GameObject.FindObjectsByType<T>(includeInactive ? FindObjectsInactive.Include : FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            return GameObject.FindObjectsByType<T>(
+                includeInactive ? FindObjectsInactive.Include : FindObjectsInactive.Exclude,
+                FindObjectsSortMode.None
+            );
 #else
             return GameObject.FindObjectsOfType<T>(includeInactive);
-#endif 
+#endif
         }
 
         public static string GetCloseIcon()
@@ -26,4 +30,3 @@ namespace Kamgam.PowerPivot
         }
     }
 }
-

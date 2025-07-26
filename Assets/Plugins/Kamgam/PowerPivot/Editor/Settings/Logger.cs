@@ -5,7 +5,7 @@ namespace Kamgam.PowerPivot
     public class Logger
     {
         public delegate void LogCallback(string msg, LogLevel logLevel);
-        
+
         public const string Prefix = "PowerPivot: ";
         public static LogLevel CurrentLogLevel = LogLevel.Warning;
 
@@ -24,13 +24,13 @@ namespace Kamgam.PowerPivot
         public static System.Func<LogLevel> OnGetLogLevel = null;
 
         public enum LogLevel
-		{
-			Log     =  0,
-			Warning =  1,
-			Error   =  2,
-			Message =  3,
-			NoLogs  = 99
-		}
+        {
+            Log = 0,
+            Warning = 1,
+            Error = 2,
+            Message = 3,
+            NoLogs = 99,
+        }
 
         public static bool IsLogLevelVisible(LogLevel logLevel)
         {
@@ -48,7 +48,7 @@ namespace Kamgam.PowerPivot
         public static void Log(string message)
         {
             UpdateCurrentLogLevel();
-            if(IsLogLevelVisible(LogLevel.Log))
+            if (IsLogLevelVisible(LogLevel.Log))
                 Debug.Log(Prefix + message);
         }
 

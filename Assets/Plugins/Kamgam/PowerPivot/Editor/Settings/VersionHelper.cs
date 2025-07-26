@@ -7,7 +7,8 @@ namespace Kamgam.PowerPivot
 {
     public static class VersionHelper
     {
-        public static string VersionFileName = "." + typeof(VersionHelper).FullName.Replace("Helper", "") + ".txt";
+        public static string VersionFileName =
+            "." + typeof(VersionHelper).FullName.Replace("Helper", "") + ".txt";
         public static Version DefaultVersion = new Version(0, 0, 0, 1);
 
         public delegate bool UpgradeVersionDelegate(Version oldVersion, Version newVersion);
@@ -32,7 +33,10 @@ namespace Kamgam.PowerPivot
         /// <param name="upgradeVersionFunc">Use this to execute some custom code before upgrading
         /// the installed version info. If this returns false then the installed version will NOT be changed.</param>
         /// <returns></returns>
-        public static bool UpgradeVersion(Func<Version> getVersionFunc, UpgradeVersionDelegate upgradeVersionFunc = null)
+        public static bool UpgradeVersion(
+            Func<Version> getVersionFunc,
+            UpgradeVersionDelegate upgradeVersionFunc = null
+        )
         {
             return UpgradeVersion(getVersionFunc, out _, out _, upgradeVersionFunc);
         }
@@ -48,7 +52,12 @@ namespace Kamgam.PowerPivot
         /// <param name="upgradeVersionFunc">Use this to execute some custom code before upgrading
         /// the installed version info. If this returns false then the installed version will NOT be changed.</param>
         /// <returns></returns>
-        public static bool UpgradeVersion(Func<Version> getVersionFunc, out Version oldVersion, out Version newVersion, UpgradeVersionDelegate upgradeVersionFunc = null)
+        public static bool UpgradeVersion(
+            Func<Version> getVersionFunc,
+            out Version oldVersion,
+            out Version newVersion,
+            UpgradeVersionDelegate upgradeVersionFunc = null
+        )
         {
             oldVersion = GetInstalledVersion();
             newVersion = getVersionFunc();

@@ -22,7 +22,7 @@ namespace Kamgam.PowerPivot
             // active right from the start?
             if (ToolManager.activeToolType == typeof(PowerPivotTool))
             {
-                // Remember: Instance is still null here! 
+                // Remember: Instance is still null here!
                 active = true;
                 waitForInstance(active);
             }
@@ -33,7 +33,7 @@ namespace Kamgam.PowerPivot
             // active right from the start?
             if (EditorTools.activeToolType == typeof(PowerPivotTool))
             {
-                // Remember: PowerPivotTool.Instance is still null here! 
+                // Remember: PowerPivotTool.Instance is still null here!
                 active = true;
                 waitForInstance(active);
             }
@@ -51,7 +51,7 @@ namespace Kamgam.PowerPivot
                 PowerPivotTool.Instance.HandleKeyPressEvents(evt);
         }
 
-        static async void waitForInstance(bool active) 
+        static async void waitForInstance(bool active)
         {
             float totalWaitTime = 0f; // precaution against endlessly running task
             while (PowerPivotTool.Instance == null && totalWaitTime < 3000)

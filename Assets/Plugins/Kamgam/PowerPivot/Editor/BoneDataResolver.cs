@@ -1,8 +1,9 @@
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-using UnityEngine;
+
 
 namespace Kamgam.PowerPivot
 {
@@ -32,7 +33,9 @@ namespace Kamgam.PowerPivot
         /// Auto resolve OnEnable?<br />
         /// Happens only if the current renderer has no valid bones assigned.
         /// </summary>
-        [Tooltip("Auto resolve OnEnable?\nHappens only if the current renderer has no valid bones assigned.")]
+        [Tooltip(
+            "Auto resolve OnEnable?\nHappens only if the current renderer has no valid bones assigned."
+        )]
         public bool ResolveOnEnable = true;
 
         public bool EditorLogsEnabled = true;
@@ -80,7 +83,9 @@ namespace Kamgam.PowerPivot
                 // prefab.
                 if (parent != null)
                 {
-                    var renderers = parent.GetComponentsInChildren<SkinnedMeshRenderer>(includeInactive: true);
+                    var renderers = parent.GetComponentsInChildren<SkinnedMeshRenderer>(
+                        includeInactive: true
+                    );
                     if (renderers.Length == 1)
                     {
                         parent = parent.parent;
@@ -99,22 +104,32 @@ namespace Kamgam.PowerPivot
                 }
                 if (searchBase != null)
                 {
-                    var renderers = searchBase.GetComponentsInChildren<SkinnedMeshRenderer>(includeInactive: true);
+                    var renderers = searchBase.GetComponentsInChildren<SkinnedMeshRenderer>(
+                        includeInactive: true
+                    );
                     foreach (var renderer in renderers)
                     {
                         if (renderer == Renderer)
                             continue;
 
                         // Don't check the whole hierarchy. We are lazy and thus use the first one matching the root bone name.
-                        if (renderer.rootBone != null &&
-                            renderer.rootBone.transform.name == BoneData.RootName)
+                        if (
+                            renderer.rootBone != null
+                            && renderer.rootBone.transform.name == BoneData.RootName
+                        )
                         {
                             // Use this a the new rootBone
                             rootBone = renderer.rootBone;
 #if UNITY_EDITOR
                             if (EditorLogsEnabled)
                             {
-                                Debug.Log("Found matching root bone on RENDERER '" + renderer + "'. Will apply them to '" + Renderer.name + "'");
+                                Debug.Log(
+                                    "Found matching root bone on RENDERER '"
+                                        + renderer
+                                        + "'. Will apply them to '"
+                                        + Renderer.name
+                                        + "'"
+                                );
                             }
 #endif
                             break;
@@ -139,7 +154,9 @@ namespace Kamgam.PowerPivot
                 }
                 if (searchBase != null)
                 {
-                    var renderers = searchBase.GetComponentsInChildren<SkinnedMeshRenderer>(includeInactive: true);
+                    var renderers = searchBase.GetComponentsInChildren<SkinnedMeshRenderer>(
+                        includeInactive: true
+                    );
 
                     // Don't check the whole hierarchy. We are lazy and thus use the first one matching the root bone name.
                     var root = searchBase.Find(BoneData.RootName);
@@ -150,7 +167,13 @@ namespace Kamgam.PowerPivot
 #if UNITY_EDITOR
                         if (EditorLogsEnabled)
                         {
-                            Debug.Log("Found matching root bone on TRANSFORM in '" + searchBase.name + "'. Will apply it to '" + Renderer.name + "'.");
+                            Debug.Log(
+                                "Found matching root bone on TRANSFORM in '"
+                                    + searchBase.name
+                                    + "'. Will apply it to '"
+                                    + Renderer.name
+                                    + "'."
+                            );
                         }
 #endif
                     }
@@ -185,7 +208,7 @@ namespace Kamgam.PowerPivot
 
                 Renderer.rootBone = rootBone;
                 BoneData.ResolveAndApplyTo(rootBone, Renderer);
-                
+
                 Renderer.sharedMesh.RecalculateBounds();
                 Renderer.localBounds = Renderer.sharedMesh.bounds;
 
@@ -210,12 +233,17 @@ namespace Kamgam.PowerPivot
             if (BoneData != null && Renderer != null)
             {
                 // Skip if renderer has no valid bones.
-                if (renderer == null || renderer.bones == null || renderer.bones.Length == 0 || renderer.bones[0] == null)
+                if (
+                    renderer == null
+                    || renderer.bones == null
+                    || renderer.bones.Length == 0
+                    || renderer.bones[0] == null
+                )
                     return false;
 
                 Renderer.rootBone = renderer.rootBone;
                 Renderer.bones = renderer.bones;
-                
+
                 Renderer.sharedMesh.RecalculateBounds();
                 Renderer.localBounds = Renderer.sharedMesh.bounds;
 
@@ -243,7 +271,7 @@ namespace Kamgam.PowerPivot
         {
             if (BoneData == null)
                 return null;
-            
+
             return BoneData.CreateTransforms(parentOfRootBone);
         }
 
@@ -259,24 +287,19 @@ namespace Kamgam.PowerPivot
 
             if (Renderer.sharedMesh != null)
             {
-                if(Renderer.sharedMesh.bindposes != null)
+                if (Renderer.sharedMesh.bindposes != null)
                 {
                     int numOfBones = Renderer.sharedMesh.bindposes.Length;
                     Renderer.bones = new Transform[numOfBones];
                 }
             }
-            else if(BoneData != null)
+            else if (BoneData != null)
             {
                 int numOfBones = BoneData.GetPaths().Count;
                 Renderer.bones = new Transform[numOfBones];
             }
         }
     }
-
-
-
-
-
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(BoneDataResolver))]
@@ -296,27 +319,39 @@ namespace Kamgam.PowerPivot
             GUI.color = col;
             if (_infoFoldout)
             {
-                EditorGUILayout.HelpBox(new GUIContent(
-                        "It requires some BoneData (which contains a list of string paths like 'root/hips/spine').\n" +
-                        "If Resolve() is called it will try to find bine pose data for the bones. \n" +
-                        "It searches in multiple locations:\n" +
-                        "1) First is searches for nearby SkinnedMeshRenderers (two levels up and down in the hierarchy).\n" +
-                        "2) If no renderers are found it will try to find a sibling named like BoneData.RootName and use\n" +
-                        "   that as root bone. NOTICE: This may lead to distortions if the order of the transforms in the\n" +
-                        "   hierarchy does not match the mesh bind pose order (if often does not).\n" +
-                        "\n\n" +
-                        "You can use this at runtime though it is recommended you use it just once in the editor like this:\n" +
-                        "1) Add the 'BoneDataApplier' as a Component to your SkinnedMeshRenderer gameObject.\n" +
-                        "2) Drag in the BoneData asset into the BoneData slot.\n" +
-                        "3) Make sure the original SkinnedMeshRenderer is nearby (sibling level in hierarchy).\n" +
-                        "4) Hit the 'Resolve' button.\n" +
-                        "5) Delete the 'BoneDataApplier'.\n" +
-                        "6) Save the scene (so the new bones are saved within the renderer)."
-                        ));
+                EditorGUILayout.HelpBox(
+                    new GUIContent(
+                        "It requires some BoneData (which contains a list of string paths like 'root/hips/spine').\n"
+                            + "If Resolve() is called it will try to find bine pose data for the bones. \n"
+                            + "It searches in multiple locations:\n"
+                            + "1) First is searches for nearby SkinnedMeshRenderers (two levels up and down in the hierarchy).\n"
+                            + "2) If no renderers are found it will try to find a sibling named like BoneData.RootName and use\n"
+                            + "   that as root bone. NOTICE: This may lead to distortions if the order of the transforms in the\n"
+                            + "   hierarchy does not match the mesh bind pose order (if often does not).\n"
+                            + "\n\n"
+                            + "You can use this at runtime though it is recommended you use it just once in the editor like this:\n"
+                            + "1) Add the 'BoneDataApplier' as a Component to your SkinnedMeshRenderer gameObject.\n"
+                            + "2) Drag in the BoneData asset into the BoneData slot.\n"
+                            + "3) Make sure the original SkinnedMeshRenderer is nearby (sibling level in hierarchy).\n"
+                            + "4) Hit the 'Resolve' button.\n"
+                            + "5) Delete the 'BoneDataApplier'.\n"
+                            + "6) Save the scene (so the new bones are saved within the renderer)."
+                    )
+                );
             }
 
-            GUILayout.Label(new GUIContent("Renderer to copy bones from:", "If set then the bones from this renderer will be copied. This completely bypasses the BoneData since in that case it is not needed."));
-            _rendererToCopyBonesFrom = (SkinnedMeshRenderer)UnityEditor.EditorGUILayout.ObjectField(_rendererToCopyBonesFrom, typeof(SkinnedMeshRenderer), allowSceneObjects: true);
+            GUILayout.Label(
+                new GUIContent(
+                    "Renderer to copy bones from:",
+                    "If set then the bones from this renderer will be copied. This completely bypasses the BoneData since in that case it is not needed."
+                )
+            );
+            _rendererToCopyBonesFrom = (SkinnedMeshRenderer)
+                UnityEditor.EditorGUILayout.ObjectField(
+                    _rendererToCopyBonesFrom,
+                    typeof(SkinnedMeshRenderer),
+                    allowSceneObjects: true
+                );
 
             base.OnInspectorGUI();
 
@@ -328,20 +363,35 @@ namespace Kamgam.PowerPivot
             GUI.enabled = resolver.BoneData != null;
             if (GUILayout.Button("Resolve"))
             {
-                var result = _rendererToCopyBonesFrom == null ? resolver.Resolve() : resolver.Resolve(_rendererToCopyBonesFrom);
+                var result =
+                    _rendererToCopyBonesFrom == null
+                        ? resolver.Resolve()
+                        : resolver.Resolve(_rendererToCopyBonesFrom);
                 if (result)
                 {
                     Debug.Log(resolver.BoneData.GetPaths().Count + " Bones applied.");
                 }
                 else
                 {
-                    Debug.LogWarning("SkinnedMeshRenderer or BoneData is missing. Maybe no matching sbiling named '" + resolver.BoneData.RootName + "' or SkinnedMeshRenderer with a root bone named '" + resolver.BoneData.RootName+"' was found.");
+                    Debug.LogWarning(
+                        "SkinnedMeshRenderer or BoneData is missing. Maybe no matching sbiling named '"
+                            + resolver.BoneData.RootName
+                            + "' or SkinnedMeshRenderer with a root bone named '"
+                            + resolver.BoneData.RootName
+                            + "' was found."
+                    );
                 }
             }
             GUI.enabled = true;
 
-            bool needsBoneTransforms = resolver.Renderer != null && (resolver.Renderer.bones == null || (resolver.Renderer.bones.Length > 0 && resolver.Renderer.bones[0] == null));
-            GUI.enabled = resolver.BoneData != null && resolver.Renderer != null && needsBoneTransforms;
+            bool needsBoneTransforms =
+                resolver.Renderer != null
+                && (
+                    resolver.Renderer.bones == null
+                    || (resolver.Renderer.bones.Length > 0 && resolver.Renderer.bones[0] == null)
+                );
+            GUI.enabled =
+                resolver.BoneData != null && resolver.Renderer != null && needsBoneTransforms;
             if (GUILayout.Button("Create Bone Transforms"))
             {
                 var parentOfRootBone = resolver.transform.parent;
@@ -350,14 +400,21 @@ namespace Kamgam.PowerPivot
                 var newRoot = resolver.CreateTransforms(parentOfRootBone);
                 resolver.Renderer.rootBone = newRoot;
                 var result = resolver.Resolve();
-                if(!result)
+                if (!result)
                 {
                     Debug.LogWarning("SkinnedMeshRenderer or BoneData is missing.");
                 }
             }
             GUI.enabled = true;
 
-            if (GUILayout.Button(new GUIContent("Reset To NULL", "Resets all the bone data to null to avoid 'Bones do not match bindpose.' errors. All the bones will be null and just do nothing. Be sure to assign proper bones later.")))
+            if (
+                GUILayout.Button(
+                    new GUIContent(
+                        "Reset To NULL",
+                        "Resets all the bone data to null to avoid 'Bones do not match bindpose.' errors. All the bones will be null and just do nothing. Be sure to assign proper bones later."
+                    )
+                )
+            )
             {
                 resolver.AssignNullTransforms();
             }
@@ -365,7 +422,15 @@ namespace Kamgam.PowerPivot
             GUILayout.Space(7);
             if (resolver.BoneData != null)
             {
-                _bonesInDataFoldout = EditorGUILayout.Foldout(_bonesInDataFoldout, new GUIContent(resolver.Renderer.bones.Length + " Bone paths in BoneData '"+resolver.BoneData.name+"':"));
+                _bonesInDataFoldout = EditorGUILayout.Foldout(
+                    _bonesInDataFoldout,
+                    new GUIContent(
+                        resolver.Renderer.bones.Length
+                            + " Bone paths in BoneData '"
+                            + resolver.BoneData.name
+                            + "':"
+                    )
+                );
                 if (_bonesInDataFoldout)
                 {
                     foreach (var path in resolver.BoneData.GetPaths())
@@ -383,7 +448,15 @@ namespace Kamgam.PowerPivot
 
             if (resolver.Renderer != null)
             {
-                _bonesOnMeshFoldout = EditorGUILayout.Foldout(_bonesOnMeshFoldout, new GUIContent(resolver.Renderer.bones.Length + " Bones assigned to SkinnedMeshRenderer '" + resolver.Renderer.name + "':"));
+                _bonesOnMeshFoldout = EditorGUILayout.Foldout(
+                    _bonesOnMeshFoldout,
+                    new GUIContent(
+                        resolver.Renderer.bones.Length
+                            + " Bones assigned to SkinnedMeshRenderer '"
+                            + resolver.Renderer.name
+                            + "':"
+                    )
+                );
                 if (_bonesOnMeshFoldout)
                 {
                     foreach (var bone in resolver.Renderer.bones)
@@ -407,21 +480,34 @@ namespace Kamgam.PowerPivot
 
                 // Show message if renderer has properly assigned bones and it is okay to delete the resolver.
                 var renderer = resolver.Renderer;
-                if (renderer  != null && renderer.bones != null && renderer.bones.Length > 0 && renderer.bones[0] != null
-                    && renderer.bones.Length == renderer.sharedMesh.bindposes.Length)
+                if (
+                    renderer != null
+                    && renderer.bones != null
+                    && renderer.bones.Length > 0
+                    && renderer.bones[0] != null
+                    && renderer.bones.Length == renderer.sharedMesh.bindposes.Length
+                )
                 {
                     var color = GUI.color;
                     GUI.color = Color.green;
                     GUILayout.Label("Your bones are set. You can delete the BoneDataResolver.");
                     GUI.color = color;
                 }
-                else if (renderer != null && renderer.bones != null && renderer.bones.Length > 0 && renderer.bones[0] == null)
+                else if (
+                    renderer != null
+                    && renderer.bones != null
+                    && renderer.bones.Length > 0
+                    && renderer.bones[0] == null
+                )
                 {
                     var color = GUI.color;
                     GUI.color = Color.yellow;
                     var style = GUI.skin.label;
                     style.wordWrap = true;
-                    GUILayout.Label("Seems like your bones are NULL. Move the object next to a SkinnedMeshRenderer with bones and hit 'Resolve'.", style);
+                    GUILayout.Label(
+                        "Seems like your bones are NULL. Move the object next to a SkinnedMeshRenderer with bones and hit 'Resolve'.",
+                        style
+                    );
                     GUI.color = color;
                 }
             }

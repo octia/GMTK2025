@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.EditorTools;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
@@ -55,7 +55,9 @@ namespace Kamgam.PowerPivot
                     Vector3 newGlobalCursorPos = go.transform.TransformPoint(oldLocalCursorPos);
                     Vector3 posDeltaInParent;
                     if (go.transform.parent != null)
-                        posDeltaInParent = go.transform.parent.InverseTransformVector(cursorPosition - newGlobalCursorPos);
+                        posDeltaInParent = go.transform.parent.InverseTransformVector(
+                            cursorPosition - newGlobalCursorPos
+                        );
                     else
                         posDeltaInParent = cursorPosition - newGlobalCursorPos;
                     go.transform.localPosition += posDeltaInParent;

@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Globalization;
+
 
 namespace Kamgam.PowerPivot
 {
@@ -14,7 +15,7 @@ namespace Kamgam.PowerPivot
 #if UNITY_EDITOR
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="filePath">File path relative to the Assets directory. You don not have to include "Assets/". The file extension is irrelevant (it will be stripped anyways).</param>
         /// <param name="objectName"></param>
@@ -22,7 +23,13 @@ namespace Kamgam.PowerPivot
         /// <param name="materials"></param>
         /// <param name="logFilePaths"></param>
         /// <returns>A dictionary containing the file name (with extension) and the content as string.</returns>
-        public static Dictionary<string, string> SaveMeshAsObj(string filePath, string objectName, Mesh mesh, IList<Material> materials, bool logFilePaths)
+        public static Dictionary<string, string> SaveMeshAsObj(
+            string filePath,
+            string objectName,
+            Mesh mesh,
+            IList<Material> materials,
+            bool logFilePaths
+        )
         {
             // Remove "Assets/" from the start
             if (filePath.StartsWith("Assets/") || filePath.StartsWith("Assets\\"))
@@ -51,8 +58,10 @@ namespace Kamgam.PowerPivot
                 string content = kv.Value;
                 string path = Application.dataPath + "/" + subdir + name;
                 System.IO.File.WriteAllText(path, content);
-                if(logFilePaths)
-                    Logger.LogMessage("File generated in <color=yellow>Assets/" + (subdir + name) + "</color>");
+                if (logFilePaths)
+                    Logger.LogMessage(
+                        "File generated in <color=yellow>Assets/" + (subdir + name) + "</color>"
+                    );
             }
 
             AssetDatabase.Refresh();
@@ -69,11 +78,16 @@ namespace Kamgam.PowerPivot
         /// <param name="mesh"></param>
         /// <param name="materials"></param>
         /// <returns>A dictionary of filenames (key) and file contents (value). Usually that's "fileName.obj" and "fileName.mtl".</returns>
-        static Dictionary<string,string> meshToObj(string fileName, string objectName, Mesh mesh, IList<Material> materials)
-		{
+        static Dictionary<string, string> meshToObj(
+            string fileName,
+            string objectName,
+            Mesh mesh,
+            IList<Material> materials
+        )
+        {
             var files = new Dictionary<string, string>();
 
-			System.Text.StringBuilder meshString = new System.Text.StringBuilder();
+            System.Text.StringBuilder meshString = new System.Text.StringBuilder();
             meshString.Append("# OBJ created via Mesh Extractor by KAMGAM").Append("\n");
 
             fileName = sanitizeString(fileName);
@@ -82,10 +96,9 @@ namespace Kamgam.PowerPivot
                 fileName = "Mesh";
             }
 
-
             // Material Lib
             // If not materials are given then default material values are used to create the material lib.
-            
+
             // Ref to material lib file in .obj
             meshString.Append("mtllib ").Append(fileName).Append(".mtl").Append("\n");
 
@@ -110,22 +123,56 @@ namespace Kamgam.PowerPivot
 
                 materialsString.Append("newmtl ").Append(materialName).Append("\n");
                 // Specular Exponent (ranges between 0 and 1000)
-                materialsString.Append("Ns ").Append(string.Format(CultureInfo.InvariantCulture, "{0:F6}", 225f)).Append("\n");
+                materialsString
+                    .Append("Ns ")
+                    .Append(string.Format(CultureInfo.InvariantCulture, "{0:F6}", 225f))
+                    .Append("\n");
                 // Ambient Color
-                materialsString.Append("Ka ").Append(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", 1f, 1f, 1f)).Append("\n");
+                materialsString
+                    .Append("Ka ")
+                    .Append(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", 1f, 1f, 1f))
+                    .Append("\n");
                 // Diffuse Color
-                materialsString.Append("Kd ").Append(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}",
-                    material == null || !material.HasProperty("_Color") ? 1f : material.color.r,
-                    material == null || !material.HasProperty("_Color") ? 1f : material.color.g,
-                    material == null || !material.HasProperty("_Color") ? 1f : material.color.b)).Append("\n");
+                materialsString
+                    .Append("Kd ")
+                    .Append(
+                        string.Format(
+                            CultureInfo.InvariantCulture,
+                            "{0} {1} {2}",
+                            material == null || !material.HasProperty("_Color")
+                                ? 1f
+                                : material.color.r,
+                            material == null || !material.HasProperty("_Color")
+                                ? 1f
+                                : material.color.g,
+                            material == null || !material.HasProperty("_Color")
+                                ? 1f
+                                : material.color.b
+                        )
+                    )
+                    .Append("\n");
                 // Specular
-                materialsString.Append("Ks ").Append(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", 0.5f, 0.5f, 0.5f)).Append("\n");
+                materialsString
+                    .Append("Ks ")
+                    .Append(
+                        string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", 0.5f, 0.5f, 0.5f)
+                    )
+                    .Append("\n");
                 // Emissive
-                materialsString.Append("Ke ").Append(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", 0f, 0f, 0f)).Append("\n");
+                materialsString
+                    .Append("Ke ")
+                    .Append(string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", 0f, 0f, 0f))
+                    .Append("\n");
                 // Optical desity (aka refraction index), glass ~= 1.45
-                materialsString.Append("Ni ").Append(string.Format(CultureInfo.InvariantCulture, "{0}", 1.45f)).Append("\n");
+                materialsString
+                    .Append("Ni ")
+                    .Append(string.Format(CultureInfo.InvariantCulture, "{0}", 1.45f))
+                    .Append("\n");
                 // Opacity (0 = fully transparent, 1 = fully opaque)
-                materialsString.Append("d ").Append(string.Format(CultureInfo.InvariantCulture, "{0}", 1f)).Append("\n");
+                materialsString
+                    .Append("d ")
+                    .Append(string.Format(CultureInfo.InvariantCulture, "{0}", 1f))
+                    .Append("\n");
                 // Illumination mode (can be skipped)
                 //   0 = Color on and Ambient off
                 //   1 = Color on and Ambient on
@@ -148,16 +195,21 @@ namespace Kamgam.PowerPivot
                     {
                         var materialPath = AssetDatabase.GetAssetPath(material);
                         var texturePath = AssetDatabase.GetAssetPath(material.mainTexture);
-                        var relativeTexturePath = texturePath.Replace(System.IO.Path.GetDirectoryName(materialPath), "");
+                        var relativeTexturePath = texturePath.Replace(
+                            System.IO.Path.GetDirectoryName(materialPath),
+                            ""
+                        );
                         if (!string.IsNullOrEmpty(relativeTexturePath))
-                            materialsString.Append("map_Kd ").Append(relativeTexturePath).Append("\n");
+                            materialsString
+                                .Append("map_Kd ")
+                                .Append(relativeTexturePath)
+                                .Append("\n");
                     }
                 }
                 materialsString.Append("\n");
             }
 
             files.Add(fileName + ".mtl", materialsString.ToString());
-
 
             // Object
             string objName = sanitizeString(objectName);
@@ -168,28 +220,46 @@ namespace Kamgam.PowerPivot
             meshString.Append("o ").Append(objName).Append("\n");
 
             // Vertices
-			foreach (Vector3 v in mesh.vertices)
-			{
+            foreach (Vector3 v in mesh.vertices)
+            {
                 // flip x-axis to convert from Unitys left-handed coordinates to OBJ right-handed.
-				meshString.Append(string.Format(CultureInfo.InvariantCulture, "v {0:F6} {1:F6} {2:F6}\n", -v.x, v.y, v.z));
-			}
+                meshString.Append(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        "v {0:F6} {1:F6} {2:F6}\n",
+                        -v.x,
+                        v.y,
+                        v.z
+                    )
+                );
+            }
 
             // UVs
             foreach (Vector3 v in mesh.uv)
             {
-                meshString.Append(string.Format(CultureInfo.InvariantCulture, "vt {0:F6} {1:F6}\n", v.x, v.y));
+                meshString.Append(
+                    string.Format(CultureInfo.InvariantCulture, "vt {0:F6} {1:F6}\n", v.x, v.y)
+                );
             }
 
             // Normals
             foreach (Vector3 v in mesh.normals)
-			{
+            {
                 // flip x-axis to convert from Unitys left-handed coordinates to OBJ right-handed.
-                meshString.Append(string.Format(CultureInfo.InvariantCulture, "vn {0:F6} {1:F6} {2:F6}\n", -v.x, v.y, v.z));
-			}
+                meshString.Append(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        "vn {0:F6} {1:F6} {2:F6}\n",
+                        -v.x,
+                        v.y,
+                        v.z
+                    )
+                );
+            }
 
             // Faces (and sub meshes / groups)
-			for (int subMeshIndex = 0; subMeshIndex < mesh.subMeshCount; subMeshIndex++)
-			{
+            for (int subMeshIndex = 0; subMeshIndex < mesh.subMeshCount; subMeshIndex++)
+            {
                 string materialName = null;
                 if (materials != null && materials.Count > subMeshIndex)
                 {
@@ -206,7 +276,7 @@ namespace Kamgam.PowerPivot
                     meshString.Append("g ").Append(fileName).Append("\n");
                 }
                 meshString.Append("usemtl ").Append(materialName).Append("\n");
-                if(subMeshIndex == 0)
+                if (subMeshIndex == 0)
                 {
                     // Smooth shading between sub meshes ON
                     meshString.Append("s 1\n");
@@ -214,17 +284,20 @@ namespace Kamgam.PowerPivot
                     // meshString.Append("s off\n");
                 }
 
-
-				int[] triangles = mesh.GetTriangles(subMeshIndex);
-				for (int i = 0; i < triangles.Length; i += 3)
-				{
+                int[] triangles = mesh.GetTriangles(subMeshIndex);
+                for (int i = 0; i < triangles.Length; i += 3)
+                {
                     // flip order to convert from Unitys left-handed (0,1,2) coordinates to OBJ right-handed (2,1,0).
-                    meshString.Append(string.Format("f {2}/{2}/{2} {1}/{1}/{1} {0}/{0}/{0}\n",
-						triangles[i] + 1,
-                        triangles[i + 1] + 1,
-                        triangles[i + 2] + 1));
-				}
-			}
+                    meshString.Append(
+                        string.Format(
+                            "f {2}/{2}/{2} {1}/{1}/{1} {0}/{0}/{0}\n",
+                            triangles[i] + 1,
+                            triangles[i + 1] + 1,
+                            triangles[i + 2] + 1
+                        )
+                    );
+                }
+            }
 
             // Mesh file (.obj)
             files.Add(fileName + ".obj", meshString.ToString());
@@ -238,7 +311,5 @@ namespace Kamgam.PowerPivot
             return regexp.Replace(name, "");
         }
 #endif
-
     }
 }
-

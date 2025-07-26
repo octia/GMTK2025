@@ -12,7 +12,13 @@ namespace Kamgam.PowerPivot
         public const string PIVOT_DATA_SUFFIX = "_PivotData";
         public const string BONE_DATA_SUFFIX = "_BoneData";
 
-        public static void SaveMeshAsAsset(Mesh mesh, BoneData boneData, PivotData pivotData, string assetPath, bool logFilePaths = true)
+        public static void SaveMeshAsAsset(
+            Mesh mesh,
+            BoneData boneData,
+            PivotData pivotData,
+            string assetPath,
+            bool logFilePaths = true
+        )
         {
             if (mesh == null)
                 return;
@@ -30,7 +36,9 @@ namespace Kamgam.PowerPivot
                 }
             }
 
-            string dirPath = System.IO.Path.GetDirectoryName(Application.dataPath + "/../" + assetPath);
+            string dirPath = System.IO.Path.GetDirectoryName(
+                Application.dataPath + "/../" + assetPath
+            );
             if (!System.IO.Directory.Exists(dirPath))
             {
                 System.IO.Directory.CreateDirectory(dirPath);
@@ -75,7 +83,12 @@ namespace Kamgam.PowerPivot
                 Logger.LogMessage($"Saved new mesh under <color=yellow>'{assetPath}'</color>.");
         }
 
-        public static void CreatePivotDataAsset(Mesh mesh, PivotData pivotData, string assetPath, bool logFilePaths = true)
+        public static void CreatePivotDataAsset(
+            Mesh mesh,
+            PivotData pivotData,
+            string assetPath,
+            bool logFilePaths = true
+        )
         {
             // Create or replace PivotData asset
             if (pivotData != null)
@@ -83,7 +96,9 @@ namespace Kamgam.PowerPivot
                 var extension = System.IO.Path.GetExtension(assetPath); // extension with dot
                 var path = assetPath.Substring(0, assetPath.Length - extension.Length);
                 var pivotDataAssetPath = path + PIVOT_DATA_SUFFIX + extension;
-                var existingPivotData = AssetDatabase.LoadAssetAtPath<PivotData>(pivotDataAssetPath);
+                var existingPivotData = AssetDatabase.LoadAssetAtPath<PivotData>(
+                    pivotDataAssetPath
+                );
                 if (existingPivotData != null)
                 {
                     Undo.RegisterCompleteObjectUndo(existingPivotData, "Create new pivot data");
@@ -116,7 +131,5 @@ namespace Kamgam.PowerPivot
             return assetPath;
         }
 #endif
-
     }
 }
-

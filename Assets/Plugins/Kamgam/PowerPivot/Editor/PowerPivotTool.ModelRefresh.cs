@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEditor.EditorTools;
 using UnityEditor.ShortcutManagement;
-using System.Collections.Generic;
-using System.Text;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
@@ -31,7 +31,11 @@ namespace Kamgam.PowerPivot
         {
             if (pivotData.OriginalMesh != null && pivotData.ModifiedMesh != null)
             {
-                MeshModifier.CopyAndDisplaceMesh(pivotData.OriginalMesh, pivotData.ModifiedMesh, pivotData.PivotDelta);
+                MeshModifier.CopyAndDisplaceMesh(
+                    pivotData.OriginalMesh,
+                    pivotData.ModifiedMesh,
+                    pivotData.PivotDelta
+                );
             }
         }
     }

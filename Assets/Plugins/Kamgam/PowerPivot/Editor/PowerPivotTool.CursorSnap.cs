@@ -1,35 +1,44 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
-    public class DuplicateKeyComparer<TKey> : IComparer<TKey> where TKey : System.IComparable
+    public class DuplicateKeyComparer<TKey> : IComparer<TKey>
+        where TKey : System.IComparable
     {
         public int Compare(TKey x, TKey y)
         {
             int result = x.CompareTo(y);
 
             if (result == 0)
-                return 1;   // Handle equality as beeing greater.
+                return 1; // Handle equality as beeing greater.
             else
                 return result;
         }
     }
+
     partial class PowerPivotTool
     {
         List<SkinnedMeshRenderer> sceneSkinnedMeshRenderersCache = new List<SkinnedMeshRenderer>();
-        Dictionary<SkinnedMeshRenderer, List<Vector3>> sceneSkinnedMeshVerticesCache = new Dictionary<SkinnedMeshRenderer, List<Vector3>>();
-        Dictionary<SkinnedMeshRenderer, List<Vector3>> sceneSkinnedMeshNormalsCache = new Dictionary<SkinnedMeshRenderer, List<Vector3>>();
+        Dictionary<SkinnedMeshRenderer, List<Vector3>> sceneSkinnedMeshVerticesCache =
+            new Dictionary<SkinnedMeshRenderer, List<Vector3>>();
+        Dictionary<SkinnedMeshRenderer, List<Vector3>> sceneSkinnedMeshNormalsCache =
+            new Dictionary<SkinnedMeshRenderer, List<Vector3>>();
 
         List<MeshFilter> sceneMeshFiltersCache = new List<MeshFilter>();
-        Dictionary<MeshFilter, List<Vector3>> sceneMeshVerticesCache = new Dictionary<MeshFilter, List<Vector3>>();
-        Dictionary<MeshFilter, List<Vector3>> sceneMeshNormalsCache = new Dictionary<MeshFilter, List<Vector3>>();
+        Dictionary<MeshFilter, List<Vector3>> sceneMeshVerticesCache =
+            new Dictionary<MeshFilter, List<Vector3>>();
+        Dictionary<MeshFilter, List<Vector3>> sceneMeshNormalsCache =
+            new Dictionary<MeshFilter, List<Vector3>>();
 
         List<SpriteRenderer> sceneSpriteRenderesCache = new List<SpriteRenderer>();
-        Dictionary<SpriteRenderer, Vector2[]> sceneSpriteVerticesCache = new Dictionary<SpriteRenderer, Vector2[]>();
+        Dictionary<SpriteRenderer, Vector2[]> sceneSpriteVerticesCache =
+            new Dictionary<SpriteRenderer, Vector2[]>();
 
-        SortedList<float, Vector4> tmpSnapCandidates = new SortedList<float, Vector4>(new DuplicateKeyComparer<float>());
+        SortedList<float, Vector4> tmpSnapCandidates = new SortedList<float, Vector4>(
+            new DuplicateKeyComparer<float>()
+        );
         Bounds tmpSnapBounds = new Bounds();
 
         void SnapCursor(SceneView sceneView, int controlID)
@@ -41,13 +50,18 @@ namespace Kamgam.PowerPivot
                 if (cam != null)
                 {
                     var settings = PowerPivotSettings.GetOrCreateSettings();
-                    float preferSelectedSqrDistance = settings.PreferSelectedDistance * settings.PreferSelectedDistance;
+                    float preferSelectedSqrDistance =
+                        settings.PreferSelectedDistance * settings.PreferSelectedDistance;
                     // All vertices that are within this radius of each other in screen space are considered to be equal.
                     // If there are mutiple vetices within that radius then the selection is based on the z value (the
                     // closest vertex will be taken).
                     float preferZSqrDistance = settings.PreferZDistance * settings.PreferZDistance;
-                    float maxPreferredSqrDistance = Mathf.Max(preferSelectedSqrDistance, preferZSqrDistance);
-                    float ignorePreferredSqrDistance = settings.IgnoreZDistance * settings.IgnoreZDistance;
+                    float maxPreferredSqrDistance = Mathf.Max(
+                        preferSelectedSqrDistance,
+                        preferZSqrDistance
+                    );
+                    float ignorePreferredSqrDistance =
+                        settings.IgnoreZDistance * settings.IgnoreZDistance;
                     bool usePreference = !Event.current.shift;
 
                     var ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
@@ -68,17 +82,32 @@ namespace Kamgam.PowerPivot
                             continue;
 
                         // skip if hidden
-                        if (UtilsSceneVis.IsVisibilityActive() && !UtilsSceneVis.IsVisible(meshFilter.gameObject))
+                        if (
+                            UtilsSceneVis.IsVisibilityActive()
+                            && !UtilsSceneVis.IsVisible(meshFilter.gameObject)
+                        )
                             continue;
 
                         var meshRenderer = meshFilter.gameObject.GetComponent<MeshRenderer>();
                         if (meshRenderer != null)
                         {
                             scanRendererForSnapVertices(
-                                meshRenderer, cam, settings, preferSelectedSqrDistance, maxPreferredSqrDistance, usePreference,
-                                ref ray, rayOriginInScreenSpace, ref minSqrDistance, ref minVertex, ref found, ref foundPreferredSelected,
-                                meshFilter, sceneMeshVerticesCache, sceneMeshNormalsCache
-                                );
+                                meshRenderer,
+                                cam,
+                                settings,
+                                preferSelectedSqrDistance,
+                                maxPreferredSqrDistance,
+                                usePreference,
+                                ref ray,
+                                rayOriginInScreenSpace,
+                                ref minSqrDistance,
+                                ref minVertex,
+                                ref found,
+                                ref foundPreferredSelected,
+                                meshFilter,
+                                sceneMeshVerticesCache,
+                                sceneMeshNormalsCache
+                            );
                         }
                     }
 
@@ -90,14 +119,29 @@ namespace Kamgam.PowerPivot
                             continue;
 
                         // skip if hidden
-                        if (UtilsSceneVis.IsVisibilityActive() && !UtilsSceneVis.IsVisible(meshRenderer.gameObject))
+                        if (
+                            UtilsSceneVis.IsVisibilityActive()
+                            && !UtilsSceneVis.IsVisible(meshRenderer.gameObject)
+                        )
                             continue;
 
                         scanRendererForSnapVertices(
-                            meshRenderer, cam, settings, preferSelectedSqrDistance, maxPreferredSqrDistance, usePreference,
-                            ref ray, rayOriginInScreenSpace, ref minSqrDistance, ref minVertex, ref found, ref foundPreferredSelected,
-                            meshRenderer, sceneSkinnedMeshVerticesCache, sceneSkinnedMeshNormalsCache
-                            );
+                            meshRenderer,
+                            cam,
+                            settings,
+                            preferSelectedSqrDistance,
+                            maxPreferredSqrDistance,
+                            usePreference,
+                            ref ray,
+                            rayOriginInScreenSpace,
+                            ref minSqrDistance,
+                            ref minVertex,
+                            ref found,
+                            ref foundPreferredSelected,
+                            meshRenderer,
+                            sceneSkinnedMeshVerticesCache,
+                            sceneSkinnedMeshNormalsCache
+                        );
                     }
 
                     // .. in SpriteRenderers
@@ -118,7 +162,9 @@ namespace Kamgam.PowerPivot
                                 var c = vertices.Length;
                                 for (int i = 0; i < c; i++)
                                 {
-                                    var posInScreenSpace = cam.WorldToScreenPoint(spriteRenderer.transform.TransformPoint(vertices[i]));
+                                    var posInScreenSpace = cam.WorldToScreenPoint(
+                                        spriteRenderer.transform.TransformPoint(vertices[i])
+                                    );
                                     var distance = rayOriginInScreenSpace - posInScreenSpace; // distance in screen space
                                     float zDistance = -distance.z;
                                     distance.z = 0f;
@@ -126,15 +172,22 @@ namespace Kamgam.PowerPivot
                                     if (sqrDistance < minSqrDistance)
                                     {
                                         minSqrDistance = sqrDistance;
-                                        minVertex = spriteRenderer.transform.TransformPoint(vertices[i]);
+                                        minVertex = spriteRenderer.transform.TransformPoint(
+                                            vertices[i]
+                                        );
                                         found = true;
                                     }
 
                                     // collect candidates for perferred snapping
                                     if (usePreference && sqrDistance < maxPreferredSqrDistance)
                                     {
-                                        var v = spriteRenderer.transform.TransformPoint(vertices[i]);
-                                        tmpSnapCandidates.Add(sqrDistance, new Vector4(v.x, v.y, v.z, isSelected ? -1f : zDistance));
+                                        var v = spriteRenderer.transform.TransformPoint(
+                                            vertices[i]
+                                        );
+                                        tmpSnapCandidates.Add(
+                                            sqrDistance,
+                                            new Vector4(v.x, v.y, v.z, isSelected ? -1f : zDistance)
+                                        );
                                         if (isSelected && sqrDistance < preferSelectedSqrDistance)
                                             foundPreferredSelected = true;
                                     }
@@ -175,7 +228,10 @@ namespace Kamgam.PowerPivot
                             }
 
                             // only apply if the current vertex and the zMinVertex are some distance appart
-                            if (Vector3.SqrMagnitude(zMinVertex - minVertex) > ignorePreferredSqrDistance) // x²
+                            if (
+                                Vector3.SqrMagnitude(zMinVertex - minVertex)
+                                > ignorePreferredSqrDistance
+                            ) // x²
                             {
                                 minVertex = zMinVertex;
                             }
@@ -187,7 +243,9 @@ namespace Kamgam.PowerPivot
                         // snap to pivot position
                         if (Selection.activeGameObject != null)
                         {
-                            var posInScreenSpace = cam.WorldToScreenPoint(Selection.activeGameObject.transform.position);
+                            var posInScreenSpace = cam.WorldToScreenPoint(
+                                Selection.activeGameObject.transform.position
+                            );
                             var distance = rayOriginInScreenSpace - posInScreenSpace;
                             distance.z = 0f;
                             var sqrDistance = distance.sqrMagnitude;
@@ -202,24 +260,46 @@ namespace Kamgam.PowerPivot
                     cursorPosition = minVertex;
                     updateCursorRelativePosition();
                 }
-
             }
-            
+
             // draw deco gizmos
             if (snapEnabled)
             {
-                var rot = Quaternion.LookRotation(sceneView.camera.transform.position - cursorPosition);
+                var rot = Quaternion.LookRotation(
+                    sceneView.camera.transform.position - cursorPosition
+                );
                 var size = HandleUtility.GetHandleSize(cursorPosition);
                 if ((sceneView.camera.transform.position - cursorPosition).sqrMagnitude > 0)
-                    rot = Quaternion.LookRotation(sceneView.camera.transform.position - cursorPosition);
-                Handles.RectangleHandleCap(controlID, cursorPosition, rot, size * 0.15f, EventType.Repaint);
+                    rot = Quaternion.LookRotation(
+                        sceneView.camera.transform.position - cursorPosition
+                    );
+                Handles.RectangleHandleCap(
+                    controlID,
+                    cursorPosition,
+                    rot,
+                    size * 0.15f,
+                    EventType.Repaint
+                );
             }
         }
 
-        private void scanRendererForSnapVertices<TKey>(Renderer renderer, Camera cam, PowerPivotSettings settings,
-            float preferSelectedSqrDistance, float maxPreferredSqrDistance, bool usePreference, ref Ray ray,
-            Vector3 rayOriginInScreenSpace, ref float minSqrDistance, ref Vector3 minVertex, ref bool found, ref bool foundPreferredSelected,
-            TKey component, Dictionary<TKey, List<Vector3>> verticesCache, Dictionary<TKey, List<Vector3>> normalsCache)
+        private void scanRendererForSnapVertices<TKey>(
+            Renderer renderer,
+            Camera cam,
+            PowerPivotSettings settings,
+            float preferSelectedSqrDistance,
+            float maxPreferredSqrDistance,
+            bool usePreference,
+            ref Ray ray,
+            Vector3 rayOriginInScreenSpace,
+            ref float minSqrDistance,
+            ref Vector3 minVertex,
+            ref bool found,
+            ref bool foundPreferredSelected,
+            TKey component,
+            Dictionary<TKey, List<Vector3>> verticesCache,
+            Dictionary<TKey, List<Vector3>> normalsCache
+        )
             where TKey : Component
         {
             bool isSelected = Selection.Contains(renderer.gameObject);
@@ -250,13 +330,18 @@ namespace Kamgam.PowerPivot
                     for (int i = 0; i < c; i++)
                     {
                         // Ignore if normal is not facing the camera (back culling)
-                        if (settings.IgnoreBackFacingVertices && Vector3.Dot(localRay.direction, normals[i]) > 0)
+                        if (
+                            settings.IgnoreBackFacingVertices
+                            && Vector3.Dot(localRay.direction, normals[i]) > 0
+                        )
                             continue;
 
                         // Convert distance vector from local to global so we can compare across all vertices.
                         // The camera may use a perspective, thus global distance is illogical for the user.
                         // We have to transform it to screenspace, set z to 0 and then make the distance comparison.
-                        var posInScreenSpace = cam.WorldToScreenPoint(component.transform.TransformPoint(vertices[i]));
+                        var posInScreenSpace = cam.WorldToScreenPoint(
+                            component.transform.TransformPoint(vertices[i])
+                        );
                         var distance = rayOriginInScreenSpace - posInScreenSpace;
                         float zDistance = -distance.z;
                         distance.z = 0f;
@@ -272,7 +357,10 @@ namespace Kamgam.PowerPivot
                         if (usePreference && sqrDistance < maxPreferredSqrDistance)
                         {
                             var v = component.transform.TransformPoint(vertices[i]);
-                            tmpSnapCandidates.Add(sqrDistance, new Vector4(v.x, v.y, v.z, isSelected ? -1f : zDistance));
+                            tmpSnapCandidates.Add(
+                                sqrDistance,
+                                new Vector4(v.x, v.y, v.z, isSelected ? -1f : zDistance)
+                            );
                             if (isSelected && sqrDistance < preferSelectedSqrDistance)
                                 foundPreferredSelected = true;
                         }
@@ -285,7 +373,6 @@ namespace Kamgam.PowerPivot
         {
             return Vector3.Cross(ray.direction, point - ray.origin).sqrMagnitude;
         }
-
 
         void clearSceneRaycastCache()
         {
@@ -320,9 +407,13 @@ namespace Kamgam.PowerPivot
 
                 if (root.gameObject != null)
                 {
-                    skinnedMeshRenderers = root.GetComponentsInChildren<SkinnedMeshRenderer>(includeInactive: false);
+                    skinnedMeshRenderers = root.GetComponentsInChildren<SkinnedMeshRenderer>(
+                        includeInactive: false
+                    );
                     meshFilters = root.GetComponentsInChildren<MeshFilter>(includeInactive: false);
-                    spriteRenderers = root.GetComponentsInChildren<SpriteRenderer>(includeInactive: false);
+                    spriteRenderers = root.GetComponentsInChildren<SpriteRenderer>(
+                        includeInactive: false
+                    );
                 }
             }
             else
@@ -337,8 +428,9 @@ namespace Kamgam.PowerPivot
                 foreach (var meshRenderer in skinnedMeshRenderers)
                 {
                     // Not sure if we want this. Wait for user feedback.
-                    if (/*!isLayerInLayers(meshRenderer.gameObject.layer, Tools.lockedLayers) && */
-                           isLayerInLayers(meshRenderer.gameObject.layer, Tools.visibleLayers))
+                    if ( /*!isLayerInLayers(meshRenderer.gameObject.layer, Tools.lockedLayers) && */
+                        isLayerInLayers(meshRenderer.gameObject.layer, Tools.visibleLayers)
+                    )
                     {
                         sceneSkinnedMeshRenderersCache.Add(meshRenderer);
 
@@ -368,8 +460,9 @@ namespace Kamgam.PowerPivot
             {
                 foreach (var meshFilter in meshFilters)
                 {
-                    if (/*!isLayerInLayers(meshFilter.gameObject.layer, Tools.lockedLayers) && */ // Not sure if we want this. Wait for user feedback.
-                           isLayerInLayers(meshFilter.gameObject.layer, Tools.visibleLayers))
+                    if ( /*!isLayerInLayers(meshFilter.gameObject.layer, Tools.lockedLayers) && */ // Not sure if we want this. Wait for user feedback.
+                        isLayerInLayers(meshFilter.gameObject.layer, Tools.visibleLayers)
+                    )
                     {
                         sceneMeshFiltersCache.Add(meshFilter);
 
@@ -394,8 +487,9 @@ namespace Kamgam.PowerPivot
             {
                 foreach (var renderer in spriteRenderers)
                 {
-                    if (/*!isLayerInLayers(renderer.gameObject.layer, Tools.lockedLayers) && */ // Not sure if we want this. Wait for user feedback.
-                           isLayerInLayers(renderer.gameObject.layer, Tools.visibleLayers))
+                    if ( /*!isLayerInLayers(renderer.gameObject.layer, Tools.lockedLayers) && */ // Not sure if we want this. Wait for user feedback.
+                        isLayerInLayers(renderer.gameObject.layer, Tools.visibleLayers)
+                    )
                     {
                         sceneSpriteRenderesCache.Add(renderer);
                         sceneSpriteVerticesCache.Add(renderer, renderer.sprite.vertices);

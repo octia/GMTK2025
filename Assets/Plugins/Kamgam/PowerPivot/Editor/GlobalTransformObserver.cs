@@ -30,9 +30,11 @@ namespace Kamgam.PowerPivot
                 if (!hasTransform || transform == null)
                     return;
 
-                if (   localPosition != transform.localPosition
+                if (
+                    localPosition != transform.localPosition
                     || localScale != transform.localScale
-                    || localRotation != transform.localRotation)
+                    || localRotation != transform.localRotation
+                )
                 {
                     localPosition = transform.localPosition;
                     localScale = transform.localScale;
@@ -42,7 +44,7 @@ namespace Kamgam.PowerPivot
                 }
             }
             catch
-            { 
+            {
                 // fail silently
                 // TODO: log if log level is high enough
             }

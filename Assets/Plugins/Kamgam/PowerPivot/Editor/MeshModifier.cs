@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Kamgam.PowerPivot
@@ -18,7 +18,8 @@ namespace Kamgam.PowerPivot
         const string FILE_EXTENSION = POWER_PIVOT_MARKER + ".asset";
 
         public GameObject GameObject;
-        public Component Component => SkinnedMeshRenderer != null ? SkinnedMeshRenderer : MeshFilter;
+        public Component Component =>
+            SkinnedMeshRenderer != null ? SkinnedMeshRenderer : MeshFilter;
         public SkinnedMeshRenderer SkinnedMeshRenderer;
         public MeshRenderer MeshRenderer;
         public MeshFilter MeshFilter;
@@ -72,7 +73,10 @@ namespace Kamgam.PowerPivot
             {
                 Logger.LogWarning(go + " does not contain any meshes. Aborting action.");
             }
-            else if ((MeshFilter != null && MeshFilter.sharedMesh == null) || (SkinnedMeshRenderer != null && SkinnedMeshRenderer.sharedMesh == null))
+            else if (
+                (MeshFilter != null && MeshFilter.sharedMesh == null)
+                || (SkinnedMeshRenderer != null && SkinnedMeshRenderer.sharedMesh == null)
+            )
             {
                 Logger.LogWarning(go + " does not contain any meshes. Aborting action");
             }
@@ -98,7 +102,7 @@ namespace Kamgam.PowerPivot
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pivotDelta">How much the pivot should be moved.</param>
         /// <param name="updateColliders">Whether or not the colliders should be displaced too.</param>
@@ -148,7 +152,7 @@ namespace Kamgam.PowerPivot
 
                 // Update pivot data if it exists
                 PivotData pivotData = LoadPivotDataFromNewMeshPath(currentPath);
-                if(pivotData != null)
+                if (pivotData != null)
                 {
                     pivotData.PivotDelta += pivotDelta;
                     PivotData.Save(pivotData);
@@ -157,8 +161,17 @@ namespace Kamgam.PowerPivot
                 {
                     if (originalMesh != null)
                     {
-                        pivotData = PivotData.CreateOrUpdate(pivotData, originalMesh, existingMesh, pivotDelta);
-                        string filePath = GetNewMeshFilePath(originalMesh, null, makeRelative: true);
+                        pivotData = PivotData.CreateOrUpdate(
+                            pivotData,
+                            originalMesh,
+                            existingMesh,
+                            pivotDelta
+                        );
+                        string filePath = GetNewMeshFilePath(
+                            originalMesh,
+                            null,
+                            makeRelative: true
+                        );
                         AssetExporter.CreatePivotDataAsset(existingMesh, pivotData, filePath);
                     }
                 }
@@ -193,7 +206,13 @@ namespace Kamgam.PowerPivot
                     pivotData.ModifiedMesh = newMesh;
 
                     CopyAndDisplaceMesh(currentMesh, newMesh, pivotDelta);
-                    AssetExporter.SaveMeshAsAsset(newMesh, boneData, pivotData, filePath, logFilePaths: true);
+                    AssetExporter.SaveMeshAsAsset(
+                        newMesh,
+                        boneData,
+                        pivotData,
+                        filePath,
+                        logFilePaths: true
+                    );
                 }
                 else
                 {
@@ -220,7 +239,8 @@ namespace Kamgam.PowerPivot
         public static void CopyAndDisplaceMesh(Mesh source, Mesh target, Vector3 pivotDelta)
         {
             target.Clear();
-            target.indexFormat = source.vertexCount > 65536 ? IndexFormat.UInt32 : IndexFormat.UInt16;
+            target.indexFormat =
+                source.vertexCount > 65536 ? IndexFormat.UInt32 : IndexFormat.UInt16;
 
             // Blend shapes
             target.vertices = source.vertices;
@@ -253,8 +273,20 @@ namespace Kamgam.PowerPivot
                     Vector3[] deltaVertices = new Vector3[source.vertexCount];
                     Vector3[] deltaNormals = new Vector3[source.vertexCount];
                     Vector3[] deltaTangents = new Vector3[source.vertexCount];
-                    source.GetBlendShapeFrameVertices(i, f, deltaVertices, deltaNormals, deltaTangents);
-                    target.AddBlendShapeFrame(name, weight, deltaVertices, deltaNormals, deltaTangents);
+                    source.GetBlendShapeFrameVertices(
+                        i,
+                        f,
+                        deltaVertices,
+                        deltaNormals,
+                        deltaTangents
+                    );
+                    target.AddBlendShapeFrame(
+                        name,
+                        weight,
+                        deltaVertices,
+                        deltaNormals,
+                        deltaTangents
+                    );
                 }
             }
 
@@ -454,7 +486,12 @@ namespace Kamgam.PowerPivot
                 applyMeshAndMaterials(_originalMesh, _materials);
 
                 // Delete
-                if (DeleteNewMeshAfterResetToOriginal && !string.IsNullOrEmpty(currentPath) && currentPath.EndsWith(FILE_EXTENSION) && currentPath.StartsWith("Assets"))
+                if (
+                    DeleteNewMeshAfterResetToOriginal
+                    && !string.IsNullOrEmpty(currentPath)
+                    && currentPath.EndsWith(FILE_EXTENSION)
+                    && currentPath.StartsWith("Assets")
+                )
                 {
                     AssetDatabase.DeleteAsset(currentPath);
                     EditorGUIUtility.PingObject(_originalMesh);
@@ -485,7 +522,12 @@ namespace Kamgam.PowerPivot
                         applyMeshAndMaterials(originalMesh, _materials);
 
                         // Delete
-                        if (DeleteNewMeshAfterResetToOriginal && !string.IsNullOrEmpty(currentPath) && currentPath.EndsWith(FILE_EXTENSION) && currentPath.StartsWith("Assets"))
+                        if (
+                            DeleteNewMeshAfterResetToOriginal
+                            && !string.IsNullOrEmpty(currentPath)
+                            && currentPath.EndsWith(FILE_EXTENSION)
+                            && currentPath.StartsWith("Assets")
+                        )
                         {
                             AssetDatabase.DeleteAsset(currentPath);
                             EditorGUIUtility.PingObject(_originalMesh);
@@ -535,13 +577,19 @@ namespace Kamgam.PowerPivot
 
         bool fileExists(string filePathInsideAssetsDir)
         {
-            string absoluteFilePath = Application.dataPath + System.IO.Path.DirectorySeparatorChar + filePathInsideAssetsDir;
+            string absoluteFilePath =
+                Application.dataPath
+                + System.IO.Path.DirectorySeparatorChar
+                + filePathInsideAssetsDir;
             return System.IO.File.Exists(absoluteFilePath);
         }
 
         void deleteFile(string filePathInsideAssetsDir)
         {
-            string absoluteFilePath = Application.dataPath + System.IO.Path.DirectorySeparatorChar + filePathInsideAssetsDir;
+            string absoluteFilePath =
+                Application.dataPath
+                + System.IO.Path.DirectorySeparatorChar
+                + filePathInsideAssetsDir;
 
             if (System.IO.File.Exists(absoluteFilePath))
             {

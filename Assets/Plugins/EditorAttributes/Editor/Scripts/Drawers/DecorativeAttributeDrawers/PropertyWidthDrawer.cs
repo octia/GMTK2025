@@ -3,21 +3,25 @@ using UnityEngine.UIElements;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(PropertyWidthAttribute))]
+    [CustomPropertyDrawer(typeof(PropertyWidthAttribute))]
     public class PropertyWidthDrawer : PropertyDrawerBase
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var propertyWidthAttribute = attribute as PropertyWidthAttribute;
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var propertyWidthAttribute = attribute as PropertyWidthAttribute;
 
-			var root = new VisualElement();
-			var propertyField = CreatePropertyField(property);
+            var root = new VisualElement();
+            var propertyField = CreatePropertyField(property);
 
-			root.Add(propertyField);
+            root.Add(propertyField);
 
-			ExecuteLater(propertyField, () => propertyField.Q<Label>().style.marginRight = propertyWidthAttribute.WidthOffset);
+            ExecuteLater(
+                propertyField,
+                () =>
+                    propertyField.Q<Label>().style.marginRight = propertyWidthAttribute.WidthOffset
+            );
 
-			return root;
-		}
+            return root;
+        }
     }
 }

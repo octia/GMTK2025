@@ -8,16 +8,22 @@ namespace FMODUnity
     {
         [SerializeField]
         public List<EditorBankRef> EditorBanks;
+
         [SerializeField]
         public List<EditorEventRef> EditorEvents;
+
         [SerializeField]
         public List<EditorParamRef> EditorParameters;
+
         [SerializeField]
         public List<EditorBankRef> MasterBanks;
+
         [SerializeField]
         public List<EditorBankRef> StringsBanks;
+
         [SerializeField]
         private Int64 cacheTime;
+
         [SerializeField]
         public int cacheVersion;
 

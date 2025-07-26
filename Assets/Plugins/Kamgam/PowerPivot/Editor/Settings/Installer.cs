@@ -10,13 +10,13 @@ namespace Kamgam.PowerPivot
 {
     public class Installer : IActiveBuildTargetChanged
     {
-		public const string AssetName = "Power Pivot";
+        public const string AssetName = "Power Pivot";
         public const string Version = "2.0.6";
         public const string Define = "KAMGAM_POWER_PIVOT";
         public const string ManualUrl = "https://kamgam.com/unity/PowerPivotManual.pdf";
-		public const string AssetLink = "https://assetstore.unity.com/packages/slug/267036";
-		
-		public static string _assetRootPathDefault = "Assets/Kamgam/PowerPivot/";
+        public const string AssetLink = "https://assetstore.unity.com/packages/slug/267036";
+
+        public static string _assetRootPathDefault = "Assets/Kamgam/PowerPivot/";
         public static string AssetRootPath
         {
             get
@@ -54,12 +54,18 @@ namespace Kamgam.PowerPivot
         [UnityEditor.Callbacks.DidReloadScripts(998001)]
         public static void InstallIfNeeded()
         {
-            bool versionChanged = VersionHelper.UpgradeVersion(GetVersion, out Version oldVersion, out Version newVersion);
+            bool versionChanged = VersionHelper.UpgradeVersion(
+                GetVersion,
+                out Version oldVersion,
+                out Version newVersion
+            );
             if (versionChanged)
             {
                 if (versionChanged)
                 {
-                    Debug.Log( AssetName + " version changed from " + oldVersion + " to " + newVersion);
+                    Debug.Log(
+                        AssetName + " version changed from " + oldVersion + " to " + newVersion
+                    );
 
                     showWelcomeMessage();
                 }
@@ -70,7 +76,9 @@ namespace Kamgam.PowerPivot
 
         public void OnActiveBuildTargetChanged(BuildTarget previousTarget, BuildTarget newTarget)
         {
-            Logger.LogMessage($"Build target changed from {previousTarget} to {newTarget}. Refreshing define symbols.");
+            Logger.LogMessage(
+                $"Build target changed from {previousTarget} to {newTarget}. Refreshing define symbols."
+            );
             AddDefineSymbol();
         }
 
@@ -84,28 +92,43 @@ namespace Kamgam.PowerPivot
         {
             bool didChange = false;
 
-            foreach (BuildTargetGroup targetGroup in System.Enum.GetValues(typeof(BuildTargetGroup)))
+            foreach (
+                BuildTargetGroup targetGroup in System.Enum.GetValues(typeof(BuildTargetGroup))
+            )
             {
 #pragma warning disable CS0618 // Type or member is obsolete
-                if (targetGroup == BuildTargetGroup.Unknown || targetGroup == BuildTargetGroup.GameCoreScarlett)
+                if (
+                    targetGroup == BuildTargetGroup.Unknown
+                    || targetGroup == BuildTargetGroup.GameCoreScarlett
+                )
                     continue;
 #pragma warning restore CS0618 // Type or member is obsolete
 
                 try
                 {
 #if UNITY_2023_1_OR_NEWER
-                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.FromBuildTargetGroup(targetGroup));
+                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbols(
+                        NamedBuildTarget.FromBuildTargetGroup(targetGroup)
+                    );
 #else
-                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(
+                        targetGroup
+                    );
 #endif
 
                     if (currentDefineSymbols.Contains(Define))
                         continue;
 
 #if UNITY_2023_1_OR_NEWER
-                    PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.FromBuildTargetGroup(targetGroup), currentDefineSymbols + ";" + Define);
+                    PlayerSettings.SetScriptingDefineSymbols(
+                        NamedBuildTarget.FromBuildTargetGroup(targetGroup),
+                        currentDefineSymbols + ";" + Define
+                    );
 #else
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, currentDefineSymbols + ";" + Define);
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                        targetGroup,
+                        currentDefineSymbols + ";" + Define
+                    );
 #endif
                     Logger.LogMessage($"{Define} symbol has been added for {targetGroup}.");
 
@@ -123,28 +146,43 @@ namespace Kamgam.PowerPivot
         [MenuItem("Tools/" + AssetName + "/Debug/Remove Defines", priority = 502)]
         private static void RemoveDefineSymbol()
         {
-            foreach (BuildTargetGroup targetGroup in System.Enum.GetValues(typeof(BuildTargetGroup)))
+            foreach (
+                BuildTargetGroup targetGroup in System.Enum.GetValues(typeof(BuildTargetGroup))
+            )
             {
 #pragma warning disable CS0618 // Type or member is obsolete
-                if (targetGroup == BuildTargetGroup.Unknown || targetGroup == BuildTargetGroup.GameCoreScarlett)
+                if (
+                    targetGroup == BuildTargetGroup.Unknown
+                    || targetGroup == BuildTargetGroup.GameCoreScarlett
+                )
                     continue;
 #pragma warning restore CS0618 // Type or member is obsolete
 
                 try
                 {
 #if UNITY_2023_1_OR_NEWER
-                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.FromBuildTargetGroup(targetGroup));
+                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbols(
+                        NamedBuildTarget.FromBuildTargetGroup(targetGroup)
+                    );
 #else
-                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+                    string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(
+                        targetGroup
+                    );
 #endif
 
                     if (currentDefineSymbols.Contains(Define))
                     {
                         currentDefineSymbols = currentDefineSymbols.Replace(";" + Define, "");
 #if UNITY_2023_1_OR_NEWER
-                        PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.FromBuildTargetGroup(targetGroup), currentDefineSymbols);
+                        PlayerSettings.SetScriptingDefineSymbols(
+                            NamedBuildTarget.FromBuildTargetGroup(targetGroup),
+                            currentDefineSymbols
+                        );
 #else
-                        PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, currentDefineSymbols);
+                        PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                            targetGroup,
+                            currentDefineSymbols
+                        );
 #endif
                         Logger.LogMessage($"{Define} symbol has been removed for {targetGroup}.");
                     }
@@ -153,24 +191,25 @@ namespace Kamgam.PowerPivot
                 {
                     // There are many obsolete defines in the enum, skip them silently.
                 }
-
             }
         }
 
         static void showWelcomeMessage()
         {
             bool openManual = EditorUtility.DisplayDialog(
-                    AssetName,
-                    "Thank you for choosing " + AssetName + ".\n\n" +
-                    "Please start by reading the manual.\n\n" +
-                    "If you can find the time I would appreciate your feedback in the form of a review.",
-                    "Open manual (web)", "Close"
-                    );
+                AssetName,
+                "Thank you for choosing "
+                    + AssetName
+                    + ".\n\n"
+                    + "Please start by reading the manual.\n\n"
+                    + "If you can find the time I would appreciate your feedback in the form of a review.",
+                "Open manual (web)",
+                "Close"
+            );
 
             if (openManual)
                 OpenManual();
         }
-
 
         [MenuItem("Tools/" + AssetName + "/Manual", priority = 201)]
         public static void OpenManual()
@@ -200,7 +239,9 @@ namespace Kamgam.PowerPivot
         [MenuItem("Tools/" + AssetName + "/More Asset by KAMGAM", priority = 511)]
         public static void MoreAssets()
         {
-            Application.OpenURL("https://assetstore.unity.com/publishers/37829?aid=1100lqC54&pubref=asset");
+            Application.OpenURL(
+                "https://assetstore.unity.com/publishers/37829?aid=1100lqC54&pubref=asset"
+            );
         }
 
         [MenuItem("Tools/" + AssetName + "/Version " + Version, priority = 512)]

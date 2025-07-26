@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.EditorTools;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
@@ -18,7 +18,10 @@ namespace Kamgam.PowerPivot
 
         public enum PTool
         {
-            Cursor, Move, Scale, Rotate
+            Cursor,
+            Move,
+            Scale,
+            Rotate,
         }
 
         public static PowerPivotTool Instance;
@@ -35,14 +38,16 @@ namespace Kamgam.PowerPivot
 
         protected PTool currentTool;
         public static PTool? defaultTool;
-         PTool toolBeforeCursor;
+        PTool toolBeforeCursor;
 
         protected bool snapEnabled = false;
 
         // scaling state
         protected Vector3 scaleHandleScale;
-        protected Dictionary<Transform, Vector3> scaleStartScales = new Dictionary<Transform, Vector3>();
-        protected Dictionary<Transform, Vector3> scaleStartPositions = new Dictionary<Transform, Vector3>();
+        protected Dictionary<Transform, Vector3> scaleStartScales =
+            new Dictionary<Transform, Vector3>();
+        protected Dictionary<Transform, Vector3> scaleStartPositions =
+            new Dictionary<Transform, Vector3>();
 
         // flags & temp
         protected bool undoRedoPerformed;
@@ -72,9 +77,7 @@ namespace Kamgam.PowerPivot
             Menu.SetChecked(PowerPivotSettings.ActivatePowerPivotMenuEntry, true);
         }
 
-        public void OnBeforeSerialize()
-        {
-        }
+        public void OnBeforeSerialize() { }
 
         public void OnAfterDeserialize()
         {
@@ -219,14 +222,20 @@ namespace Kamgam.PowerPivot
                 // A use a delay (if the mouse is moved without pressing the snapKey for a while then assume the cursor should snap).
                 if (mouseIsDown)
                     snapStartDelayRefTime = EditorApplication.timeSinceStartup;
-                bool allowSnap = currentTool != PTool.Move || EditorApplication.timeSinceStartup - snapStartDelayRefTime > 1.0f;
+                bool allowSnap =
+                    currentTool != PTool.Move
+                    || EditorApplication.timeSinceStartup - snapStartDelayRefTime > 1.0f;
                 // B If the mouse is very far from the cursor then always assume it should snap immediately.
                 if (!allowSnap)
                 {
                     var cam = SceneView.lastActiveSceneView.camera;
                     if (cam != null)
                     {
-                        float sqrDistance = UtilsEditor.SqrDistanceToGUIPointInScreenSpace(cam, current.mousePosition, cursorPosition);
+                        float sqrDistance = UtilsEditor.SqrDistanceToGUIPointInScreenSpace(
+                            cam,
+                            current.mousePosition,
+                            cursorPosition
+                        );
                         if (sqrDistance > 400) // 20px
                             allowSnap = true;
                     }
@@ -236,7 +245,11 @@ namespace Kamgam.PowerPivot
                     allowSnap = false;
                 // D if the mouse was dragged just recently then delay enabling snapping. This is done to avoid unwanted snapping just
                 // after the move+snap was used (users do not always release the mouse and snapKey at the same time)
-                if (currentTool == PTool.Move && !mouseIsDown && EditorApplication.timeSinceStartup - lastMouseDragTime < 0.6f)
+                if (
+                    currentTool == PTool.Move
+                    && !mouseIsDown
+                    && EditorApplication.timeSinceStartup - lastMouseDragTime < 0.6f
+                )
                     allowSnap = false;
 
                 if (snapEnabled && allowSnap)
@@ -257,7 +270,6 @@ namespace Kamgam.PowerPivot
                     }
                 }
             }
-
 
             if (selectionChanged)
             {
@@ -335,9 +347,13 @@ namespace Kamgam.PowerPivot
                     var settings = PowerPivotSettings.GetOrCreateSettings();
 
                     // Switch to tool if settings.ContextualActivationKey is pressed while using the normal Scale or Rotate
-                    if (current.type == EventType.KeyDown && current.keyCode == settings.SnapKey && settings.ContextualActivation
+                    if (
+                        current.type == EventType.KeyDown
+                        && current.keyCode == settings.SnapKey
+                        && settings.ContextualActivation
                         && !IsModifierKeyPressed(current)
-                        && (SceneViewIsActive() || IsMouseInSceneView()))
+                        && (SceneViewIsActive() || IsMouseInSceneView())
+                    )
                     {
                         if (Tools.current == Tool.Rotate)
                         {
@@ -403,9 +419,14 @@ namespace Kamgam.PowerPivot
                         else if (current.keyCode == KeyCode.T)
                         {
                             useKey = true;
-                            Logger.Log("Sorry, the rect tool is not supported. Press Esc to return to normal tools.");
+                            Logger.Log(
+                                "Sorry, the rect tool is not supported. Press Esc to return to normal tools."
+                            );
                         }
-                        else if (current.keyCode == settings.SnapKey && (SceneViewIsActive() || IsMouseInSceneView()))
+                        else if (
+                            current.keyCode == settings.SnapKey
+                            && (SceneViewIsActive() || IsMouseInSceneView())
+                        )
                         {
                             if (snapEnabled == false)
                             {
@@ -423,13 +444,17 @@ namespace Kamgam.PowerPivot
                                 FocusOnCursor();
                                 useKey = true;
                             }
-                            Logger.Log("Default frame selection was replaced. Focusing cursor position now.");
+                            Logger.Log(
+                                "Default frame selection was replaced. Focusing cursor position now."
+                            );
                         }
                     }
 
-                    if ((SceneViewIsActive() || IsMouseInSceneView())
-                        && current.isKey && current.control
-                        )
+                    if (
+                        (SceneViewIsActive() || IsMouseInSceneView())
+                        && current.isKey
+                        && current.control
+                    )
                     {
                         if (current.keyCode == settings.UndoKey && HasCursorUndoActions())
                         {
@@ -464,7 +489,7 @@ namespace Kamgam.PowerPivot
             }
             //catch (System.Exception e)
             {
-               // Logger.LogError(e.Message);
+                // Logger.LogError(e.Message);
             }
         }
 
@@ -474,14 +499,19 @@ namespace Kamgam.PowerPivot
             if (cam != null)
             {
                 var delta = cam.transform.position - cursorPosition;
-                SceneView.lastActiveSceneView.Frame(new Bounds(cursorPosition, Vector3.one * (delta.magnitude * 0.577f)), false);
+                SceneView.lastActiveSceneView.Frame(
+                    new Bounds(cursorPosition, Vector3.one * (delta.magnitude * 0.577f)),
+                    false
+                );
             }
             else
             {
-                SceneView.lastActiveSceneView.Frame(new Bounds(cursorPosition, Vector3.one * 5f), false);
+                SceneView.lastActiveSceneView.Frame(
+                    new Bounds(cursorPosition, Vector3.one * 5f),
+                    false
+                );
             }
         }
-
 
         public static bool SceneViewIsActive()
         {
@@ -490,7 +520,8 @@ namespace Kamgam.PowerPivot
 
         public static bool IsMouseInSceneView()
         {
-            return EditorWindow.mouseOverWindow != null && SceneView.sceneViews.Contains(EditorWindow.mouseOverWindow);
+            return EditorWindow.mouseOverWindow != null
+                && SceneView.sceneViews.Contains(EditorWindow.mouseOverWindow);
         }
 
         public static bool IsModifierKeyPressed(Event evt)
@@ -537,7 +568,7 @@ namespace Kamgam.PowerPivot
             switch (tool)
             {
                 case PTool.Cursor:
-                    if(currentTool != PTool.Cursor)
+                    if (currentTool != PTool.Cursor)
                         toolBeforeCursor = currentTool;
                     currentTool = PTool.Cursor;
                     updateCursor(CursorUpdateCause.ToolChanged);

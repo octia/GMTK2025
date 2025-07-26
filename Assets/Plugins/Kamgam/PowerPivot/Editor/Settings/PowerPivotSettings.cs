@@ -11,35 +11,41 @@ namespace Kamgam.PowerPivot
 
         [SerializeField, Tooltip(_LogLevelTooltip)]
         public Logger.LogLevel LogLevel;
-        public const string _LogLevelTooltip = "Log levels to determine how many log messages will be shown (Log = all message, Error = only critical errors).";
+        public const string _LogLevelTooltip =
+            "Log levels to determine how many log messages will be shown (Log = all message, Error = only critical errors).";
 
         public bool ShowWindow = true;
 
         [SerializeField, Tooltip(_PlaneScalingKeyTooltip)]
         public KeyCode PlaneScalingKey;
-        public const string _PlaneScalingKeyTooltip = "Pressing this key while dragging one of the axis will scale that object along the two perpendicular axis (plane). Set to KeyCode.None to disable.\nNOTICE: Currently only implemented for single objects.";
-
+        public const string _PlaneScalingKeyTooltip =
+            "Pressing this key while dragging one of the axis will scale that object along the two perpendicular axis (plane). Set to KeyCode.None to disable.\nNOTICE: Currently only implemented for single objects.";
 
         [Header("Shortcuts")]
         [SerializeField, Tooltip(_ActivationKeyTooltip)]
         public KeyCode ActivationKey;
-        public const string _ActivationKeyTooltip = "Pressing this key will switch to the cursor tool.";
+        public const string _ActivationKeyTooltip =
+            "Pressing this key will switch to the cursor tool.";
 
         [SerializeField, Tooltip(_DeactivationKeyTooltip)]
         public KeyCode DeactivationKey;
-        public const string _DeactivationKeyTooltip = "Pressing this key will exit the cursor tool and return to the normal tools.";
+        public const string _DeactivationKeyTooltip =
+            "Pressing this key will exit the cursor tool and return to the normal tools.";
 
         [SerializeField, Tooltip(_SnapKeyTooltip)]
         public KeyCode SnapKey;
-        public const string _SnapKeyTooltip = "Pressing and holding this key will snap the cursor to the colsest vertex.";
+        public const string _SnapKeyTooltip =
+            "Pressing and holding this key will snap the cursor to the colsest vertex.";
 
         [SerializeField, Tooltip(_ContextualActivationTooltip)]
         public bool ContextualActivation;
-        public const string _ContextualActivationTooltip = "Pressing the snap key while rotating or scaling will activate the tool.";
+        public const string _ContextualActivationTooltip =
+            "Pressing the snap key while rotating or scaling will activate the tool.";
 
         [SerializeField, Tooltip(_ContextualActivationOnMoveTooltip)]
         public bool ContextualActivationOnMove;
-        public const string _ContextualActivationOnMoveTooltip = "Should contextual activation also be allowed while using the move tool?";
+        public const string _ContextualActivationOnMoveTooltip =
+            "Should contextual activation also be allowed while using the move tool?";
 
         [SerializeField, Tooltip(_UndoKeyTooltip)]
         public KeyCode UndoKey = KeyCode.Z;
@@ -59,62 +65,72 @@ namespace Kamgam.PowerPivot
         public KeyCode ScaleKey = KeyCode.R;
 
         [Header("Snapping")]
-
         [Tooltip(_SnapToPivotTooltip)]
         public bool SnapToPivot;
-        public const string _SnapToPivotTooltip = "Should the original pivot also be a valid snap target in addition to the vertices?\nUseful to get the cursor back to the origin.";
+        public const string _SnapToPivotTooltip =
+            "Should the original pivot also be a valid snap target in addition to the vertices?\nUseful to get the cursor back to the origin.";
 
         [Tooltip(_IgnoreBackFacingVerticesTooltip)]
         public bool IgnoreBackFacingVertices = false;
-        public const string _IgnoreBackFacingVerticesTooltip = "Should back facing vertices be ignored while snapping?";
+        public const string _IgnoreBackFacingVerticesTooltip =
+            "Should back facing vertices be ignored while snapping?";
 
         [Tooltip(_PreferSelectedDistanceTooltip)]
         public float PreferSelectedDistance;
-        public const string _PreferSelectedDistanceTooltip = "If two vertices are close then the vertex on the currently selected object(s) is preferred as snap target. The distance is in screen space (pixels).\n\nHint: Hold down the SHIFT key to temporarily disable this behaviour.";
+        public const string _PreferSelectedDistanceTooltip =
+            "If two vertices are close then the vertex on the currently selected object(s) is preferred as snap target. The distance is in screen space (pixels).\n\nHint: Hold down the SHIFT key to temporarily disable this behaviour.";
 
         [Tooltip(_PreferZDistanceTooltip)]
         public float PreferZDistance;
-        public const string _PreferZDistanceTooltip = "All vertices that are within this distance of each other are considered to be equal. If there are mutiple vetices within that radius then the selection is based on the z value (the closest vertex will be taken). The distance is in screen space (pixels).\n\nHint: Hold down the SHIFT key to temporarily disable this behaviour.";
+        public const string _PreferZDistanceTooltip =
+            "All vertices that are within this distance of each other are considered to be equal. If there are mutiple vetices within that radius then the selection is based on the z value (the closest vertex will be taken). The distance is in screen space (pixels).\n\nHint: Hold down the SHIFT key to temporarily disable this behaviour.";
 
         [Tooltip(_IgnoreZDistanceTooltip)]
         public float IgnoreZDistance;
-        public const string _IgnoreZDistanceTooltip = "PreferZDistance will only be applied if the vertices are more than IgnoreZDistance apart (in world units).";
+        public const string _IgnoreZDistanceTooltip =
+            "PreferZDistance will only be applied if the vertices are more than IgnoreZDistance apart (in world units).";
 
         [Header("Other")]
         [Tooltip(_OverrideFramingTooltip)]
         public bool OverrideFraming = true;
-        public const string _OverrideFramingTooltip = "Override framing of selected object. If enabled then the camera will focus on the cursor position if the \"frame selected\" key is pressed.";
+        public const string _OverrideFramingTooltip =
+            "Override framing of selected object. If enabled then the camera will focus on the cursor position if the \"frame selected\" key is pressed.";
 
         [SerializeField, Tooltip(_FrameSelectedKeyTooltip)]
         public KeyCode FrameSelectedKey = KeyCode.F;
         public const string _FrameSelectedKeyTooltip = "Frame selected Key";
 
-        public enum UpdateCursorOptions { Always, OnlyIfLocal, Never }
+        public enum UpdateCursorOptions
+        {
+            Always,
+            OnlyIfLocal,
+            Never,
+        }
+
         [Tooltip(_UpdateCursorWithObjectTooltip)]
         public UpdateCursorOptions UpdateCursorWithObject;
-        public const string _UpdateCursorWithObjectTooltip = "If an object is moved outside of the cursor tool then should the cursor be moved along or remain where it is?";
+        public const string _UpdateCursorWithObjectTooltip =
+            "If an object is moved outside of the cursor tool then should the cursor be moved along or remain where it is?";
 
         [Tooltip(_ShowParentingButtonsTooltip)]
         public bool ShowParentingButtons = false;
-        public const string _ShowParentingButtonsTooltip = "Show the \"Create parent\" and \"Extract children\" buttons?";
+        public const string _ShowParentingButtonsTooltip =
+            "Show the \"Create parent\" and \"Extract children\" buttons?";
 
         [SerializeField, Tooltip(_AutoRefreshModelsWithModifiedPivotsTooltip)]
         public bool AutoRefreshModelsWithModifiedPivots = false;
-        public const string _AutoRefreshModelsWithModifiedPivotsTooltip = "Should all models be checked for modified pivots after import? If enabled then those meshes with modified pivots are updated automatically.";
-
-
+        public const string _AutoRefreshModelsWithModifiedPivotsTooltip =
+            "Should all models be checked for modified pivots after import? If enabled then those meshes with modified pivots are updated automatically.";
 
         //[HideInInspector]
         public Vector2 WindowPosition;
 
         [Header("Colors")]
-
         [Range(0, 1f)]
         public float GizmoOpacity;
         public Color GizmoColorA;
         public Color GizmoColorB;
         public Color GizmoCursorColor;
-
 
         protected static PowerPivotSettings cachedSettings;
 
@@ -122,7 +138,9 @@ namespace Kamgam.PowerPivot
         {
             if (cachedSettings == null)
             {
-                cachedSettings = AssetDatabase.LoadAssetAtPath<PowerPivotSettings>(SettingsFilePath);
+                cachedSettings = AssetDatabase.LoadAssetAtPath<PowerPivotSettings>(
+                    SettingsFilePath
+                );
                 if (cachedSettings == null)
                 {
                     cachedSettings = ScriptableObject.CreateInstance<PowerPivotSettings>();
@@ -159,8 +177,10 @@ namespace Kamgam.PowerPivot
 
                     // update from key bindings
                     cachedSettings.UpdateKeysFromBindings();
-                    ShortcutManager.instance.shortcutBindingChanged -= cachedSettings.onKeyBindingsChanged;
-                    ShortcutManager.instance.shortcutBindingChanged += cachedSettings.onKeyBindingsChanged;
+                    ShortcutManager.instance.shortcutBindingChanged -=
+                        cachedSettings.onKeyBindingsChanged;
+                    ShortcutManager.instance.shortcutBindingChanged +=
+                        cachedSettings.onKeyBindingsChanged;
 
                     AssetDatabase.CreateAsset(cachedSettings, SettingsFilePath);
                     AssetDatabase.SaveAssets();
@@ -181,8 +201,14 @@ namespace Kamgam.PowerPivot
             cachedSettings.MoveKey = TryGetKeyCodeForBinding("Tools/Move", KeyCode.W);
             cachedSettings.RotateKey = TryGetKeyCodeForBinding("Tools/Rotate", KeyCode.E);
             cachedSettings.ScaleKey = TryGetKeyCodeForBinding("Tools/Scale", KeyCode.R);
-            cachedSettings.FrameSelectedKey = TryGetKeyCodeForBinding("Main Menu/Edit/Frame Selected", KeyCode.F);
-            cachedSettings.SnapKey = TryGetKeyCodeForBinding("Scene View/Vertex Snapping", KeyCode.V);
+            cachedSettings.FrameSelectedKey = TryGetKeyCodeForBinding(
+                "Main Menu/Edit/Frame Selected",
+                KeyCode.F
+            );
+            cachedSettings.SnapKey = TryGetKeyCodeForBinding(
+                "Scene View/Vertex Snapping",
+                KeyCode.V
+            );
         }
 
         static KeyCode TryGetKeyCodeForBinding(string binding, KeyCode defaultValue)
@@ -194,7 +220,9 @@ namespace Kamgam.PowerPivot
             {
                 if (b == binding)
                 {
-                    var combo = ShortcutManager.instance.GetShortcutBinding(binding).keyCombinationSequence;
+                    var combo = ShortcutManager
+                        .instance.GetShortcutBinding(binding)
+                        .keyCombinationSequence;
                     foreach (var c in combo)
                     {
                         return c.keyCode;
@@ -221,14 +249,19 @@ namespace Kamgam.PowerPivot
             }
             else
             {
-                EditorUtility.DisplayDialog("Error", "PowerPivotTool settings could not be found or created.", "Ok");
+                EditorUtility.DisplayDialog(
+                    "Error",
+                    "PowerPivotTool settings could not be found or created.",
+                    "Ok"
+                );
             }
         }
 
         public void OnActivationKeyChanged()
         {
             var projectPath = UtilsEditor.GetProjectDirWithEndingSlash();
-            var filePath = projectPath + "Assets/Kamgam/PowerPivot/Editor/PowerPivotTool.Shortcut.cs";
+            var filePath =
+                projectPath + "Assets/Kamgam/PowerPivot/Editor/PowerPivotTool.Shortcut.cs";
 
             try
             {
@@ -238,7 +271,10 @@ namespace Kamgam.PowerPivot
                     File.Copy(filePath, filePath + ".tmp~", true);
                     string text = File.ReadAllText(filePath + ".tmp~", System.Text.Encoding.UTF8);
                     string delimiter = "/*KEY*/";
-                    string[] parts = text.Split(new[] { delimiter }, System.StringSplitOptions.None);
+                    string[] parts = text.Split(
+                        new[] { delimiter },
+                        System.StringSplitOptions.None
+                    );
                     if (parts.Length == 3)
                     {
                         // disable shortcut if no key code is set
@@ -251,18 +287,26 @@ namespace Kamgam.PowerPivot
                         parts[1] = "KeyCode." + ActivationKey.ToString();
                     }
 
-
-                    File.WriteAllText(filePath + ".tmp~", string.Join(delimiter, parts), System.Text.Encoding.UTF8);
+                    File.WriteAllText(
+                        filePath + ".tmp~",
+                        string.Join(delimiter, parts),
+                        System.Text.Encoding.UTF8
+                    );
                     File.Copy(filePath + ".tmp~", filePath, true);
                     File.Delete(filePath + ".tmp~");
                     File.Delete(filePath + ".backup~");
 
-                    EditorUtility.DisplayDialog("Success: recompilation is necessary", "Cursor Tool activation key changed. Refreshing asset database. Recompilataion will start now.", "Okay");
+                    EditorUtility.DisplayDialog(
+                        "Success: recompilation is necessary",
+                        "Cursor Tool activation key changed. Refreshing asset database. Recompilataion will start now.",
+                        "Okay"
+                    );
                     AssetDatabase.Refresh();
                 }
                 else
                 {
-                    string msg = "Could not update ActivationKey in 'Assets/PowerPivot/Editor/PivotCursorTool.Shortcut.cs'. Error: the file is not writeable or does not exist.";
+                    string msg =
+                        "Could not update ActivationKey in 'Assets/PowerPivot/Editor/PivotCursorTool.Shortcut.cs'. Error: the file is not writeable or does not exist.";
                     EditorUtility.DisplayDialog("Error", msg, "Okay");
                     Debug.LogError(msg);
                 }
@@ -272,13 +316,17 @@ namespace Kamgam.PowerPivot
                 File.Copy(filePath + ".backup~", filePath, true);
                 File.Delete(filePath + ".tmp~");
 
-                string msg = "Could not update ActivationKey in 'Assets/PowerPivot/Editor/PivotCursorTool.Shortcut.cs'. Error: " + e.Message;
+                string msg =
+                    "Could not update ActivationKey in 'Assets/PowerPivot/Editor/PivotCursorTool.Shortcut.cs'. Error: "
+                    + e.Message;
                 EditorUtility.DisplayDialog("Error", msg, "Okay");
                 Debug.LogError(msg);
             }
         }
 
-        public const string ActivatePowerPivotMenuEntry = "Tools/" + Installer.AssetName + "/Activate";
+        public const string ActivatePowerPivotMenuEntry =
+            "Tools/" + Installer.AssetName + "/Activate";
+
         [MenuItem(ActivatePowerPivotMenuEntry, priority = 101)]
         public static void ActivateTool()
         {
@@ -314,7 +362,11 @@ namespace Kamgam.PowerPivot
             }
             else
             {
-                EditorUtility.DisplayDialog("Error", "Settings could not be found or created.", "Ok");
+                EditorUtility.DisplayDialog(
+                    "Error",
+                    "Settings could not be found or created.",
+                    "Ok"
+                );
             }
         }
     }
@@ -346,10 +398,12 @@ namespace Kamgam.PowerPivot
                 serializedObject.ApplyModifiedProperties();
 
                 // activation key changed
-                var newActivationKey = serializedObject.FindProperty("ActivationKey").enumValueIndex;
+                var newActivationKey = serializedObject
+                    .FindProperty("ActivationKey")
+                    .enumValueIndex;
                 if (oldActivationKey != newActivationKey)
                 {
-                    settings.OnActivationKeyChanged(); 
+                    settings.OnActivationKeyChanged();
                 }
 
                 if (SceneView.lastActiveSceneView != null)
@@ -376,7 +430,13 @@ namespace Kamgam.PowerPivot
                     beginHorizontalIndent(10);
 
                     GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Version: " + Installer.Version + "  (" + PowerPivotSettings.SettingsFilePath + ")");
+                    EditorGUILayout.LabelField(
+                        "Version: "
+                            + Installer.Version
+                            + "  ("
+                            + PowerPivotSettings.SettingsFilePath
+                            + ")"
+                    );
                     if (drawButton(" Settings ", options: GUILayout.Width(80)))
                     {
                         PowerPivotSettings.OpenSettings();
@@ -388,30 +448,105 @@ namespace Kamgam.PowerPivot
                     GUILayout.EndHorizontal();
 
                     GUILayout.Space(5);
-                    drawField(settings, "LogLevel", "Log level:", PowerPivotSettings._LogLevelTooltip);
+                    drawField(
+                        settings,
+                        "LogLevel",
+                        "Log level:",
+                        PowerPivotSettings._LogLevelTooltip
+                    );
                     drawField(settings, "ShowWindow", "Show Window:", null);
-                    drawField(settings, "PlaneScalingKey", "Plane Scaling Key:", PowerPivotSettings._PlaneScalingKeyTooltip);
+                    drawField(
+                        settings,
+                        "PlaneScalingKey",
+                        "Plane Scaling Key:",
+                        PowerPivotSettings._PlaneScalingKeyTooltip
+                    );
                     GUILayout.Space(5);
 
                     var oldActivationKey = settings.FindProperty("ActivationKey").enumValueIndex;
-                    drawField(settings, "ActivationKey", "Activation key:", PowerPivotSettings._ActivationKeyTooltip);
-                    drawField(settings, "DeactivationKey", "Deactivation key:", PowerPivotSettings._DeactivationKeyTooltip);
+                    drawField(
+                        settings,
+                        "ActivationKey",
+                        "Activation key:",
+                        PowerPivotSettings._ActivationKeyTooltip
+                    );
+                    drawField(
+                        settings,
+                        "DeactivationKey",
+                        "Deactivation key:",
+                        PowerPivotSettings._DeactivationKeyTooltip
+                    );
                     drawField(settings, "SnapKey", "Snap key:", PowerPivotSettings._SnapKeyTooltip);
-                    drawField(settings, "ContextualActivation", "Contextual activation:", PowerPivotSettings._ContextualActivationTooltip);
-                    drawField(settings, "ContextualActivationOnMove", "Contextual move:", PowerPivotSettings._ContextualActivationOnMoveTooltip);
+                    drawField(
+                        settings,
+                        "ContextualActivation",
+                        "Contextual activation:",
+                        PowerPivotSettings._ContextualActivationTooltip
+                    );
+                    drawField(
+                        settings,
+                        "ContextualActivationOnMove",
+                        "Contextual move:",
+                        PowerPivotSettings._ContextualActivationOnMoveTooltip
+                    );
                     GUILayout.Space(5);
 
-                    drawField(settings, "SnapToPivot", "Snap to pivot:", PowerPivotSettings._SnapToPivotTooltip);
-                    drawField(settings, "IgnoreBackFacingVertices", "Ignore hidden vertices:", PowerPivotSettings._IgnoreBackFacingVerticesTooltip);
-                    drawField(settings, "PreferSelectedDistance", "Prefer selected distance:", PowerPivotSettings._PreferSelectedDistanceTooltip);
-                    drawField(settings, "PreferZDistance", "Prefer Z distance:", PowerPivotSettings._PreferZDistanceTooltip);
-                    drawField(settings, "IgnoreZDistance", "Ignore Z distance:", PowerPivotSettings._IgnoreZDistanceTooltip);
+                    drawField(
+                        settings,
+                        "SnapToPivot",
+                        "Snap to pivot:",
+                        PowerPivotSettings._SnapToPivotTooltip
+                    );
+                    drawField(
+                        settings,
+                        "IgnoreBackFacingVertices",
+                        "Ignore hidden vertices:",
+                        PowerPivotSettings._IgnoreBackFacingVerticesTooltip
+                    );
+                    drawField(
+                        settings,
+                        "PreferSelectedDistance",
+                        "Prefer selected distance:",
+                        PowerPivotSettings._PreferSelectedDistanceTooltip
+                    );
+                    drawField(
+                        settings,
+                        "PreferZDistance",
+                        "Prefer Z distance:",
+                        PowerPivotSettings._PreferZDistanceTooltip
+                    );
+                    drawField(
+                        settings,
+                        "IgnoreZDistance",
+                        "Ignore Z distance:",
+                        PowerPivotSettings._IgnoreZDistanceTooltip
+                    );
                     GUILayout.Space(5);
 
-                    drawField(settings, "OverrideFraming", "Override framing:", PowerPivotSettings._OverrideFramingTooltip);
-                    drawField(settings, "UpdateCursorWithObject", "Update Cursor:", PowerPivotSettings._UpdateCursorWithObjectTooltip);
-                    drawField(settings, "ShowParentingButtons", "Parenting Buttons:", PowerPivotSettings._ShowParentingButtonsTooltip);
-                    drawField(settings, "AutoRefreshModelsWithModifiedPivots", "Auto Refresh Models:", PowerPivotSettings._AutoRefreshModelsWithModifiedPivotsTooltip);
+                    drawField(
+                        settings,
+                        "OverrideFraming",
+                        "Override framing:",
+                        PowerPivotSettings._OverrideFramingTooltip
+                    );
+                    drawField(
+                        settings,
+                        "UpdateCursorWithObject",
+                        "Update Cursor:",
+                        PowerPivotSettings._UpdateCursorWithObjectTooltip
+                    );
+                    drawField(
+                        settings,
+                        "ShowParentingButtons",
+                        "Parenting Buttons:",
+                        PowerPivotSettings._ShowParentingButtonsTooltip
+                    );
+                    drawField(
+                        settings,
+                        "AutoRefreshModelsWithModifiedPivots",
+                        "Auto Refresh Models:",
+                        PowerPivotSettings._AutoRefreshModelsWithModifiedPivotsTooltip
+                    );
                     GUILayout.Space(5);
 
                     drawField(settings, "GizmoOpacity", "Gizmo Opacity:");
@@ -419,10 +554,16 @@ namespace Kamgam.PowerPivot
                     drawField(settings, "GizmoColorB", "Gizmo Color B:");
                     drawField(settings, "GizmoCursorColor", "Gizmo Cursor:");
 
-
                     // button to reset cache
                     GUI.enabled = PowerPivotTool.Instance != null;
-                    if (GUILayout.Button( new GUIContent("Clear cursor positions", "Clears the cursror position cache in case you want to start over.")))
+                    if (
+                        GUILayout.Button(
+                            new GUIContent(
+                                "Clear cursor positions",
+                                "Clears the cursror position cache in case you want to start over."
+                            )
+                        )
+                    )
                     {
                         PowerPivotTool.Instance.ClearCursorCache();
                     }
@@ -445,13 +586,29 @@ namespace Kamgam.PowerPivot
                 },
 
                 // Populate the search keywords to enable smart search filtering and label highlighting.
-                keywords = new System.Collections.Generic.HashSet<string>(new[] { "power pivot", "pivot", "cursor", "pivot cursor", "tool", "rotate", "scale" })
+                keywords = new System.Collections.Generic.HashSet<string>(
+                    new[]
+                    {
+                        "power pivot",
+                        "pivot",
+                        "cursor",
+                        "pivot cursor",
+                        "tool",
+                        "rotate",
+                        "scale",
+                    }
+                ),
             };
 
             return provider;
         }
 
-        static bool drawButton(string text, string tooltip = null, string icon = null, params GUILayoutOption[] options)
+        static bool drawButton(
+            string text,
+            string tooltip = null,
+            string icon = null,
+            params GUILayoutOption[] options
+        )
         {
             GUIContent content;
 
@@ -471,7 +628,12 @@ namespace Kamgam.PowerPivot
             return GUILayout.Button(content, options);
         }
 
-        static void drawField(SerializedObject settings, string fieldPropertyName, string label, string tooltip = null)
+        static void drawField(
+            SerializedObject settings,
+            string fieldPropertyName,
+            string label,
+            string tooltip = null
+        )
         {
             var prop = settings.FindProperty(fieldPropertyName);
             // Workaround for a layouting bug in Unity if EditorGUILayout.PropertyField is used (the toogle checkbox is off).
@@ -481,7 +643,10 @@ namespace Kamgam.PowerPivot
             }
             else
             {
-                EditorGUILayout.PropertyField(settings.FindProperty(fieldPropertyName), new GUIContent(label));
+                EditorGUILayout.PropertyField(
+                    settings.FindProperty(fieldPropertyName),
+                    new GUIContent(label)
+                );
             }
 
             if (!string.IsNullOrEmpty(tooltip))
@@ -509,7 +674,11 @@ namespace Kamgam.PowerPivot
                 GUILayout.BeginVertical();
         }
 
-        static void endHorizontalIndent(float indentAmount = 10, bool begunVerticalInside = true, bool bothSides = false)
+        static void endHorizontalIndent(
+            float indentAmount = 10,
+            bool begunVerticalInside = true,
+            bool bothSides = false
+        )
         {
             if (begunVerticalInside)
                 GUILayout.EndVertical();

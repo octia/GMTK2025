@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
 using UnityEditor;
 using UnityEditor.EditorTools;
-using System;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
@@ -15,7 +15,7 @@ namespace Kamgam.PowerPivot
         public static event Action<Event> OnKeyEvent;
         public static bool RegistrationSucceeded = false;
 
-        static GlobalKeyEventHandler() 
+        static GlobalKeyEventHandler()
         {
             RegistrationSucceeded = false;
             string msg = "";
@@ -24,10 +24,11 @@ namespace Kamgam.PowerPivot
                 System.Reflection.FieldInfo info = typeof(EditorApplication).GetField(
                     "globalEventHandler",
                     System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic
-                    );
+                );
                 if (info != null)
                 {
-                    EditorApplication.CallbackFunction value = (EditorApplication.CallbackFunction)info.GetValue(null);
+                    EditorApplication.CallbackFunction value = (EditorApplication.CallbackFunction)
+                        info.GetValue(null);
 
                     value -= onKeyPressed;
                     value += onKeyPressed;
@@ -49,7 +50,10 @@ namespace Kamgam.PowerPivot
             {
                 if (!RegistrationSucceeded)
                 {
-                    Debug.LogWarning("GlobalKeyEventHandler: error while registering for globalEventHandler: " + msg);
+                    Debug.LogWarning(
+                        "GlobalKeyEventHandler: error while registering for globalEventHandler: "
+                            + msg
+                    );
                 }
             }
         }

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
@@ -31,21 +31,34 @@ namespace Kamgam.PowerPivot
             var targetGo = target as GameObject;
 
             // overwrite cursorRotation (always use local rotation for scale commands on a single object)
-            if (Tools.pivotRotation == PivotRotation.Global && targetGo != null && targets.HasExactlyOneGameObject())
+            if (
+                Tools.pivotRotation == PivotRotation.Global
+                && targetGo != null
+                && targets.HasExactlyOneGameObject()
+            )
                 cursorRotation = targetGo.transform.rotation;
 
             var size = HandleUtility.GetHandleSize(cursorPosition);
             var prevScaleHandleScale = scaleHandleScale;
-            scaleHandleScale = Handles.ScaleHandle(scaleHandleScale, cursorPosition, cursorRotation, size);
+            scaleHandleScale = Handles.ScaleHandle(
+                scaleHandleScale,
+                cursorPosition,
+                cursorRotation,
+                size
+            );
 
             // Simulate "Plane Axis Scaling" if SHIFT is pressed
             if (Vector3.Magnitude(scaleHandleScale - prevScaleHandleScale) > 0.001f)
             {
-                if (settings.PlaneScalingKey != KeyCode.None
-                    && (settings.PlaneScalingKey == KeyCode.LeftShift && Event.current.shift
-                     || settings.PlaneScalingKey == KeyCode.LeftControl && Event.current.control
-                     || settings.PlaneScalingKey == KeyCode.LeftAlt && Event.current.alt
-                     || Event.current.keyCode == settings.PlaneScalingKey))
+                if (
+                    settings.PlaneScalingKey != KeyCode.None
+                    && (
+                        settings.PlaneScalingKey == KeyCode.LeftShift && Event.current.shift
+                        || settings.PlaneScalingKey == KeyCode.LeftControl && Event.current.control
+                        || settings.PlaneScalingKey == KeyCode.LeftAlt && Event.current.alt
+                        || Event.current.keyCode == settings.PlaneScalingKey
+                    )
+                )
                 {
                     if (Mathf.Abs(scaleHandleScale.x - prevScaleHandleScale.x) > 0.001f)
                     {
@@ -67,25 +80,44 @@ namespace Kamgam.PowerPivot
                     }
                 }
 
-                scaleTo(targetGo, scaleHandleScale, scaleStartScales, scaleStartPositions, cursorPosition, cursorRotation);
+                scaleTo(
+                    targetGo,
+                    scaleHandleScale,
+                    scaleStartScales,
+                    scaleStartPositions,
+                    cursorPosition,
+                    cursorRotation
+                );
             }
         }
 
-        void scaleTo(GameObject targetGo, Vector3 newScale,
-            Dictionary<Transform, Vector3> scaleStartScales, Dictionary<Transform, Vector3> scaleStartPositions,
-            Vector3 cursorPosition, Quaternion cursorRotation)
+        void scaleTo(
+            GameObject targetGo,
+            Vector3 newScale,
+            Dictionary<Transform, Vector3> scaleStartScales,
+            Dictionary<Transform, Vector3> scaleStartPositions,
+            Vector3 cursorPosition,
+            Quaternion cursorRotation
+        )
         {
             // apply
             if (targets.HasExactlyOneGameObject())
             {
                 Undo.RecordObject(targetGo.transform, "Scale via cursor");
-                scaleAroundForSingleObject(targetGo.transform, scaleStartScales[targetGo.transform], cursorPosition, cursorRotation, newScale);
+                scaleAroundForSingleObject(
+                    targetGo.transform,
+                    scaleStartScales[targetGo.transform],
+                    cursorPosition,
+                    cursorRotation,
+                    newScale
+                );
             }
             else
             {
                 // Ignore PivotRotation.Global if only one object is selected (Unity does the same).
                 // N2H: find out how to disable the button while doing this (seems there is no public)
-                bool takeRotationIntoAccount = Tools.pivotRotation == PivotRotation.Local || targets.HasExactlyOneGameObject();
+                bool takeRotationIntoAccount =
+                    Tools.pivotRotation == PivotRotation.Local || targets.HasExactlyOneGameObject();
 
                 foreach (var obj in targets)
                 {
@@ -103,7 +135,7 @@ namespace Kamgam.PowerPivot
                             scaleHandleScale,
                             takeRotationIntoAccount,
                             rotationTransform: targetGo.transform // use the last selected as rotation source (why? Because Unity does the same)
-                            );
+                        );
                     }
                 }
             }
@@ -121,7 +153,16 @@ namespace Kamgam.PowerPivot
         // alignment (thought that one can not be used for multiple objects). By "aligment" I mean the behaviour
         // that the cursor remains at the vertex it was snapped to (or more precisely the object is moved while
         // scaling accordingly).
-        void scaleAroundForMultipleObjects(Transform transform, Vector3 startScale, Vector3 startPos, Vector3 cursorPosition, Quaternion cursorRotation, Vector3 scaleFactor, bool takeRotationIntoAccount = false, Transform rotationTransform = null)
+        void scaleAroundForMultipleObjects(
+            Transform transform,
+            Vector3 startScale,
+            Vector3 startPos,
+            Vector3 cursorPosition,
+            Quaternion cursorRotation,
+            Vector3 scaleFactor,
+            bool takeRotationIntoAccount = false,
+            Transform rotationTransform = null
+        )
         {
             // pos
             var posDelta = startPos - cursorPosition;
@@ -144,11 +185,29 @@ namespace Kamgam.PowerPivot
             {
                 // Calc axis disalignment angle
                 if (Mathf.Abs(scaleFactor.x - 1f) > 0.0001f)
-                    scaleFactor = pickScaleBasedOnAxis(transform, cursorRotation, scaleFactor, Vector3.right, scaleFactor.x);
+                    scaleFactor = pickScaleBasedOnAxis(
+                        transform,
+                        cursorRotation,
+                        scaleFactor,
+                        Vector3.right,
+                        scaleFactor.x
+                    );
                 else if (Mathf.Abs(scaleFactor.y - 1f) > 0.0001f)
-                    scaleFactor = pickScaleBasedOnAxis(transform, cursorRotation, scaleFactor, Vector3.up, scaleFactor.y);
+                    scaleFactor = pickScaleBasedOnAxis(
+                        transform,
+                        cursorRotation,
+                        scaleFactor,
+                        Vector3.up,
+                        scaleFactor.y
+                    );
                 else if (Mathf.Abs(scaleFactor.z - 1f) > 0.0001f)
-                    scaleFactor = pickScaleBasedOnAxis(transform, cursorRotation, scaleFactor, Vector3.forward, scaleFactor.z);
+                    scaleFactor = pickScaleBasedOnAxis(
+                        transform,
+                        cursorRotation,
+                        scaleFactor,
+                        Vector3.forward,
+                        scaleFactor.z
+                    );
             }
 
             // scale
@@ -158,7 +217,13 @@ namespace Kamgam.PowerPivot
         }
 
         // See comments on scaleAroundForMultipleObjects().
-        void scaleAroundForSingleObject(Transform transform, Vector3 startScale, Vector3 cursorPosition, Quaternion cursorRotation, Vector3 scaleFactor)
+        void scaleAroundForSingleObject(
+            Transform transform,
+            Vector3 startScale,
+            Vector3 cursorPosition,
+            Quaternion cursorRotation,
+            Vector3 scaleFactor
+        )
         {
             // modify scale
             var finalScale = startScale;
@@ -174,7 +239,13 @@ namespace Kamgam.PowerPivot
             transform.position += globalPosDelta;
         }
 
-        Vector3 pickScaleBasedOnAxis(Transform transform, Quaternion cursorRotation, Vector3 scaleFactor, Vector3 axis, float singleScaleFactor)
+        Vector3 pickScaleBasedOnAxis(
+            Transform transform,
+            Quaternion cursorRotation,
+            Vector3 scaleFactor,
+            Vector3 axis,
+            float singleScaleFactor
+        )
         {
             var localAxis = transform.InverseTransformDirection(cursorRotation * axis);
             var angleDeltaX = Mathf.Abs(localAxis.x);

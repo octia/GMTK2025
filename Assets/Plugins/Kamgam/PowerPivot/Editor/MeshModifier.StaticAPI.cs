@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Kamgam.PowerPivot
@@ -17,13 +17,17 @@ namespace Kamgam.PowerPivot
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="originalMesh"></param>
         /// <param name="newMesh"></param>
         /// <param name="makeRelative">If true then the path will be made relative to Assets/. If false then the path will remain as is (no change).</param>
         /// <returns></returns>
-        public static string GetNewMeshFilePath(Mesh originalMesh, Mesh newMesh, bool makeRelative = false)
+        public static string GetNewMeshFilePath(
+            Mesh originalMesh,
+            Mesh newMesh,
+            bool makeRelative = false
+        )
         {
             string absolutePath = null;
 
@@ -32,21 +36,32 @@ namespace Kamgam.PowerPivot
             {
                 if (newMesh != null)
                 {
-                    originalMeshPath = "Assets/Mesh" + (newMesh.GetInstanceID() + newMesh.vertexCount).ToString();
+                    originalMeshPath =
+                        "Assets/Mesh" + (newMesh.GetInstanceID() + newMesh.vertexCount).ToString();
                 }
                 else
                 {
                     originalMeshPath = "Assets/Mesh" + Random.Range(1000, 99800).ToString();
                 }
 
-                absolutePath = System.IO.Path.GetDirectoryName(originalMeshPath) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileName(originalMeshPath) + "." + FILE_EXTENSION;
+                absolutePath =
+                    System.IO.Path.GetDirectoryName(originalMeshPath)
+                    + System.IO.Path.DirectorySeparatorChar
+                    + System.IO.Path.GetFileName(originalMeshPath)
+                    + "."
+                    + FILE_EXTENSION;
             }
             else
             {
                 var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(originalMeshPath);
                 if (assets == null || assets.Length == 0)
                 {
-                    absolutePath = System.IO.Path.GetDirectoryName(originalMeshPath) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileName(originalMeshPath) + "." + FILE_EXTENSION;
+                    absolutePath =
+                        System.IO.Path.GetDirectoryName(originalMeshPath)
+                        + System.IO.Path.DirectorySeparatorChar
+                        + System.IO.Path.GetFileName(originalMeshPath)
+                        + "."
+                        + FILE_EXTENSION;
                 }
                 else
                 {
@@ -57,7 +72,13 @@ namespace Kamgam.PowerPivot
                         if (asset == originalMeshAsObject)
                         {
                             string nameForPath = NameToValidPath(asset.name);
-                            absolutePath = System.IO.Path.GetDirectoryName(originalMeshPath) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileName(originalMeshPath) + "." + nameForPath + FILE_EXTENSION;
+                            absolutePath =
+                                System.IO.Path.GetDirectoryName(originalMeshPath)
+                                + System.IO.Path.DirectorySeparatorChar
+                                + System.IO.Path.GetFileName(originalMeshPath)
+                                + "."
+                                + nameForPath
+                                + FILE_EXTENSION;
                             break;
                         }
                     }
@@ -77,7 +98,11 @@ namespace Kamgam.PowerPivot
 
         public static string NameToValidPath(string name)
         {
-            string pathName = System.Text.RegularExpressions.Regex.Replace(name, "[^a-zA-Z0-9_-]", "");
+            string pathName = System.Text.RegularExpressions.Regex.Replace(
+                name,
+                "[^a-zA-Z0-9_-]",
+                ""
+            );
             if (string.IsNullOrEmpty(pathName))
             {
                 var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(name);
@@ -136,7 +161,10 @@ namespace Kamgam.PowerPivot
         public static PivotData LoadPivotDataFromNewMeshPath(string path)
         {
             path = MakePathRelativeToAssets(path);
-            path = path.Replace(POWER_PIVOT_MARKER, POWER_PIVOT_MARKER + AssetExporter.PIVOT_DATA_SUFFIX);
+            path = path.Replace(
+                POWER_PIVOT_MARKER,
+                POWER_PIVOT_MARKER + AssetExporter.PIVOT_DATA_SUFFIX
+            );
 
             return AssetDatabase.LoadAssetAtPath<PivotData>(path);
         }
@@ -169,7 +197,7 @@ namespace Kamgam.PowerPivot
         {
             BoneData boneData = null;
 
-            // Extract bone info as a BoneData asset.    
+            // Extract bone info as a BoneData asset.
             if (renderer.rootBone != null)
             {
                 boneData = ScriptableObject.CreateInstance<BoneData>();
@@ -179,10 +207,14 @@ namespace Kamgam.PowerPivot
             {
                 if (renderer.sharedMesh.boneWeights.Length > 0)
                 {
-                    Logger.LogWarning("The SkinnedMeshRenderers '" + renderer.name + "' has no root bone! Your bones will not align!\n" +
-                        "This is required for mesh bones extraction. " +
-                        "Please set the root bone to the root of the rig/armature before exporting.\n" +
-                        "Skipping bone-data export for now (your bones will probably not align wit the exported weights).");
+                    Logger.LogWarning(
+                        "The SkinnedMeshRenderers '"
+                            + renderer.name
+                            + "' has no root bone! Your bones will not align!\n"
+                            + "This is required for mesh bones extraction. "
+                            + "Please set the root bone to the root of the rig/armature before exporting.\n"
+                            + "Skipping bone-data export for now (your bones will probably not align wit the exported weights)."
+                    );
                 }
             }
 

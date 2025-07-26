@@ -25,7 +25,10 @@ namespace FMODUnity
             EditorGUI.EndDisabledGroup();
 
             EditorGUILayout.PropertyField(attenuationObject);
-            EditorGUILayout.PropertyField(nonRigidbodyVelocity, new GUIContent("Non-Rigidbody Velocity"));
+            EditorGUILayout.PropertyField(
+                nonRigidbodyVelocity,
+                new GUIContent("Non-Rigidbody Velocity")
+            );
             serializedObject.ApplyModifiedProperties();
         }
     }

@@ -1,52 +1,79 @@
+using EditorAttributes.Editor.Utility;
 using UnityEditor;
 using UnityEngine.UIElements;
-using EditorAttributes.Editor.Utility;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(InlineButtonAttribute))]
-	public class InlineButtonDrawer : PropertyDrawerBase
-	{
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var inlineButtonAttribute = attribute as InlineButtonAttribute;
-			var buttonLabel = inlineButtonAttribute.ButtonLabel == string.Empty ? inlineButtonAttribute.FunctionName : inlineButtonAttribute.ButtonLabel;
+    [CustomPropertyDrawer(typeof(InlineButtonAttribute))]
+    public class InlineButtonDrawer : PropertyDrawerBase
+    {
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var inlineButtonAttribute = attribute as InlineButtonAttribute;
+            var buttonLabel =
+                inlineButtonAttribute.ButtonLabel == string.Empty
+                    ? inlineButtonAttribute.FunctionName
+                    : inlineButtonAttribute.ButtonLabel;
 
-			var methodInfo = ReflectionUtility.FindFunction(inlineButtonAttribute.FunctionName, property.serializedObject.targetObject);
+            var methodInfo = ReflectionUtility.FindFunction(
+                inlineButtonAttribute.FunctionName,
+                property.serializedObject.targetObject
+            );
 
-			var root = new VisualElement();
-			var propertyField = CreatePropertyField(property);
+            var root = new VisualElement();
+            var propertyField = CreatePropertyField(property);
 
-			if (methodInfo.GetParameters().Length > 0)
-			{
-				root.Add(new HelpBox("The function cannot have parameters", HelpBoxMessageType.Error));
-				return root;
-			}
+            if (methodInfo.GetParameters().Length > 0)
+            {
+                root.Add(
+                    new HelpBox("The function cannot have parameters", HelpBoxMessageType.Error)
+                );
+                return root;
+            }
 
-			root.style.flexDirection = FlexDirection.Row;
-			propertyField.style.flexGrow = 1f;
+            root.style.flexDirection = FlexDirection.Row;
+            propertyField.style.flexGrow = 1f;
 
-			root.Add(propertyField);
+            root.Add(propertyField);
 
-			if (inlineButtonAttribute.IsRepetable)
-			{
-				var repeatButton = new RepeatButton(() => InvokeFunctionOnAllTargets(property.serializedObject.targetObjects, methodInfo.Name), inlineButtonAttribute.PressDelay, inlineButtonAttribute.RepetitionInterval) { text = buttonLabel };
+            if (inlineButtonAttribute.IsRepetable)
+            {
+                var repeatButton = new RepeatButton(
+                    () =>
+                        InvokeFunctionOnAllTargets(
+                            property.serializedObject.targetObjects,
+                            methodInfo.Name
+                        ),
+                    inlineButtonAttribute.PressDelay,
+                    inlineButtonAttribute.RepetitionInterval
+                )
+                {
+                    text = buttonLabel,
+                };
 
-				repeatButton.style.width = inlineButtonAttribute.ButtonWidth;
-				repeatButton.AddToClassList(Button.ussClassName);
+                repeatButton.style.width = inlineButtonAttribute.ButtonWidth;
+                repeatButton.AddToClassList(Button.ussClassName);
 
-				root.Add(repeatButton);
-			}
-			else
-			{
-				var button = new Button(() => InvokeFunctionOnAllTargets(property.serializedObject.targetObjects, methodInfo.Name)) { text = buttonLabel };
+                root.Add(repeatButton);
+            }
+            else
+            {
+                var button = new Button(() =>
+                    InvokeFunctionOnAllTargets(
+                        property.serializedObject.targetObjects,
+                        methodInfo.Name
+                    )
+                )
+                {
+                    text = buttonLabel,
+                };
 
-				button.style.width = inlineButtonAttribute.ButtonWidth;
+                button.style.width = inlineButtonAttribute.ButtonWidth;
 
-				root.Add(button);
-			}
+                root.Add(button);
+            }
 
-			return root;
-		}
-	}
+            return root;
+        }
+    }
 }

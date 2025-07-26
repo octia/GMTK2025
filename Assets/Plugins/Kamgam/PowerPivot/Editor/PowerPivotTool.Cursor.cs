@@ -1,21 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEditor.EditorTools;
 using UnityEditor.ShortcutManagement;
-using System.Collections.Generic;
-using System.Text;
+using UnityEngine;
 
 namespace Kamgam.PowerPivot
 {
     partial class PowerPivotTool
     {
-        public enum CursorUpdateCause { Unknown, UndoPerformed, PivotRotationChanged, PivotModeChanged, SelectionChanged, ToolChanged }
+        public enum CursorUpdateCause
+        {
+            Unknown,
+            UndoPerformed,
+            PivotRotationChanged,
+            PivotModeChanged,
+            SelectionChanged,
+            ToolChanged,
+        }
 
         // Cursor position:
         // We cache one position per selection. This way the user does not have to
         // reposition the cursor every time the selection changes.
-        protected Dictionary<string, Vector3> cursorPositionCache = new Dictionary<string, Vector3>();
-        protected Dictionary<string, Vector3> cursorLocalPositionCache = new Dictionary<string, Vector3>();
+        protected Dictionary<string, Vector3> cursorPositionCache =
+            new Dictionary<string, Vector3>();
+        protected Dictionary<string, Vector3> cursorLocalPositionCache =
+            new Dictionary<string, Vector3>();
         protected StringBuilder cursorCacheKeyBuilder = new StringBuilder();
         protected string cursorPositionCacheKey;
 
@@ -37,7 +47,6 @@ namespace Kamgam.PowerPivot
                     return Vector3.zero;
                 }
             }
-
             set
             {
                 initCursorCacheKeyIfneeded();
@@ -69,7 +78,9 @@ namespace Kamgam.PowerPivot
                 if (Selection.activeGameObject == null)
                     return null;
 
-                return Selection.activeGameObject.transform.TransformPoint(cursorRelativePositionLocal.Value);
+                return Selection.activeGameObject.transform.TransformPoint(
+                    cursorRelativePositionLocal.Value
+                );
             }
         }
 
@@ -181,7 +192,11 @@ namespace Kamgam.PowerPivot
         protected void drawOriginalCursorGizmo(Transform transform)
         {
             // don't draw if cursor pos is too close
-            if (currentTool != PTool.Rotate && currentTool != PTool.Cursor && Vector3.SqrMagnitude(transform.position - cursorPosition) < 0.01f)
+            if (
+                currentTool != PTool.Rotate
+                && currentTool != PTool.Cursor
+                && Vector3.SqrMagnitude(transform.position - cursorPosition) < 0.01f
+            )
                 return;
 
             // draw cursor indicator
@@ -195,10 +210,18 @@ namespace Kamgam.PowerPivot
             Handles.DrawDottedLine(transform.position, transform.position + up * size * 0.33f, 1f);
 
             Handles.color = Color.red;
-            Handles.DrawDottedLine(transform.position, transform.position + right * size * 0.33f, 1f);
+            Handles.DrawDottedLine(
+                transform.position,
+                transform.position + right * size * 0.33f,
+                1f
+            );
 
             Handles.color = Color.blue;
-            Handles.DrawDottedLine(transform.position, transform.position + forward * size * 0.33f, 1f);
+            Handles.DrawDottedLine(
+                transform.position,
+                transform.position + forward * size * 0.33f,
+                1f
+            );
         }
 
         /// <summary>
@@ -209,12 +232,19 @@ namespace Kamgam.PowerPivot
         /// <param name="color"></param>
         /// <param name="duration">Set to 0 in Editor to keep it for one frame.</param>
         /// <param name="circleSegments"></param>
-        void drawCircle(Vector3 center, Quaternion rot, float radius, Color colorA, Color colorB,  int circleSegments = 10)
+        void drawCircle(
+            Vector3 center,
+            Quaternion rot,
+            float radius,
+            Color colorA,
+            Color colorB,
+            int circleSegments = 10
+        )
         {
             var col = Handles.color;
 
             // getCirclePoints
-            var angleInRad = 0f;  // angle that will be increased each loop
+            var angleInRad = 0f; // angle that will be increased each loop
             var step = Mathf.PI * 2f / circleSegments;
             Vector3 point = Vector3.zero;
             Vector3 previousPoint = Vector3.zero;
@@ -239,10 +269,16 @@ namespace Kamgam.PowerPivot
             Handles.color = col;
         }
 
-        void updateCursor(CursorUpdateCause reason = CursorUpdateCause.Unknown, bool forceRefresh = false)
+        void updateCursor(
+            CursorUpdateCause reason = CursorUpdateCause.Unknown,
+            bool forceRefresh = false
+        )
         {
             // restore from local cache
-            if (reason == CursorUpdateCause.ToolChanged || reason == CursorUpdateCause.SelectionChanged)
+            if (
+                reason == CursorUpdateCause.ToolChanged
+                || reason == CursorUpdateCause.SelectionChanged
+            )
             {
                 restoreCursorFromLocalPosition();
             }
@@ -262,7 +298,10 @@ namespace Kamgam.PowerPivot
 
             // rotation
             if (Selection.gameObjects.Length > 0 && Selection.activeGameObject != null)
-                cursorRotation = Tools.pivotRotation == PivotRotation.Local ? Selection.activeGameObject.transform.rotation : Quaternion.identity;
+                cursorRotation =
+                    Tools.pivotRotation == PivotRotation.Local
+                        ? Selection.activeGameObject.transform.rotation
+                        : Quaternion.identity;
             else
                 cursorRotation = Quaternion.identity;
 
@@ -294,7 +333,11 @@ namespace Kamgam.PowerPivot
                 return;
 
             // do not restore if the current rotation mode is global
-            if (Tools.pivotRotation == PivotRotation.Global && settings.UpdateCursorWithObject == PowerPivotSettings.UpdateCursorOptions.OnlyIfLocal)
+            if (
+                Tools.pivotRotation == PivotRotation.Global
+                && settings.UpdateCursorWithObject
+                    == PowerPivotSettings.UpdateCursorOptions.OnlyIfLocal
+            )
                 return;
 
             string key = getCursorCacheKey(Selection.gameObjects);
@@ -313,14 +356,14 @@ namespace Kamgam.PowerPivot
 
         void updateCursorRelativePosition()
         {
-            
             if (Selection.gameObjects.Length == 0 || Selection.activeGameObject == null)
             {
                 cursorRelativePositionLocal = null;
             }
             else
             {
-                cursorRelativePositionLocal = Selection.activeGameObject.transform.InverseTransformPoint(cursorPosition);
+                cursorRelativePositionLocal =
+                    Selection.activeGameObject.transform.InverseTransformPoint(cursorPosition);
             }
         }
 
@@ -375,10 +418,11 @@ namespace Kamgam.PowerPivot
         {
             var settings = PowerPivotSettings.GetOrCreateSettings();
 
-            // draw small scale handle 
+            // draw small scale handle
             var matrix = Handles.matrix;
             Handles.matrix = Matrix4x4.Scale(Vector3.one / 1.1f) * matrix;
-            var newCursorPosition = Handles.PositionHandle(cursorPosition * 1.1f, cursorRotation) / 1.1f;
+            var newCursorPosition =
+                Handles.PositionHandle(cursorPosition * 1.1f, cursorRotation) / 1.1f;
             Handles.matrix = matrix;
 
             if (Vector3.Magnitude(newCursorPosition - cursorPosition) > 0.0001f)
@@ -397,11 +441,46 @@ namespace Kamgam.PowerPivot
             var cA = settings.GizmoCursorColor;
             var cB = settings.GizmoColorB;
             var a = settings.GizmoOpacity;
-            drawCircle(cursorPosition, rot, 0.17f * size, new Color(cA.r, cA.g, cA.b, cA.a * a * 0.8f), new Color(cB.r, cB.g, cB.b, a * 1.0f), 10);
-            drawCircle(cursorPosition, rot, 0.16f * size, new Color(cA.r, cA.g, cA.b, cA.a * a * 0.8f), new Color(cB.r, cB.g, cB.b, a * 0.8f), 10);
-            drawCircle(cursorPosition, rot, 0.14f * size, new Color(cA.r, cA.g, cA.b, cA.a * a * 0.6f), new Color(cB.r, cB.g, cB.b, a * 0.6f), 10);
-            drawCircle(cursorPosition, rot, 0.12f * size, new Color(cA.r, cA.g, cA.b, cA.a * a * 0.4f), new Color(cB.r, cB.g, cB.b, a * 0.4f), 10);
-            drawCircle(cursorPosition, rot, 0.10f * size, new Color(cA.r, cA.g, cA.b, cA.a * a * 0.2f), new Color(cB.r, cB.g, cB.b, a * 0.2f), 10);
+            drawCircle(
+                cursorPosition,
+                rot,
+                0.17f * size,
+                new Color(cA.r, cA.g, cA.b, cA.a * a * 0.8f),
+                new Color(cB.r, cB.g, cB.b, a * 1.0f),
+                10
+            );
+            drawCircle(
+                cursorPosition,
+                rot,
+                0.16f * size,
+                new Color(cA.r, cA.g, cA.b, cA.a * a * 0.8f),
+                new Color(cB.r, cB.g, cB.b, a * 0.8f),
+                10
+            );
+            drawCircle(
+                cursorPosition,
+                rot,
+                0.14f * size,
+                new Color(cA.r, cA.g, cA.b, cA.a * a * 0.6f),
+                new Color(cB.r, cB.g, cB.b, a * 0.6f),
+                10
+            );
+            drawCircle(
+                cursorPosition,
+                rot,
+                0.12f * size,
+                new Color(cA.r, cA.g, cA.b, cA.a * a * 0.4f),
+                new Color(cB.r, cB.g, cB.b, a * 0.4f),
+                10
+            );
+            drawCircle(
+                cursorPosition,
+                rot,
+                0.10f * size,
+                new Color(cA.r, cA.g, cA.b, cA.a * a * 0.2f),
+                new Color(cB.r, cB.g, cB.b, a * 0.2f),
+                10
+            );
         }
 
         #region Undo Stack
@@ -425,10 +504,17 @@ namespace Kamgam.PowerPivot
         /// <param name="cursorPosition"></param>
         /// <param name="minTimeDelta">Register a new undo if the last one is older than # seconds, otherwise update the current one.</param>
         /// <param name="forceNewGroup"></param>
-        protected void RegisterCursorUndo(Vector3 cursorPosition, double minTimeDelta = 0d, bool forceNewGroup = false)
+        protected void RegisterCursorUndo(
+            Vector3 cursorPosition,
+            double minTimeDelta = 0d,
+            bool forceNewGroup = false
+        )
         {
             // abort if the new cursor pos is identical to the old one
-            if (cursorHistoryUndoStack.Count > 0 && (cursorHistoryUndoStack.Peek() - cursorPosition).magnitude < 0.0001f)
+            if (
+                cursorHistoryUndoStack.Count > 0
+                && (cursorHistoryUndoStack.Peek() - cursorPosition).magnitude < 0.0001f
+            )
                 return;
 
             if (forceNewGroup)
@@ -438,7 +524,10 @@ namespace Kamgam.PowerPivot
             else
             {
                 // Register a new undo if the last one is older than # seconds, otherwise update the current one.
-                if (EditorApplication.timeSinceStartup - lastCursorUndoRegistrationTime < minTimeDelta)
+                if (
+                    EditorApplication.timeSinceStartup - lastCursorUndoRegistrationTime
+                    < minTimeDelta
+                )
                 {
                     if (cursorHistoryUndoStack.Count > 0)
                         cursorHistoryUndoStack.Pop();
