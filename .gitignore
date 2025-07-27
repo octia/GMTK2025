@@ -119,3 +119,7 @@ fmod_editor.log
 # Ignore banks and cache
 /FMOD/.cache
 /FMOD/Build
+
+# Rider and VSCode settings
+.idea/
+.vsconfig
