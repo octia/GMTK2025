@@ -1,0 +1,22 @@
+# Ensure that text files that any contributor introduces to the repository have their line endings normalized
+* text=auto
+
+# Binary files
+*.psd binary
+*.wav binary
+*.mp3 binary
+*.bank binary
+*.png binary
+*.ogg binary
+*.dll binary
+*.so binary
+*.a binary
+*.plist binary
+*.blend binary
+*.fbx binary
+
+# https://gist.github.com/djcsdy/1f9cc264dc56c16bf2d9d228a1db78a5?permalink_comment_id=4368657#gistcomment-4368657
+*.json text eol=lf
+*.unity text eol=lf
+*.asset text eol=lf
+*.renderTexture text eol=lf
