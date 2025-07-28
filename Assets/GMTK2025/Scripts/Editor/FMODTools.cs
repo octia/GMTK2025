@@ -1,7 +1,9 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using System.IO;
 using FMODUnity;
+using UnityEngine.Networking;
 
 public class FMODTools
 {
@@ -25,6 +27,44 @@ public class FMODTools
         System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
         process.WaitForExit();
         Debug.Log($"Build process finished with {(process.ExitCode == 0 ? "success" : process.ExitCode)}.");
+    }
+
+    [MenuItem("FMOD/Download Banks", priority = -30)]
+    public static void DownloadBanks()
+    {
+        DownloadBankFromLink("https://exploitavoid.com/storage/Master.bank?password=sndgmtk2025", "Master.bank");
+        DownloadBankFromLink("https://exploitavoid.com/storage/Master.strings.bank?password=sndgmtk2025", "Master.strings.bank");
+    }
+
+    private static void DownloadBankFromLink(string url, string fileName)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(url);
+        var request = www.SendWebRequest();
+        request.completed += HandleFile;
+        return;
+
+        void HandleFile(AsyncOperation obj)
+        {
+            try
+            {
+                if (request.webRequest.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError("Download failed: " + www.error);
+                }
+                else
+                {
+                    var folderPath = Path.Combine(Application.dataPath, "..", "FMOD", "Build", "Desktop");
+                    Directory.CreateDirectory(folderPath);
+                    var filePath = Path.Combine(folderPath, fileName);
+                    File.WriteAllBytes(filePath, request.webRequest.downloadHandler.data);
+                    Debug.Log("Download successful: " + Path.Combine(folderPath, fileName));
+                }
+            }
+            finally
+            {
+                request.webRequest.Dispose();
+            }
+        }
     }
 
     private static bool TryGetExecutablePath(out string path)
