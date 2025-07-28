@@ -9,6 +9,7 @@ public class FMODTools
 {
     private static readonly string defaultFmodPath = "C:\\Program Files\\FMOD SoundSystem\\";
 
+#if UNITY_EDITOR_WIN
     [MenuItem("FMOD/Build Banks", priority = -20)]
     public static void PerformBuild()
     {
@@ -28,6 +29,7 @@ public class FMODTools
         process.WaitForExit();
         Debug.Log($"Build process finished with {(process.ExitCode == 0 ? "success" : process.ExitCode)}.");
     }
+#endif
 
     [MenuItem("FMOD/Download Banks", priority = -30)]
     public static void DownloadBanks()
