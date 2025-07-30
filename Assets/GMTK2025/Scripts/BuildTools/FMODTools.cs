@@ -1,8 +1,6 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 using System.IO;
-using FMODUnity;
 using UnityEngine.Networking;
 
 public class FMODTools
