@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
+using FMODUnity;
 
 public class FMODTools
 {
