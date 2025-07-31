@@ -10,9 +10,16 @@ public class Ship : MonoBehaviour
 
     Rigidbody rb;
 
+    public ShipData ShipData => shipData;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    public void ChangeOrbit(Orbit orbit)
+    {
+        this.orbit = orbit;
     }
 
     void FixedUpdate()

@@ -21,41 +21,16 @@ public class OrbitController : MonoBehaviour
         orbitWithData.Unlocked = true;
         orbitWithData.Orbit.State = Orbit.VisualState.Visible;
     }
+
     /// <summary>
-    /// Tries to pick an unlocked orbit with the mouse.
+    /// Tries to find an orbit close to the mouse coursor
     /// </summary>
-    /// <returns>Returns a close orbit to the mouse, or null</returns>
-    public Orbit PickUnlockedOrbitWithMouse()
+    /// <param name="orbit"></param>
+    /// <param name="hitPosition"></param>
+    /// <returns>Whether an orbit was found or not</returns>
+    public bool PickUnlockedOrbitWithMouse(out Orbit orbit, out Vector3 hitPosition)
     {
-        hits ??= new RaycastHit[orbitsWithData.Length];
-
-        var ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
-
-        for(int attempt = 0; attempt <= 3; attempt++)
-        {
-            Orbit closestOrbit = null;
-            float closestDistance = Mathf.Infinity;
-            var hitCount = Physics.SphereCastNonAlloc(ray, mousePickRadius * (attempt / 3.0f), hits, Mathf.Infinity, orbitLayerMask);
-            for (int i = 0; i < hitCount; i++)
-            {
-                if (hits[i].distance >= closestDistance)
-                {
-                    continue;
-                }
-                var orbit = hits[i].transform.GetComponent<Orbit>();
-                if (!IsOrbitUnlocked(orbit))
-                {
-                    continue;
-                }
-                closestOrbit = orbit;
-                closestDistance = hits[i].distance;
-            }
-            if (closestOrbit)
-            {
-                return closestOrbit;
-            }
-        }
-        return null;
+        return MousePicking.PickObjectFromLayer(IsOrbitUnlocked, orbitLayerMask, out orbit, out hitPosition);
     }
 
     private OrbitWithData GetMatchingOrbitData(Orbit orbit) => orbitsWithData.First(x => x.Orbit == orbit);
