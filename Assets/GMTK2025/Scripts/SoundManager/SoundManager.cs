@@ -1,62 +1,29 @@
+using FMODUnity;
 using Reflex.Attributes;
-using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager
 {
-    [SerializeField]
-    private VolumeType volumeType;
-
     [Inject]
-    private SoundManagerConfig soundManager;
-
-     private UnityEngine.UI.Slider thisSlider;
-    private void Start()
-    {
-        if (!soundManager.music_VCA.isValid() || !soundManager.sfx_VCA.isValid())
-        {
-            Debug.LogWarning("VCA is not valid! Check FMOD path.");
-        }
-        thisSlider = transform.GetComponent<UnityEngine.UI.Slider>();
-    }
-    public void VolumeChange()
-    {
-        ChangeVolume(volumeType);
-    }
-    private void ChangeVolume(VolumeType volumeType)
+    private SoundManagerConfig soundManagerConfig;
+    public void ChangeVolume(VolumeType volumeType, float volume)
     {
         switch (volumeType)
         {
             case VolumeType.None:
                 return;
             case VolumeType.Music:
-                ChangeVolumeMusic();
+                ChangeVolume(soundManagerConfig.musicBusName, volume);
                 break;
             case VolumeType.Sfx:
-                ChangeVolumeSfx();
+                ChangeVolume(soundManagerConfig.vfxBusName, volume);
                 break;
         }
     }
-
-    private void ChangeVolumeMusic()
+    private void ChangeVolume(string busName, float volume)
     {
-        if (!soundManager.music_VCA.isValid())
+        if (RuntimeManager.GetBus("bus:/" + busName).isValid())
         {
-            Debug.LogWarning("VCA is not valid! Check FMOD path.");
-        }
-        else
-        {
-            soundManager.music_VCA.setVolume(thisSlider.value);
-        }
-    }
-    private void ChangeVolumeSfx()
-    {
-        if (!soundManager.sfx_VCA.isValid())
-        {
-            Debug.LogWarning("VCA is not valid! Check FMOD path.");
-        }
-        else
-        {
-            soundManager.sfx_VCA.setVolume(thisSlider.value);
+            RuntimeManager.GetBus("bus:/" + busName).setVolume(volume);
         }
     }
 }
