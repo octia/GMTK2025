@@ -1,10 +1,34 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GMTK2025/Config/SoundManagerConfig", fileName = "SoundManagerConfig")]
+[CreateAssetMenu(fileName = "SoundManagerConfig", menuName = "Scriptable Objects/SoundManagerConfig")]
 public class SoundManagerConfig : ScriptableObject
 {
-    [field: SerializeField]
-    public FMOD.Studio.VCA music_VCA;
-    [field: SerializeField]
-    public FMOD.Studio.VCA sfx_VCA;
+    [SerializeField]
+    private string musicVCAPath = "vca:/Music";
+
+    [SerializeField]
+    private string sfxVCAPath = "vca:/SFX";
+
+    private FMOD.Studio.VCA _musicVCA;
+    private FMOD.Studio.VCA _sfxVCA;
+
+    public FMOD.Studio.VCA music_VCA
+    {
+        get
+        {
+            if (!_musicVCA.isValid())
+                _musicVCA = FMODUnity.RuntimeManager.GetVCA(musicVCAPath);
+            return _musicVCA;
+        }
+    }
+
+    public FMOD.Studio.VCA sfx_VCA
+    {
+        get
+        {
+            if (!_sfxVCA.isValid())
+                _sfxVCA = FMODUnity.RuntimeManager.GetVCA(sfxVCAPath);
+            return _sfxVCA;
+        }
+    }
 }
