@@ -20,6 +20,8 @@ public class Ship : MonoBehaviour
 
     Rigidbody rb;
 
+    public ShipData ShipData => shipData;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,6 +29,11 @@ public class Ship : MonoBehaviour
         {
             Injector.Inject(this);
         }
+    }
+
+    public void ChangeOrbit(Orbit orbit)
+    {
+        this.orbit = orbit;
     }
 
     void FixedUpdate()
@@ -37,7 +44,7 @@ public class Ship : MonoBehaviour
             out Vector3 forward,
             out float speed
         );
-        if (!shipData.Clockwise)
+        if (shipData.Clockwise)
         {
             forward = -forward;
         }
@@ -54,7 +61,7 @@ public class Ship : MonoBehaviour
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
-            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed
+            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed * timerManager.TimeScale
         );
 
         // Purely visual up vector
@@ -62,7 +69,7 @@ public class Ship : MonoBehaviour
         var allowedUp = LimitRotation(
             transform.up,
             calculatedUp,
-            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed
+            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed * timerManager.TimeScale
         );
 
         var newRotation = Quaternion.LookRotation(

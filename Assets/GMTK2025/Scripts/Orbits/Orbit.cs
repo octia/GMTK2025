@@ -74,7 +74,7 @@ public class Orbit : MonoBehaviour
 
         visualStateChangeTween.Complete();
         visualStateChangeTween = Sequence.Create()
-            .Chain(Tween.MaterialColor(material, targetColor, 0.5f));
+            .Chain(Tween.MaterialColor(material, targetColor, 0.2f));
 
         if (instant)
         {
