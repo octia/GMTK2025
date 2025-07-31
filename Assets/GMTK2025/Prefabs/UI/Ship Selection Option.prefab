@@ -143,7 +143,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsPoint: {fileID: 0}
+  highlightBackground: {fileID: 0}
   statsPanel: {fileID: 0}
+  orbitAnim: {fileID: 0}
+  icon: {fileID: 5580556486985531756}
+  nameText: {fileID: 8380011274113448598}
   onHoverScale: {x: 1.1, y: 1.1}
   hoverAnimTime: 0.35
   orbitAnimHoverSpeed: 0.2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dfa7bbdccefeb409889aa718fe06df, type: 3}
   m_Name: PlayerManagerConfig
   m_EditorClassIdentifier: 
-  initialShipPool:
+  BaseShipPool:
   - {fileID: 11400000, guid: 81dc7ab9be3a34445a07c06144bbf713, type: 2}
   - {fileID: 11400000, guid: 1727cc5cff980da4aa3f5c37748c937c, type: 2}
   - {fileID: 11400000, guid: 8c537f4e20894424aa8de4874d253a59, type: 2}

@@ -1,9 +1,16 @@
 using PrimeTween;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private int optionIndex;
+
+    [Space]
+    [SerializeField] private ShipSelectionScreen screen;
     [SerializeField] private Transform statsPoint;
 
     [Space]
@@ -11,29 +18,43 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private Animator orbitAnim;
 
+    [Space]
+    [SerializeField] private Image icon;
+    [SerializeField] private TMP_Text nameText;
+
     [Header("Visual")]
     [SerializeField] private Vector2 onHoverScale;
     [Tooltip("Time for the hover to occur")]
     [SerializeField] private float hoverAnimTime;
     [SerializeField] private float orbitAnimHoverSpeed;
 
-    bool mouseOver;
+    private bool mouseOver;
 
     // Initial
     private Vector2 defaultScale;
+
+    private InputAction interactAction;
 
     private void Start()
     {
         // Grabbing initial variables
         defaultScale = transform.localScale;
+
+        interactAction = InputSystem.actions.FindAction("Click");
     }
 
-    void Update()
+    private void Update()
     {
-        if (mouseOver && Input.GetMouseButtonDown(0))
+        if (mouseOver && interactAction.WasPressedThisFrame())
         {
-            transform.parent.gameObject.SetActive(false);
-        }  
+            screen.SelectNewShip(optionIndex);
+        }
+    }
+
+    public void ChangeSelectionShip(ShipData ship)
+    {
+        icon.sprite = ship.Icon;
+        nameText.text = ship.name;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -49,9 +70,21 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         statsPanel.SetActive(true);
         statsPanel.transform.position = statsPoint.position;
         statsPanel.GetComponent<TransformFollower>().FollowTarget = statsPoint;
+
+        screen.UpdateStatsPanel(optionIndex);
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        HideOption();
+    }
+
+    private void OnDisable()
+    {
+        HideOption();
+    }
+
+    private void HideOption()
     {
         mouseOver = false;
 

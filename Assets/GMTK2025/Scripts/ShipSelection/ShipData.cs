@@ -4,10 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GMTK2025/Data/ShipData", fileName = "ShipData")]
 public class ShipData : ScriptableObject
 {
-    public string Size = "WIP";
-    public string Profit = "WIP";
-    public string Speed = "WIP";
-    public string Direction = "WIP";
+    public string Orbit = "WIP";
+    public string Size;
+    public int Profit;
+    public int Speed;
+    public bool Clockwise;
     public bool Temporary;
 
     [Space]

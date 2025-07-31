@@ -19,6 +19,8 @@ public class PlayerManager
     {
         ShipData[] newShips = new ShipData[3];
 
+        Debug.Log(CurrentShipPool.Count);
+
         for (int i = 0; i < 3; i++)
         {
             int n;
