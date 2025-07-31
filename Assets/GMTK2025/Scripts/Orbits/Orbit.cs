@@ -1,3 +1,5 @@
+using EditorAttributes;
+using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -7,22 +9,75 @@ using UnityEngine.Splines.Interpolators;
 public class Orbit : MonoBehaviour
 {
     [SerializeField] private float scrollSpeed = 1.0f;
+    [SerializeField] private Color visibleColor = Color.white;
+    [SerializeField] private Color hightlightColor = Color.white;
 
+    /// <summary>
+    /// Change this to change the visual state of the Orbit.
+    /// </summary>
+    public VisualState State
+    {
+        get
+        {
+            return state;
+        }
+        set
+        {
+            if (state != value)
+            {
+                OnVisualStateChange(value);
+            }
+            state = value;
+        }
+    }
+
+    [SerializeField, DisableInPlayMode] private VisualState state = VisualState.Invisible;
     private SplineContainer splineContainer;
     private Material material;
-    private static int mainTextureId = Shader.PropertyToID("_BaseMap");
+    private Sequence visualStateChangeTween;
+    private static readonly int mainTextureId = Shader.PropertyToID("_BaseMap");
+
+    [Button] public void SetVisualStateToInvisible() => State = VisualState.Invisible;
+    [Button] public void SetVisualStateToVisible() => State = VisualState.Visible;
+    [Button] public void SetVisualStateToHightlighted() => State = VisualState.Hightlighted;
+
 
     private void Awake()
     {
         splineContainer = GetComponent<SplineContainer>();
 
         var renderer = GetComponent<MeshRenderer>();
-        material = renderer.material;
+        material = new Material(renderer.material);
+        renderer.sharedMaterial = material;
+    }
+
+    private void Start()
+    {
+        OnVisualStateChange(State, true);
     }
 
     void Update()
     {
         material.SetTextureOffset(mainTextureId, new Vector2(0, Time.time * scrollSpeed));
+    }
+
+    private void OnVisualStateChange(VisualState newState, bool instant = false)
+    {
+        var targetColor = newState switch
+        {
+            VisualState.Visible => visibleColor,
+            VisualState.Hightlighted => hightlightColor,
+            _ => new Color(1, 1, 1, 0),
+        };
+
+        visualStateChangeTween.Complete();
+        visualStateChangeTween = Sequence.Create()
+            .Chain(Tween.MaterialColor(material, targetColor, 0.5f));
+
+        if (instant)
+        {
+            visualStateChangeTween.Complete();
+        }
     }
 
     /// <summary>
@@ -44,5 +99,12 @@ public class Orbit : MonoBehaviour
         var knot = SplineUtility.ConvertIndexUnit(splineContainer.Spline, t, PathIndexUnit.Knot);
         // Ugly approximation using just x scaling, but probably fine
         speed = speedData.Evaluate(splineContainer.Spline, knot, new LerpFloat()) * transform.localScale.x;
+    }
+
+    public enum VisualState
+    {
+        Invisible,
+        Visible,
+        Hightlighted
     }
 }
