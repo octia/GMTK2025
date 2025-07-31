@@ -58,3 +58,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneManagerConfig: {fileID: 11400000, guid: 4df22cd8d683405fa908a35bbe960305, type: 2}
+  playerManagerConfig: {fileID: 11400000, guid: 747591260a586864b9a05e55ea47b405, type: 2}

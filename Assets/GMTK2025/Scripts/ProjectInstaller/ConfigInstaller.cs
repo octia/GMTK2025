@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class ConfigInstaller : MonoBehaviour, IInstaller
 {
-    [SerializeField]
-    private SceneManagerConfig sceneManagerConfig;
+    [SerializeField] private SceneManagerConfig sceneManagerConfig;
 
     public void InstallBindings(ContainerBuilder builder)
     {
