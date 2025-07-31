@@ -1358,7 +1358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: newShipTime
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: stationUpgradesScreen
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipLayerMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 2048
   ghostMaterial: {fileID: 2100000, guid: a3d4e638f5eab5f429239d549938e952, type: 2}
   ghostSimulationTimestep: 0.1
   maxSimulationSteps: 30
