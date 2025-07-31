@@ -8,8 +8,12 @@ public class ShipDragAndDrop : MonoBehaviour
     [SerializeField] private LayerMask shipLayerMask;
     [SerializeField] private Material ghostMaterial;
 
+    [SerializeField] private float ghostSimulationTimestep = 0.1f;
+    [SerializeField] private int maxSimulationSteps = 30;
+    [SerializeField] private int stepsPerGhost = 2;
+    Ship[] ghostShips = null;
+
     Ship draggedShip = null;
-    GameObject shipGhost = null;
     Orbit targetOrbit = null;
 
     public Orbit TargetOrbit
@@ -33,6 +37,11 @@ public class ShipDragAndDrop : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        ghostShips = new Ship[maxSimulationSteps / stepsPerGhost + 1];
+    }
+
     private void Update()
     {
         bool hoveringOverShip = MousePicking.PickObjectFromLayer(x => true, shipLayerMask, out Ship ship, out Vector3 _);
@@ -40,29 +49,56 @@ public class ShipDragAndDrop : MonoBehaviour
         if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
         {
             draggedShip = ship;
-            shipGhost = Instantiate(draggedShip.gameObject);
-            Destroy(shipGhost.GetComponent<Ship>());
-            shipGhost.GetComponent<Rigidbody>().detectCollisions = false;
-            foreach(var renderer in shipGhost.GetComponentsInChildren<MeshRenderer>())
+
+            ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
+            ghostShips[0].enabled = false;
+            DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
+            foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
             {
                 renderer.sharedMaterial = ghostMaterial;
             }
-            shipGhost.transform.rotation = Quaternion.identity;
+
+            for (int i = 1; i < ghostShips.Length; i++)
+            {
+                ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
+            }
         }
         if (draggedShip)
         {
             if (orbitController.PickUnlockedOrbitWithMouse(out Orbit orbit, out Vector3 hitPosition))
             {
+                ghostShips[0].ChangeOrbit(orbit);
+                ghostShips[0].transform.SetPositionAndRotation(draggedShip.transform.position, draggedShip.transform.rotation);
+                int ghostIndex = 1;
+                for (int step = 0; step < maxSimulationSteps; step++)
+                {
+                    ghostShips[0].SimulateMoveStep(0.1f, false, out Vector3 nearestPoint);
+                    bool duplicateGhostInStep = (step + 1) % stepsPerGhost == 0;
+
+                    if (duplicateGhostInStep)
+                    {
+                        var ghostShip = ghostShips[ghostIndex++];
+                        ghostShip.gameObject.SetActive(true);
+                        ghostShip.transform.SetPositionAndRotation(ghostShips[0].transform.position, ghostShips[0].transform.rotation);
+                    }
+                    if(Vector3.SqrMagnitude(ghostShips[0].transform.position - nearestPoint) <= 3f)
+                    {
+                        break;
+                    }
+                }
+                for (int i = ghostIndex; i < ghostShips.Length; i++)
+                {
+                    ghostShips[i].gameObject.SetActive(false);
+                }
                 TargetOrbit = orbit;
-                orbit.GetNearestPoint(hitPosition, out Vector3 nearestPoint, out Vector3 forward, out _);
-                shipGhost.transform.SetPositionAndRotation(nearestPoint, Quaternion.LookRotation(draggedShip.ShipData.Clockwise ? -forward : forward, Vector3.up));
             }
             else
             {
-                var viewPlane = new Plane(-Camera.main.transform.forward, shipGhost.transform.position);
+                // Draw ghost in view-parallel plane of dragged ship
+                var viewPlane = new Plane(-Camera.main.transform.forward, draggedShip.transform.position);
                 var mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.value);
                 viewPlane.Raycast(mouseRay, out float distance);
-                shipGhost.transform.position = mouseRay.GetPoint(distance);
+                ghostShips[0].transform.SetPositionAndRotation(mouseRay.GetPoint(distance), draggedShip.transform.rotation);
                 TargetOrbit = null;
             }
         }
@@ -72,9 +108,12 @@ public class ShipDragAndDrop : MonoBehaviour
             {
                 draggedShip.ChangeOrbit(targetOrbit);
             }
-            if (shipGhost)
+            foreach (var ghost in ghostShips)
             {
-                Destroy(shipGhost);
+                if (ghost)
+                {
+                    Destroy(ghost.gameObject);
+                }
             }
             draggedShip = null;
             TargetOrbit = null;

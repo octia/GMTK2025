@@ -757,7 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 14
   eccentricity: 0.5
-  pointCount: 30
+  pointCount: 10
 --- !u!33 &6232635867929023291
 MeshFilter:
   m_ObjectHideFlags: 0
