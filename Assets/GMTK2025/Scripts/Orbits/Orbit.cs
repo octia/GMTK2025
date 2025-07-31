@@ -37,9 +37,11 @@ public class Orbit : MonoBehaviour
     private Sequence visualStateChangeTween;
     private static readonly int mainTextureId = Shader.PropertyToID("_BaseMap");
 
-    [Button] public void SetVisualStateToInvisible() => State = VisualState.Invisible;
-    [Button] public void SetVisualStateToVisible() => State = VisualState.Visible;
-    [Button] public void SetVisualStateToHightlighted() => State = VisualState.Hightlighted;
+#pragma warning disable IDE0051 // Remove unused private members
+    [Button] private void SetVisualStateToInvisible() => State = VisualState.Invisible;
+    [Button] private void SetVisualStateToVisible() => State = VisualState.Visible;
+    [Button] private void SetVisualStateToHightlighted() => State = VisualState.Hightlighted;
+#pragma warning restore IDE0051 // Remove unused private members
 
 
     private void Awake()
