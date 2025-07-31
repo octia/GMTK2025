@@ -4,8 +4,10 @@ using UnityEngine;
 public class SoundManagerConfig : ScriptableObject
 {
     [SerializeField]
-    public string musicBusName = "vca:/Music";
+    public string musicBusName = "bus:/Music";
 
     [SerializeField]
-    public string vfxBusName = "vca:/SFX";
+    public string vfxBusName = "bus:/SFX";
+
+    public FMOD.Studio.EventInstance musicLoopInstance;
 }
