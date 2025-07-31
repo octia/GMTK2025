@@ -28,6 +28,14 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         defaultScale = transform.localScale;
     }
 
+    void Update()
+    {
+        if (mouseOver && Input.GetMouseButtonDown(0))
+        {
+            transform.parent.gameObject.SetActive(false);
+        }  
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
