@@ -9,6 +9,7 @@ public class OrbitGenerator : MonoBehaviour
     [SerializeField] private float scale = 1.0f;
     [SerializeField, Clamp(0, 1)] private float eccentricity = 1.0f;
     [SerializeField] private int pointCount = 40;
+    [SerializeField] private float meshRadius = 0.1f;
 
     [Button]
     public void ApplyToSpline()
