@@ -8,6 +8,6 @@ public class StageController : MonoBehaviour
 
     private void Start()
     {
-        playerManager.Reset();
+        //playerManager.Reset();
     }
 }

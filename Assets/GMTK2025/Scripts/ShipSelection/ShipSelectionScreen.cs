@@ -1,4 +1,3 @@
-using System;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -6,26 +5,45 @@ using UnityEngine;
 public class ShipSelectionScreen : MonoBehaviour
 {
     [Tooltip("Time necessary for a new ship to appear")]
-    [SerializeField] private float newShipTime;
+    [SerializeField]
+    private float newShipTime;
 
     [Space]
-    [SerializeField] private ShipSelectionOption[] selectionOptions;
+    [SerializeField]
+    private ShipSelectionOption[] selectionOptions;
 
     [Space]
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject mainScreen;
+    [SerializeField]
+    private GameObject background;
+
+    [SerializeField]
+    private GameObject mainScreen;
 
     [Space]
-    [SerializeField] private TMP_Text newShipTimeText;
+    [SerializeField]
+    private TMP_Text newShipTimeText;
 
     [Space]
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text temporaryText;
-    [SerializeField] private TMP_Text orbitText;
-    [SerializeField] private TMP_Text sizeText;
-    [SerializeField] private TMP_Text profitText;
-    [SerializeField] private TMP_Text speedText;
-    [SerializeField] private TMP_Text directionText;
+    [SerializeField]
+    private TMP_Text nameText;
+
+    [SerializeField]
+    private TMP_Text temporaryText;
+
+    [SerializeField]
+    private TMP_Text orbitText;
+
+    [SerializeField]
+    private TMP_Text sizeText;
+
+    [SerializeField]
+    private TMP_Text profitText;
+
+    [SerializeField]
+    private TMP_Text speedText;
+
+    [SerializeField]
+    private TMP_Text directionText;
 
     [Inject]
     private PlayerManager playerManager;
@@ -47,7 +65,7 @@ public class ShipSelectionScreen : MonoBehaviour
         if (!onScreen)
         {
             currentNewShipTime -= Time.deltaTime;
-            newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
+            //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
             if (currentNewShipTime < 0)
             {
@@ -96,7 +114,9 @@ public class ShipSelectionScreen : MonoBehaviour
         sizeText.text = "Size: " + ship.Size;
         profitText.text = "Profit: " + ship.Profit + "$";
         speedText.text = "Speed: " + ship.Speed;
-        directionText.text = ship.Clockwise ? "Direction: Clockwise" : "Direction: Counter Clockwise";
+        directionText.text = ship.Clockwise
+            ? "Direction: Clockwise"
+            : "Direction: Counter Clockwise";
     }
 
     public void SelectNewShip(int value)

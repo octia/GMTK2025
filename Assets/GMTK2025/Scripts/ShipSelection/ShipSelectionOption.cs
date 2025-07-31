@@ -7,26 +7,43 @@ using UnityEngine.UI;
 
 public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private int optionIndex;
+    [SerializeField]
+    private int optionIndex;
 
     [Space]
-    [SerializeField] private ShipSelectionScreen screen;
-    [SerializeField] private Transform statsPoint;
+    [SerializeField]
+    private ShipSelectionScreen screen;
+
+    [SerializeField]
+    private Transform statsPoint;
 
     [Space]
-    [SerializeField] private GameObject highlightBackground;
-    [SerializeField] private GameObject statsPanel;
-    [SerializeField] private Animator orbitAnim;
+    [SerializeField]
+    private GameObject highlightBackground;
+
+    [SerializeField]
+    private TransformFollower statsPanel;
+
+    [SerializeField]
+    private Animator orbitAnim;
 
     [Space]
-    [SerializeField] private Image icon;
-    [SerializeField] private TMP_Text nameText;
+    [SerializeField]
+    private Image icon;
+
+    [SerializeField]
+    private TMP_Text nameText;
 
     [Header("Visual")]
-    [SerializeField] private Vector2 onHoverScale;
+    [SerializeField]
+    private Vector2 onHoverScale;
+
     [Tooltip("Time for the hover to occur")]
-    [SerializeField] private float hoverAnimTime;
-    [SerializeField] private float orbitAnimHoverSpeed;
+    [SerializeField]
+    private float hoverAnimTime;
+
+    [SerializeField]
+    private float orbitAnimHoverSpeed;
 
     private bool mouseOver;
 
@@ -61,15 +78,15 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         mouseOver = true;
 
-        // Visual        
+        // Visual
         Tween.Scale(transform, endValue: onHoverScale, hoverAnimTime);
 
         orbitAnim.speed = orbitAnimHoverSpeed;
 
         highlightBackground.SetActive(true);
-        statsPanel.SetActive(true);
+        statsPanel.gameObject.SetActive(true);
         statsPanel.transform.position = statsPoint.position;
-        statsPanel.GetComponent<TransformFollower>().FollowTarget = statsPoint;
+        statsPanel.FollowTarget = statsPoint;
 
         screen.UpdateStatsPanel(optionIndex);
     }
@@ -94,6 +111,6 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         orbitAnim.speed = 1;
 
         highlightBackground.SetActive(false);
-        statsPanel.SetActive(false);
+        statsPanel.gameObject.SetActive(false);
     }
 }
