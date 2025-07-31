@@ -9,6 +9,8 @@ public class PlayerManager
 
     public List<ShipData> CurrentShipPool;
 
+    public int Money;
+
     public void Reset()
     {
         CurrentShipPool = new List<ShipData>();

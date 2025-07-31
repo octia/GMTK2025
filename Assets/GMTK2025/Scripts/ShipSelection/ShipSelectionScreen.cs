@@ -9,6 +9,9 @@ public class ShipSelectionScreen : MonoBehaviour
     [SerializeField] private float newShipTime;
 
     [Space]
+    [SerializeField] private GameObject stationUpgradesScreen;
+
+    [Space]
     [SerializeField] private ShipSelectionOption[] selectionOptions;
 
     [Space]
@@ -37,9 +40,14 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private ShipData[] newShips;
 
+    // Initial
+    private Animator anim;
+
     private void Start()
     {
         currentNewShipTime = newShipTime;
+
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -77,6 +85,13 @@ public class ShipSelectionScreen : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(value);
+        }
+
+        stationUpgradesScreen.SetActive(!value);
+
+        if (value)
+        {
+            anim.Play("Enter");
         }
     }
 
