@@ -61,7 +61,7 @@ public class Ship : MonoBehaviour
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
-            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed
+            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed * timerManager.TimeScale
         );
 
         // Purely visual up vector
@@ -69,7 +69,7 @@ public class Ship : MonoBehaviour
         var allowedUp = LimitRotation(
             transform.up,
             calculatedUp,
-            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed
+            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed * timerManager.TimeScale
         );
 
         var newRotation = Quaternion.LookRotation(
