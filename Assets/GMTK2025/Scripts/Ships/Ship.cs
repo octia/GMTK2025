@@ -44,7 +44,7 @@ public class Ship : MonoBehaviour
             out Vector3 forward,
             out float speed
         );
-        if (!shipData.Clockwise)
+        if (shipData.Clockwise)
         {
             forward = -forward;
         }

@@ -55,7 +55,7 @@ public class ShipDragAndDrop : MonoBehaviour
             {
                 TargetOrbit = orbit;
                 orbit.GetNearestPoint(hitPosition, out Vector3 nearestPoint, out Vector3 forward, out _);
-                shipGhost.transform.SetPositionAndRotation(nearestPoint, Quaternion.LookRotation(draggedShip.ShipData.Clockwise ? forward : -forward, Vector3.up));
+                shipGhost.transform.SetPositionAndRotation(nearestPoint, Quaternion.LookRotation(draggedShip.ShipData.Clockwise ? -forward : forward, Vector3.up));
             }
             else
             {
