@@ -64,6 +64,9 @@ public class ShipSelectionScreen : MonoBehaviour
     [Inject]
     private PlayerManager playerManager;
 
+    [Inject]
+    private TimerManager timerManager;
+
     // ...
     private float currentNewShipTime;
 
@@ -87,7 +90,7 @@ public class ShipSelectionScreen : MonoBehaviour
     {
         if (!OnScreen)
         {
-            currentNewShipTime -= Time.deltaTime;
+            currentNewShipTime -= Time.deltaTime * timerManager.TimeScale;
             //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
             if (currentNewShipTime < 0)
