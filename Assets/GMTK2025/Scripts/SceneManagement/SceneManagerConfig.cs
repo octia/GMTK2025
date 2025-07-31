@@ -8,4 +8,7 @@ public class SceneManagerConfig : ScriptableObject
 
     [field: SerializeField]
     public int GameplaySceneIndex { get; private set; } = 1;
+
+    [field: SerializeField]
+    public int CreditsSceneIndex { get; private set; } = 2;
 }
