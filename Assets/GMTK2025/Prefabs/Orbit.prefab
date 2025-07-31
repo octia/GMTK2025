@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 8059850821367746336}
   - component: {fileID: 4420012816301595374}
   - component: {fileID: 4158102515854158991}
-  m_Layer: 0
+  - component: {fileID: 1828543357670475019}
+  m_Layer: 13
   m_Name: Orbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,3 +856,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1
+  visibleColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  hightlightColor: {r: 1, g: 0.28773582, b: 0.28773582, a: 1}
+  state: 0
+--- !u!64 &1828543357670475019
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651859401275311901}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
