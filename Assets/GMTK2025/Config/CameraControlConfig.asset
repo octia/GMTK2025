@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxVerticalAngle>k__BackingField: 70
   <HorizontalScrollMultiplier>k__BackingField: 10
-  <MaxVelocityDegPerSec>k__BackingField: 50
-  <DragInVelocityPercentPerSec>k__BackingField: 15
-  <MinVelocityForInertia>k__BackingField: 5
-  <MinDistanceFromPlanet>k__BackingField: 30
+  <MaxVelocityDegPerSec>k__BackingField: 2696
+  <HorizontalDrag>k__BackingField: 1.02
+  <VerticalDrag>k__BackingField: 12.9
+  <MinVelocityForInertia>k__BackingField: 1692
+  <MinDistanceFromPlanet>k__BackingField: 10
   <MaxDistanceFromPlanet>k__BackingField: 120
+  <DragSensitivity>k__BackingField: {x: 1, y: 0.4}
+  <InertiaCalculationDuration>k__BackingField: 0.16
+  <ScrollSensitivity>k__BackingField: 5.26
+  <ScrollSnapDuration>k__BackingField: 0.034
