@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneManagerConfig: {fileID: 11400000, guid: 4df22cd8d683405fa908a35bbe960305, type: 2}
+  cameraControlConfig: {fileID: 11400000, guid: 3bad9da167d35c26584e1696556b6a2d, type: 2}
 --- !u!114 &369169262834063406
 MonoBehaviour:
   m_ObjectHideFlags: 0
