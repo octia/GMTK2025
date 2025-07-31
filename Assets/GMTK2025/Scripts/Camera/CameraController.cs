@@ -52,7 +52,6 @@ public class CameraManager : MonoBehaviour
         }
 
         desiredDistanceFromPlanet += -mouseScroll * config.ScrollSensitivity;
-        Debug.Log(Mouse.current.scroll.value.y);
         desiredDistanceFromPlanet = Mathf.Clamp(
             desiredDistanceFromPlanet,
             config.MinDistanceFromPlanet,
