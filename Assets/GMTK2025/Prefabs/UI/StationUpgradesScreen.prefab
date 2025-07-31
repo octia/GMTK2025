@@ -217,6 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6977099875881961523}
+  - component: {fileID: 5387962591599888271}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -246,6 +247,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1820, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5387962591599888271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343128077622078358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27a400a102768e939ea3d957ec41a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2724480975009963714
 GameObject:
   m_ObjectHideFlags: 0
