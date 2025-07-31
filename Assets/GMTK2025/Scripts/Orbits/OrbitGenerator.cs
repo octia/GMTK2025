@@ -1,5 +1,8 @@
 using EditorAttributes;
 using Unity.Mathematics;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -9,16 +12,23 @@ public class OrbitGenerator : MonoBehaviour
     [SerializeField] private float scale = 1.0f;
     [SerializeField, Clamp(0, 1)] private float eccentricity = 1.0f;
     [SerializeField] private int pointCount = 40;
-    [SerializeField] private float meshRadius = 0.1f;
 
+#if UNITY_EDITOR
     [Button]
     public void ApplyToSpline()
     {
         var splineContainer = GetComponent<SplineContainer>();
 
-        splineContainer.Spline.Clear();
+        if (splineContainer.Spline != null)
+        {
+            splineContainer.RemoveSpline(splineContainer.Spline);
+        }
+        splineContainer.AddSpline();
+        splineContainer.Spline.Closed = true;
+
         var speedData = new SplineData<float>();
-        for(int i = 0; i < pointCount; i++)
+        speedData.PathIndexUnit = PathIndexUnit.Knot;
+        for (int i = 0; i < pointCount; i++)
         {
             float t = i / (float)pointCount;
             var position = GetOrbitalPosition(scale, eccentricity, t);
@@ -27,7 +37,10 @@ public class OrbitGenerator : MonoBehaviour
             speedData.Add(i, position.z);
         }
         splineContainer.Spline.SetFloatData("Speed", speedData);
+
+        PrefabUtility.RecordPrefabInstancePropertyModifications(splineContainer);
     }
+#endif
 
     private static Vector3 GetOrbitalPosition(float scale, float eccentricity, float t)
     {
