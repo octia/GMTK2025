@@ -17,6 +17,9 @@ public class SceneManager
             case SceneType.Gameplay:
                 LoadGameplay();
                 break;
+            case SceneType.Exit:
+                ExitGame();
+                break;
         }
     }
 
@@ -28,5 +31,13 @@ public class SceneManager
     public void LoadGameplay()
     {
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(config.GameplaySceneIndex);
+    }
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
 }
