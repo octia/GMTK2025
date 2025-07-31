@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <LogLevel>k__BackingField: 0
   <ProjectScopes>k__BackingField:
-  - {fileID: 8411760602771578800, guid: 1c7a7814cd43437c8a92fc2064a3bd57, type: 3}
   - {fileID: 8411760602771578800, guid: 62d7eb47e684a6b45bbcdb21939f1adc, type: 3}
