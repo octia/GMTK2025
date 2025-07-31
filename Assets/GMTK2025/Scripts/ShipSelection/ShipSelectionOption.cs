@@ -76,6 +76,11 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!screen.OnScreen)
+        {
+            HideOption();
+        }
+
         mouseOver = true;
 
         // Visual
@@ -107,6 +112,8 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
         // Visual
         Tween.Scale(transform, endValue: defaultScale, hoverAnimTime);
+
+        screen.ResetDialogPanel();
 
         orbitAnim.speed = 1;
 

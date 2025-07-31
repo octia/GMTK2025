@@ -7,15 +7,15 @@ public class PlayerManager
     [Inject]
     private PlayerManagerConfig config;
 
-    public List<ShipData> CurrentShipPool = new();
+    public List<ShipData> CurrentShipPool;
 
-    [Inject]
-    public void Initialize()
+    public int Money;
+
+    public void Reset()
     {
+        CurrentShipPool = new List<ShipData>();
         CurrentShipPool.AddRange(config.BaseShipPool);
     }
-
-    public void SpawnShip(ShipData ship) { }
 
     public ShipData[] DrawShips()
     {

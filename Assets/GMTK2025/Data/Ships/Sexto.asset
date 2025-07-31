@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
   m_Name: Sexto
   m_EditorClassIdentifier: 
+  Orbit: WIP
   Size: Small
-  Profit: 5$
+  Profit: 5
   Speed: 60
-  Direction: Clockwise
+  Clockwise: 0
   Temporary: 1
   Icon: {fileID: 21300000, guid: 64a0b048887ec8c44ba67484943eaa74, type: 3}
+  PilotPreview: {fileID: 21300000, guid: 6a32f43f33ad63541a8486ffde65a11a, type: 3}
+  PilotDialog: '* ...Hey... Hmmm... I was told to... Hmmm... Bring this ship here...'
+  DialogTypeTime: 0.15

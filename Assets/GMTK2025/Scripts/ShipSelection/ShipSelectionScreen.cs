@@ -1,12 +1,18 @@
+using System;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipSelectionScreen : MonoBehaviour
 {
     [Tooltip("Time necessary for a new ship to appear")]
     [SerializeField]
     private float newShipTime;
+
+    [Space]
+    [SerializeField]
+    private GameObject stationUpgradesScreen;
 
     [Space]
     [SerializeField]
@@ -45,27 +51,44 @@ public class ShipSelectionScreen : MonoBehaviour
     [SerializeField]
     private TMP_Text directionText;
 
+    [Space]
+    [SerializeField]
+    private Image pilotPreview;
+
+    [SerializeField]
+    private DialogController pilotDialog;
+
+    [HideInInspector]
+    public bool OnScreen;
+
     [Inject]
     private PlayerManager playerManager;
 
     // ...
     private float currentNewShipTime;
 
-    private bool onScreen;
-
     private ShipData[] newShips;
+
+    // Initial
+    private Animator anim;
+
+    private Sprite defaultPilotPreview;
 
     private void Start()
     {
         currentNewShipTime = newShipTime;
+
+        anim = GetComponent<Animator>();
+
+        defaultPilotPreview = pilotPreview.sprite;
     }
 
     private void Update()
     {
-        if (!onScreen)
+        if (!OnScreen)
         {
             currentNewShipTime -= Time.deltaTime;
-            //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
+            newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
             if (currentNewShipTime < 0)
             {
@@ -86,16 +109,31 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         SetScreenActive(true);
-
-        onScreen = true;
     }
 
     public void SetScreenActive(bool value)
     {
+        OnScreen = value;
+
+        if (value)
+        {
+            ShowScreen();
+            anim.Play("Enter");
+        }
+        else
+        {
+            anim.Play("Exit");
+        }
+    }
+
+    public void ShowScreen()
+    {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(value);
+            transform.GetChild(i).gameObject.SetActive(OnScreen);
         }
+
+        stationUpgradesScreen.SetActive(!OnScreen);
     }
 
     public void VisualizeButton()
@@ -117,6 +155,15 @@ public class ShipSelectionScreen : MonoBehaviour
         directionText.text = ship.Clockwise
             ? "Direction: Clockwise"
             : "Direction: Counter Clockwise";
+
+        pilotPreview.sprite = ship.PilotPreview;
+        pilotDialog.StartDialog(ship.PilotDialog, ship.DialogTypeTime);
+    }
+
+    public void ResetDialogPanel()
+    {
+        pilotPreview.sprite = defaultPilotPreview;
+        pilotDialog.StartDialog("* ...", 0.05f);
     }
 
     public void SelectNewShip(int value)
@@ -134,7 +181,6 @@ public class ShipSelectionScreen : MonoBehaviour
 
         currentNewShipTime = newShipTime;
 
-        onScreen = false;
         SetScreenActive(false);
     }
 }
