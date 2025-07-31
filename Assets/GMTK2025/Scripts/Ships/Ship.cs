@@ -1,5 +1,6 @@
 using Reflex.Attributes;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class Ship : MonoBehaviour
 {
@@ -38,9 +39,14 @@ public class Ship : MonoBehaviour
 
     void FixedUpdate()
     {
+        SimulateMoveStep(Time.fixedDeltaTime * timerManager.TimeScale, true, out _);
+    }
+
+    public void SimulateMoveStep(float timeStep, bool useRigidbody, out Vector3 nearestPoint)
+    {
         orbit.GetNearestPoint(
             transform.position,
-            out Vector3 nearestPoint,
+            out nearestPoint,
             out Vector3 forward,
             out float speed
         );
@@ -52,8 +58,8 @@ public class Ship : MonoBehaviour
         // Ships move towards their forward vector
         var newPosition = Vector3.MoveTowards(
             transform.position,
-            transform.position + transform.forward,
-            Time.deltaTime * speed * shipData.Speed * timerManager.TimeScale
+            transform.position + transform.forward * 100,
+            timeStep * speed * shipData.Speed
         );
 
         // They turn towards a wanted forward vector, with a maximum angle change per fixed step
@@ -61,7 +67,7 @@ public class Ship : MonoBehaviour
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
-            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed * timerManager.TimeScale
+            timeStep * steerAngleChangeLimit * shipData.Speed
         );
 
         // Purely visual up vector
@@ -69,14 +75,22 @@ public class Ship : MonoBehaviour
         var allowedUp = LimitRotation(
             transform.up,
             calculatedUp,
-            Time.fixedDeltaTime * steerAngleChangeLimit * shipData.Speed * timerManager.TimeScale
+            timeStep * steerAngleChangeLimit * shipData.Speed
         );
 
         var newRotation = Quaternion.LookRotation(
             allowedForward,
             allowedUp + Vector3.up * upVectorBlendFactor
         );
-        rb.Move(newPosition, newRotation);
+
+        if (useRigidbody)
+        {
+            rb.Move(newPosition, newRotation);
+        }
+        else
+        {
+            transform.SetLocalPositionAndRotation(newPosition, newRotation);
+        }
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)

@@ -1635,6 +1635,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1655804420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655804422}
+  - component: {fileID: 1655804421}
+  m_Layer: 0
+  m_Name: ShipDragAndDrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1655804421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655804420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddfc0ddc0e9bed64b8926d2d71292cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  ghostMaterial: {fileID: 2100000, guid: a3d4e638f5eab5f429239d549938e952, type: 2}
+  ghostSimulationTimestep: 0.1
+  maxSimulationSteps: 30
+  stepsPerGhost: 2
+--- !u!4 &1655804422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655804420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.09905, y: 3.31636, z: 2.09707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1841820819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,6 +2146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Orbits
       objectReference: {fileID: 0}
+    - target: {fileID: 3114199003340396813, guid: 665f9d722d06c6046b9366884391a083, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6345541255553676041, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2140,6 +2195,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6658563339770248783, guid: 665f9d722d06c6046b9366884391a083, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7217392564472057661, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
@@ -2262,3 +2321,4 @@ SceneRoots:
   - {fileID: 2170695765587424245}
   - {fileID: 5195362710631582331}
   - {fileID: 598932906}
+  - {fileID: 1655804422}
