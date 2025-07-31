@@ -21,11 +21,24 @@ public class FMODTools
         {
             Debug.LogError("Automatic banks build failed: Could not find project file.");
         }
+
         string command = $"/C \"\"{studioPath}\" -build \"{projectPath}\"\"";
 
         Debug.Log($"Starting bank build: {command}");
-        System.Diagnostics.Process process = System.Diagnostics.Process.Start("CMD.exe", command);
+
+        var startInfo = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = "cmd.exe",
+            Arguments = command,
+            CreateNoWindow = true,              // Don't create a window
+            UseShellExecute = false,            // Required to hide window
+            RedirectStandardOutput = true,      // Optional: Redirect output
+            RedirectStandardError = true        // Optional: Redirect error
+        };
+
+        System.Diagnostics.Process process = System.Diagnostics.Process.Start(startInfo);
         process.WaitForExit();
+
         Debug.Log($"Build process finished with {(process.ExitCode == 0 ? "success" : process.ExitCode)}.");
     }
 #endif
