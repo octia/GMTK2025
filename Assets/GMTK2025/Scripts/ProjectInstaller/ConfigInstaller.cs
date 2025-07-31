@@ -9,9 +9,13 @@ public class ConfigInstaller : MonoBehaviour, IInstaller
     [SerializeField]
     private CameraControlConfig cameraControlConfig;
 
+    [SerializeField]
+    private TimerConfig timerConfig;
+
     public void InstallBindings(ContainerBuilder builder)
     {
         builder.AddSingleton(sceneManagerConfig);
         builder.AddSingleton(cameraControlConfig);
+        builder.AddSingleton(timerConfig);
     }
 }
