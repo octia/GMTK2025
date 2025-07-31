@@ -13,4 +13,9 @@ public class SceneLoader : MonoBehaviour
     {
         sceneManager.LoadScene(sceneTypeToLoad);
     }
+
+    public void Options()
+    {
+        Debug.Log("great options, animations");
+    }
 }

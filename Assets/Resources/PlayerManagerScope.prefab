@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3625780945882893581}
   - component: {fileID: 8411760602771578800}
-  - component: {fileID: 2998884248990905115}
+  - component: {fileID: -2579197819393113695}
   m_Layer: 0
-  m_Name: ConfigScope
+  m_Name: PlayerManagerScope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238ee66aa2bafad47bf60938e98aebca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2998884248990905115
+--- !u!114 &-2579197819393113695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2767623701323520523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898238d173c02e290acdcbe6dfc924fc, type: 3}
+  m_Script: {fileID: 11500000, guid: f69a3c8bca172df42805788bf65d28c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneManagerConfig: {fileID: 11400000, guid: 4df22cd8d683405fa908a35bbe960305, type: 2}
+  playerManagerConfig: {fileID: 11400000, guid: 747591260a586864b9a05e55ea47b405, type: 2}
