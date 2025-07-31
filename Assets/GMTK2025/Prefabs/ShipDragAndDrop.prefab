@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7134586675209514591}
   - component: {fileID: 5772175730045327951}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ShipDragAndDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

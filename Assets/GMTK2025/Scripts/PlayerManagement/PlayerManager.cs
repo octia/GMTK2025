@@ -7,14 +7,22 @@ public class PlayerManager
     [Inject]
     private PlayerManagerConfig config;
 
-    public List<ShipData> CurrentShipPool;
+    public List<ShipData> CurrentShipPool = new();
 
-    public int Money;
-
-    public void Reset()
+    [Inject]
+    public void Initialize()
     {
-        CurrentShipPool = new List<ShipData>();
         CurrentShipPool.AddRange(config.BaseShipPool);
+    }
+
+    public void SpawnShip(ShipData ship)
+    {
+        var spawnedShip = Object.Instantiate(
+            config.ShipPrefab,
+            Random.onUnitSphere * 200f,
+            Quaternion.identity
+        );
+        spawnedShip.InitializeWith(ship);
     }
 
     public ShipData[] DrawShips()

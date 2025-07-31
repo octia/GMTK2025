@@ -1,3 +1,4 @@
+using System;
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -106,5 +107,12 @@ public class Ship : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"Ships collided! {gameObject.name} <-> {collision.gameObject.name}");
+    }
+
+    internal void InitializeWith(ShipData ship)
+    {
+        shipData = ship;
+        // todo: CHANGE THIS!!!!
+        orbit = FindAnyObjectByType<Orbit>();
     }
 }

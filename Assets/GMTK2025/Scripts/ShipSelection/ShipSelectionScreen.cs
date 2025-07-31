@@ -88,7 +88,7 @@ public class ShipSelectionScreen : MonoBehaviour
         if (!OnScreen)
         {
             currentNewShipTime -= Time.deltaTime;
-            newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
+            //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
             if (currentNewShipTime < 0)
             {
@@ -172,7 +172,7 @@ public class ShipSelectionScreen : MonoBehaviour
         {
             if (i == value)
             {
-                // TODO: Put selected ship on the planet
+                playerManager.SpawnShip(newShips[i]);
                 continue;
             }
 
