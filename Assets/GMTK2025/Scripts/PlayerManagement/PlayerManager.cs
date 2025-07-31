@@ -25,13 +25,18 @@ public class PlayerManager
         spawnedShip.InitializeWith(ship);
     }
 
-    public ShipData[] DrawShips()
+    public ShipData[] DrawShips(int shipsToDraw)
     {
-        ShipData[] newShips = new ShipData[3];
+        ShipData[] newShips = new ShipData[shipsToDraw];
 
         Debug.Log(CurrentShipPool.Count);
 
-        for (int i = 0; i < 3; i++)
+        if (CurrentShipPool.Count < shipsToDraw)
+        {
+            Initialize();
+        }
+
+        for (int i = 0; i < shipsToDraw; i++)
         {
             int n;
 

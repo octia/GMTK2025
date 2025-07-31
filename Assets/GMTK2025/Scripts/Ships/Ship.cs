@@ -1,7 +1,5 @@
-using System;
 using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class Ship : MonoBehaviour
 {
@@ -19,6 +17,9 @@ public class Ship : MonoBehaviour
 
     [Inject]
     private TimerManager timerManager;
+
+    [Inject]
+    private ShipCollisionManager shipCollisionManager;
 
     Rigidbody rb;
 
@@ -106,7 +107,10 @@ public class Ship : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Ships collided! {gameObject.name} <-> {collision.gameObject.name}");
+        var point = collision.contacts[0].point;
+        var ship1 = this;
+        var ship2 = collision.gameObject.GetComponent<Ship>();
+        shipCollisionManager.CollisionHappened(ship1, ship2, point);
     }
 
     internal void InitializeWith(ShipData ship)

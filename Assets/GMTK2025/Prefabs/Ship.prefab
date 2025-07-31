@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5433935085574146308}
   - component: {fileID: 1473412523033093902}
   - component: {fileID: 1742148780820190461}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 870717833083603414}
   - component: {fileID: 1857772698318086323}
   - component: {fileID: 4310821183718991571}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 1950944554152433635}
   - component: {fileID: 8657355301567699237}
   - component: {fileID: 3960182313741549543}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 2329989981920979199}
   - component: {fileID: 3012377761702245108}
   - component: {fileID: 2421809737017569859}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 2496659164488891957}
   - component: {fileID: 4352243234557347103}
   - component: {fileID: 5911516296588444364}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 3192525737628523350}
   - component: {fileID: 6063779334033751067}
   - component: {fileID: 933688617582011258}
-  m_Layer: 14
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

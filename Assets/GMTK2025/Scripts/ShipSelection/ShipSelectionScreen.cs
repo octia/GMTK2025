@@ -101,7 +101,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private void StartSelection()
     {
-        newShips = playerManager.DrawShips();
+        newShips = playerManager.DrawShips(3);
 
         for (int i = 0; i < 3; i++)
         {
