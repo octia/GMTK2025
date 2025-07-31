@@ -30,13 +30,13 @@ public class ShipSelectionScreen : MonoBehaviour
     [SerializeField] private TMP_Text speedText;
     [SerializeField] private TMP_Text directionText;
 
+    [HideInInspector] public bool OnScreen;
+
     [Inject]
     private PlayerManager playerManager;
 
     // ...
     private float currentNewShipTime;
-
-    private bool onScreen;
 
     private ShipData[] newShips;
 
@@ -52,7 +52,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private void Update()
     {
-        if (!onScreen)
+        if (!OnScreen)
         {
             currentNewShipTime -= Time.deltaTime;
             newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
@@ -76,23 +76,31 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         SetScreenActive(true);
-
-        onScreen = true;
     }
 
     public void SetScreenActive(bool value)
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(value);
-        }
-
-        stationUpgradesScreen.SetActive(!value);
+        OnScreen = value;
 
         if (value)
         {
+            ShowScreen();
             anim.Play("Enter");
         }
+        else
+        {
+            anim.Play("Exit");
+        }
+    }
+
+    public void ShowScreen()
+    {   
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(OnScreen);
+        }
+
+        stationUpgradesScreen.SetActive(!OnScreen);
     }
 
     public void VisualizeButton()
@@ -129,7 +137,6 @@ public class ShipSelectionScreen : MonoBehaviour
 
         currentNewShipTime = newShipTime;
 
-        onScreen = false;
         SetScreenActive(false);
     }
 }

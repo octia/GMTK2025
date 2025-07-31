@@ -59,6 +59,11 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!screen.OnScreen)
+        {
+            HideOption();
+        }
+
         mouseOver = true;
 
         // Visual        

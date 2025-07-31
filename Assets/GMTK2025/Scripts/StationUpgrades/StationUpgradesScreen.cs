@@ -6,7 +6,7 @@ public class StationUpgradesScreen : MonoBehaviour
 
     private void OnDisable()
     {
-        mainScreen.SetActive(!mainScreen.activeSelf);
+        mainScreen.SetActive(false);
     }
 
     public void VisualizeButton()
