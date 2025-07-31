@@ -33,4 +33,15 @@ public class SoundManager
         string eventPath = eventReference.Guid.ToString();
         RuntimeManager.PlayOneShot(eventPath);
     }
+
+    public void PlayMusic(EventReference eventReference)
+    {
+        if (soundManagerConfig.musicLoopInstance.isValid())
+        {
+            soundManagerConfig.musicLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            soundManagerConfig.musicLoopInstance.release();
+        }
+        soundManagerConfig.musicLoopInstance = RuntimeManager.CreateInstance(eventReference);
+        soundManagerConfig.musicLoopInstance.start();
+    }
 }
