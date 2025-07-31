@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 81dc7ab9be3a34445a07c06144bbf713, type: 2}
   - {fileID: 11400000, guid: 8248155f48948dd49882324a41ef1a95, type: 2}
   - {fileID: 11400000, guid: 79c6efddfc4ce4d4fa3d418b7a7b5826, type: 2}
-  <ShipPrefab>k__BackingField: {fileID: 0}
+  <ShipPrefab>k__BackingField: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}

@@ -19,7 +19,7 @@ public class PlayerManager
     {
         var spawnedShip = Object.Instantiate(
             config.ShipPrefab,
-            Random.onUnitSphere * 200f,
+            Random.onUnitSphere * 80f,
             Quaternion.identity
         );
         spawnedShip.InitializeWith(ship);
