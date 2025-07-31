@@ -14,4 +14,11 @@ public class ShipData : ScriptableObject
     [Space]
     [AssetPreview]
     public Sprite Icon;
+
+    [Space]
+    [AssetPreview]
+    public Sprite PilotPreview;
+    [TextArea]
+    public string PilotDialog;
+    public float DialogTypeTime;
 }

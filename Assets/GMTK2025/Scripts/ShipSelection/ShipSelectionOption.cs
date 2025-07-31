@@ -96,6 +96,8 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         // Visual
         Tween.Scale(transform, endValue: defaultScale, hoverAnimTime);
 
+        screen.ResetDialogPanel();
+
         orbitAnim.speed = 1;
 
         highlightBackground.SetActive(false);

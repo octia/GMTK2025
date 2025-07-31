@@ -2,6 +2,7 @@ using System;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipSelectionScreen : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class ShipSelectionScreen : MonoBehaviour
     [SerializeField] private TMP_Text speedText;
     [SerializeField] private TMP_Text directionText;
 
+    [Space]
+    [SerializeField] private Image pilotPreview;
+    [SerializeField] private DialogController pilotDialog;
+
     [HideInInspector] public bool OnScreen;
 
     [Inject]
@@ -43,11 +48,15 @@ public class ShipSelectionScreen : MonoBehaviour
     // Initial
     private Animator anim;
 
+    private Sprite defaultPilotPreview;
+
     private void Start()
     {
         currentNewShipTime = newShipTime;
 
         anim = GetComponent<Animator>();
+
+        defaultPilotPreview = pilotPreview.sprite;
     }
 
     private void Update()
@@ -120,6 +129,15 @@ public class ShipSelectionScreen : MonoBehaviour
         profitText.text = "Profit: " + ship.Profit + "$";
         speedText.text = "Speed: " + ship.Speed;
         directionText.text = ship.Clockwise ? "Direction: Clockwise" : "Direction: Counter Clockwise";
+
+        pilotPreview.sprite = ship.PilotPreview;
+        pilotDialog.StartDialog(ship.PilotDialog, ship.DialogTypeTime);
+    }
+
+    public void ResetDialogPanel()
+    {
+        pilotPreview.sprite = defaultPilotPreview;
+        pilotDialog.StartDialog("* ...", 0.05f);
     }
 
     public void SelectNewShip(int value)
