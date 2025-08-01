@@ -13,6 +13,9 @@ public class Ship : MonoBehaviour
     private ShipData shipData;
 
     [SerializeField]
+    private GameObject modelInstance;
+
+    [SerializeField]
     private float steerAngleChangeLimit = 180;
 
     [SerializeField]
@@ -37,6 +40,14 @@ public class Ship : MonoBehaviour
         if (timerManager == null)
         {
             Injector.Inject(this);
+        }
+    }
+
+    private void Start()
+    {
+        if (shipData && enabled)
+        {
+            ReinstantiateShipModel();
         }
     }
 
@@ -133,10 +144,29 @@ public class Ship : MonoBehaviour
         shipCollisionManager.CollisionHappened(ship1, ship2, point);
     }
 
+    private void ReinstantiateShipModel()
+    {
+        Destroy(modelInstance);
+        modelInstance = Instantiate(ShipData.ModelPrefab, transform);
+        modelInstance.name = "ModelInstance";
+        modelInstance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        SetGameobjectLayerRecursive(modelInstance, gameObject.layer);
+    }
+
+    private void SetGameobjectLayerRecursive(GameObject gameObject, int layer)
+    {
+        gameObject.layer = layer;
+        foreach (Transform child in gameObject.transform)
+        {
+            SetGameobjectLayerRecursive(child.gameObject, layer);
+        }
+    }
+
     internal void InitializeWith(ShipData ship, Orbit preferredOrbit)
     {
         shipData = ship;
         this.preferredOrbit = preferredOrbit;
         orbit = preferredOrbit;
+        ReinstantiateShipModel();
     }
 }

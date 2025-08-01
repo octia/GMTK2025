@@ -18,6 +18,7 @@ MonoBehaviour:
   Speed: 25
   Clockwise: 1
   Temporary: 0
+  ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
   Icon: {fileID: 21300000, guid: 8ff0268563656e0419b6d9efe1ce7479, type: 3}
   PilotPreview: {fileID: 21300000, guid: 3538bd1f0ba327f4e9f4849f1d058e5a, type: 3}
   PilotDialog: '* HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe.'

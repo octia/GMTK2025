@@ -18,6 +18,7 @@ MonoBehaviour:
   Speed: 15
   Clockwise: 0
   Temporary: 0
+  ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
   Icon: {fileID: 21300000, guid: 7e065f9beca20fb45a449eeb44995a38, type: 3}
   PilotPreview: {fileID: 0}
   PilotDialog: 
