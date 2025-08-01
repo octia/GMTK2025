@@ -20,4 +20,30 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bc44f5b56545df41b360c00faa98728, type: 2}
   - {fileID: 11400000, guid: 555ad150df208a24c942c844aba376d2, type: 2}
   - {fileID: 11400000, guid: 79c6efddfc4ce4d4fa3d418b7a7b5826, type: 2}
+  - {fileID: 11400000, guid: bd2f0b53a0c0b184f967e06abb216bcb, type: 2}
+  - {fileID: 11400000, guid: c8b94ca5ca2ff534f8804e858b9978df, type: 2}
+  - {fileID: 11400000, guid: c01ebc691fad01d49b76347683166ca6, type: 2}
+  - {fileID: 11400000, guid: e2ebb776076ef654eba7a8280835c38c, type: 2}
+  - {fileID: 11400000, guid: 968d52f340b831649b91062db4c45d86, type: 2}
+  - {fileID: 11400000, guid: 7e0da1ba95dfa2042a492fcd5be35b4c, type: 2}
+  - {fileID: 11400000, guid: 7b1b619fa7abd584cab994ef130fd747, type: 2}
+  - {fileID: 11400000, guid: d100b8925d7a18041a1cf22a7a9b3d6e, type: 2}
+  - {fileID: 11400000, guid: 920637b3c13fc3d4d962fd76e49f4396, type: 2}
+  - {fileID: 11400000, guid: 0d4dcae62be3b6c44a6647f334186bc6, type: 2}
+  - {fileID: 11400000, guid: 0a9f3eb1d9d04874a8b62a6164d5fe6f, type: 2}
+  - {fileID: 11400000, guid: cddb7c4687b82a9499c1116e453a7247, type: 2}
+  - {fileID: 11400000, guid: 661d33b2527459949a782943b76468d2, type: 2}
+  - {fileID: 11400000, guid: 27e22bd3f9246da49bc38539593e5ff2, type: 2}
+  - {fileID: 11400000, guid: e3de49481ea44d2489f9de41915db722, type: 2}
+  - {fileID: 11400000, guid: 48abcd826fc56f64e8ba908193b18d43, type: 2}
+  - {fileID: 11400000, guid: d0f41c078f7a2e744b846c06ebd741da, type: 2}
+  - {fileID: 11400000, guid: be7d0ccfb81345c459de65a23802d18e, type: 2}
+  - {fileID: 11400000, guid: 5b1b9ea75a430f8459fbcaa08d9a0e9c, type: 2}
+  - {fileID: 11400000, guid: a5a1ce2a17651db418717a74ec2b9ab4, type: 2}
+  - {fileID: 11400000, guid: d0621ccb776cff942b50e2f2ad12fc53, type: 2}
+  - {fileID: 11400000, guid: 1754d87080d91bd439fdf7e73ec18e58, type: 2}
+  - {fileID: 11400000, guid: 8f3d10ad4d382c84fbbb92adc1b0bd70, type: 2}
+  - {fileID: 11400000, guid: 6e0a790b2f38b0f478ef2fe2f283e7e8, type: 2}
+  - {fileID: 11400000, guid: 3e280cfe887c3694486a9dd230f7255b, type: 2}
+  - {fileID: 11400000, guid: 930498a0f7e2c7e46ba43b446c279cd1, type: 2}
   <ShipPrefab>k__BackingField: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
