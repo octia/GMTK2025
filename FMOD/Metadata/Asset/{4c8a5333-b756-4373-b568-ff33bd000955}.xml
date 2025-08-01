@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{4c8a5333-b756-4373-b568-ff33bd000955}">
+		<property name="assetPath">
+			<value>Fiona/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
+		</relationship>
+	</object>
+</objects>
