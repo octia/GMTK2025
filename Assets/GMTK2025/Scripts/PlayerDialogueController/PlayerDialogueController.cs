@@ -108,6 +108,7 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         SetEnabled(false);
+        PlayTextChain(PlayerDialogueChainType.Tutorial1);
     }
 
     private void SetEnabled(bool status)

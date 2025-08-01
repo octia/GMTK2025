@@ -14,11 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ChainType>k__BackingField: 1
   <Dialogues>k__BackingField:
-  - <Message>k__BackingField: Oh wow I can speak now
+  - <Message>k__BackingField: 'Today is my first day as a spaceloop controller.
+
+      It
+      should be pretty easy... all I have to do is make sure that the spaceships
+      don''t crash.'
     <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: This is really cool
+  - <Message>k__BackingField: Right now the ships should be safe, but soon, more
+      ships will approach!
     <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: I'm also here
-    <IconOverride>k__BackingField: {fileID: 21300000, guid: 8ff0268563656e0419b6d9efe1ce7479, type: 3}
-  - <Message>k__BackingField: WTF
+  - <Message>k__BackingField: When that happens, I just have to click on the ships,
+      and move them onto safe orbits, all while keeping them happy.
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: I can also drag with the right click and zoom with
+      the mouse wheel, to get a better view.
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: Ships have preferred orbits - if they're on them, they
+      generate money for the Spaceloop Corporation!
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: But that's not as important as not allowing them to
+      crash!
     <IconOverride>k__BackingField: {fileID: 0}
