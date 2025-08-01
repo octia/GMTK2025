@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{adc905a9-667a-4498-85ef-ce867e67e7dc}">
+		<property name="assetPath">
+			<value>Zemoo/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
+		</relationship>
+	</object>
+</objects>
