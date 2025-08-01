@@ -17,6 +17,9 @@ public class CameraController : MonoBehaviour
     [Inject]
     private CameraControlConfig config;
 
+    [Inject]
+    private SoundManager soundManager;
+
     [SerializeField]
     private Vector2 currentPosition = new(0f, 60f);
 
@@ -67,6 +70,9 @@ public class CameraController : MonoBehaviour
             config.ScrollSnapDuration,
             (value) => currentDistanceFromPlanet = value
         );
+
+        //Update music distance
+        soundManager.UpdateMusicDistance(currentDistanceFromPlanet, config.MaxDistanceFromPlanet);
     }
 
     private void HandleMovmenent()

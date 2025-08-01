@@ -1,17 +1,28 @@
+using FMODUnity;
 using PrimeTween;
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
+    [Inject]
+    private SoundManager soundManager;
     [SerializeField] private GameObject goEnable;
     private bool bOptionsOpen = false;
     private bool bPaused = false;
     [SerializeField] private InputAction pauseAction;
+    [SerializeField] private EventReference musicEventReference;
 
     private void Awake()
     {
         pauseAction.Enable();
+    }
+    private void Start()
+    {
+        soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
+        soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
+        soundManager.PlayMusic(musicEventReference);
     }
     private void Update()
     {
@@ -23,7 +34,7 @@ public class PauseController : MonoBehaviour
     public void ResumeGame()
     {
         Sequence.Create()
-            .ChainDelay(1)
+            .ChainDelay(0.8f)
             .OnComplete(() => PauseGame());
     }
 
@@ -31,6 +42,7 @@ public class PauseController : MonoBehaviour
     {
         bPaused = !bPaused;
         goEnable.SetActive(bPaused);
+        soundManager.PausedGameVolume(bPaused);
     }
 
     public void OptionsGame()

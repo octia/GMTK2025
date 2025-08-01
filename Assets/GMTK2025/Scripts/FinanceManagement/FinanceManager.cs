@@ -5,22 +5,22 @@ public class FinanceManager
 {
     public FinanceController FinanceController;
 
-    private float money;
-    public float Money
+    private int money;
+    public int Money
     {
         set
         {
             money = value;
-            FinanceController.MoneyText.text = Mathf.Floor(money) + "$";
+            FinanceController.MoneyText.text = money + "$";
         }
         get
         {
-            return Mathf.Floor(money);
+            return money;
         }
     }
 
-    public void GenerateShipProfit(float timeStep, int profit, int speed)
+    public void GenerateShipProfit(int profit)
     {
-        Money = money + (timeStep * profit * 0.001f * speed);
+        Money = money + profit;
     }
 }

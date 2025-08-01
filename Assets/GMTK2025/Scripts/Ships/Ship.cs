@@ -7,6 +7,9 @@ public class Ship : MonoBehaviour
     private Orbit orbit;
 
     [SerializeField]
+    private Orbit preferredOrbit;
+
+    [SerializeField]
     private ShipData shipData;
 
     [SerializeField]
@@ -21,12 +24,12 @@ public class Ship : MonoBehaviour
     [Inject]
     private ShipCollisionManager shipCollisionManager;
 
-    [Inject]
-    private FinanceManager financeManager;
-
     private Rigidbody rb;
+    private float lastSpeed = 10;
 
+    public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
+    public Orbit PreferredOrbit => preferredOrbit;
 
     private void Awake()
     {
@@ -42,23 +45,35 @@ public class Ship : MonoBehaviour
         this.orbit = orbit;
     }
 
+    public void ChangePreferredOrbit(Orbit orbit)
+    {
+        preferredOrbit = orbit;
+    }
+
     private void FixedUpdate()
     {
         SimulateMoveStep(Time.fixedDeltaTime * timerManager.TimeScale, true, out _);
-        financeManager.GenerateShipProfit(Time.fixedDeltaTime * timerManager.TimeScale, shipData.Profit, shipData.Speed);
     }
 
     public void SimulateMoveStep(float timeStep, bool useRigidbody, out Vector3 nearestPoint)
     {
-        orbit.GetNearestPoint(
-            transform.position,
-            out nearestPoint,
-            out Vector3 forward,
-            out float speed
-        );
-        if (shipData.Clockwise)
+        float speed = lastSpeed;
+        var wantedForward = transform.forward;
+        nearestPoint = transform.position;
+
+        if (orbit)
         {
-            forward = -forward;
+            orbit.GetNearestPoint(
+                transform.position,
+                out nearestPoint,
+                out Vector3 forward,
+                out speed
+            );
+            if (shipData.Clockwise)
+            {
+                forward = -forward;
+            }
+            wantedForward = nearestPoint + forward * 4 - transform.position;
         }
 
         // Ships move towards their forward vector
@@ -69,7 +84,6 @@ public class Ship : MonoBehaviour
         );
 
         // They turn towards a wanted forward vector, with a maximum angle change per fixed step
-        var wantedForward = nearestPoint + forward * 4 - transform.position;
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
@@ -97,6 +111,8 @@ public class Ship : MonoBehaviour
         {
             transform.SetLocalPositionAndRotation(newPosition, newRotation);
         }
+
+        lastSpeed = speed;
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)
@@ -117,10 +133,10 @@ public class Ship : MonoBehaviour
         shipCollisionManager.CollisionHappened(ship1, ship2, point);
     }
 
-    internal void InitializeWith(ShipData ship)
+    internal void InitializeWith(ShipData ship, Orbit preferredOrbit)
     {
         shipData = ship;
-        // todo: CHANGE THIS!!!!
-        orbit = FindAnyObjectByType<Orbit>();
+        this.preferredOrbit = preferredOrbit;
+        orbit = preferredOrbit;
     }
 }

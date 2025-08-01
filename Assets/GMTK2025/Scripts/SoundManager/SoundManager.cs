@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class SoundManager
 {
     [Inject]
-    private SoundManagerConfig soundManagerConfig;
+    public SoundManagerConfig soundManagerConfig;
     public void ChangeVolume(VolumeType volumeType, float volume)
     {
         switch (volumeType)
@@ -15,10 +15,10 @@ public class SoundManager
             case VolumeType.None:
                 return;
             case VolumeType.Music:
-                VolumeChanging(soundManagerConfig.musicBusName, volume);
+                VolumeChanging(soundManagerConfig.music_VCA, volume);
                 break;
             case VolumeType.Sfx:
-                VolumeChanging(soundManagerConfig.vfxBusName, volume);
+                VolumeChanging(soundManagerConfig.sfx_VCA, volume);
                 break;
         }
     }
@@ -29,34 +29,50 @@ public class SoundManager
             case VolumeType.None:
                 return;
             case VolumeType.Music:
-                VolumeGet(soundManagerConfig.musicBusName, slider);
+                VolumeGet(soundManagerConfig.music_VCA, slider);
                 break;
             case VolumeType.Sfx:
-                VolumeGet(soundManagerConfig.vfxBusName, slider);
+                VolumeGet(soundManagerConfig.sfx_VCA, slider);
                 break;
         }
     }
-    private void VolumeChanging(string busName, float volume)
+    private void VolumeChanging(FMOD.Studio.VCA VCA, float volume)
     {
-        if (RuntimeManager.GetBus("bus:/" + busName).isValid())
+        if (VCA.isValid())
         {
-            RuntimeManager.GetBus("bus:/" + busName).setVolume(volume);
+            VCA.setVolume(volume);
         }
     }
-    private void VolumeGet(string busName, UnityEngine.UI.Slider slider)
+    public void PausedGameVolume(bool bIsPaused)
     {
-        if (RuntimeManager.GetBus("bus:/" + busName).isValid())
+        if(bIsPaused)
         {
-            RuntimeManager.GetBus("bus:/" + busName).getVolume(out float volume);
+            RuntimeManager.StudioSystem.setParameterByName("Pause", 0f);
+        }
+        else
+        {
+            RuntimeManager.StudioSystem.setParameterByName("Pause", 100f);
+        }
+    }
+    private void VolumeGet(FMOD.Studio.VCA VCA, UnityEngine.UI.Slider slider)
+    {
+        if (VCA.isValid())
+        {
+            VCA.getVolume(out float volume);
             slider.value = volume;
         }
     }
-    public void PlayOneShot(EventReference eventReference)
+    public void PlayOneShot(string path)
     {
-        string eventPath = eventReference.Guid.ToString();
-        RuntimeManager.PlayOneShot(eventPath);
+        RuntimeManager.PlayOneShot(path);
     }
-
+    public void PlayOneShotWithStatus(EventReference eventReference, float status)
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+        instance.setParameterByName("Status", status);
+        instance.start();
+        instance.release();
+    }
     public void PlayMusic(EventReference eventReference)
     {
         if (soundManagerConfig.musicLoopInstance.isValid())
@@ -66,5 +82,10 @@ public class SoundManager
         }
         soundManagerConfig.musicLoopInstance = RuntimeManager.CreateInstance(eventReference);
         soundManagerConfig.musicLoopInstance.start();
+    }
+    public void UpdateMusicDistance(float distance, float maxDistance)
+    {
+        float volume = distance * 100 / maxDistance;
+        RuntimeManager.StudioSystem.setParameterByName("Distance", volume); //0 is near, 100 is far
     }
 }

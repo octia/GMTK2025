@@ -55,6 +55,10 @@ public class ShipDragAndDrop : MonoBehaviour
             DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
             foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
             {
+                if((shipLayerMask.value & (1 << renderer.gameObject.layer)) == 0)
+                {
+                    continue;
+                }
                 renderer.sharedMaterial = ghostMaterial;
             }
 
@@ -99,6 +103,10 @@ public class ShipDragAndDrop : MonoBehaviour
                 var mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.value);
                 viewPlane.Raycast(mouseRay, out float distance);
                 ghostShips[0].transform.SetPositionAndRotation(mouseRay.GetPoint(distance), draggedShip.transform.rotation);
+                for (int i = 1; i < ghostShips.Length; i++)
+                {
+                    ghostShips[i].gameObject.SetActive(false);
+                }
                 TargetOrbit = null;
             }
         }
