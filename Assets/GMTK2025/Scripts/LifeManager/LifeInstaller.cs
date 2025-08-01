@@ -9,6 +9,7 @@ public class LifeInstaller : MonoBehaviour, IInstaller
     public void InstallBindings(ContainerBuilder containerBuilder)
     {
         containerBuilder.AddSingleton(config);
-        containerBuilder.AddSingleton<LifeManager>();
+        containerBuilder.AddScoped<LifeManager>();
+        Debug.Log("Adding scoped lifemanager");
     }
 }

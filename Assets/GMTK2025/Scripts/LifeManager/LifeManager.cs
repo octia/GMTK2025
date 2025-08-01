@@ -1,7 +1,7 @@
 using System;
 using Reflex.Attributes;
 
-public class LifeManager
+public class LifeManager : IDisposable
 {
     public Action OnLifeCountChanged;
 
@@ -25,7 +25,6 @@ public class LifeManager
         OnLifeCountChanged?.Invoke();
         if (LifeCount <= 0)
         {
-            Initialize();
             sceneManager.LoadGameplay();
         }
     }
@@ -35,4 +34,6 @@ public class LifeManager
         LifeCount += livesToGain;
         OnLifeCountChanged?.Invoke();
     }
+
+    public void Dispose() { }
 }

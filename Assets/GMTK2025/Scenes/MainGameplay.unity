@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 147585378}
   - component: {fileID: 147585379}
   - component: {fileID: 147585380}
+  - component: {fileID: 147585381}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -248,6 +249,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipManagerConfig: {fileID: 11400000, guid: 747591260a586864b9a05e55ea47b405, type: 2}
+--- !u!114 &147585381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147585371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f2b34000655e7b89f1a138d295acb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &183735892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,10 +1445,6 @@ PrefabInstance:
     - target: {fileID: 3600672474439295105, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: m_Name
       value: ShipSelectionScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
-      propertyPath: newShipTime
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: stationUpgradesScreen

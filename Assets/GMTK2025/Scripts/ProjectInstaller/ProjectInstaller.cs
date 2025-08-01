@@ -7,8 +7,5 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
     {
         builder.AddSingleton<SceneManager>();
         builder.AddSingleton<SoundManager>();
-        builder.AddSingleton<TimerManager>();
-        builder.AddSingleton<ShipCollisionManager>();
-        builder.AddSingleton<FinanceManager>();
     }
 }
