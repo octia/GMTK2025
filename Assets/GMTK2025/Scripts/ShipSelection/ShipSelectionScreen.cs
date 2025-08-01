@@ -120,6 +120,7 @@ public class ShipSelectionScreen : MonoBehaviour
             selectionOptions[i].ChangeSelectionShip(newShips[i].data);
         }
 
+        soundManager.PausedGameVolume(true);
         SetScreenActive(true);
 
         if (!hasTutorialPlayed)
@@ -197,6 +198,8 @@ public class ShipSelectionScreen : MonoBehaviour
 
         currentNewShipTime = newShipTime;
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
+
+        soundManager.PausedGameVolume(false);
         SetScreenActive(false);
     }
 }
