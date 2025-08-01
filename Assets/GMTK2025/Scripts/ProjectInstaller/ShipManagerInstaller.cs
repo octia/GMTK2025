@@ -8,5 +8,6 @@ public class ShipManagerInstaller : MonoBehaviour, IInstaller
     public void InstallBindings(ContainerBuilder builder)
     {
         builder.AddSingleton<ShipManagerConfig>(shipManagerConfig);
+        builder.AddSingleton<ShipManager>();
     }
 }
