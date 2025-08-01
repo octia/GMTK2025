@@ -10,6 +10,7 @@ public class ShipData : ScriptableObject
     public int Speed;
     public bool Clockwise;
     public bool Temporary;
+    public GameObject ModelPrefab;
 
     [Space]
     [AssetPreview]
