@@ -32,7 +32,7 @@ public class PauseController : MonoBehaviour
     public void ResumeGame()
     {
         Sequence.Create()
-            .ChainDelay(1)
+            .ChainDelay(0.8f)
             .OnComplete(() => PauseGame());
     }
 
