@@ -1,4 +1,3 @@
-using System;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -62,7 +61,7 @@ public class ShipSelectionScreen : MonoBehaviour
     public bool OnScreen;
 
     [Inject]
-    private PlayerManager playerManager;
+    private ShipManager playerManager;
 
     [Inject]
     private TimerManager timerManager;
@@ -91,6 +90,7 @@ public class ShipSelectionScreen : MonoBehaviour
         if (!OnScreen)
         {
             currentNewShipTime -= Time.deltaTime * timerManager.TimeScale;
+            // Debug
             //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
             if (currentNewShipTime < 0)

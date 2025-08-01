@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6dfa7bbdccefeb409889aa718fe06df, type: 3}
-  m_Name: PlayerManagerConfig
+  m_Name: ShipManagerConfig
   m_EditorClassIdentifier: 
   <BaseShipPool>k__BackingField:
   - {fileID: 11400000, guid: 81dc7ab9be3a34445a07c06144bbf713, type: 2}

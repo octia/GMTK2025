@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using Reflex.Attributes;
 using UnityEngine;
 
-public class PlayerManager
+public class ShipManager
 {
     [Inject]
-    private PlayerManagerConfig config;
+    private ShipManagerConfig config;
 
     public List<ShipData> CurrentShipPool = new();
 

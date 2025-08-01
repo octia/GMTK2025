@@ -11,10 +11,10 @@ public class ShipDragAndDrop : MonoBehaviour
     [SerializeField] private float ghostSimulationTimestep = 0.1f;
     [SerializeField] private int maxSimulationSteps = 30;
     [SerializeField] private int stepsPerGhost = 2;
-    Ship[] ghostShips = null;
+    private Ship[] ghostShips = null;
 
-    Ship draggedShip = null;
-    Orbit targetOrbit = null;
+    private Ship draggedShip = null;
+    private Orbit targetOrbit = null;
 
     public Orbit TargetOrbit
     {

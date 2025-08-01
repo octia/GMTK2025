@@ -21,7 +21,10 @@ public class Ship : MonoBehaviour
     [Inject]
     private ShipCollisionManager shipCollisionManager;
 
-    Rigidbody rb;
+    [Inject]
+    private FinanceManager financeManager;
+
+    private Rigidbody rb;
 
     public ShipData ShipData => shipData;
 
@@ -39,9 +42,10 @@ public class Ship : MonoBehaviour
         this.orbit = orbit;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         SimulateMoveStep(Time.fixedDeltaTime * timerManager.TimeScale, true, out _);
+        financeManager.GenerateShipProfit(Time.fixedDeltaTime * timerManager.TimeScale, shipData.Profit, shipData.Speed);
     }
 
     public void SimulateMoveStep(float timeStep, bool useRigidbody, out Vector3 nearestPoint)

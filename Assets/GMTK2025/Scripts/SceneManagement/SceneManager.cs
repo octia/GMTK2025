@@ -1,6 +1,4 @@
-using System;
 using Reflex.Attributes;
-using UnityEngine;
 
 public class SceneManager
 {

@@ -3,7 +3,7 @@ using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraManager : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField]
     private new Transform camera;

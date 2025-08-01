@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(
-    menuName = "GMTK2025/Config/PlayerManagerConfig",
-    fileName = "PlayerManagerConfig"
+    menuName = "GMTK2025/Config/ShipManagerConfig",
+    fileName = "ShipManagerConfig"
 )]
-public class PlayerManagerConfig : ScriptableObject
+public class ShipManagerConfig : ScriptableObject
 {
     [field: SerializeField]
     public ShipData[] BaseShipPool { get; private set; }
