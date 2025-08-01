@@ -20,7 +20,7 @@ public class ProfitEarner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (ship.PreferredOrbit == null || ship.Orbit != ship.PreferredOrbit)
+        if (!ship.enabled || ship.PreferredOrbit == null || ship.Orbit != ship.PreferredOrbit)
         {
             return;
         }
