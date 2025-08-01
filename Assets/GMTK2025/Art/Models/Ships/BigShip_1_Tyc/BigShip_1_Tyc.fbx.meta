@@ -3,7 +3,12 @@ guid: c89521d6b150fcd46a068b0eecec00db
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BigShip_1_Tyc_Texture
+    second: {fileID: 2100000, guid: 5015b511295e3484f9ef39e51ddf7e3c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
