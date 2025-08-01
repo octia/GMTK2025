@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5890792220492062621}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MidShip_001_Djo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,45 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4990072281575993405, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4091792821388611644, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3756473180518285571, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3551323520603649674, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3215555783603854218, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -1457128873813403368, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
       propertyPath: m_Name
       value: MidShip_001_Djo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911618244268713104, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233112405309087440, guid: 28805e18a34f8664e9a83a595d201bb3, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

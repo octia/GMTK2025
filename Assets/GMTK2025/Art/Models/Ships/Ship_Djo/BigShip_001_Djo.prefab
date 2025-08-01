@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8412014855166357982}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BigShip_001_Djo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,45 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3464447691518478215, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1063203228461421988, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 50754954277266222, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 439516310653078524, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
       propertyPath: m_Name
       value: BigShip_001_Djo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851714846495295630, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991449380991483095, guid: 88dd0405a163b7b43a39f7ee0aa209a0, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
