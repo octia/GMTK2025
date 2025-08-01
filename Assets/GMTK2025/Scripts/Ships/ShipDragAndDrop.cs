@@ -55,6 +55,10 @@ public class ShipDragAndDrop : MonoBehaviour
             DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
             foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
             {
+                if((shipLayerMask.value & (1 << renderer.gameObject.layer)) == 0)
+                {
+                    continue;
+                }
                 renderer.sharedMaterial = ghostMaterial;
             }
 
