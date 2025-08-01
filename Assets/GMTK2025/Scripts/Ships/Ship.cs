@@ -46,7 +46,7 @@ public class Ship : MonoBehaviour
     private void FixedUpdate()
     {
         SimulateMoveStep(Time.fixedDeltaTime * timerManager.TimeScale, true, out _);
-        financeManager.GenerateShipProfit(Time.fixedDeltaTime * timerManager.TimeScale, shipData.Profit, shipData.Speed);
+        financeManager.GenerateShipProfit(Time.fixedDeltaTime * timerManager.TimeScale * shipData.Profit);
     }
 
     public void SimulateMoveStep(float timeStep, bool useRigidbody, out Vector3 nearestPoint)

@@ -19,8 +19,8 @@ public class FinanceManager
         }
     }
 
-    public void GenerateShipProfit(float timeStep, int profit, int speed)
+    public void GenerateShipProfit(float profit)
     {
-        Money = money + (timeStep * profit * 0.001f * speed);
+        Money = money + (profit * 0.001f);
     }
 }
