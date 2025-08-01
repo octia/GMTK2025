@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
+  m_Name: ShipIntroTutorial
+  m_EditorClassIdentifier: 
+  <ChainType>k__BackingField: 2
+  <Dialogues>k__BackingField:
+  - <Message>k__BackingField: Oh, several ships want to approach! I have to pick
+      which one to approve.
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: Fortunately, time conveniently slowed down, so I can
+      think for as long as I want!
+    <IconOverride>k__BackingField: {fileID: 0}

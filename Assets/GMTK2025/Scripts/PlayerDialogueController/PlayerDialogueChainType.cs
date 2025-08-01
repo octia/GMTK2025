@@ -1,8 +1,8 @@
 public enum PlayerDialogueChainType
 {
     Empty,
-    Tutorial1,
-    Tutorial2,
+    InitialTutorial,
+    NewShipTutorial,
     Tutorial3,
     Tutorial4,
     Tutorial5,

@@ -70,6 +70,11 @@ public class ShipSelectionScreen : MonoBehaviour
     [Inject]
     private SoundManager soundManager;
 
+    [Inject]
+    private PlayerDialogueController dialogueController;
+
+    private bool hasTutorialPlayed = false;
+
     // ...
     private float currentNewShipTime;
 
@@ -116,6 +121,12 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         SetScreenActive(true);
+
+        if (!hasTutorialPlayed)
+        {
+            hasTutorialPlayed = true;
+            dialogueController.PlayTextChain(PlayerDialogueChainType.NewShipTutorial);
+        }
     }
 
     public void SetScreenActive(bool value)

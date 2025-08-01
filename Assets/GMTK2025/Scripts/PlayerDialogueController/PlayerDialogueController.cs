@@ -45,7 +45,8 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
             0,
             message.Length,
             message.Length / lettersPerSecond,
-            (val) => dialogueTextBox.maxVisibleCharacters = Mathf.RoundToInt(val)
+            (val) => dialogueTextBox.maxVisibleCharacters = Mathf.RoundToInt(val),
+            Ease.Linear
         );
     }
 
@@ -56,7 +57,6 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        SetEnabled(true);
         var chainToUse = config.PlayerDialogueChains.FirstOrDefault(
             (chain) => chain.ChainType == type
         );
@@ -65,6 +65,7 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        SetEnabled(true);
         currentChain = chainToUse;
         currentDialogueIndex = 0;
         PlayCurrentDialogue();
@@ -107,12 +108,29 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        SetEnabled(false);
-        PlayTextChain(PlayerDialogueChainType.Tutorial1);
+        PlayTextChain(PlayerDialogueChainType.InitialTutorial);
     }
 
     private void SetEnabled(bool status)
     {
-        dialogueBox.SetActive(status);
+        if (dialogueBox.activeSelf == status)
+        {
+            return;
+        }
+
+        if (status)
+        {
+            dialogueBox.SetActive(status);
+        }
+
+        var startTweenValue = status ? 0f : 1f;
+        var endTweenValue = status ? 1f : 0f;
+        var longerTween = Tween.ScaleX(dialogueBox.transform, startTweenValue, endTweenValue, 0.7f);
+        Tween.ScaleY(dialogueBox.transform, startTweenValue, endTweenValue, 0.4f);
+
+        if (!status)
+        {
+            longerTween.OnComplete(() => dialogueBox.SetActive(false));
+        }
     }
 }
