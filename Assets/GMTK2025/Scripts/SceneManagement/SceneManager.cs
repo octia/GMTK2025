@@ -1,5 +1,7 @@
 using Reflex.Attributes;
+#pragma warning disable IDE0005 // Using directive is unnecessary.
 using UnityEngine;
+#pragma warning restore IDE0005 // Using directive is unnecessary.
 
 public class SceneManager
 {
@@ -18,10 +20,18 @@ public class SceneManager
             case SceneType.Gameplay:
                 LoadGameplay();
                 break;
+            case SceneType.Credits:
+                LoadCredits();
+                break;
             case SceneType.Exit:
                 ExitGame();
                 break;
         }
+    }
+
+    public void LoadCredits()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(config.CreditsSceneIndex);
     }
 
     public void LoadMainMenu()
@@ -33,12 +43,13 @@ public class SceneManager
     {
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(config.GameplaySceneIndex);
     }
+
     public void ExitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
         Application.Quit();
-        #endif
+#endif
     }
 }

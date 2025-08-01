@@ -19,3 +19,6 @@ MonoBehaviour:
   Clockwise: 1
   Temporary: 0
   Icon: {fileID: 21300000, guid: 4b38610e0d3b25e4d9c1c713e48ddc23, type: 3}
+  PilotPreview: {fileID: 21300000, guid: 6a32f43f33ad63541a8486ffde65a11a, type: 3}
+  PilotDialog: '* ...Hey... Hmmm... I was told to... Hmmm... Bring this ship here...'
+  DialogTypeTime: 0.15
