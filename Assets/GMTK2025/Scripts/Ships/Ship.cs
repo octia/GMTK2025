@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    public bool IsDestroyed { get; private set; }
+
     [SerializeField]
     private Orbit orbit;
 
@@ -138,10 +140,13 @@ public class Ship : MonoBehaviour
         Vector3 distanceToTarget = this.transform.position - nearestPoint;
         if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && !bOnce)
         {
-            orbitEventInstance = soundManager.PlayLoop(soundManager.soundManagerConfig.sfxLoopShipFlyPath, shipData.Size);
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.Size
+            );
             bOnce = true;
         }
-        else if(Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)
+        else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)
         {
             if (orbitEventInstance.isValid())
             {
@@ -153,6 +158,12 @@ public class Ship : MonoBehaviour
             soundManager.StopLoop(orbitEventInstance);
             bOnce = false;
         }
+    }
+
+    public void DestroyShip()
+    {
+        IsDestroyed = true;
+        Destroy(gameObject);
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)
