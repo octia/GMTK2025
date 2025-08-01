@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SoundManagerConfig", menuName = "Scriptable Objects/SoundManagerConfig")]
@@ -15,8 +17,11 @@ public class SoundManagerConfig : ScriptableObject
 
     [SerializeField]
     public string sfxSelectShipPath = "event:/Ship_select";
+    [SerializeField]
+    public string sfxLoopShipFlyPath = "event:/Ship_fly";
 
     public FMOD.Studio.EventInstance musicLoopInstance;
+    public List<EventInstance> activeLoopedSounds = new List<EventInstance>();
     public FMOD.Studio.VCA music_VCA;
     public FMOD.Studio.VCA sfx_VCA;
 }
