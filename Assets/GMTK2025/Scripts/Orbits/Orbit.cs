@@ -2,6 +2,7 @@ using EditorAttributes;
 using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Splines;
 using UnityEngine.Splines.Interpolators;
 
@@ -10,7 +11,10 @@ public class Orbit : MonoBehaviour
 {
     [SerializeField] private float scrollSpeed = 1.0f;
     [SerializeField] private Color visibleColor = Color.white;
-    [SerializeField] private Color hightlightColor = Color.white;
+    [FormerlySerializedAs("hightlightColor"), SerializeField] private Color highlightColor = Color.white;
+    [SerializeField] private Color selectColor;
+
+    float fillValue = 0.5f;
 
     /// <summary>
     /// Change this to change the visual state of the Orbit.
@@ -60,7 +64,7 @@ public class Orbit : MonoBehaviour
 
     void Update()
     {
-        material.SetTextureOffset(mainTextureId, new Vector2(0, Time.time * scrollSpeed));
+        material.SetTextureOffset(mainTextureId, new Vector2(fillValue, Time.time * scrollSpeed));
     }
 
     private void OnVisualStateChange(VisualState newState, bool instant = false)
@@ -68,13 +72,21 @@ public class Orbit : MonoBehaviour
         var targetColor = newState switch
         {
             VisualState.Visible => visibleColor,
-            VisualState.Hightlighted => hightlightColor,
+            VisualState.Hightlighted => highlightColor,
+            VisualState.Selected => selectColor,
             _ => new Color(1, 1, 1, 0),
+        };
+        var targetFill = newState switch
+        {
+            VisualState.Hightlighted => 0.6f,
+            VisualState.Selected => 0.999f,
+            _ => 0.3f,
         };
 
         visualStateChangeTween.Complete();
         visualStateChangeTween = Sequence.Create()
-            .Chain(Tween.MaterialColor(material, targetColor, 0.2f));
+            .Chain(Tween.MaterialColor(material, targetColor, 0.2f))
+            .Group(Tween.Custom(fillValue, targetFill, 0.2f, x => fillValue = x));
 
         if (instant)
         {
@@ -107,6 +119,7 @@ public class Orbit : MonoBehaviour
     {
         Invisible,
         Visible,
-        Hightlighted
+        Hightlighted,
+        Selected
     }
 }

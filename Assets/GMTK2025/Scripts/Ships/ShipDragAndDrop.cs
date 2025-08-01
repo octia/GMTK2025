@@ -15,27 +15,7 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private Ship draggedShip = null;
     private Orbit targetOrbit = null;
-
-    public Orbit TargetOrbit
-    {
-        get => targetOrbit;
-        set
-        {
-            if (targetOrbit == value)
-            {
-                return;
-            }
-            if (targetOrbit)
-            {
-                targetOrbit.State = Orbit.VisualState.Visible;
-            }
-            if (value)
-            {
-                value.State = Orbit.VisualState.Hightlighted;
-            }
-            targetOrbit = value;
-        }
-    }
+    private bool shouldUpdateVisualStates = false;
 
     private void Awake()
     {
@@ -94,7 +74,7 @@ public class ShipDragAndDrop : MonoBehaviour
                 {
                     ghostShips[i].gameObject.SetActive(false);
                 }
-                TargetOrbit = orbit;
+                targetOrbit = orbit;
             }
             else
             {
@@ -107,12 +87,12 @@ public class ShipDragAndDrop : MonoBehaviour
                 {
                     ghostShips[i].gameObject.SetActive(false);
                 }
-                TargetOrbit = null;
+                targetOrbit = null;
             }
         }
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            if (draggedShip && TargetOrbit)
+            if (draggedShip && targetOrbit)
             {
                 draggedShip.ChangeOrbit(targetOrbit);
             }
@@ -124,7 +104,30 @@ public class ShipDragAndDrop : MonoBehaviour
                 }
             }
             draggedShip = null;
-            TargetOrbit = null;
+            targetOrbit = null;
         }
+
+        if (shouldUpdateVisualStates)
+        {
+            foreach (var orbit in orbitController.GetUnlockedOrbits())
+            {
+                if (orbit == targetOrbit)
+                {
+                    orbit.State = Orbit.VisualState.Selected;
+                }
+                else if ((draggedShip && orbit == draggedShip.PreferredOrbit) || (hoveringOverShip && orbit == ship.PreferredOrbit))
+                {
+                    orbit.State = Orbit.VisualState.Hightlighted;
+                }
+                else
+                {
+                    orbit.State = Orbit.VisualState.Visible;
+                }
+            }
+        }
+
+        // Important to delay update by one frame
+        // That way, orbits will be deselected after all input stops
+        shouldUpdateVisualStates = draggedShip || hoveringOverShip;
     }
 }
