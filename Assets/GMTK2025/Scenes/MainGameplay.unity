@@ -684,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 330585546}
   origin: {fileID: 728366199}
-  useInertia: 0
+  useInertia: 1
   currentPosition: {x: 0, y: 60}
   currentVelocity: {x: 0, y: 0}
 --- !u!114 &330585549
