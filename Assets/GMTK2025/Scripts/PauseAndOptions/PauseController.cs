@@ -20,6 +20,8 @@ public class PauseController : MonoBehaviour
     }
     private void Start()
     {
+        soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
+        soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
         soundManager.PlayMusic(musicEventReference);
     }
     private void Update()
