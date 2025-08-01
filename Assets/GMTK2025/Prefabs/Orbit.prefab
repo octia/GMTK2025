@@ -757,7 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 14
   eccentricity: 0.5
-  pointCount: 30
+  pointCount: 10
 --- !u!33 &6232635867929023291
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d5e3338f19464f8a91a575d449946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 1
+  scrollSpeed: 0.5
   visibleColor: {r: 1, g: 1, b: 1, a: 0.39215687}
   hightlightColor: {r: 1, g: 0.28773582, b: 0.28773582, a: 1}
   state: 0

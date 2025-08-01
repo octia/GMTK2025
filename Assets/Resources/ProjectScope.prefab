@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8411760602771578800}
   - component: {fileID: 4462301489853143392}
   - component: {fileID: 816510819863142541}
-  - component: {fileID: 369169262834063406}
   - component: {fileID: -5590833131058183923}
   m_Layer: 0
   m_Name: ProjectScope
@@ -75,19 +74,6 @@ MonoBehaviour:
   sceneManagerConfig: {fileID: 11400000, guid: 4df22cd8d683405fa908a35bbe960305, type: 2}
   cameraControlConfig: {fileID: 11400000, guid: 3bad9da167d35c26584e1696556b6a2d, type: 2}
   timerConfig: {fileID: 11400000, guid: 51b5ea1034c6c788cbad5162847016c6, type: 2}
---- !u!114 &369169262834063406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2767623701323520523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f69a3c8bca172df42805788bf65d28c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerManagerConfig: {fileID: 11400000, guid: 747591260a586864b9a05e55ea47b405, type: 2}
 --- !u!114 &-5590833131058183923
 MonoBehaviour:
   m_ObjectHideFlags: 0

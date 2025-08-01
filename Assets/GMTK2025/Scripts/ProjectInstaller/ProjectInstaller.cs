@@ -6,8 +6,10 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
     public void InstallBindings(ContainerBuilder builder)
     {
         builder.AddSingleton<SceneManager>();
-        builder.AddSingleton<PlayerManager>();
+        builder.AddSingleton<ShipManager>();
         builder.AddSingleton<SoundManager>();
         builder.AddSingleton<TimerManager>();
+        builder.AddSingleton<ShipCollisionManager>();
+        builder.AddSingleton<FinanceManager>();
     }
 }

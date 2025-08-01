@@ -74,7 +74,7 @@ public class Orbit : MonoBehaviour
 
         visualStateChangeTween.Complete();
         visualStateChangeTween = Sequence.Create()
-            .Chain(Tween.MaterialColor(material, targetColor, 0.5f));
+            .Chain(Tween.MaterialColor(material, targetColor, 0.2f));
 
         if (instant)
         {
@@ -92,7 +92,7 @@ public class Orbit : MonoBehaviour
     public void GetNearestPoint(Vector3 point, out Vector3 nearestPoint, out Vector3 forward, out float speed)
     {
         var p = transform.InverseTransformPoint(point);
-        SplineUtility.GetNearestPoint(splineContainer.Spline, p, out float3 nearest, out float t);
+        SplineUtility.GetNearestPoint(splineContainer.Spline, p, out float3 nearest, out float t, 1, 2);
         nearestPoint = transform.TransformPoint(nearest);
 
         forward = transform.TransformDirection(splineContainer.Spline.EvaluateTangent(t)).normalized;
