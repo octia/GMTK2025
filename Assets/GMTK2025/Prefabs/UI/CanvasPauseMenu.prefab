@@ -106,15 +106,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b5a9dac2bf0534e489d8cb8ad2ab7197, type: 2}
+  m_sharedMaterial: {fileID: 8116524705468603293, guid: b5a9dac2bf0534e489d8cb8ad2ab7197, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289901154
-  m_fontColor: {r: 0.3833036, g: 0.6962107, b: 0.6981132, a: 1}
+    rgba: 4294967186
+  m_fontColor: {r: 0.57169807, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -131,12 +131,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 54
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 54
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -544,20 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventReferencePointer:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  eventReferenceClick:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &1579571476239137442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,15 +1025,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b5a9dac2bf0534e489d8cb8ad2ab7197, type: 2}
+  m_sharedMaterial: {fileID: 8116524705468603293, guid: b5a9dac2bf0534e489d8cb8ad2ab7197, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289901154
-  m_fontColor: {r: 0.3833036, g: 0.6962107, b: 0.6981132, a: 1}
+    rgba: 4294967186
+  m_fontColor: {r: 0.57169807, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1064,12 +1050,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 54
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 54
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1175,15 +1161,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b5a9dac2bf0534e489d8cb8ad2ab7197, type: 2}
+  m_sharedMaterial: {fileID: 8116524705468603293, guid: b5a9dac2bf0534e489d8cb8ad2ab7197, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289901154
-  m_fontColor: {r: 0.3833036, g: 0.6962107, b: 0.6981132, a: 1}
+    rgba: 4294967186
+  m_fontColor: {r: 0.57169807, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1200,12 +1186,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 54
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 54
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1701,20 +1687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventReferencePointer:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  eventReferenceClick:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &5999731987222656950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,20 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventReferencePointer:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  eventReferenceClick:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &7469463781765708073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,3 +2366,10 @@ MonoBehaviour:
       m_Action: Pause
       m_Flags: 0
     m_Flags: 0
+  musicEventReference:
+    Guid:
+      Data1: -2056520282
+      Data2: 1090674567
+      Data3: -195325563
+      Data4: -2113150611
+    Path: event:/Music_track_main
