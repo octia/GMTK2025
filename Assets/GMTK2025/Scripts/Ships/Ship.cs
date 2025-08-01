@@ -133,10 +133,10 @@ public class Ship : MonoBehaviour
         shipCollisionManager.CollisionHappened(ship1, ship2, point);
     }
 
-    internal void InitializeWith(ShipData ship)
+    internal void InitializeWith(ShipData ship, Orbit preferredOrbit)
     {
         shipData = ship;
-        // todo: CHANGE THIS!!!!
-        orbit = FindAnyObjectByType<Orbit>();
+        this.preferredOrbit = preferredOrbit;
+        orbit = preferredOrbit;
     }
 }

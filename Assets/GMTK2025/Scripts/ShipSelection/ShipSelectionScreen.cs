@@ -73,7 +73,7 @@ public class ShipSelectionScreen : MonoBehaviour
     // ...
     private float currentNewShipTime;
 
-    private ShipData[] newShips;
+    private (ShipData data, Orbit orbit)[] newShips;
 
     // Initial
     private Animator anim;
@@ -112,7 +112,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            selectionOptions[i].ChangeSelectionShip(newShips[i]);
+            selectionOptions[i].ChangeSelectionShip(newShips[i].data);
         }
 
         SetScreenActive(true);
@@ -151,7 +151,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
     public void UpdateStatsPanel(int i)
     {
-        ShipData ship = newShips[i];
+        ShipData ship = newShips[i].data;
 
         temporaryText.gameObject.SetActive(ship.Temporary);
         nameText.text = ship.name;
@@ -179,11 +179,9 @@ public class ShipSelectionScreen : MonoBehaviour
         {
             if (i == value)
             {
-                playerManager.SpawnShip(newShips[i]);
+                playerManager.SpawnShip(newShips[i].data, newShips[i].orbit);
                 continue;
             }
-
-            playerManager.CurrentShipPool.Add(newShips[i]);
         }
 
         currentNewShipTime = newShipTime;
