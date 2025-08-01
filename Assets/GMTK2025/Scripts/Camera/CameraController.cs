@@ -20,9 +20,6 @@ public class CameraController : MonoBehaviour
     [Inject]
     private SoundManager soundManager;
 
-    [Inject]
-    private TimerManager timerManager;
-
     [SerializeField]
     private Vector2 currentPosition = new(0f, 60f);
 
@@ -42,11 +39,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if(!timerManager.isPaused)
-        {
-            HandleMovmenent();
-            HandleScroll();
-        }
+        HandleMovmenent();
+        HandleScroll();
 
         SetCameraPosition(currentPosition, currentDistanceFromPlanet);
     }

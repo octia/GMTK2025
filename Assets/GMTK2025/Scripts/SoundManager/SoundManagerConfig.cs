@@ -15,5 +15,8 @@ public class SoundManagerConfig : ScriptableObject
     [SerializeField]
     public string sfxUiPointerPath = "path";
 
+    [SerializeField]
+    public string sfxSelectShipPath = "event:/Ship_select";
+
     public FMOD.Studio.EventInstance musicLoopInstance;
 }

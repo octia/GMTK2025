@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class SoundManager
 {
     [Inject]
-    private SoundManagerConfig soundManagerConfig;
+    public SoundManagerConfig soundManagerConfig;
     public void ChangeVolume(VolumeType volumeType, float volume)
     {
         switch (volumeType)
@@ -62,10 +62,9 @@ public class SoundManager
             slider.value = volume;
         }
     }
-    public void PlayOneShot(EventReference eventReference)
+    public void PlayOneShot(string path)
     {
-        string eventPath = eventReference.Guid.ToString();
-        RuntimeManager.PlayOneShot(eventPath);
+        RuntimeManager.PlayOneShot(path);
     }
     public void PlayOneShotWithStatus(EventReference eventReference, float status)
     {
@@ -73,14 +72,6 @@ public class SoundManager
         instance.setParameterByName("Status", status);
         instance.start();
         instance.release();
-    }
-    public void PlaySfxUiClick()
-    {
-        RuntimeManager.PlayOneShot(soundManagerConfig.sfxUiClickPath);
-    }
-    public void PlaySfxUiPointer()
-    {
-        RuntimeManager.PlayOneShot(soundManagerConfig.sfxUiPointerPath);
     }
     public void PlayMusic(EventReference eventReference)
     {

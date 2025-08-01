@@ -1,3 +1,4 @@
+using System.IO;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -65,6 +66,9 @@ public class ShipSelectionScreen : MonoBehaviour
 
     [Inject]
     private TimerManager timerManager;
+
+    [Inject]
+    private SoundManager soundManager;
 
     // ...
     private float currentNewShipTime;
@@ -183,7 +187,7 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         currentNewShipTime = newShipTime;
-
+        soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         SetScreenActive(false);
     }
 }
