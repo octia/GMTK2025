@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
+  m_Name: 20sat
+  m_EditorClassIdentifier: 
+  Orbit: circular
+  Size: Small
+  Profit: 2
+  Speed: 25
+  Clockwise: 1
+  Temporary: 0
+  Icon: {fileID: 21300000, guid: 64a0b048887ec8c44ba67484943eaa74, type: 3}
+  PilotPreview: {fileID: 21300000, guid: 6a32f43f33ad63541a8486ffde65a11a, type: 3}
+  PilotDialog: '* ...Hey... Hmmm... I was told to... Hmmm... Bring this ship here...'
+  DialogTypeTime: 0.15

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7ef98756-fd86-49dd-a41a-2926501f0d4c}">
+		<property name="assetPath">
+			<value>sfx_ship_idle_6.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.8212244897959184</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
+		</relationship>
+	</object>
+</objects>

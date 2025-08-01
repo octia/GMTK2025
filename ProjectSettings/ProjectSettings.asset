@@ -529,7 +529,10 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: WebGL
+    m_StaticBatching: 0
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -817,7 +820,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: PROJECT:Custom Minimal
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -837,7 +840,24 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: KAMGAM_POWER_PIVOT
+    EmbeddedLinux: KAMGAM_POWER_PIVOT
+    GameCoreXboxOne: KAMGAM_POWER_PIVOT
+    Kepler: KAMGAM_POWER_PIVOT
+    LinuxHeadlessSimulation: KAMGAM_POWER_PIVOT
+    Nintendo Switch: KAMGAM_POWER_PIVOT
+    PS4: KAMGAM_POWER_PIVOT
+    PS5: KAMGAM_POWER_PIVOT
+    QNX: KAMGAM_POWER_PIVOT
+    ReservedCFE: KAMGAM_POWER_PIVOT
+    Standalone: KAMGAM_POWER_PIVOT
+    VisionOS: KAMGAM_POWER_PIVOT
+    WebGL: KAMGAM_POWER_PIVOT
+    Windows Store Apps: KAMGAM_POWER_PIVOT
+    XboxOne: KAMGAM_POWER_PIVOT
+    iPhone: KAMGAM_POWER_PIVOT
+    tvOS: KAMGAM_POWER_PIVOT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

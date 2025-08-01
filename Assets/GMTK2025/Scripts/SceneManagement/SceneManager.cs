@@ -1,4 +1,7 @@
 using Reflex.Attributes;
+#pragma warning disable IDE0005 // Using directive is unnecessary.
+using UnityEngine;
+#pragma warning restore IDE0005 // Using directive is unnecessary.
 
 public class SceneManager
 {
