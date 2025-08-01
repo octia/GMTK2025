@@ -111,12 +111,15 @@ public class ShipDragAndDrop : MonoBehaviour
         {
             foreach (var orbit in orbitController.GetUnlockedOrbits())
             {
+                var bestShip = draggedShip ? draggedShip : ship;
                 if (orbit == targetOrbit)
                 {
+                    orbit.Clockwise = bestShip.ShipData.Clockwise;
                     orbit.State = Orbit.VisualState.Selected;
                 }
                 else if ((draggedShip && orbit == draggedShip.PreferredOrbit) || (hoveringOverShip && orbit == ship.PreferredOrbit))
                 {
+                    orbit.Clockwise = bestShip.ShipData.Clockwise;
                     orbit.State = Orbit.VisualState.Hightlighted;
                 }
                 else

@@ -9,12 +9,13 @@ using UnityEngine.Splines.Interpolators;
 [RequireComponent(typeof(SplineContainer))]
 public class Orbit : MonoBehaviour
 {
-    [SerializeField] private float scrollSpeed = 1.0f;
     [SerializeField] private Color visibleColor = Color.white;
     [FormerlySerializedAs("hightlightColor"), SerializeField] private Color highlightColor = Color.white;
     [SerializeField] private Color selectColor;
 
     float fillValue = 0.5f;
+    float scrollValue = 0;
+    private float scrollSpeed;
 
     /// <summary>
     /// Change this to change the visual state of the Orbit.
@@ -34,6 +35,8 @@ public class Orbit : MonoBehaviour
             state = value;
         }
     }
+
+    public bool Clockwise { get; set; }
 
     [SerializeField, DisableInPlayMode] private VisualState state = VisualState.Invisible;
     private SplineContainer splineContainer;
@@ -64,7 +67,8 @@ public class Orbit : MonoBehaviour
 
     void Update()
     {
-        material.SetTextureOffset(mainTextureId, new Vector2(fillValue, Time.time * scrollSpeed));
+        scrollValue += Time.deltaTime * (Clockwise ? scrollSpeed : -scrollSpeed);
+        material.SetTextureOffset(mainTextureId, new Vector2(fillValue, scrollValue));
     }
 
     private void OnVisualStateChange(VisualState newState, bool instant = false)
@@ -78,15 +82,21 @@ public class Orbit : MonoBehaviour
         };
         var targetFill = newState switch
         {
-            VisualState.Hightlighted => 0.6f,
-            VisualState.Selected => 0.999f,
+            VisualState.Hightlighted => 0.45f,
+            VisualState.Selected => 0.6f,
             _ => 0.3f,
+        };
+        var targetScrollSpeed = newState switch
+        {
+            VisualState.Hightlighted or VisualState.Selected => 2.0f,
+            _ => 0f,
         };
 
         visualStateChangeTween.Complete();
         visualStateChangeTween = Sequence.Create()
             .Chain(Tween.MaterialColor(material, targetColor, 0.2f))
-            .Group(Tween.Custom(fillValue, targetFill, 0.2f, x => fillValue = x));
+            .Group(Tween.Custom(fillValue, targetFill, 0.2f, x => fillValue = x))
+            .Group(Tween.Custom(scrollSpeed, targetScrollSpeed, 0.2f, x => scrollSpeed = x));
 
         if (instant)
         {
