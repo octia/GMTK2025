@@ -8,6 +8,9 @@ using UnityEngine;
 public class PlayerDialogueChain : ScriptableObject
 {
     [field: SerializeField]
+    public bool ShouldBlockInteraction { get; private set; } = false;
+
+    [field: SerializeField]
     public PlayerDialogueChainType ChainType { get; private set; }
 
     [field: SerializeField]

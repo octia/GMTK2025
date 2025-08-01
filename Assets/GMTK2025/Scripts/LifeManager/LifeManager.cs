@@ -25,6 +25,7 @@ public class LifeManager
         OnLifeCountChanged?.Invoke();
         if (LifeCount <= 0)
         {
+            Initialize();
             sceneManager.LoadGameplay();
         }
     }
