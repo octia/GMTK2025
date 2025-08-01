@@ -66,12 +66,54 @@ public class SoundManager
     {
         RuntimeManager.PlayOneShot(path);
     }
-    public void PlayOneShotWithStatus(EventReference eventReference, float status)
+    public EventInstance PlayLoop(string path, string status_)
     {
+        (float status, string paramName) = FindStatus(status_);
+        EventInstance instance = RuntimeManager.CreateInstance(path);
+        instance.setParameterByName(paramName, status);
+        instance.start();
+        soundManagerConfig.activeLoopedSounds.Add(instance);
+        return instance;
+    }
+    public void StopLoop(EventInstance instance)
+    {
+        if (instance.isValid())
+        {
+            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            instance.release();
+            soundManagerConfig.activeLoopedSounds.Remove(instance);
+        }
+    }
+    public void PlayOneShotWithStatus(EventReference eventReference, string status_)
+    {
+        (float status, string paramName) = FindStatus(status_);
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);
-        instance.setParameterByName("Status", status);
+        instance.setParameterByName(paramName, status);
         instance.start();
         instance.release();
+    }
+    private (float, string) FindStatus(string status_)
+    {
+        if(status_ == "satelite" || status_ == "Satelite")
+        {
+            return (3f, "ShipType");
+        }
+        else if(status_ == "big" || status_ == "Big")
+        {
+            return (2f, "ShipType");
+        }
+        else if (status_ == "mid" || status_ == "Mid")
+        {
+            return (1f, "ShipType");
+        }
+        else if (status_ == "small" || status_ == "Small")
+        {
+            return (0f, "ShipType");
+        }
+        else
+        {
+            return (0f, "Status");
+        }
     }
     public void PlayMusic(EventReference eventReference)
     {
