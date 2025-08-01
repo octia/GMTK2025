@@ -7,6 +7,9 @@ public class Ship : MonoBehaviour
     private Orbit orbit;
 
     [SerializeField]
+    private Orbit preferredOrbit;
+
+    [SerializeField]
     private ShipData shipData;
 
     [SerializeField]
@@ -21,13 +24,12 @@ public class Ship : MonoBehaviour
     [Inject]
     private ShipCollisionManager shipCollisionManager;
 
-    [Inject]
-    private FinanceManager financeManager;
-
     private Rigidbody rb;
     private float lastSpeed = 10;
 
+    public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
+    public Orbit PreferredOrbit => preferredOrbit;
 
     private void Awake()
     {
@@ -43,10 +45,14 @@ public class Ship : MonoBehaviour
         this.orbit = orbit;
     }
 
+    public void ChangePreferredOrbit(Orbit orbit)
+    {
+        preferredOrbit = orbit;
+    }
+
     private void FixedUpdate()
     {
         SimulateMoveStep(Time.fixedDeltaTime * timerManager.TimeScale, true, out _);
-        financeManager.GenerateShipProfit(Time.fixedDeltaTime * timerManager.TimeScale * shipData.Profit);
     }
 
     public void SimulateMoveStep(float timeStep, bool useRigidbody, out Vector3 nearestPoint)

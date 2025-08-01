@@ -913,6 +913,10 @@ PrefabInstance:
       propertyPath: shipData
       value: 
       objectReference: {fileID: 11400000, guid: 1727cc5cff980da4aa3f5c37748c937c, type: 2}
+    - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
+      propertyPath: preferredOrbit
+      value: 
+      objectReference: {fileID: 318722032}
     - target: {fileID: 6044734881398758156, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
       propertyPath: m_Name
       value: Ship 2
@@ -2441,6 +2445,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
       propertyPath: orbit
+      value: 
+      objectReference: {fileID: 1283560932}
+    - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
+      propertyPath: preferredOrbit
       value: 
       objectReference: {fileID: 1283560932}
     - target: {fileID: 6044734881398758156, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
