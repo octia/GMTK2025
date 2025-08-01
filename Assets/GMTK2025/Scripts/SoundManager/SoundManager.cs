@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class SoundManager
 {
     [Inject]
-    private SoundManagerConfig soundManagerConfig;
+    public SoundManagerConfig soundManagerConfig;
     public void ChangeVolume(VolumeType volumeType, float volume)
     {
         switch (volumeType)
@@ -43,6 +43,17 @@ public class SoundManager
             RuntimeManager.GetBus("bus:/" + busName).setVolume(volume);
         }
     }
+    public void PausedGameVolume(bool bIsPaused)
+    {
+        if(bIsPaused)
+        {
+            RuntimeManager.StudioSystem.setParameterByName("Pause", 0f);
+        }
+        else
+        {
+            RuntimeManager.StudioSystem.setParameterByName("Pause", 100f);
+        }
+    }
     private void VolumeGet(string busName, UnityEngine.UI.Slider slider)
     {
         if (RuntimeManager.GetBus("bus:/" + busName).isValid())
@@ -51,18 +62,16 @@ public class SoundManager
             slider.value = volume;
         }
     }
-    public void PlayOneShot(EventReference eventReference)
+    public void PlayOneShot(string path)
     {
-        string eventPath = eventReference.Guid.ToString();
-        RuntimeManager.PlayOneShot(eventPath);
+        RuntimeManager.PlayOneShot(path);
     }
-    public void PlaySfxUiClick()
+    public void PlayOneShotWithStatus(EventReference eventReference, float status)
     {
-        RuntimeManager.PlayOneShot(soundManagerConfig.sfxUiClickPath);
-    }
-    public void PlaySfxUiPointer()
-    {
-        RuntimeManager.PlayOneShot(soundManagerConfig.sfxUiPointerPath);
+        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+        instance.setParameterByName("Status", status);
+        instance.start();
+        instance.release();
     }
     public void PlayMusic(EventReference eventReference)
     {
@@ -73,5 +82,10 @@ public class SoundManager
         }
         soundManagerConfig.musicLoopInstance = RuntimeManager.CreateInstance(eventReference);
         soundManagerConfig.musicLoopInstance.start();
+    }
+    public void UpdateMusicDistance(float distance, float maxDistance)
+    {
+        float volume = distance * 100 / maxDistance;
+        RuntimeManager.StudioSystem.setParameterByName("Distance", volume); //0 is near, 100 is far
     }
 }

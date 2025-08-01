@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="DataFile" id="{b8ef94d6-0e8f-4ba2-9fa6-72ea9d5450a5}">
-		<property name="assetPath">
-			<value>Neutro/sfx_voice_neutro_accept_1.mp3.asd</value>
-		</property>
+	<object class="DataFile" id="{1c2f6010-ba40-499f-9c6e-5eab03b936a5}">
+		<property name="assetPath" />
 		<relationship name="masterAssetFolder">
 			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
 		</relationship>

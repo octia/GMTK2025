@@ -11,11 +11,11 @@ public class ButtonSFX : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     private SoundManager soundManager;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        soundManager.PlaySfxUiPointer();
+        soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUiPointerPath);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        soundManager.PlaySfxUiClick();
+        soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUiClickPath);
     }
 }

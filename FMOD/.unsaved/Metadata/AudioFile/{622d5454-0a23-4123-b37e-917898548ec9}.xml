@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{534adf24-ab39-40e1-adc2-8dc9234b6ba1}">
-		<property name="assetPath">
-			<value>sfx_ship_fly_3.mp3</value>
-		</property>
+	<object class="AudioFile" id="{622d5454-0a23-4123-b37e-917898548ec9}">
+		<property name="assetPath" />
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
 		</property>
@@ -11,7 +9,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>5.1722448979591835</value>
+			<value>8.2024489795918374</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>

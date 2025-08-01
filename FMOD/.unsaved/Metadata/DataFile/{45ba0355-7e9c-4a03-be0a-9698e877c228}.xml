@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="DataFile" id="{19c94d04-497a-43a9-b9e9-b9c1bb58d55d}">
-		<property name="assetPath">
-			<value>Notbot/sfx_voice_neutro_accept_1.mp3.asd</value>
-		</property>
+	<object class="DataFile" id="{45ba0355-7e9c-4a03-be0a-9698e877c228}">
+		<property name="assetPath" />
 		<relationship name="masterAssetFolder">
 			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
 		</relationship>
