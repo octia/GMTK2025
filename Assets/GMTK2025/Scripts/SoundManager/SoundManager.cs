@@ -2,6 +2,7 @@ using FMOD.Studio;
 using FMODUnity;
 using Reflex.Attributes;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SoundManager
 {
@@ -21,11 +22,33 @@ public class SoundManager
                 break;
         }
     }
+    public void ResetVolume(VolumeType volumeType, UnityEngine.UI.Slider slider)
+    {
+        switch (volumeType)
+        {
+            case VolumeType.None:
+                return;
+            case VolumeType.Music:
+                VolumeGet(soundManagerConfig.musicBusName, slider);
+                break;
+            case VolumeType.Sfx:
+                VolumeGet(soundManagerConfig.vfxBusName, slider);
+                break;
+        }
+    }
     private void VolumeChanging(string busName, float volume)
     {
         if (RuntimeManager.GetBus("bus:/" + busName).isValid())
         {
             RuntimeManager.GetBus("bus:/" + busName).setVolume(volume);
+        }
+    }
+    private void VolumeGet(string busName, UnityEngine.UI.Slider slider)
+    {
+        if (RuntimeManager.GetBus("bus:/" + busName).isValid())
+        {
+            RuntimeManager.GetBus("bus:/" + busName).getVolume(out float volume);
+            slider.value = volume;
         }
     }
     public void PlayOneShot(EventReference eventReference)
