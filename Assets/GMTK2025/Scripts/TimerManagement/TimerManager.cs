@@ -12,7 +12,7 @@ public class TimerManager
 
     private float timeScale = 1f;
 
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     private HashSet<object> registeredPausers = new();
 
