@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  <ChainType>k__BackingField: 0
+  <ChainType>k__BackingField: 1
   <Dialogues>k__BackingField:
   - <Message>k__BackingField: Oh wow I can speak now
     <IconOverride>k__BackingField: {fileID: 0}
