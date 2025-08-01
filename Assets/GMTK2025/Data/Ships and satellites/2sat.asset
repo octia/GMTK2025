@@ -19,6 +19,4 @@ MonoBehaviour:
   Clockwise: 0
   Temporary: 0
   Icon: {fileID: 21300000, guid: 7e065f9beca20fb45a449eeb44995a38, type: 3}
-  PilotPreview: {fileID: 0}
-  PilotDialog: 
-  DialogTypeTime: 0
+  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}

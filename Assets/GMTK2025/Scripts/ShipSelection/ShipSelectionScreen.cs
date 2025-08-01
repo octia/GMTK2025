@@ -163,8 +163,9 @@ public class ShipSelectionScreen : MonoBehaviour
             ? "Direction: Clockwise"
             : "Direction: Counter Clockwise";
 
-        pilotPreview.sprite = ship.PilotPreview;
-        pilotDialog.StartDialog(ship.PilotDialog, ship.DialogTypeTime);
+        pilotPreview.sprite = ship.Captain.PilotPortrait;
+        // TODO: Randomize pilot dialog
+        pilotDialog.StartDialog(ship.Captain.PilotDialogs[0], ship.Captain.TypeTime);
     }
 
     public void ResetDialogPanel()
