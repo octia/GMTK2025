@@ -56,7 +56,14 @@ public class SoundManager
         string eventPath = eventReference.Guid.ToString();
         RuntimeManager.PlayOneShot(eventPath);
     }
-
+    public void PlaySfxUiClick()
+    {
+        RuntimeManager.PlayOneShot(soundManagerConfig.sfxUiClickPath);
+    }
+    public void PlaySfxUiPointer()
+    {
+        RuntimeManager.PlayOneShot(soundManagerConfig.sfxUiPointerPath);
+    }
     public void PlayMusic(EventReference eventReference)
     {
         if (soundManagerConfig.musicLoopInstance.isValid())

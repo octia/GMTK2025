@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 6404059226176004073}
   - component: {fileID: 4404138822788268913}
   - component: {fileID: 7857459745778197276}
+  - component: {fileID: 809051417828407665}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -531,6 +532,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &809051417828407665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570131327305308735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventReferencePointer:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  eventReferenceClick:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1579571476239137442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,6 +1573,7 @@ GameObject:
   - component: {fileID: 5468170801413901366}
   - component: {fileID: 7859511940044989008}
   - component: {fileID: 3100986947083428159}
+  - component: {fileID: 4771946671581293058}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -1661,6 +1689,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4771946671581293058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233535224400111900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventReferencePointer:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  eventReferenceClick:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &5999731987222656950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1728,7 @@ GameObject:
   - component: {fileID: 4602062858979551826}
   - component: {fileID: 7451909986596369454}
   - component: {fileID: 489734831445493346}
+  - component: {fileID: 4944507425571614088}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -1802,6 +1857,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneTypeToLoad: 1
+--- !u!114 &4944507425571614088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999731987222656950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventReferencePointer:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  eventReferenceClick:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &7469463781765708073
 GameObject:
   m_ObjectHideFlags: 0

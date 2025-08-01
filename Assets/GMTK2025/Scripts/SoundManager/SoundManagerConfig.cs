@@ -9,5 +9,11 @@ public class SoundManagerConfig : ScriptableObject
     [SerializeField]
     public string vfxBusName = "bus:/SFX";
 
+    [SerializeField]
+    public string sfxUiClickPath = "path";
+
+    [SerializeField]
+    public string sfxUiPointerPath = "path";
+
     public FMOD.Studio.EventInstance musicLoopInstance;
 }
