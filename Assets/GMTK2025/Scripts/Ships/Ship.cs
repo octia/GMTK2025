@@ -1,8 +1,12 @@
+using FMOD.Studio;
+using FMODUnity;
 using Reflex.Attributes;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    public bool IsDestroyed { get; private set; }
+
     [SerializeField]
     private Orbit orbit;
 
@@ -26,6 +30,11 @@ public class Ship : MonoBehaviour
 
     [Inject]
     private ShipCollisionManager shipCollisionManager;
+
+    [Inject]
+    private SoundManager soundManager;
+    private EventInstance orbitEventInstance;
+    private bool bOnce = false;
 
     private Rigidbody rb;
     private float lastSpeed = 10;
@@ -122,8 +131,39 @@ public class Ship : MonoBehaviour
         {
             transform.SetLocalPositionAndRotation(newPosition, newRotation);
         }
-
+        SfxOrbit(nearestPoint, useRigidbody);
         lastSpeed = speed;
+    }
+
+    private void SfxOrbit(Vector3 nearestPoint, bool useRigidbody)
+    {
+        Vector3 distanceToTarget = this.transform.position - nearestPoint;
+        if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && !bOnce)
+        {
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.Size
+            );
+            bOnce = true;
+        }
+        else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)
+        {
+            if (orbitEventInstance.isValid())
+            {
+                orbitEventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+            }
+        }
+        else if (Vector3.SqrMagnitude(distanceToTarget) <= 1 && bOnce)
+        {
+            soundManager.StopLoop(orbitEventInstance);
+            bOnce = false;
+        }
+    }
+
+    public void DestroyShip()
+    {
+        IsDestroyed = true;
+        Destroy(gameObject);
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)

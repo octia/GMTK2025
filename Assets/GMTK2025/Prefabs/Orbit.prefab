@@ -856,8 +856,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 0.5
-  visibleColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  hightlightColor: {r: 1, g: 0.28773582, b: 0.28773582, a: 1}
+  visibleColor: {r: 1, g: 1, b: 1, a: 0.3137255}
+  highlightColor: {r: 1, g: 0.91372555, b: 0, a: 1}
+  selectColor: {r: 0.18828177, g: 1, b: 0, a: 1}
   state: 0
 --- !u!64 &1828543357670475019
 MeshCollider:

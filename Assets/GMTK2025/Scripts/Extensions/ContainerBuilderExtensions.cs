@@ -13,4 +13,10 @@ public static class ContainerBuilderExtensions
     {
         builder.AddSingleton(instance, typeof(T));
     }
+
+    public static void AddScoped<T>(this ContainerBuilder builder)
+        where T : new()
+    {
+        builder.AddScoped(typeof(T));
+    }
 }
