@@ -140,10 +140,13 @@ public class Ship : MonoBehaviour
         Vector3 distanceToTarget = this.transform.position - nearestPoint;
         if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && !bOnce)
         {
+            //The loop of the engine
             orbitEventInstance = soundManager.PlayLoop(
                 soundManager.soundManagerConfig.sfxLoopShipFlyPath,
                 shipData.Size
             );
+            //The one shot of the guy driving the engine
+            soundManager.PlayOneShotWithStatus(soundManager.GetPath(shipData.PilotName), "Move");
             bOnce = true;
         }
         else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)

@@ -219,17 +219,23 @@ public class ShipSelectionScreen : MonoBehaviour
 
     public void SelectNewShip(int value)
     {
+        ShipData ship = null;
         for (int i = 0; i < 3; i++)
         {
             if (i == value)
             {
                 playerManager.SpawnShip(NewShips[i].data, NewShips[i].orbit);
+                ship = NewShips[i].data;
                 continue;
             }
         }
 
         currentNewShipTime = newShipTime;
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
+        if(ship!=null)
+        {
+            soundManager.PlayOneShotWithStatus(soundManager.GetPath(ship.PilotName), "Accept");
+        }
 
         soundManager.PausedGameVolume(false);
         SetScreenActive(false);
