@@ -14,7 +14,7 @@ public class Ship : MonoBehaviour
     private Orbit preferredOrbit;
 
     [SerializeField]
-    public ShipData shipData;
+    private ShipData shipData;
 
     [SerializeField]
     private GameObject modelInstance;
@@ -42,10 +42,6 @@ public class Ship : MonoBehaviour
     public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
-
-    [Space]
-    [SerializeField]
-    private float[] speedTypeToFloat = { 12, 22, 32 };
 
     private void Awake()
     {
@@ -100,20 +96,18 @@ public class Ship : MonoBehaviour
             wantedForward = nearestPoint + forward * 4 - transform.position;
         }
 
-        float shipSpeed = speedTypeToFloat[(int)shipData.Speed];
-
         // Ships move towards their forward vector
         var newPosition = Vector3.MoveTowards(
             transform.position,
             transform.position + transform.forward * 100,
-            timeStep * speed * shipSpeed
+            timeStep * speed * shipData.Speed
         );
 
         // They turn towards a wanted forward vector, with a maximum angle change per fixed step
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
-            timeStep * steerAngleChangeLimit * shipSpeed
+            timeStep * steerAngleChangeLimit * shipData.Speed
         );
 
         // Purely visual up vector
@@ -121,7 +115,7 @@ public class Ship : MonoBehaviour
         var allowedUp = LimitRotation(
             transform.up,
             calculatedUp,
-            timeStep * steerAngleChangeLimit * shipSpeed
+            timeStep * steerAngleChangeLimit * shipData.Speed
         );
 
         var newRotation = Quaternion.LookRotation(
@@ -146,13 +140,10 @@ public class Ship : MonoBehaviour
         Vector3 distanceToTarget = this.transform.position - nearestPoint;
         if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && !bOnce)
         {
-            //The loop of the engine
             orbitEventInstance = soundManager.PlayLoop(
                 soundManager.soundManagerConfig.sfxLoopShipFlyPath,
-                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
+                shipData.Size
             );
-            //The one shot of the guy driving the engine
-            soundManager.PlayOneShotWithStatus(shipData.Captain.sfxPath, "Move");
             bOnce = true;
         }
         else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)

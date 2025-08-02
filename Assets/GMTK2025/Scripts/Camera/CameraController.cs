@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    public bool LockCamera;
-
     [SerializeField]
     private new Transform camera;
 
@@ -22,35 +20,29 @@ public class CameraController : MonoBehaviour
     [Inject]
     private SoundManager soundManager;
 
-    public Vector2 CurrentPosition = new(0f, 60f);
+    [SerializeField]
+    private Vector2 currentPosition = new(0f, 60f);
 
     [SerializeField]
     private Vector2 currentVelocity = new(0f, 0f);
 
-    [HideInInspector]
-    public float CurrentDistanceFromPlanet = 50f;
+    private float currentDistanceFromPlanet = 50f;
 
-    [HideInInspector]
-    public float DesiredDistanceFromPlanet = 50f;
+    private float desiredDistanceFromPlanet = 50f;
 
     private Tween scrollTween;
 
     private void Awake()
     {
-        CurrentDistanceFromPlanet = DesiredDistanceFromPlanet;
+        currentDistanceFromPlanet = desiredDistanceFromPlanet;
     }
 
     private void Update()
     {
-        if (LockCamera)
-        {
-            return;
-        }
-
         HandleMovmenent();
         HandleScroll();
 
-        SetCameraPosition(CurrentPosition, CurrentDistanceFromPlanet);
+        SetCameraPosition(currentPosition, currentDistanceFromPlanet);
     }
 
     private void HandleScroll()
@@ -61,9 +53,9 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        DesiredDistanceFromPlanet += -mouseScroll * config.ScrollSensitivity;
-        DesiredDistanceFromPlanet = Mathf.Clamp(
-            DesiredDistanceFromPlanet,
+        desiredDistanceFromPlanet += -mouseScroll * config.ScrollSensitivity;
+        desiredDistanceFromPlanet = Mathf.Clamp(
+            desiredDistanceFromPlanet,
             config.MinDistanceFromPlanet,
             config.MaxDistanceFromPlanet
         );
@@ -73,14 +65,14 @@ public class CameraController : MonoBehaviour
             scrollTween.Stop();
         }
         scrollTween = Tween.Custom(
-            CurrentDistanceFromPlanet,
-            DesiredDistanceFromPlanet,
+            currentDistanceFromPlanet,
+            desiredDistanceFromPlanet,
             config.ScrollSnapDuration,
-            (value) => CurrentDistanceFromPlanet = value
+            (value) => currentDistanceFromPlanet = value
         );
 
         //Update music distance
-        soundManager.UpdateMusicDistance(CurrentDistanceFromPlanet, config.MaxDistanceFromPlanet);
+        soundManager.UpdateMusicDistance(currentDistanceFromPlanet, config.MaxDistanceFromPlanet);
     }
 
     private void HandleMovmenent()
@@ -106,14 +98,14 @@ public class CameraController : MonoBehaviour
             var mouseDelta = Vector2.Scale(Mouse.current.delta.value, config.DragSensitivity);
             mouseDelta.y *= -1f;
 
-            CurrentPosition.y = Mathf.Clamp(
-                CurrentPosition.y,
+            currentPosition.y = Mathf.Clamp(
+                currentPosition.y,
                 -config.MaxVerticalAngle,
                 config.MaxVerticalAngle
             );
             ClampPosition();
 
-            CurrentPosition += mouseDelta;
+            currentPosition += mouseDelta;
 
             int targetFrameCountPerSecond = Mathf.Max(
                 Application.targetFrameRate,
@@ -133,7 +125,7 @@ public class CameraController : MonoBehaviour
         {
             if (useInertia)
             {
-                CurrentPosition += currentVelocity * Time.deltaTime;
+                currentPosition += currentVelocity * Time.deltaTime;
             }
 
             float horizontalVelocity = Mathf.MoveTowards(
@@ -166,18 +158,18 @@ public class CameraController : MonoBehaviour
 
     private void ClampPosition()
     {
-        if (CurrentPosition.x > 360f)
+        if (currentPosition.x > 360f)
         {
-            CurrentPosition.x -= 360f;
+            currentPosition.x -= 360f;
         }
 
-        if (CurrentPosition.x < 0f)
+        if (currentPosition.x < 0f)
         {
-            CurrentPosition.x += 360f;
+            currentPosition.x += 360f;
         }
     }
 
-    public void SetCameraPosition(Vector2 degreePosition, float distance)
+    private void SetCameraPosition(Vector2 degreePosition, float distance)
     {
         Vector3 direction = -Vector3.forward;
         Quaternion currentRotation = Quaternion.Euler(0f, degreePosition.x, 0f);
