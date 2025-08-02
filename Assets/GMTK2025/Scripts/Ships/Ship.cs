@@ -43,7 +43,9 @@ public class Ship : MonoBehaviour
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
 
-    private readonly float[] speedTypeToFloat = { 12, 22, 32 };
+    [Space]
+    [SerializeField]
+    private float[] speedTypeToFloat = { 12, 22, 32 };
 
     private void Awake()
     {
