@@ -4,38 +4,38 @@ using UnityEngine.InputSystem;
 
 public class ShipDragAndDrop : MonoBehaviour
 {
-    [Inject] private readonly OrbitController orbitController;
-    [SerializeField] private LayerMask shipLayerMask;
-    [SerializeField] private Material ghostMaterial;
+    [Inject]
+    SoundManager soundManager;
 
-    [SerializeField] private float ghostSimulationTimestep = 0.1f;
-    [SerializeField] private int maxSimulationSteps = 30;
-    [SerializeField] private int stepsPerGhost = 2;
+    [Inject]
+    private readonly OrbitController orbitController;
+
+    [SerializeField]
+    private LayerMask shipLayerMask;
+
+    [SerializeField]
+    private Material ghostMaterial;
+
+    [SerializeField]
+    private float ghostSimulationTimestep = 0.1f;
+
+    [SerializeField]
+    private int maxSimulationSteps = 30;
+
+    [SerializeField]
+    private int stepsPerGhost = 2;
+
+    [Inject]
+    private UIManager uiManager;
+
+    [Inject]
+    private TimerManager timerManager;
+
     private Ship[] ghostShips = null;
 
     private Ship draggedShip = null;
     private Orbit targetOrbit = null;
-
-    public Orbit TargetOrbit
-    {
-        get => targetOrbit;
-        set
-        {
-            if (targetOrbit == value)
-            {
-                return;
-            }
-            if (targetOrbit)
-            {
-                targetOrbit.State = Orbit.VisualState.Visible;
-            }
-            if (value)
-            {
-                value.State = Orbit.VisualState.Hightlighted;
-            }
-            targetOrbit = value;
-        }
-    }
+    private bool shouldUpdateVisualStates = false;
 
     private void Awake()
     {
@@ -44,79 +44,174 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void Update()
     {
-        bool hoveringOverShip = MousePicking.PickObjectFromLayer(x => true, shipLayerMask, out Ship ship, out Vector3 _);
+        Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
+        bool hoveringOverShip = MousePicking.PickObjectFromLayer(
+            x => true,
+            shipLayerMask,
+            out Ship ship,
+            out Vector3 _,
+            cam
+        );
 
-        if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
+        if (!timerManager.IsPaused)
         {
-            draggedShip = ship;
-
-            ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
-            ghostShips[0].enabled = false;
-            DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
-            foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+            if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                renderer.sharedMaterial = ghostMaterial;
+                draggedShip = ship;
+                //sfx
+                soundManager.PlayOneShotWithStatus(draggedShip.shipData.Captain.sfxPath, "Idle");
+                //
+                ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
+                ghostShips[0].enabled = false;
+                DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
+                foreach (var _renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+                {
+                    if ((shipLayerMask.value & (1 << _renderer.gameObject.layer)) == 0)
+                    {
+                        continue;
+                    }
+                    _renderer.sharedMaterial = ghostMaterial;
+                }
+                foreach (var particles in ghostShips[0].GetComponentsInChildren<ParticleSystem>())
+                {
+                    DestroyImmediate(particles);
+                }
+                foreach (var trail in ghostShips[0].GetComponentsInChildren<TrailRenderer>())
+                {
+                    DestroyImmediate(trail);
+                }
+                for (int i = 1; i < ghostShips.Length; i++)
+                {
+                    ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
+                }
             }
-
-            for (int i = 1; i < ghostShips.Length; i++)
+            if (draggedShip)
             {
-                ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
+                if (
+                    orbitController.PickUnlockedOrbitWithMouse(
+                        out Orbit orbit,
+                        out Vector3 hitPosition
+                    )
+                )
+                {
+                    ghostShips[0].ChangeOrbit(orbit);
+                    ghostShips[0]
+                        .transform.SetPositionAndRotation(
+                            draggedShip.transform.position,
+                            draggedShip.transform.rotation
+                        );
+                    int ghostIndex = 1;
+                    for (int step = 0; step < maxSimulationSteps; step++)
+                    {
+                        ghostShips[0].SimulateMoveStep(0.1f, false, out Vector3 nearestPoint);
+                        bool duplicateGhostInStep = (step + 1) % stepsPerGhost == 0;
+
+                        if (duplicateGhostInStep)
+                        {
+                            var ghostShip = ghostShips[ghostIndex++];
+                            ghostShip.gameObject.SetActive(true);
+                            ghostShip.transform.SetPositionAndRotation(
+                                ghostShips[0].transform.position,
+                                ghostShips[0].transform.rotation
+                            );
+                        }
+                        if (
+                            Vector3.SqrMagnitude(ghostShips[0].transform.position - nearestPoint)
+                            <= 3f
+                        )
+                        {
+                            break;
+                        }
+                    }
+                    for (int i = ghostIndex; i < ghostShips.Length; i++)
+                    {
+                        ghostShips[i].gameObject.SetActive(false);
+                    }
+                    targetOrbit = orbit;
+                }
+                else
+                {
+                    // Draw ghost in view-parallel plane of dragged ship
+                    var viewPlane = new Plane(
+                        -Camera.main.transform.forward,
+                        draggedShip.transform.position
+                    );
+                    var mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.value);
+                    viewPlane.Raycast(mouseRay, out float distance);
+                    ghostShips[0]
+                        .transform.SetPositionAndRotation(
+                            mouseRay.GetPoint(distance),
+                            draggedShip.transform.rotation
+                        );
+                    for (int i = 1; i < ghostShips.Length; i++)
+                    {
+                        ghostShips[i].gameObject.SetActive(false);
+                    }
+                    targetOrbit = null;
+                }
+            }
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                if (draggedShip && targetOrbit)
+                {
+                    draggedShip.ChangeOrbit(targetOrbit);
+                }
+                foreach (var ghost in ghostShips)
+                {
+                    if (ghost)
+                    {
+                        Destroy(ghost.gameObject);
+                    }
+                }
+                draggedShip = null;
+                targetOrbit = null;
             }
         }
-        if (draggedShip)
-        {
-            if (orbitController.PickUnlockedOrbitWithMouse(out Orbit orbit, out Vector3 hitPosition))
-            {
-                ghostShips[0].ChangeOrbit(orbit);
-                ghostShips[0].transform.SetPositionAndRotation(draggedShip.transform.position, draggedShip.transform.rotation);
-                int ghostIndex = 1;
-                for (int step = 0; step < maxSimulationSteps; step++)
-                {
-                    ghostShips[0].SimulateMoveStep(0.1f, false, out Vector3 nearestPoint);
-                    bool duplicateGhostInStep = (step + 1) % stepsPerGhost == 0;
 
-                    if (duplicateGhostInStep)
-                    {
-                        var ghostShip = ghostShips[ghostIndex++];
-                        ghostShip.gameObject.SetActive(true);
-                        ghostShip.transform.SetPositionAndRotation(ghostShips[0].transform.position, ghostShips[0].transform.rotation);
-                    }
-                    if(Vector3.SqrMagnitude(ghostShips[0].transform.position - nearestPoint) <= 3f)
-                    {
-                        break;
-                    }
-                }
-                for (int i = ghostIndex; i < ghostShips.Length; i++)
-                {
-                    ghostShips[i].gameObject.SetActive(false);
-                }
-                TargetOrbit = orbit;
-            }
-            else
+        if (shouldUpdateVisualStates)
+        {
+            foreach (var orbit in orbitController.GetUnlockedOrbits())
             {
-                // Draw ghost in view-parallel plane of dragged ship
-                var viewPlane = new Plane(-Camera.main.transform.forward, draggedShip.transform.position);
-                var mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.value);
-                viewPlane.Raycast(mouseRay, out float distance);
-                ghostShips[0].transform.SetPositionAndRotation(mouseRay.GetPoint(distance), draggedShip.transform.rotation);
-                TargetOrbit = null;
+                var bestShip = draggedShip ? draggedShip : ship;
+                if (orbit == targetOrbit)
+                {
+                    orbit.Clockwise = bestShip.ShipData.Clockwise;
+                    orbit.State = Orbit.VisualState.Selected;
+                }
+                else if (
+                    (draggedShip && orbit == draggedShip.PreferredOrbit)
+                    || (hoveringOverShip && orbit == ship.PreferredOrbit)
+                )
+                {
+                    orbit.Clockwise = bestShip.ShipData.Clockwise;
+                    orbit.State = Orbit.VisualState.Hightlighted;
+
+                    //SFX
+                    if (
+                        hoveringOverShip
+                        && orbit == ship.PreferredOrbit
+                        && !soundManager.soundManagerConfig.bSfxHoverOnce
+                    )
+                    {
+                        soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxHoverPath);
+                        soundManager.soundManagerConfig.bSfxHoverOnce = true;
+                    }
+                }
+                else
+                {
+                    orbit.State = Orbit.VisualState.Visible;
+                }
             }
         }
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
+
+        // Important to delay update by one frame
+        // That way, orbits will be deselected after all input stops
+        shouldUpdateVisualStates = draggedShip || hoveringOverShip;
+
+        //SFX-needed
+        if (!hoveringOverShip)
         {
-            if (draggedShip && TargetOrbit)
-            {
-                draggedShip.ChangeOrbit(targetOrbit);
-            }
-            foreach (var ghost in ghostShips)
-            {
-                if (ghost)
-                {
-                    Destroy(ghost.gameObject);
-                }
-            }
-            draggedShip = null;
-            TargetOrbit = null;
+            soundManager.soundManagerConfig.bSfxHoverOnce = false;
         }
     }
 }

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
+  m_Name: FirstTutorial
+  m_EditorClassIdentifier: 
+  <ChainType>k__BackingField: 1
+  <Dialogues>k__BackingField:
+  - <Message>k__BackingField: 'Today is my first day as a spaceloop controller.
+
+      It
+      should be pretty easy... all I have to do is make sure that the spaceships
+      don''t crash.'
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: Right now the ships should be safe, but soon, more
+      ships will approach!
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: When that happens, I just have to click on the ships,
+      and move them onto safe orbits, all while keeping them happy.
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: I can also drag with the right click and zoom with
+      the mouse wheel, to get a better view.
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: Ships have preferred orbits - if they're on them, they
+      generate money for the Spaceloop Corporation!
+    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: But that's not as important as not allowing them to
+      crash!
+    <IconOverride>k__BackingField: {fileID: 0}

@@ -1,13 +1,24 @@
+using EditorAttributes;
+using FMOD.Studio;
+using FMODUnity;
 using Reflex.Attributes;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    public bool IsDestroyed { get; private set; }
+
     [SerializeField]
     private Orbit orbit;
 
     [SerializeField]
-    private ShipData shipData;
+    private Orbit preferredOrbit;
+
+    [SerializeField]
+    public ShipData shipData;
+
+    [SerializeField]
+    private GameObject modelInstance;
 
     [SerializeField]
     private float steerAngleChangeLimit = 180;
@@ -22,11 +33,21 @@ public class Ship : MonoBehaviour
     private ShipCollisionManager shipCollisionManager;
 
     [Inject]
-    private FinanceManager financeManager;
+    private SoundManager soundManager;
+    private EventInstance orbitEventInstance;
+    private bool bOnce = false;
 
     private Rigidbody rb;
+    private float lastSpeed = 10;
 
+    public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
+    public Orbit PreferredOrbit => preferredOrbit;
+    [ShowInInspector] public float DistanceToOrbit { get; private set; }
+
+    [Space]
+    [SerializeField]
+    private float[] speedTypeToFloat = { 12, 22, 32 };
 
     private void Awake()
     {
@@ -37,43 +58,64 @@ public class Ship : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (shipData && enabled)
+        {
+            ReinstantiateShipModel();
+        }
+    }
+
     public void ChangeOrbit(Orbit orbit)
     {
         this.orbit = orbit;
     }
 
+    public void ChangePreferredOrbit(Orbit orbit)
+    {
+        preferredOrbit = orbit;
+    }
+
     private void FixedUpdate()
     {
         SimulateMoveStep(Time.fixedDeltaTime * timerManager.TimeScale, true, out _);
-        financeManager.GenerateShipProfit(Time.fixedDeltaTime * timerManager.TimeScale, shipData.Profit, shipData.Speed);
     }
 
     public void SimulateMoveStep(float timeStep, bool useRigidbody, out Vector3 nearestPoint)
     {
-        orbit.GetNearestPoint(
-            transform.position,
-            out nearestPoint,
-            out Vector3 forward,
-            out float speed
-        );
-        if (shipData.Clockwise)
+        float speed = lastSpeed;
+        var wantedForward = transform.forward;
+        nearestPoint = transform.position;
+
+        if (orbit)
         {
-            forward = -forward;
+            orbit.GetNearestPoint(
+                transform.position,
+                out nearestPoint,
+                out Vector3 forward,
+                out speed
+            );
+            if (shipData.Clockwise)
+            {
+                forward = -forward;
+            }
+            wantedForward = nearestPoint + forward * 4 - transform.position;
         }
+
+        float shipSpeed = speedTypeToFloat[(int)shipData.Speed];
 
         // Ships move towards their forward vector
         var newPosition = Vector3.MoveTowards(
             transform.position,
             transform.position + transform.forward * 100,
-            timeStep * speed * shipData.Speed
+            timeStep * speed * shipSpeed
         );
 
         // They turn towards a wanted forward vector, with a maximum angle change per fixed step
-        var wantedForward = nearestPoint + forward * 4 - transform.position;
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
-            timeStep * steerAngleChangeLimit * shipData.Speed
+            timeStep * steerAngleChangeLimit * shipSpeed
         );
 
         // Purely visual up vector
@@ -81,7 +123,7 @@ public class Ship : MonoBehaviour
         var allowedUp = LimitRotation(
             transform.up,
             calculatedUp,
-            timeStep * steerAngleChangeLimit * shipData.Speed
+            timeStep * steerAngleChangeLimit * shipSpeed
         );
 
         var newRotation = Quaternion.LookRotation(
@@ -97,6 +139,45 @@ public class Ship : MonoBehaviour
         {
             transform.SetLocalPositionAndRotation(newPosition, newRotation);
         }
+
+        DistanceToOrbit = orbit ? Vector3.Distance(transform.position, nearestPoint) : Mathf.Infinity;
+
+        UpdateOrbitSFX();
+
+        lastSpeed = speed;
+    }
+
+    private void UpdateOrbitSFX()
+    {
+        if (DistanceToOrbit >= 1 && enabled && !bOnce)
+        {
+            //The loop of the engine
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
+            );
+            //The one shot of the guy driving the engine
+            soundManager.PlayOneShotWithStatus(shipData.Captain.sfxPath, "Move");
+            bOnce = true;
+        }
+        else if (DistanceToOrbit >= 1 && enabled && bOnce)
+        {
+            if (orbitEventInstance.isValid())
+            {
+                orbitEventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+            }
+        }
+        else if (DistanceToOrbit <= 1 && bOnce)
+        {
+            soundManager.StopLoop(orbitEventInstance);
+            bOnce = false;
+        }
+    }
+
+    public void DestroyShip()
+    {
+        IsDestroyed = true;
+        Destroy(gameObject);
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)
@@ -117,10 +198,29 @@ public class Ship : MonoBehaviour
         shipCollisionManager.CollisionHappened(ship1, ship2, point);
     }
 
-    internal void InitializeWith(ShipData ship)
+    private void ReinstantiateShipModel()
+    {
+        Destroy(modelInstance);
+        modelInstance = Instantiate(ShipData.ModelPrefab, transform);
+        modelInstance.name = "ModelInstance";
+        modelInstance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        SetGameobjectLayerRecursive(modelInstance, gameObject.layer);
+    }
+
+    private void SetGameobjectLayerRecursive(GameObject gameObject, int layer)
+    {
+        gameObject.layer = layer;
+        foreach (Transform child in gameObject.transform)
+        {
+            SetGameobjectLayerRecursive(child.gameObject, layer);
+        }
+    }
+
+    internal void InitializeWith(ShipData ship, Orbit preferredOrbit)
     {
         shipData = ship;
-        // todo: CHANGE THIS!!!!
-        orbit = FindAnyObjectByType<Orbit>();
+        this.preferredOrbit = preferredOrbit;
+        orbit = preferredOrbit;
+        ReinstantiateShipModel();
     }
 }
