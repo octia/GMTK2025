@@ -5,6 +5,9 @@ using UnityEngine;
 public class LifeController : MonoBehaviour
 {
     [SerializeField]
+    private TMP_Text text;
+
+    [SerializeField]
     private UnityEngine.UI.Image[] heartsImages = new UnityEngine.UI.Image[3];
 
     [Inject]
@@ -23,7 +26,7 @@ public class LifeController : MonoBehaviour
 
     private void OnLivesChanged()
     {
-        Debug.Log("LIFE CHANGED");
+        text.text = $"Lives: {lifeManager.LifeCount}";
         VisualLifeChange();
     }
 
