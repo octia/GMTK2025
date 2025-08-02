@@ -5,7 +5,7 @@
 			<value>Ship_crash</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{6071f54e-83a7-4fb7-bb7e-e341f5145bbd}</destination>
@@ -118,6 +118,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{0a27e80c-5cd0-4408-8dc6-065131c9bc46}">
 		<relationship name="effects">
+			<destination>{82ebfa92-6e83-410b-828b-ab59ad1d7b0e}</destination>
 			<destination>{d38c883d-8347-4dac-8b3f-7457c76c8a9a}</destination>
 		</relationship>
 	</object>
@@ -139,6 +140,26 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1e57154c-3397-41b2-bbd7-7e7de6f8b963}" />
+	<object class="SpatialiserEffect" id="{82ebfa92-6e83-410b-828b-ab59ad1d7b0e}">
+		<property name="minimumDistance">
+			<value>5.9000001</value>
+		</property>
+		<property name="maximumDistance">
+			<value>90</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>0.699999988</value>
+		</property>
+		<property name="userStereoSeparation">
+			<value>-118.863052</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{d38c883d-8347-4dac-8b3f-7457c76c8a9a}" />
 	<object class="MixerBusFader" id="{f66245ed-0234-4039-bc5e-1848fdae188b}" />
 </objects>
