@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{edfdd7c3-4205-462b-b8a3-5d357948b1cc}">
-		<property name="assetPath" />
+	<object class="AudioFile" id="{113e7b9c-9f48-4238-ba16-22dfc3baaaab}">
+		<property name="assetPath">
+			<value>gmtk25_Idea_1.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
 		</property>
@@ -9,7 +14,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.1232653061224489</value>
+			<value>193.12326530612245</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>

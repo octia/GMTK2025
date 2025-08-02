@@ -18,11 +18,15 @@ public class SoundManagerConfig : ScriptableObject
     public string sfxUiPointerPath = "path";
 
     [SerializeField]
+    public string sfxTextPath = "event:/Text";
+    [SerializeField]
     public string sfxSelectShipPath = "event:/Ship_select";
     [SerializeField]
     public string sfxLoopShipFlyPath = "event:/Ship_fly";
     [SerializeField]
     public string sfxHoverPath = "event:/Orbit_hover";
+    [SerializeField]
+    public string sfxExplosionPath = "event:/Ship_crash";
     public bool bSfxHoverOnce = false;
 
     public FMOD.Studio.EventInstance musicLoopInstance;

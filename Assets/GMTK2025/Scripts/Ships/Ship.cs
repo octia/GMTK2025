@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public bool IsDestroyed { get; private set; }
-
     [SerializeField]
     private Orbit orbit;
 
@@ -63,6 +61,12 @@ public class Ship : MonoBehaviour
         if (shipData && enabled)
         {
             ReinstantiateShipModel();
+
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
+            );
+            bOnce = true;
         }
     }
 
@@ -176,8 +180,15 @@ public class Ship : MonoBehaviour
 
     public void DestroyShip()
     {
-        IsDestroyed = true;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (orbitEventInstance.isValid())
+        {
+            soundManager.StopLoop(orbitEventInstance);
+        }
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)
