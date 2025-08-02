@@ -11,6 +11,13 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     [Space]
     [SerializeField]
+    private string upgradeName;
+    [TextArea]
+    [SerializeField]
+    private string upgradeDescription;
+
+    [Space]
+    [SerializeField]
     private StationUpgradesScreen screen;
 
     [SerializeField]
@@ -59,14 +66,24 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
+            switch (optionIndex)
+            {
+                // Orbit upgrade
+                case 0:
+                    screen.BuyOrbit();
+                    break;
+                // Invalid upgrade
+                default:
+                    return;
+            }
+
             upgradeManager.AddUpgrade();
-            screen.HideScreen();
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!screen.OnScreen)
+        if (!upgradeManager.OnScreen)
         {
             HideOption();
         }
@@ -83,7 +100,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
         statsPanel.transform.position = statsPoint.position;
         statsPanel.FollowTarget = statsPoint;
 
-        screen.UpdateStatsPanel(optionIndex);
+        screen.UpdateStatsPanel(upgradeName, upgradeDescription);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -1,12 +1,10 @@
+using System.Collections.Generic;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 
 public class StationUpgradesScreen : MonoBehaviour
 {
-    public bool OnScreen;
-
-    [Space]
     [SerializeField]
     private GameObject mainScreen;
 
@@ -15,11 +13,28 @@ public class StationUpgradesScreen : MonoBehaviour
     [SerializeField]
     private GameObject buyButton;
 
+    [Space]
+    [SerializeField]
+    private GameObject upgradeOptions;
+    
+    [SerializeField]
+    private GameObject orbitOptions;
+
+    [Space]
+    [SerializeField]
+    private TMP_Text statsDescriptionText;
+
+    [SerializeField]
+    private TMP_Text statsNameText;
+
     [Inject]
     private UpgradeManager upgradeManager;
 
     [Inject]
     private FinanceManager financeManager;
+
+    [Inject]
+    private OrbitController orbitController;
 
     private void Awake()
     {
@@ -43,20 +58,42 @@ public class StationUpgradesScreen : MonoBehaviour
         }
 
         mainScreen.SetActive(true);
-        OnScreen = true;
+        upgradeOptions.SetActive(true);
+        orbitOptions.SetActive(false);
+
+        upgradeManager.OnScreen = true;
 
         buyButton.SetActive(false);
     }
 
-    public void UpdateStatsPanel(int i)
+    public void UpdateStatsPanel(string name, string description)
     {
-        // TODO: Update stats panel depending on the upgrade that is being hovered over
+        statsNameText.text = name;
+        statsDescriptionText.text = description;
+    }
+
+    public void BuyOrbit()
+    {
+        upgradeOptions.SetActive(false);
+        orbitOptions.SetActive(true);
+
+        int n = 3;
+        foreach (var orbit in orbitController.GetLockedOrbits())
+        {
+            orbit.State = Orbit.VisualState.Alert;
+
+            n--;
+            if (n == 0)
+            {
+                break;
+            }
+        }
     }
 
     public void HideScreen()
     {
         mainScreen.SetActive(false);
-        OnScreen = false;
+        upgradeManager.OnScreen = false;
 
         buyButton.SetActive(true);
     }

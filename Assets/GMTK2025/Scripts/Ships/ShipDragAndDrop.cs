@@ -31,6 +31,9 @@ public class ShipDragAndDrop : MonoBehaviour
     [Inject]
     private TimerManager timerManager;
 
+    [Inject]
+    private UpgradeManager upgradeManager;
+
     private Ship[] ghostShips = null;
 
     private Ship draggedShip = null;
@@ -44,6 +47,11 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void Update()
     {
+        if (upgradeManager.OnScreen)
+        {
+            return;
+        }
+
         Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
         bool hoveringOverShip = MousePicking.PickObjectFromLayer(
             x => x.Orbit,

@@ -8,6 +8,8 @@ public class UpgradeManager
 
     public StationUpgradesScreen StationUpgradesScreen;
 
+    public bool OnScreen;
+
     private int upgradeAmount;
     public int UpgradeAmount
     {

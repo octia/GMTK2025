@@ -5,12 +5,15 @@ using UnityEngine.InputSystem;
 
 public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [Space]
     [SerializeField]
-    private GameObject highlightBackground;
+    private StationUpgradesScreen screen;
 
     [SerializeField]
     private GameObject statsPanel;
+
+    [SerializeField]
+    [TextArea]
+    private string description;
 
     [Header("Visual")]
     [SerializeField]
@@ -45,6 +48,7 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
             // Add orbit
+            screen.HideScreen();
         }
     }
 
@@ -52,14 +56,12 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         mouseOver = true;
 
+        // TODO: Show preview of the orbit
+
         // Visual
         Tween.Scale(transform, endValue: onHoverScale, hoverAnimTime);
 
-        highlightBackground.SetActive(true);
-        statsPanel.SetActive(true);
-        statsPanel.transform.position = transform.position + new Vector3(0, statsYOffset);
-
-        // TODO: screen.UpdateStatsPanel(optionIndex);
+        //statsPanel.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -76,10 +78,11 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         mouseOver = false;
 
+        // TODO: Hide preview of orbit
+
         // Visual
         Tween.Scale(transform, endValue: defaultScale, hoverAnimTime);
 
-        highlightBackground.SetActive(false);
-        statsPanel.SetActive(false);
+        //statsPanel.SetActive(false);
     }
 }
