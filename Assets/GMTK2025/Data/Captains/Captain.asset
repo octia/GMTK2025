@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4dc04f15e387640afdaf16bacc159d, type: 3}
-  m_Name: Chirby
+  m_Name: Captain
   m_EditorClassIdentifier: 
-  PilotPortrait: {fileID: 21300000, guid: 000b7333a43b902499198f96012f556c, type: 3}
+  PilotPortrait: {fileID: 21300000, guid: c4ca1c28df67c9c47ac1817a82c48ba2, type: 3}
   TypeTime: 0.05
-  PilotName: Chirby
+  sfxPath: event:/Ship_captain
+  PilotName: captain
   PilotDialogs:
-  - Hallo! Halloo! Is this connect? Oh it is! So... Is it true? They are saying the
-    culinary here is greattt, can I take a look??
+  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
+    THE SIGNAL FOR CONFIRMATION]'

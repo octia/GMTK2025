@@ -231,7 +231,7 @@ public class ShipSelectionScreen : MonoBehaviour
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         if(ship!=null)
         {
-            soundManager.PlayOneShotWithStatus(soundManager.GetPath(ship.Captain.PilotName), "Accept");
+            soundManager.PlayOneShotWithStatus(ship.Captain.sfxPath, "Accept");
         }
 
         soundManager.PausedGameVolume(false);

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: c718909e12de47b418ea14509c2dd5ff, type: 3}
   TypeTime: 0.05
-  PilotName: Robot
+  sfxPath: event:/Ship_robot
+  PilotName: robot
   PilotDialogs:
   - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
     THE SIGNAL FOR CONFIRMATION]'

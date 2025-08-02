@@ -8,6 +8,7 @@ public class CaptainData : ScriptableObject
     public Sprite PilotPortrait;
     
     public float TypeTime;
+    public string sfxPath;
     public string PilotName;
     [TextArea]
     public string[] PilotDialogs;
