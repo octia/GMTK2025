@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: 11ship
   m_EditorClassIdentifier: 
   Orbit: circular
-  Size: small
   Profit: 3
   Speed: 1
   Clockwise: 1
   Temporary: 1
   ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
-  Icon: {fileID: 21300000, guid: 64a0b048887ec8c44ba67484943eaa74, type: 3}
-  Captain: {fileID: 11400000, guid: 98eb899f0a5d42043afb1ec1a1368b42, type: 2}
+  Captain: {fileID: 11400000, guid: 16699f65f78d6dc46ba9a72955e87261, type: 2}

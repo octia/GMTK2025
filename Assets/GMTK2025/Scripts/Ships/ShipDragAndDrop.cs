@@ -31,6 +31,9 @@ public class ShipDragAndDrop : MonoBehaviour
     [Inject]
     private TimerManager timerManager;
 
+    [Inject]
+    private UpgradeManager upgradeManager;
+
     private Ship[] ghostShips = null;
 
     private Ship draggedShip = null;
@@ -44,9 +47,14 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void Update()
     {
+        if (upgradeManager.OnScreen)
+        {
+            return;
+        }
+
         Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
         bool hoveringOverShip = MousePicking.PickObjectFromLayer(
-            x => true,
+            x => x.Orbit,
             shipLayerMask,
             out Ship ship,
             out Vector3 _,
@@ -152,7 +160,7 @@ public class ShipDragAndDrop : MonoBehaviour
             }
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
-                if (draggedShip && targetOrbit)
+                if (draggedShip && draggedShip.Orbit && targetOrbit)
                 {
                     draggedShip.ChangeOrbit(targetOrbit);
                 }
@@ -173,9 +181,10 @@ public class ShipDragAndDrop : MonoBehaviour
             foreach (var orbit in orbitController.GetUnlockedOrbits())
             {
                 var bestShip = draggedShip ? draggedShip : ship;
+                var clockwise = bestShip ? bestShip.ShipData.Clockwise : true;
                 if (orbit == targetOrbit)
                 {
-                    orbit.Clockwise = bestShip.ShipData.Clockwise;
+                    orbit.Clockwise = clockwise;
                     orbit.State = Orbit.VisualState.Selected;
                 }
                 else if (
@@ -183,7 +192,7 @@ public class ShipDragAndDrop : MonoBehaviour
                     || (hoveringOverShip && orbit == ship.PreferredOrbit)
                 )
                 {
-                    orbit.Clockwise = bestShip.ShipData.Clockwise;
+                    orbit.Clockwise = clockwise;
                     orbit.State = Orbit.VisualState.Hightlighted;
 
                     //SFX

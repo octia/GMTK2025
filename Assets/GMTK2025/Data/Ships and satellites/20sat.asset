@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: 20sat
   m_EditorClassIdentifier: 
   Orbit: circular
-  Size: Small
   Profit: 2
   Speed: 1
   Clockwise: 1
   Temporary: 0
   ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
-  Icon: {fileID: 21300000, guid: 64a0b048887ec8c44ba67484943eaa74, type: 3}
-  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}
+  Captain: {fileID: 11400000, guid: 5c404db4cbfe0174db815a354763eb24, type: 2}

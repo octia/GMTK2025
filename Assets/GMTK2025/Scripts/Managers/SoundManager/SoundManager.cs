@@ -8,6 +8,7 @@ public class SoundManager
 {
     [Inject]
     public SoundManagerConfig soundManagerConfig;
+
     public void ChangeVolume(VolumeType volumeType, float volume)
     {
         switch (volumeType)
@@ -22,6 +23,7 @@ public class SoundManager
                 break;
         }
     }
+
     public void PreResetVolume(VolumeType volumeType)
     {
         switch (volumeType)
@@ -36,6 +38,7 @@ public class SoundManager
                 break;
         }
     }
+
     private void VolumeChanging(FMOD.Studio.VCA VCA, float volume)
     {
         if (VCA.isValid())
@@ -43,6 +46,7 @@ public class SoundManager
             VCA.setVolume(volume);
         }
     }
+
     public void PausedGameVolume(bool bIsPaused)
     {
         if (bIsPaused)
@@ -54,6 +58,7 @@ public class SoundManager
             RuntimeManager.StudioSystem.setParameterByName("Pause", 100f);
         }
     }
+
     private void VolumeGet(FMOD.Studio.VCA VCA, VolumeType volumeType)
     {
         if (VCA.isValid())
@@ -73,10 +78,12 @@ public class SoundManager
             }
         }
     }
+
     public void PlayOneShot(string path)
     {
         RuntimeManager.PlayOneShot(path);
     }
+
     public EventInstance PlayLoop(string path, string status_)
     {
         (float status, string paramName) = FindStatus(status_);
@@ -86,6 +93,15 @@ public class SoundManager
         soundManagerConfig.activeLoopedSounds.Add(instance);
         return instance;
     }
+
+    public EventInstance PlayTextLoop()
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(soundManagerConfig.sfxTextPath);
+        instance.start();
+        soundManagerConfig.activeLoopedSounds.Add(instance);
+        return instance;
+    }
+
     public void StopLoop(EventInstance instance)
     {
         if (instance.isValid())
@@ -95,14 +111,15 @@ public class SoundManager
             soundManagerConfig.activeLoopedSounds.Remove(instance);
         }
     }
-    public void PlayOneShotWithStatus(string path, string status_)
+
+    public void PlayOneShotWithStatus(string path, string status)
     {
-        (float status, string paramName) = FindStatus(status_);
         EventInstance instance = RuntimeManager.CreateInstance(path);
-        instance.setParameterByName(paramName, status);
+        instance.setParameterByNameWithLabel("Status", status);
         instance.start();
         instance.release();
     }
+
     private (float, string) FindStatus(string status_)
     {
         if (status_ == "satelite" || status_ == "Satelite")
@@ -126,6 +143,7 @@ public class SoundManager
             return (0f, "Status");
         }
     }
+
     public void PlayMusic(EventReference eventReference)
     {
         if (soundManagerConfig.musicLoopInstance.isValid())
@@ -136,10 +154,14 @@ public class SoundManager
         soundManagerConfig.musicLoopInstance = RuntimeManager.CreateInstance(eventReference);
         soundManagerConfig.musicLoopInstance.start();
     }
-    public void UpdateMusicDistance(float distance, float maxDistance)
+
+    public void SetMusic(string type)
     {
-        float volume = distance * 100 / maxDistance;
-        RuntimeManager.StudioSystem.setParameterByName("Distance", volume); //0 is near, 100 is far
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel("Gamestate", type);
+    }
+
+    public void UpdateMusicDistance(float normalizedDistance)
+    {
+        RuntimeManager.StudioSystem.setParameterByName("Distance", normalizedDistance * 100); //0 is near, 100 is far
     }
 }
-

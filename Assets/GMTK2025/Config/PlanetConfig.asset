@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3f1765e8f047947b58e4241b6b2d6b, type: 3}
+  m_Name: PlanetConfig
+  m_EditorClassIdentifier: 
+  planetConfigurations:
+  - prefab: {fileID: 2635751248725940804, guid: 6c0e35870e2406f45860ef7ac72443f5, type: 3}
+    material: {fileID: 2100000, guid: 7bbf0270229a2cf43bd1aae75a4e07fc, type: 2}
+    useRandomRotation: 0
+  - prefab: {fileID: 2635751248725940804, guid: 6c0e35870e2406f45860ef7ac72443f5, type: 3}
+    material: {fileID: 2100000, guid: 00d8c57018d3c5c47acae9363ceb7736, type: 2}
+    useRandomRotation: 0
+  - prefab: {fileID: 2635751248725940804, guid: 6c0e35870e2406f45860ef7ac72443f5, type: 3}
+    material: {fileID: 2100000, guid: 27414739e8ee46e4e8b714732115194f, type: 2}
+    useRandomRotation: 0
+  - prefab: {fileID: 8872279184722686018, guid: fa43c62a589375f4291ef20155a4e33c, type: 3}
+    material: {fileID: 2100000, guid: 4d26256bbece430418e321d2980f7995, type: 2}
+    useRandomRotation: 1
+  - prefab: {fileID: 8872279184722686018, guid: fa43c62a589375f4291ef20155a4e33c, type: 3}
+    material: {fileID: 2100000, guid: f97b6059c92c6454cb4e7568551b855b, type: 2}
+    useRandomRotation: 1
+  - prefab: {fileID: 8872279184722686018, guid: fa43c62a589375f4291ef20155a4e33c, type: 3}
+    material: {fileID: 2100000, guid: f97b6059c92c6454cb4e7568551b855b, type: 2}
+    useRandomRotation: 1

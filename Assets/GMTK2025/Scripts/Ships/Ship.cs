@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public bool IsDestroyed { get; private set; }
-
     [SerializeField]
     private Orbit orbit;
 
@@ -43,7 +41,9 @@ public class Ship : MonoBehaviour
     public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
-    [ShowInInspector] public float DistanceToOrbit { get; private set; }
+
+    [ShowInInspector]
+    public float DistanceToOrbit { get; private set; }
 
     [Space]
     [SerializeField]
@@ -63,6 +63,12 @@ public class Ship : MonoBehaviour
         if (shipData && enabled)
         {
             ReinstantiateShipModel();
+
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
+            );
+            bOnce = true;
         }
     }
 
@@ -140,7 +146,9 @@ public class Ship : MonoBehaviour
             transform.SetLocalPositionAndRotation(newPosition, newRotation);
         }
 
-        DistanceToOrbit = orbit ? Vector3.Distance(transform.position, nearestPoint) : Mathf.Infinity;
+        DistanceToOrbit = orbit
+            ? Vector3.Distance(transform.position, nearestPoint)
+            : Mathf.Infinity;
 
         UpdateOrbitSFX();
 
@@ -176,8 +184,15 @@ public class Ship : MonoBehaviour
 
     public void DestroyShip()
     {
-        IsDestroyed = true;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (orbitEventInstance.isValid())
+        {
+            soundManager.StopLoop(orbitEventInstance);
+        }
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)

@@ -1,4 +1,5 @@
 using EditorAttributes;
+using PrimeTween;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -7,11 +8,18 @@ public class LeaveTimer : MonoBehaviour
 {
     private Ship ship;
 
-    [Inject] TimerManager timerManager;
+    [Inject]
+    TimerManager timerManager;
 
-    [ShowInInspector] private float initialTime = 0;
-    [ShowInInspector] private float timeLeft = 0;
-    [SerializeField] private BarIndicator barIndicator;
+    [ShowInInspector]
+    private float initialTime = 0;
+
+    [ShowInInspector]
+    private float timeLeft = 0;
+
+    [SerializeField]
+    private BarIndicator barIndicator;
+    Sequence destroySequence;
 
     private void Awake()
     {
@@ -37,10 +45,20 @@ public class LeaveTimer : MonoBehaviour
         {
             timeLeft = 0;
             ship.ChangeOrbit(null);
+            destroySequence = Sequence
+                .Create()
+                .ChainDelay(12.0f)
+                .Chain(Tween.Scale(transform, 0, 3.0f))
+                .OnComplete(() => Destroy(gameObject));
         }
         if (barIndicator)
         {
             barIndicator.SetRatio(timeLeft / initialTime);
         }
+    }
+
+    private void OnDestroy()
+    {
+        destroySequence.Stop();
     }
 }

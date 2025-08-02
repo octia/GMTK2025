@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: 15ship
   m_EditorClassIdentifier: 
   Orbit: elliptical
-  Size: large
   Profit: 5
   Speed: 2
   Clockwise: 0
   Temporary: 1
   ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Icon: {fileID: 21300000, guid: 7e065f9beca20fb45a449eeb44995a38, type: 3}
-  Captain: {fileID: 11400000, guid: 59feb4b1be7e8d242a09dd9a24c99222, type: 2}
+  Captain: {fileID: 11400000, guid: 1dde31a3842380f4eb4d4adfa7d5d7cd, type: 2}
