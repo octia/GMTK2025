@@ -13,6 +13,9 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
     private GameObject dialogueBox;
 
     [SerializeField]
+    private GameObject interactionBlocker;
+
+    [SerializeField]
     private TMP_Text dialogueTextBox;
 
     [SerializeField]
@@ -81,13 +84,24 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
         if (currentDialogueIndex >= currentChain.Dialogues.Count)
         {
             SetEnabled(false);
+            SetInteractionBlockEnabled(false);
             currentChain = null;
             return;
+        }
+
+        if (currentChain.ShouldBlockInteraction)
+        {
+            SetInteractionBlockEnabled(true);
         }
 
         var currentDialogue = currentChain.Dialogues[currentDialogueIndex];
         PlayText(currentDialogue.Message, config.CharactersPerSecond, currentDialogue.IconOverride);
         currentDialogueIndex++;
+    }
+
+    private void SetInteractionBlockEnabled(bool enabled)
+    {
+        interactionBlocker.SetActive(enabled);
     }
 
     public void OnPointerClick(PointerEventData eventData)

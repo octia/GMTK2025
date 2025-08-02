@@ -4,22 +4,19 @@ using UnityEngine;
 public class ShipCollisionManager
 {
     [Inject]
-    private SceneManager sceneManager;
+    private LifeManager lifeManager;
 
     public void CollisionHappened(Ship ship1, Ship ship2, Vector3 collisionPoint)
     {
         // Destroy ships, instantiate explosion from here.
         // Ensure duplicates are ignored.
 
-        sceneManager.LoadGameplay();
+        if (!ship1.IsDestroyed && !ship2.IsDestroyed)
+        {
+            ship1.DestroyShip();
+            ship2.DestroyShip();
 
-        if (ship1)
-        {
-            Object.Destroy(ship1.gameObject);
-        }
-        if (ship2)
-        {
-            Object.Destroy(ship2.gameObject);
+            lifeManager.LoseLife();
         }
     }
 }

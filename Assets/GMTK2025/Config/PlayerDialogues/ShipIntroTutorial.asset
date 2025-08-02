@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
   m_Name: ShipIntroTutorial
   m_EditorClassIdentifier: 
+  <ShouldBlockInteraction>k__BackingField: 1
   <ChainType>k__BackingField: 2
   <Dialogues>k__BackingField:
   - <Message>k__BackingField: Oh, several ships want to approach! I have to pick
