@@ -1980,6 +1980,7 @@ GameObject:
   - component: {fileID: 592041975}
   - component: {fileID: 592041974}
   - component: {fileID: 592041973}
+  - component: {fileID: 592041976}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -2070,6 +2071,38 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &592041976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592041971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd46c375f4b034f45835612558f53f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bIsOnMainMenu: 1
+  goEnable: {fileID: 0}
+  goOptions: {fileID: 0}
+  goPause: {fileID: 0}
+  pauseAction:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8f8935b2-d3c9-45cb-bced-4e023a20c5a4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  musicEventReference:
+    Guid:
+      Data1: -2056520282
+      Data2: 1090674567
+      Data3: -195325563
+      Data4: -2113150611
+    Path: event:/Music_track_main
 --- !u!1001 &593160261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4518,6 +4551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeType: 1
+  thisSlider: {fileID: 865942270}
+  thisOtherSlider: {fileID: 0}
 --- !u!1 &892680044
 GameObject:
   m_ObjectHideFlags: 0
@@ -6190,6 +6225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeType: 2
+  thisSlider: {fileID: 1623248105}
+  thisOtherSlider: {fileID: 0}
 --- !u!1 &1742554920
 GameObject:
   m_ObjectHideFlags: 0

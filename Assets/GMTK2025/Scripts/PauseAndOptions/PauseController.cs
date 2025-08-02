@@ -6,9 +6,12 @@ using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
+    public bool bIsOnMainMenu = false;
     [Inject]
     private SoundManager soundManager;
     [SerializeField] private GameObject goEnable;
+    [SerializeField] private GameObject goOptions;
+    [SerializeField] private GameObject goPause;
     private bool bOptionsOpen = false;
     private bool bPaused = false;
     [SerializeField] private InputAction pauseAction;
@@ -26,7 +29,7 @@ public class PauseController : MonoBehaviour
     }
     private void Update()
     {
-        if (pauseAction.triggered)
+        if (pauseAction.triggered && !bIsOnMainMenu)
         {
             PauseGame();
         }
@@ -48,6 +51,8 @@ public class PauseController : MonoBehaviour
     public void OptionsGame()
     {
         bOptionsOpen = !bOptionsOpen;
+        goOptions.SetActive(bOptionsOpen);
+        goPause.SetActive(!bOptionsOpen);
         //Book is popping out of nowhere
     }
 }
