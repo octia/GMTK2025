@@ -12,6 +12,7 @@ public class Orbit : MonoBehaviour
     [SerializeField] private Color visibleColor = Color.white;
     [FormerlySerializedAs("hightlightColor"), SerializeField] private Color highlightColor = Color.white;
     [SerializeField] private Color selectColor;
+    [SerializeField] private Color alertColor;
 
     float fillValue = 0.5f;
     float scrollValue = 0;
@@ -78,11 +79,12 @@ public class Orbit : MonoBehaviour
             VisualState.Visible => visibleColor,
             VisualState.Hightlighted => highlightColor,
             VisualState.Selected => selectColor,
+            VisualState.Alert => alertColor,
             _ => new Color(1, 1, 1, 0),
         };
         var targetFill = newState switch
         {
-            VisualState.Hightlighted => 0.45f,
+            VisualState.Hightlighted or VisualState.Alert => 0.45f,
             VisualState.Selected => 0.6f,
             _ => 0.3f,
         };
@@ -130,6 +132,7 @@ public class Orbit : MonoBehaviour
         Invisible,
         Visible,
         Hightlighted,
-        Selected
+        Selected,
+        Alert
     }
 }
