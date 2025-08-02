@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5890792220492062621}
+  - component: {fileID: 2067845953086879157}
   m_Layer: 11
   m_Name: MidShip_001_Djo
   m_TagString: Untagged
@@ -35,6 +36,19 @@ Transform:
   - {fileID: 2865396008491368120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2067845953086879157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228420899863059082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0739a811c5f9a46ba29911ecd324e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Size: 1
 --- !u!1001 &2326486346539882835
 PrefabInstance:
   m_ObjectHideFlags: 0

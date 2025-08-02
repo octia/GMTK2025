@@ -1,5 +1,6 @@
 using Reflex.Attributes;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -196,7 +197,7 @@ public class ShipSelectionScreen : MonoBehaviour
         temporaryText.gameObject.SetActive(ship.Temporary);
         nameText.text = ship.name;
         orbitText.text = "Preferred Orbital: " + ship.Orbit;
-        sizeText.text = "Size: " + ship.Size;
+        sizeText.text = "Size: " + ship.ModelPrefab.GetComponent<ShipModel>().Size;
         profitText.text = "Profit: " + ship.Profit + "$";
         speedText.text = "Speed: " + ship.Speed;
         directionText.text = ship.Clockwise

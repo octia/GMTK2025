@@ -149,7 +149,7 @@ public class Ship : MonoBehaviour
             //The loop of the engine
             orbitEventInstance = soundManager.PlayLoop(
                 soundManager.soundManagerConfig.sfxLoopShipFlyPath,
-                shipData.Size
+                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
             );
             //The one shot of the guy driving the engine
             soundManager.PlayOneShotWithStatus(shipData.Captain.sfxPath, "Move");
