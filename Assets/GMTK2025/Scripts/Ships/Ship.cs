@@ -63,6 +63,12 @@ public class Ship : MonoBehaviour
         if (shipData && enabled)
         {
             ReinstantiateShipModel();
+
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
+            );
+            bOnce = true;
         }
     }
 
@@ -178,6 +184,14 @@ public class Ship : MonoBehaviour
     {
         IsDestroyed = true;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (orbitEventInstance.isValid())
+        {
+            soundManager.StopLoop(orbitEventInstance);
+        }
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)
