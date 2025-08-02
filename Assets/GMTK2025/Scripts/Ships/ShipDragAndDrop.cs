@@ -37,32 +37,35 @@ public class ShipDragAndDrop : MonoBehaviour
 
         if (!timerManager.IsPaused)
         {
-            draggedShip = ship;
-            //sfx
-            soundManager.PlayOneShotWithStatus(soundManager.GetPath(draggedShip.ShipData.Captain.PilotName), "Idle");
-            //
-            ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
-            ghostShips[0].enabled = false;
-            DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
-            foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+            if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 draggedShip = ship;
-
+                //sfx
+                soundManager.PlayOneShotWithStatus(draggedShip.shipData.Captain.sfxPath, "Idle");
+                //
                 ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
                 ghostShips[0].enabled = false;
                 DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
-                foreach (var _renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+                foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
                 {
-                    if ((shipLayerMask.value & (1 << _renderer.gameObject.layer)) == 0)
-                    {
-                        continue;
-                    }
-                    _renderer.sharedMaterial = ghostMaterial;
-                }
+                    draggedShip = ship;
 
-                for (int i = 1; i < ghostShips.Length; i++)
-                {
-                    ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
+                    ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
+                    ghostShips[0].enabled = false;
+                    DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
+                    foreach (var _renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+                    {
+                        if ((shipLayerMask.value & (1 << _renderer.gameObject.layer)) == 0)
+                        {
+                            continue;
+                        }
+                        _renderer.sharedMaterial = ghostMaterial;
+                    }
+
+                    for (int i = 1; i < ghostShips.Length; i++)
+                    {
+                        ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
+                    }
                 }
             }
             if (draggedShip)

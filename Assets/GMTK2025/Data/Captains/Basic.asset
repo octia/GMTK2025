@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4dc04f15e387640afdaf16bacc159d, type: 3}
-  m_Name: Bat
+  m_Name: Basic
   m_EditorClassIdentifier: 
-  PilotPortrait: {fileID: 21300000, guid: 45d32306a60d748419960c2ccad12f41, type: 3}
+  PilotPortrait: {fileID: 21300000, guid: c4ca1c28df67c9c47ac1817a82c48ba2, type: 3}
   TypeTime: 0.05
-  PilotName: Nat
+  sfxPath: event:/Ship_basic
+  PilotName: basic
   PilotDialogs:
-  - Hey! I wanted to know if you had some space for my little ship. I know what you
-    are thinking, I know my reputation, I swear I wont bite any of the employees.
+  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
+    THE SIGNAL FOR CONFIRMATION]'

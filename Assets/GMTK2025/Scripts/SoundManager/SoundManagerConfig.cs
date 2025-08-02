@@ -22,13 +22,6 @@ public class SoundManagerConfig : ScriptableObject
     [SerializeField]
     public string sfxHoverPath = "event:/Orbit_hover";
     public bool bSfxHoverOnce = false;
-    [System.Serializable]
-    public struct sfxSpaceDriverPath
-    {
-        public string name;
-        public string sfxPath;
-    }
-    public List<sfxSpaceDriverPath> sfxDriverPath = new List<sfxSpaceDriverPath>();
 
     public FMOD.Studio.EventInstance musicLoopInstance;
     public List<EventInstance> activeLoopedSounds = new List<EventInstance>();

@@ -67,17 +67,6 @@ public class SoundManager
     {
         RuntimeManager.PlayOneShot(path);
     }
-    public string GetPath(string name)
-    {
-        foreach (var path in soundManagerConfig.sfxDriverPath)
-        {
-            if (path.name == name)
-            {
-                return path.sfxPath;
-            }
-        }
-        return "event:/Error";
-    }
     public EventInstance PlayLoop(string path, string status_)
     {
         (float status, string paramName) = FindStatus(status_);

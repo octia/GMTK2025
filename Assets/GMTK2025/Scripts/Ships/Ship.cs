@@ -14,7 +14,7 @@ public class Ship : MonoBehaviour
     private Orbit preferredOrbit;
 
     [SerializeField]
-    private ShipData shipData;
+    public ShipData shipData;
 
     [SerializeField]
     private GameObject modelInstance;
@@ -146,7 +146,7 @@ public class Ship : MonoBehaviour
                 shipData.Size
             );
             //The one shot of the guy driving the engine
-            soundManager.PlayOneShotWithStatus(soundManager.GetPath(shipData.Captain.PilotName), "Move");
+            soundManager.PlayOneShotWithStatus(shipData.Captain.sfxPath, "Move");
             bOnce = true;
         }
         else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)
