@@ -1,4 +1,5 @@
 using PrimeTween;
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -44,6 +45,9 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     [SerializeField]
     private float orbitAnimHoverSpeed;
+
+    [Inject]
+    private OrbitController orbitController;
 
     private bool mouseOver;
 
@@ -94,6 +98,13 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         statsPanel.FollowTarget = statsPoint;
 
         screen.UpdateStatsPanel(optionIndex);
+
+        // Change visiblity of each of the orbits based on this option
+        var preferredOrbit = screen.NewShips[optionIndex].orbit;
+        foreach (var orbit in orbitController.GetUnlockedOrbits())
+        {
+            orbit.State = preferredOrbit == orbit ? Orbit.VisualState.Hightlighted : Orbit.VisualState.Visible;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -122,5 +133,11 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
         highlightBackground.SetActive(false);
         statsPanel.gameObject.SetActive(false);
+        
+        // Change visiblity of each of the orbits based on this option
+        foreach (var orbit in orbitController.GetUnlockedOrbits())
+        {
+            orbit.State = Orbit.VisualState.Visible;
+        }
     }
 }

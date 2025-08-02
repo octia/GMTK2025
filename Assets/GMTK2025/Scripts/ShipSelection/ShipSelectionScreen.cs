@@ -1,4 +1,3 @@
-using PrimeTween;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -83,7 +82,7 @@ public class ShipSelectionScreen : MonoBehaviour
     // ...
     private float currentNewShipTime;
 
-    private (ShipData data, Orbit orbit)[] newShips;
+    public (ShipData data, Orbit orbit)[] NewShips;
 
     // Initial
     private Animator anim;
@@ -122,11 +121,11 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private void StartSelection()
     {
-        newShips = playerManager.DrawShips(3);
+        NewShips = playerManager.DrawShips(3);
 
         for (int i = 0; i < 3; i++)
         {
-            selectionOptions[i].ChangeSelectionShip(newShips[i].data);
+            selectionOptions[i].ChangeSelectionShip(NewShips[i].data);
         }
 
         soundManager.PausedGameVolume(true);
@@ -190,7 +189,7 @@ public class ShipSelectionScreen : MonoBehaviour
             return;
         }
 
-        ShipData ship = newShips[i].data;
+        ShipData ship = NewShips[i].data;
 
         temporaryText.gameObject.SetActive(ship.Temporary);
         nameText.text = ship.name;
@@ -207,10 +206,15 @@ public class ShipSelectionScreen : MonoBehaviour
         pilotDialog.StartDialog(ship.Captain.PilotDialogs[0], ship.Captain.TypeTime);
     }
 
+    private void OnEnable()
+    {
+        ResetDialogPanel();  
+    }
+
     public void ResetDialogPanel()
     {
         pilotPreview.sprite = defaultPilotPreview;
-        pilotDialog.StartDialog("* ...", 0.05f);
+        pilotDialog.StartDialog("...", 0.05f);
     }
 
     public void SelectNewShip(int value)
@@ -219,7 +223,7 @@ public class ShipSelectionScreen : MonoBehaviour
         {
             if (i == value)
             {
-                playerManager.SpawnShip(newShips[i].data, newShips[i].orbit);
+                playerManager.SpawnShip(NewShips[i].data, NewShips[i].orbit);
                 continue;
             }
         }
