@@ -79,6 +79,9 @@ public class ShipSelectionScreen : MonoBehaviour
     [Inject]
     private PlayerDialogueController dialogueController;
 
+    [Inject]
+    private CameraController mainCam;
+
     private bool hasTutorialPlayed = false;
 
     // ...
@@ -91,8 +94,6 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private Sprite defaultPilotPreview;
 
-    private CameraController mainCam;
-
     private void Start()
     {
         currentNewShipTime = newShipTime;
@@ -100,8 +101,6 @@ public class ShipSelectionScreen : MonoBehaviour
         anim = GetComponent<Animator>();
 
         defaultPilotPreview = pilotPreview.sprite;
-
-        mainCam = Camera.main.GetComponent<CameraController>();
     }
 
     private void Update()
@@ -151,21 +150,13 @@ public class ShipSelectionScreen : MonoBehaviour
 
             ResetDialogPanel();
 
-            shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
-            shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
-            shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
-
-            uiManager.UICamera = shipSelectionCam.GetComponent<Camera>();
+            mainCam.SetCameraOffset(true);
         }
         else
         {
             anim.Play("Exit");
 
-            shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
-            shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
-            shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
-
-            uiManager.UICamera = null;
+            mainCam.SetCameraOffset(false);
         }
     }
 
@@ -177,7 +168,6 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         stationUpgradesScreen.SetActive(!OnScreen);
-        mainCam.LockCamera = OnScreen;
     }
 
     public void VisualizeButton()
