@@ -74,7 +74,7 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void ChangeSelectionShip(ShipData ship)
     {
-        icon.sprite = ship.Icon;
+        icon.sprite = ship.ModelPrefab.GetComponent<ShipModel>().Icon;
         nameText.text = ship.name;
     }
 

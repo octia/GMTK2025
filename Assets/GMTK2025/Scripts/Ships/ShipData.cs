@@ -1,4 +1,3 @@
-using EditorAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GMTK2025/Data/ShipData", fileName = "ShipData")]
@@ -10,10 +9,6 @@ public class ShipData : ScriptableObject
     public bool Clockwise;
     public bool Temporary;
     public GameObject ModelPrefab;
-
-    [Space]
-    [AssetPreview]
-    public Sprite Icon;
     
     [Space]
     public CaptainData Captain;
