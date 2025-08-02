@@ -1,0 +1,26 @@
+using EditorAttributes;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "GMTK2025/Data/ShipData", fileName = "ShipData")]
+public class ShipData : ScriptableObject
+{
+    public string Orbit = "WIP";
+    public string Size;
+    public int Profit;
+    public int Speed;
+    public bool Clockwise;
+    public bool Temporary;
+    public GameObject ModelPrefab;
+
+    [Space]
+    [AssetPreview]
+    public Sprite Icon;
+
+    [Space]
+    [AssetPreview]
+    public Sprite PilotPreview;
+
+    [TextArea]
+    public string PilotDialog;
+    public float DialogTypeTime;
+}

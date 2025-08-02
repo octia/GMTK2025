@@ -1,5 +1,4 @@
 using PrimeTween;
-using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -46,9 +45,6 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
     [SerializeField]
     private float orbitAnimHoverSpeed;
 
-    [Inject]
-    private OrbitController orbitController;
-
     private bool mouseOver;
 
     // Initial
@@ -74,7 +70,7 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void ChangeSelectionShip(ShipData ship)
     {
-        icon.sprite = ship.ModelPrefab.GetComponent<ShipModel>().Icon;
+        icon.sprite = ship.Icon;
         nameText.text = ship.name;
     }
 
@@ -98,16 +94,6 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         statsPanel.FollowTarget = statsPoint;
 
         screen.UpdateStatsPanel(optionIndex);
-
-        // Change visiblity of each of the orbits based on this option
-        var preferredOrbit = screen.NewShips[optionIndex].orbit;
-        foreach (var orbit in orbitController.GetUnlockedOrbits())
-        {
-            orbit.State =
-                preferredOrbit == orbit
-                    ? Orbit.VisualState.Hightlighted
-                    : Orbit.VisualState.Visible;
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -127,20 +113,11 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         // Visual
         Tween.Scale(transform, endValue: defaultScale, hoverAnimTime);
 
-        if (screen.OnScreen)
-        {
-            screen.ResetDialogPanel();
-        }
+        screen.ResetDialogPanel();
 
         orbitAnim.speed = 1;
 
         highlightBackground.SetActive(false);
         statsPanel.gameObject.SetActive(false);
-
-        // Change visiblity of each of the orbits based on this option
-        foreach (var orbit in orbitController.GetUnlockedOrbits())
-        {
-            orbit.State = Orbit.VisualState.Visible;
-        }
     }
 }

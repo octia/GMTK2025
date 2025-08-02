@@ -1,6 +1,6 @@
+using System.IO;
 using Reflex.Attributes;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,9 +19,6 @@ public class ShipSelectionScreen : MonoBehaviour
     private ShipSelectionOption[] selectionOptions;
 
     [Space]
-    [SerializeField]
-    private CameraController shipSelectionCam;
-
     [SerializeField]
     private GameObject background;
 
@@ -74,9 +71,6 @@ public class ShipSelectionScreen : MonoBehaviour
     private SoundManager soundManager;
 
     [Inject]
-    private UIManager uiManager;
-
-    [Inject]
     private PlayerDialogueController dialogueController;
 
     private bool hasTutorialPlayed = false;
@@ -84,14 +78,12 @@ public class ShipSelectionScreen : MonoBehaviour
     // ...
     private float currentNewShipTime;
 
-    public (ShipData data, Orbit orbit)[] NewShips;
+    private (ShipData data, Orbit orbit)[] newShips;
 
     // Initial
     private Animator anim;
 
     private Sprite defaultPilotPreview;
-
-    private CameraController mainCam;
 
     private void Start()
     {
@@ -100,8 +92,6 @@ public class ShipSelectionScreen : MonoBehaviour
         anim = GetComponent<Animator>();
 
         defaultPilotPreview = pilotPreview.sprite;
-
-        mainCam = Camera.main.GetComponent<CameraController>();
     }
 
     private void Update()
@@ -123,11 +113,11 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private void StartSelection()
     {
-        NewShips = playerManager.DrawShips(3);
+        newShips = playerManager.DrawShips(3);
 
         for (int i = 0; i < 3; i++)
         {
-            selectionOptions[i].ChangeSelectionShip(NewShips[i].data);
+            selectionOptions[i].ChangeSelectionShip(newShips[i].data);
         }
 
         soundManager.PausedGameVolume(true);
@@ -148,24 +138,10 @@ public class ShipSelectionScreen : MonoBehaviour
         {
             ShowScreen();
             anim.Play("Enter");
-
-            ResetDialogPanel();
-
-            shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
-            shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
-            shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
-
-            uiManager.UICamera = shipSelectionCam.GetComponent<Camera>();
         }
         else
         {
             anim.Play("Exit");
-
-            shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
-            shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
-            shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
-
-            uiManager.UICamera = null;
         }
     }
 
@@ -177,7 +153,6 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         stationUpgradesScreen.SetActive(!OnScreen);
-        mainCam.LockCamera = OnScreen;
     }
 
     public void VisualizeButton()
@@ -188,53 +163,41 @@ public class ShipSelectionScreen : MonoBehaviour
 
     public void UpdateStatsPanel(int i)
     {
-        if (!OnScreen)
-        {
-            return;
-        }
-
-        ShipData ship = NewShips[i].data;
+        ShipData ship = newShips[i].data;
 
         temporaryText.gameObject.SetActive(ship.Temporary);
         nameText.text = ship.name;
         orbitText.text = "Preferred Orbital: " + ship.Orbit;
-        sizeText.text = "Size: " + ship.ModelPrefab.GetComponent<ShipModel>().Size;
+        sizeText.text = "Size: " + ship.Size;
         profitText.text = "Profit: " + ship.Profit + "$";
         speedText.text = "Speed: " + ship.Speed;
         directionText.text = ship.Clockwise
             ? "Direction: Clockwise"
             : "Direction: Counter Clockwise";
 
-        pilotPreview.sprite = ship.Captain.PilotPortrait;
-        // TODO: Randomize pilot dialog
-        pilotDialog.StartDialog(ship.Captain.PilotDialogs[0], ship.Captain.TypeTime);
+        pilotPreview.sprite = ship.PilotPreview;
+        pilotDialog.StartDialog(ship.PilotDialog, ship.DialogTypeTime);
     }
 
     public void ResetDialogPanel()
     {
         pilotPreview.sprite = defaultPilotPreview;
-        pilotDialog.StartDialog("...", 0.05f);
+        pilotDialog.StartDialog("* ...", 0.05f);
     }
 
     public void SelectNewShip(int value)
     {
-        ShipData ship = null;
         for (int i = 0; i < 3; i++)
         {
             if (i == value)
             {
-                playerManager.SpawnShip(NewShips[i].data, NewShips[i].orbit);
-                ship = NewShips[i].data;
+                playerManager.SpawnShip(newShips[i].data, newShips[i].orbit);
                 continue;
             }
         }
 
         currentNewShipTime = newShipTime;
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
-        if (ship != null)
-        {
-            soundManager.PlayOneShotWithStatus(ship.Captain.sfxPath, "Accept");
-        }
 
         soundManager.PausedGameVolume(false);
         SetScreenActive(false);

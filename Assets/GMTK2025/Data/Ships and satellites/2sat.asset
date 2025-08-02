@@ -15,9 +15,11 @@ MonoBehaviour:
   Orbit: circular
   Size: small
   Profit: 1
-  Speed: 0
+  Speed: 15
   Clockwise: 0
   Temporary: 0
   ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
   Icon: {fileID: 21300000, guid: 7e065f9beca20fb45a449eeb44995a38, type: 3}
-  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}
+  PilotPreview: {fileID: 0}
+  PilotDialog: 
+  DialogTypeTime: 0
