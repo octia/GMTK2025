@@ -64,26 +64,25 @@ public class ShipDragAndDrop : MonoBehaviour
                 ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
                 ghostShips[0].enabled = false;
                 DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
-                foreach (var renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+                foreach (var _renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
                 {
-                    draggedShip = ship;
-
-                    ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
-                    ghostShips[0].enabled = false;
-                    DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
-                    foreach (var _renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
+                    if ((shipLayerMask.value & (1 << _renderer.gameObject.layer)) == 0)
                     {
-                        if ((shipLayerMask.value & (1 << _renderer.gameObject.layer)) == 0)
-                        {
-                            continue;
-                        }
-                        _renderer.sharedMaterial = ghostMaterial;
+                        continue;
                     }
-
-                    for (int i = 1; i < ghostShips.Length; i++)
-                    {
-                        ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
-                    }
+                    _renderer.sharedMaterial = ghostMaterial;
+                }
+                foreach (var particles in ghostShips[0].GetComponentsInChildren<ParticleSystem>())
+                {
+                    DestroyImmediate(particles);
+                }
+                foreach (var trail in ghostShips[0].GetComponentsInChildren<TrailRenderer>())
+                {
+                    DestroyImmediate(trail);
+                }
+                for (int i = 1; i < ghostShips.Length; i++)
+                {
+                    ghostShips[i] = Instantiate(ghostShips[0].gameObject).GetComponent<Ship>();
                 }
             }
             if (draggedShip)

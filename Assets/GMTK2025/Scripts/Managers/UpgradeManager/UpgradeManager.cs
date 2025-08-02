@@ -1,7 +1,7 @@
 using Reflex.Attributes;
 using UnityEngine;
 
-public class UpgradeManager : MonoBehaviour
+public class UpgradeManager
 {
     [Inject]
     public UpgradeManagerConfig Config;
