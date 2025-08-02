@@ -20,10 +20,21 @@ public class ShipManager
 
     public void SpawnShip(ShipData ship, Orbit preferredOrbit)
     {
+        Vector3 randomPlanarStart = Quaternion.Euler(0, Random.value * 360, 0) * Vector3.forward * 1000;
+
+        preferredOrbit.GetNearestPoint(randomPlanarStart, out Vector3 nearestPoint, out _, out float speed);
+
+        Vector3 planarToOrbitDirection = nearestPoint - randomPlanarStart;
+        planarToOrbitDirection.y = 0;
+        planarToOrbitDirection.Normalize();
+
+        Vector3 spawnOffsetDirection = (-planarToOrbitDirection * 2 + Vector3.up * 1).normalized;
+        Vector3 spawnPosition = nearestPoint
+            + config.SpawnToOrbitJoinTime * config.SpeedTypeToFloat[(int)ship.Speed] * speed * spawnOffsetDirection;
         var spawnedShip = Object.Instantiate(
             config.ShipPrefab,
-            Random.onUnitSphere * 80f,
-            Quaternion.identity
+            spawnPosition,
+            Quaternion.LookRotation(-spawnOffsetDirection, Vector3.up)
         );
         spawnedShip.InitializeWith(ship, preferredOrbit);
         if (ship.Temporary && spawnedShip.TryGetComponent(out LeaveTimer timer))
