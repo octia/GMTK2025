@@ -146,7 +146,7 @@ public class Ship : MonoBehaviour
                 shipData.Size
             );
             //The one shot of the guy driving the engine
-            soundManager.PlayOneShotWithStatus(soundManager.GetPath(shipData.PilotName), "Move");
+            soundManager.PlayOneShotWithStatus(soundManager.GetPath(shipData.Captain.PilotName), "Move");
             bOnce = true;
         }
         else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)

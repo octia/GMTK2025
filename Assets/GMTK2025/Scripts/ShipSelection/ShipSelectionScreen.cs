@@ -147,6 +147,8 @@ public class ShipSelectionScreen : MonoBehaviour
             ShowScreen();
             anim.Play("Enter");
 
+            ResetDialogPanel();
+
             shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
             shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
             shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
@@ -206,11 +208,6 @@ public class ShipSelectionScreen : MonoBehaviour
         pilotDialog.StartDialog(ship.Captain.PilotDialogs[0], ship.Captain.TypeTime);
     }
 
-    private void OnEnable()
-    {
-        ResetDialogPanel();  
-    }
-
     public void ResetDialogPanel()
     {
         pilotPreview.sprite = defaultPilotPreview;
@@ -234,7 +231,7 @@ public class ShipSelectionScreen : MonoBehaviour
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         if(ship!=null)
         {
-            soundManager.PlayOneShotWithStatus(soundManager.GetPath(ship.PilotName), "Accept");
+            soundManager.PlayOneShotWithStatus(soundManager.GetPath(ship.Captain.PilotName), "Accept");
         }
 
         soundManager.PausedGameVolume(false);

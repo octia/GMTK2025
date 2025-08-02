@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: 45d32306a60d748419960c2ccad12f41, type: 3}
   TypeTime: 0.05
-  PilotName: Bat
+  PilotName: Nat
   PilotDialogs:
   - Hey! I wanted to know if you had some space for my little ship. I know what you
     are thinking, I know my reputation, I swear I wont bite any of the employees.
