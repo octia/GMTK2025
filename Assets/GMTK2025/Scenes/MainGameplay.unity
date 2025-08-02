@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 147585372}
   - component: {fileID: 147585375}
   - component: {fileID: 147585376}
-  - component: {fileID: 147585377}
   - component: {fileID: 147585378}
   - component: {fileID: 147585379}
   - component: {fileID: 147585380}
@@ -282,19 +281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipManagerConfig: {fileID: 11400000, guid: 747591260a586864b9a05e55ea47b405, type: 2}
---- !u!114 &147585377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147585371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30f1cde06fc8487499b30241f9d583ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundManagerConfig: {fileID: 11400000, guid: b4a9b7169fddcf544a243fbed592f715, type: 2}
 --- !u!114 &147585378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8288,6 +8274,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3344694402569073564, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108415825602212166, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5839475407964570877, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
