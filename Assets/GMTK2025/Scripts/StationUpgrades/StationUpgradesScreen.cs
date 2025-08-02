@@ -1,3 +1,4 @@
+using System.IO;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class StationUpgradesScreen : MonoBehaviour
     [Inject]
     private FinanceManager financeManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     private void Awake()
     {
         upgradeManager.StationUpgradesScreen = this;
@@ -39,6 +43,7 @@ public class StationUpgradesScreen : MonoBehaviour
             )
         )
         {
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxErrorPath);
             return;
         }
 
