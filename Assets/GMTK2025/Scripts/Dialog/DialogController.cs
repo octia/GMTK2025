@@ -18,7 +18,10 @@ public class DialogController : MonoBehaviour
         this.typeTime = typeTime;
 
         StopAllCoroutines();
-        StartCoroutine(TypeDialogLine());
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(TypeDialogLine());
+        }
     }
 
     private IEnumerator TypeDialogLine()

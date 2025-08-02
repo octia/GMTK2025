@@ -510,7 +510,6 @@ Transform:
   m_Children:
   - {fileID: 3652714221828656268}
   - {fileID: 1766098861293866247}
-  - {fileID: 7005472321677799964}
   - {fileID: 4337988067908635794}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -566,12 +565,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6044734881398758156}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 397e08127ed98cd438aa8b2408b78dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barIndicator: {fileID: 8617324480887936153}
+  barIndicator: {fileID: 0}
 --- !u!114 &6511251876981238173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,76 +759,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1836099057151320301, guid: 39a2d254d9915384f911aa0799b39b68, type: 3}
   m_PrefabInstance: {fileID: 2686541726100548735}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3530635005859668801
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2496659164488891957}
-    m_Modifications:
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524847854417923047, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-      propertyPath: m_Name
-      value: CircleIndicator
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
---- !u!4 &7005472321677799964 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5892742551562916189, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-  m_PrefabInstance: {fileID: 3530635005859668801}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8617324480887936153 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5145845404264921048, guid: 87a827b6e47e15e449da8cfc2e269f59, type: 3}
-  m_PrefabInstance: {fileID: 3530635005859668801}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a6b14a45ef26044b6f27c463bc04c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
