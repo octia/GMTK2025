@@ -31,7 +31,8 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
     [Inject]
     private PlayerDialogueConfig config;
 
-    [Inject] SoundManager soundManager;
+    [Inject]
+    SoundManager soundManager;
 
     private Tween textAnimTween;
 
@@ -47,13 +48,15 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
         dialogueTextBox.text = message;
 
         var textSound = soundManager.PlayTextLoop();
-        textAnimTween = Tween.Custom(
-            0,
-            message.Length,
-            message.Length / lettersPerSecond,
-            (val) => dialogueTextBox.maxVisibleCharacters = Mathf.RoundToInt(val),
-            Ease.Linear
-        ).OnComplete(() => soundManager.StopLoop(textSound));
+        textAnimTween = Tween
+            .Custom(
+                0,
+                message.Length,
+                message.Length / lettersPerSecond,
+                (val) => dialogueTextBox.maxVisibleCharacters = Mathf.RoundToInt(val),
+                Ease.Linear
+            )
+            .OnComplete(() => soundManager.StopLoop(textSound));
     }
 
     public void PlayTextChain(PlayerDialogueChainType type)

@@ -17,7 +17,7 @@ public class StationUpgradesScreen : MonoBehaviour
     [Space]
     [SerializeField]
     private GameObject upgradeOptions;
-    
+
     [SerializeField]
     private GameObject orbitOptions;
 

@@ -9,10 +9,17 @@ using UnityEngine.Splines.Interpolators;
 [RequireComponent(typeof(SplineContainer))]
 public class Orbit : MonoBehaviour
 {
-    [SerializeField] private Color visibleColor = Color.white;
-    [FormerlySerializedAs("hightlightColor"), SerializeField] private Color highlightColor = Color.white;
-    [SerializeField] private Color selectColor;
-    [SerializeField] private Color alertColor;
+    [SerializeField]
+    private Color visibleColor = Color.white;
+
+    [FormerlySerializedAs("hightlightColor"), SerializeField]
+    private Color highlightColor = Color.white;
+
+    [SerializeField]
+    private Color selectColor;
+
+    [SerializeField]
+    private Color alertColor;
 
     float fillValue = 0.5f;
     float scrollValue = 0;
@@ -23,10 +30,7 @@ public class Orbit : MonoBehaviour
     /// </summary>
     public VisualState State
     {
-        get
-        {
-            return state;
-        }
+        get { return state; }
         set
         {
             if (state != value)
@@ -39,18 +43,23 @@ public class Orbit : MonoBehaviour
 
     public bool Clockwise { get; set; }
 
-    [SerializeField, DisableInPlayMode] private VisualState state = VisualState.Invisible;
+    [SerializeField, DisableInPlayMode]
+    private VisualState state = VisualState.Invisible;
     private SplineContainer splineContainer;
     private Material material;
     private Sequence visualStateChangeTween;
     private static readonly int mainTextureId = Shader.PropertyToID("_BaseMap");
 
 #pragma warning disable IDE0051 // Remove unused private members
-    [Button] private void SetVisualStateToInvisible() => State = VisualState.Invisible;
-    [Button] private void SetVisualStateToVisible() => State = VisualState.Visible;
-    [Button] private void SetVisualStateToHightlighted() => State = VisualState.Hightlighted;
-#pragma warning restore IDE0051 // Remove unused private members
+    [Button]
+    private void SetVisualStateToInvisible() => State = VisualState.Invisible;
 
+    [Button]
+    private void SetVisualStateToVisible() => State = VisualState.Visible;
+
+    [Button]
+    private void SetVisualStateToHightlighted() => State = VisualState.Hightlighted;
+#pragma warning restore IDE0051 // Remove unused private members
 
     private void Awake()
     {
@@ -95,7 +104,8 @@ public class Orbit : MonoBehaviour
         };
 
         visualStateChangeTween.Complete();
-        visualStateChangeTween = Sequence.Create()
+        visualStateChangeTween = Sequence
+            .Create()
             .Chain(Tween.MaterialColor(material, targetColor, 0.2f))
             .Group(Tween.Custom(fillValue, targetFill, 0.2f, x => fillValue = x))
             .Group(Tween.Custom(scrollSpeed, targetScrollSpeed, 0.2f, x => scrollSpeed = x));
@@ -113,18 +123,34 @@ public class Orbit : MonoBehaviour
     /// <param name="nearestPoint">Point on orbit</param>
     /// <param name="forward">Forward vector on orbit</param>
     /// <param name="speed">Speed at point on orbit</param>
-    public void GetNearestPoint(Vector3 point, out Vector3 nearestPoint, out Vector3 forward, out float speed)
+    public void GetNearestPoint(
+        Vector3 point,
+        out Vector3 nearestPoint,
+        out Vector3 forward,
+        out float speed
+    )
     {
         var p = transform.InverseTransformPoint(point);
-        SplineUtility.GetNearestPoint(splineContainer.Spline, p, out float3 nearest, out float t, 1, 2);
+        SplineUtility.GetNearestPoint(
+            splineContainer.Spline,
+            p,
+            out float3 nearest,
+            out float t,
+            1,
+            2
+        );
         nearestPoint = transform.TransformPoint(nearest);
 
-        forward = transform.TransformDirection(splineContainer.Spline.EvaluateTangent(t)).normalized;
+        forward = transform
+            .TransformDirection(splineContainer.Spline.EvaluateTangent(t))
+            .normalized;
 
         var speedData = splineContainer.Spline.GetOrCreateFloatData("Speed");
         var knot = SplineUtility.ConvertIndexUnit(splineContainer.Spline, t, PathIndexUnit.Knot);
         // Ugly approximation using just x scaling, but probably fine
-        speed = speedData.Evaluate(splineContainer.Spline, knot, new LerpFloat()) * transform.localScale.x;
+        speed =
+            speedData.Evaluate(splineContainer.Spline, knot, new LerpFloat())
+            * transform.localScale.x;
     }
 
     public enum VisualState
@@ -133,6 +159,6 @@ public class Orbit : MonoBehaviour
         Visible,
         Hightlighted,
         Selected,
-        Alert
+        Alert,
     }
 }

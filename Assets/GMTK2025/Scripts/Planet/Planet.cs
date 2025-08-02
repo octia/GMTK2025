@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
-    [Inject] private TimerManager timerManager;
-    [SerializeField] private PlanetConfig config;
-    [SerializeField] private float rotationSpeed = 10;
+    [Inject]
+    private TimerManager timerManager;
+
+    [SerializeField]
+    private PlanetConfig config;
+
+    [SerializeField]
+    private float rotationSpeed = 10;
 
     private void Start()
     {
@@ -18,6 +23,10 @@ public class Planet : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime * timerManager.TimeScale, Space.Self);
+        transform.Rotate(
+            Vector3.up,
+            rotationSpeed * Time.deltaTime * timerManager.TimeScale,
+            Space.Self
+        );
     }
 }

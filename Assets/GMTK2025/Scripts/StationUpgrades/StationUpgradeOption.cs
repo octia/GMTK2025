@@ -12,6 +12,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Space]
     [SerializeField]
     private string upgradeName;
+
     [TextArea]
     [SerializeField]
     private string upgradeDescription;
@@ -77,6 +78,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
                     {
                         // TODO: There needs to be a better system for when this happens
                         screen.HideScreen();
+                        return;
                     }
 
                     upgradeManager.AddUpgrade(true);

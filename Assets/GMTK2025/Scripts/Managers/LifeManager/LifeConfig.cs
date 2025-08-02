@@ -13,5 +13,6 @@ public class LifeConfig : ScriptableObject
     public int MaxLifeCount { get; private set; } = 3;
 
     [SerializeField]
-    [Tooltip("element 0 is heart alive, 1 is heart broke")] public Sprite[] heartSprite = new Sprite[2];
+    [Tooltip("element 0 is heart alive, 1 is heart broke")]
+    public Sprite[] heartSprite = new Sprite[2];
 }
