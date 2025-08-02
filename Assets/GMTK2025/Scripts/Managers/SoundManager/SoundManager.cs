@@ -86,6 +86,13 @@ public class SoundManager
         soundManagerConfig.activeLoopedSounds.Add(instance);
         return instance;
     }
+    public EventInstance PlayTextLoop()
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(soundManagerConfig.sfxTextPath);
+        instance.start();
+        soundManagerConfig.activeLoopedSounds.Add(instance);
+        return instance;
+    }
     public void StopLoop(EventInstance instance)
     {
         if (instance.isValid())
@@ -95,11 +102,10 @@ public class SoundManager
             soundManagerConfig.activeLoopedSounds.Remove(instance);
         }
     }
-    public void PlayOneShotWithStatus(string path, string status_)
+    public void PlayOneShotWithStatus(string path, string status)
     {
-        (float status, string paramName) = FindStatus(status_);
         EventInstance instance = RuntimeManager.CreateInstance(path);
-        instance.setParameterByName(paramName, status);
+        instance.setParameterByNameWithLabel("Status", status);
         instance.start();
         instance.release();
     }
