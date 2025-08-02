@@ -1,10 +1,15 @@
+using System.Linq;
 using PrimeTween;
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
+    private int optionIndex;
+
     [SerializeField]
     private StationUpgradesScreen screen;
 
@@ -25,6 +30,9 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [SerializeField]
     private int statsYOffset;
+
+    [Inject]
+    private OrbitController orbitController;
 
     private bool mouseOver;
 
@@ -49,6 +57,18 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             // Add orbit
             screen.HideScreen();
+            
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == optionIndex)
+                {
+                    orbitController.UnlockOrbit(screen.NewOrbits[i]);
+                    screen.NewOrbits[i].State = Orbit.VisualState.Visible;
+                    continue;
+                }
+
+                screen.NewOrbits[i].State = Orbit.VisualState.Invisible;
+            }
         }
     }
 
@@ -58,6 +78,8 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         // TODO: Show preview of the orbit
 
+        screen.NewOrbits[optionIndex].State = Orbit.VisualState.Hightlighted;
+
         // Visual
         Tween.Scale(transform, endValue: onHoverScale, hoverAnimTime);
 
@@ -66,6 +88,11 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        for (int i = 0; i < 3; i++)
+        {
+            screen.NewOrbits[i].State = Orbit.VisualState.Alert;
+        }
+
         HideOption();
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -35,6 +36,9 @@ public class StationUpgradesScreen : MonoBehaviour
 
     [Inject]
     private OrbitController orbitController;
+
+    [HideInInspector]
+    public Orbit[] NewOrbits;
 
     private void Awake()
     {
@@ -77,13 +81,22 @@ public class StationUpgradesScreen : MonoBehaviour
         upgradeOptions.SetActive(false);
         orbitOptions.SetActive(true);
 
-        int n = 3;
-        foreach (var orbit in orbitController.GetLockedOrbits())
+        // TODO: Shuffle the orbits
+
+        NewOrbits = new Orbit[3];
+
+        List<Orbit> lockedOrbits = orbitController.GetLockedOrbits().ToList();
+        ShipManager.Shuffle(lockedOrbits);
+
+        int n = 0;
+        foreach (var orbit in lockedOrbits)
         {
             orbit.State = Orbit.VisualState.Alert;
 
-            n--;
-            if (n == 0)
+            NewOrbits[n] = orbit;
+
+            n++;
+            if (n == 3)
             {
                 break;
             }

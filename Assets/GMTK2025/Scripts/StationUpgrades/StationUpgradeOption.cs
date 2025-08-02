@@ -70,14 +70,20 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
             {
                 // Orbit upgrade
                 case 0:
+                    if (upgradeManager.OrbitUpgradeAmount >= 5)
+                    {
+                        // TODO: There needs to be a better system for when this happens
+                        screen.HideScreen();
+                    }
+
+                    upgradeManager.AddUpgrade(true);
                     screen.BuyOrbit();
                     break;
                 // Invalid upgrade
                 default:
+                    upgradeManager.AddUpgrade();
                     return;
             }
-
-            upgradeManager.AddUpgrade();
         }
     }
 

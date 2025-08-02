@@ -1323,7 +1323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1710600a58743cf4b99f2dac8659cb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnScreen: 0
   mainScreen: {fileID: 2343128077622078358}
   CostText: {fileID: 8958305202686710938}
   buyButton: {fileID: 8983215550224635792}
@@ -1331,6 +1330,7 @@ MonoBehaviour:
   orbitOptions: {fileID: 3484160864136346494}
   statsDescriptionText: {fileID: 2545637737190524072}
   statsNameText: {fileID: 4679507912047658005}
+  NewOrbits: []
 --- !u!1 &4763637612176314186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2851,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4153153776266913521}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: optionIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: highlightBackground
       value: 
       objectReference: {fileID: 797841382765720566}
@@ -2896,6 +2900,10 @@ PrefabInstance:
       propertyPath: statsPanel
       value: 
       objectReference: {fileID: 3318662493791843601}
+    - target: {fileID: 5140697643325340573, guid: 253bdf5dc97fcb6479de6cb9e15aeae5, type: 3}
+      propertyPath: optionIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5140697643325340573, guid: 253bdf5dc97fcb6479de6cb9e15aeae5, type: 3}
       propertyPath: highlightBackground
       value: 
@@ -3165,6 +3173,10 @@ PrefabInstance:
       propertyPath: statsPanel
       value: 
       objectReference: {fileID: 3318662493791843601}
+    - target: {fileID: 5140697643325340573, guid: 253bdf5dc97fcb6479de6cb9e15aeae5, type: 3}
+      propertyPath: optionIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5140697643325340573, guid: 253bdf5dc97fcb6479de6cb9e15aeae5, type: 3}
       propertyPath: highlightBackground
       value: 
@@ -3511,6 +3523,10 @@ PrefabInstance:
       propertyPath: statsPoint
       value: 
       objectReference: {fileID: 6882676121860856727}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: optionIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: highlightBackground
       value: 
