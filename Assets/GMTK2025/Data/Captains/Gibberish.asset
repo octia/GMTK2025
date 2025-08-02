@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gibberish
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: c4ca1c28df67c9c47ac1817a82c48ba2, type: 3}
-  TypeTime: 0.15
+  TypeTime: 0.09
   PilotName: Gibberish
   PilotDialogs:
   - I was send by the second division military to bring resources to the front. I

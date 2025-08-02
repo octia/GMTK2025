@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fishy
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: c0824bd1594bf4541bed7cae2ae9df27, type: 3}
-  TypeTime: 0.1
+  TypeTime: 0.07
   PilotName: Fishy
   PilotDialogs:
   - Howdy. Me and my crew heard that there are... Large bodies of water on your planet...

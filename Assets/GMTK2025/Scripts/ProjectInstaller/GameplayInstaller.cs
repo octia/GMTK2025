@@ -12,6 +12,7 @@ public class GameplayInstaller : MonoBehaviour, IInstaller
         builder.AddSingleton<ShipManager>();
         builder.AddSingleton<ShipCollisionManager>();
         builder.AddSingleton<FinanceManager>();
+        builder.AddSingleton<UIManager>();
         builder.AddSingleton(gameOverController);
     }
 }

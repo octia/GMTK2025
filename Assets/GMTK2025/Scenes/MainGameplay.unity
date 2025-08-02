@@ -3303,6 +3303,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3344694402569073564, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344694402569073564, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344694402569073564, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5839475407964570877, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3392,7 +3404,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3650139182243237259, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
