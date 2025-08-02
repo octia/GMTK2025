@@ -5600,7 +5600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ccb8927acfd9db7809fd088666a82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LockCamera: 0
   camera: {fileID: 620638611}
   realCameraForOffset: {fileID: 330585546}
   origin: {fileID: 1351547177}
@@ -6033,6 +6032,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2144696922}
     m_Modifications:
+    - target: {fileID: 2343128077622078358, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4651810075817423628, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
       propertyPath: m_Name
       value: StationUpgradesScreen
