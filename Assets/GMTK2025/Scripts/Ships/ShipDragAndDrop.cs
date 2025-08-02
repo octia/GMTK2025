@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class ShipDragAndDrop : MonoBehaviour
 {
+    [Inject]SoundManager soundManager;
     [Inject] private readonly OrbitController orbitController;
     [SerializeField] private LayerMask shipLayerMask;
     [SerializeField] private Material ghostMaterial;
@@ -29,7 +30,9 @@ public class ShipDragAndDrop : MonoBehaviour
         if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
         {
             draggedShip = ship;
-
+            //sfx
+            soundManager.PlayOneShotWithStatus(soundManager.GetPath(draggedShip.ShipData.PilotName), "Idle");
+            //
             ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
             ghostShips[0].enabled = false;
             DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
@@ -121,6 +124,13 @@ public class ShipDragAndDrop : MonoBehaviour
                 {
                     orbit.Clockwise = bestShip.ShipData.Clockwise;
                     orbit.State = Orbit.VisualState.Hightlighted;
+
+                    //SFX
+                    if(hoveringOverShip && orbit == ship.PreferredOrbit && !soundManager.soundManagerConfig.bSfxHoverOnce)
+                    {
+                        soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxHoverPath);
+                        soundManager.soundManagerConfig.bSfxHoverOnce = true;
+                    }
                 }
                 else
                 {
@@ -132,5 +142,11 @@ public class ShipDragAndDrop : MonoBehaviour
         // Important to delay update by one frame
         // That way, orbits will be deselected after all input stops
         shouldUpdateVisualStates = draggedShip || hoveringOverShip;
+
+        //SFX-needed
+        if(!hoveringOverShip)
+        {
+            soundManager.soundManagerConfig.bSfxHoverOnce = false;
+        }
     }
 }

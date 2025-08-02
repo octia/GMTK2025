@@ -19,6 +19,7 @@ public class ShipData : ScriptableObject
     [Space]
     [AssetPreview]
     public Sprite PilotPreview;
+    public string PilotName;
 
     [TextArea]
     public string PilotDialog;

@@ -21,5 +21,6 @@ MonoBehaviour:
   ModelPrefab: {fileID: 8228420899863059082, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
   Icon: {fileID: 21300000, guid: 64a0b048887ec8c44ba67484943eaa74, type: 3}
   PilotPreview: {fileID: 0}
+  PilotName: nat
   PilotDialog: 
   DialogTypeTime: 0

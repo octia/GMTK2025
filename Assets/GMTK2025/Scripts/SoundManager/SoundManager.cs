@@ -1,3 +1,4 @@
+using System.IO;
 using FMOD.Studio;
 using FMODUnity;
 using Reflex.Attributes;
@@ -66,6 +67,17 @@ public class SoundManager
     {
         RuntimeManager.PlayOneShot(path);
     }
+    public string GetPath(string name)
+    {
+        foreach (var path in soundManagerConfig.sfxDriverPath)
+        {
+            if (path.name == name)
+            {
+                return path.sfxPath;
+            }
+        }
+        return "event:/Error";
+    }
     public EventInstance PlayLoop(string path, string status_)
     {
         (float status, string paramName) = FindStatus(status_);
@@ -84,10 +96,10 @@ public class SoundManager
             soundManagerConfig.activeLoopedSounds.Remove(instance);
         }
     }
-    public void PlayOneShotWithStatus(EventReference eventReference, string status_)
+    public void PlayOneShotWithStatus(string path, string status_)
     {
         (float status, string paramName) = FindStatus(status_);
-        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+        EventInstance instance = RuntimeManager.CreateInstance(path);
         instance.setParameterByName(paramName, status);
         instance.start();
         instance.release();
@@ -109,6 +121,22 @@ public class SoundManager
         else if (status_ == "small" || status_ == "Small")
         {
             return (0f, "ShipType");
+        }
+        else if(status_ == "Accept")
+        {
+            return (0f, "Status");
+        }
+        else if (status_ == "Idle")
+        {
+            return (1f, "Status");
+        }
+        else if (status_ == "Closecall")
+        {
+            return (2f, "Status");
+        }
+        else if (status_ == "Move")
+        {
+            return (3f, "Status");
         }
         else
         {
