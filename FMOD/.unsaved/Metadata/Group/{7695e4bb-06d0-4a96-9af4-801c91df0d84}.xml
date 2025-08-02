@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{7695e4bb-06d0-4a96-9af4-801c91df0d84}">
+		<property name="volume">
+			<value>-10</value>
+		</property>
+		<property name="name">
+			<value>Pilots</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{af6d94f4-4d12-4b2d-b9ca-753aae529882}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{e670c78a-48f6-4965-bdee-7f5b45398bcb}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{fe5799b6-33c6-4982-8f62-4c47a90f0cee}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{af6d94f4-4d12-4b2d-b9ca-753aae529882}">
+		<relationship name="effects">
+			<destination>{1bd36916-bf0a-427f-a4aa-725b04c1b70f}</destination>
+			<destination>{b1f0de4c-70c5-448c-ac5a-4bfbde580834}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{e670c78a-48f6-4965-bdee-7f5b45398bcb}" />
+	<object class="HighpassSimpleEffect" id="{1bd36916-bf0a-427f-a4aa-725b04c1b70f}">
+		<property name="cutoff">
+			<value>900</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{b1f0de4c-70c5-448c-ac5a-4bfbde580834}" />
+</objects>
