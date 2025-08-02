@@ -1,12 +1,13 @@
 using System;
 using Reflex.Attributes;
+using UnityEngine;
 
 public class LifeManager : IDisposable
 {
     public Action OnLifeCountChanged;
 
     [Inject]
-    private LifeConfig config;
+    public LifeConfig config;
 
     [Inject]
     private SceneManager sceneManager;
