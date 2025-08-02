@@ -1,4 +1,5 @@
 using PrimeTween;
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -6,10 +7,24 @@ using UnityEngine.InputSystem;
 public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
+    private int optionIndex;
+
+    [Space]
+    [SerializeField]
+    private StationUpgradesScreen screen;
+
+    [SerializeField]
+    private Transform statsPoint;
+
+    [Space]
+    [SerializeField]
     private GameObject highlightBackground;
 
     [SerializeField]
-    private GameObject statsPanel;
+    private TransformFollower statsPanel;
+
+    [SerializeField]
+    private Animator orbitAnim;
 
     [Header("Visual")]
     [SerializeField]
@@ -20,7 +35,10 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     private float hoverAnimTime;
 
     [SerializeField]
-    private int statsYOffset;
+    private float orbitAnimHoverSpeed;
+
+    [Inject]
+    private UpgradeManager upgradeManager;
 
     private bool mouseOver;
 
@@ -29,7 +47,6 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private InputAction interactAction;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         // Grabbing initial variables
@@ -38,21 +55,35 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
         interactAction = InputSystem.actions.FindAction("Click");
     }
 
-    // Update is called once per frame
-    private void Update() { }
+    private void Update()
+    {
+        if (mouseOver && interactAction.WasPressedThisFrame())
+        {
+            upgradeManager.AddUpgrade();
+            screen.HideScreen();
+        }
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!screen.OnScreen)
+        {
+            HideOption();
+        }
+
         mouseOver = true;
 
         // Visual
         Tween.Scale(transform, endValue: onHoverScale, hoverAnimTime);
 
-        highlightBackground.SetActive(true);
-        statsPanel.SetActive(true);
-        statsPanel.transform.position = transform.position + new Vector3(0, statsYOffset);
+        orbitAnim.speed = orbitAnimHoverSpeed;
 
-        // TODO: screen.UpdateStatsPanel(optionIndex);
+        highlightBackground.SetActive(true);
+        statsPanel.gameObject.SetActive(true);
+        statsPanel.transform.position = statsPoint.position;
+        statsPanel.FollowTarget = statsPoint;
+
+        screen.UpdateStatsPanel(optionIndex);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -72,7 +103,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
         // Visual
         Tween.Scale(transform, endValue: defaultScale, hoverAnimTime);
 
+        orbitAnim.speed = 1;
+
         highlightBackground.SetActive(false);
-        statsPanel.SetActive(false);
+        statsPanel.gameObject.SetActive(false);
     }
 }

@@ -20,4 +20,15 @@ public class FinanceManager
     {
         Money = money + profit;
     }
+
+    public bool UseMoney(int amount)
+    {
+        if (money < amount)
+        {
+            return false;
+        }
+
+        Money = money - amount;
+        return true;
+    }
 }
