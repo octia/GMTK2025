@@ -6,6 +6,9 @@ public class GameplayInstaller : MonoBehaviour, IInstaller
     [SerializeField]
     private GameOverController gameOverController;
 
+    [SerializeField]
+    private CameraController mainCamera;
+
     public void InstallBindings(ContainerBuilder builder)
     {
         builder.AddSingleton<TimerManager>();
@@ -13,5 +16,6 @@ public class GameplayInstaller : MonoBehaviour, IInstaller
         builder.AddSingleton<FinanceManager>();
         builder.AddSingleton<UIManager>();
         builder.AddSingleton(gameOverController);
+        builder.AddSingleton(mainCamera);
     }
 }

@@ -23,7 +23,7 @@ public class OrbitController : MonoBehaviour
         orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
 
     public IEnumerable<Orbit> GetLockedOrbits() =>
-        orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
+        orbitsWithData.Where(x => !x.Unlocked).Select(x => x.Orbit);
 
     public int GetOrbitPrice(Orbit orbit) => GetMatchingOrbitData(orbit).Price;
 

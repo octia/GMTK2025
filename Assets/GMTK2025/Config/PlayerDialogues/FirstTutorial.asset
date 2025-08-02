@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
   m_Name: FirstTutorial
   m_EditorClassIdentifier: 
+  <ShouldBlockInteraction>k__BackingField: 0
   <ChainType>k__BackingField: 1
   <Dialogues>k__BackingField:
   - <Message>k__BackingField: 'Today is my first day as a spaceloop controller.
@@ -22,16 +23,16 @@ MonoBehaviour:
     <IconOverride>k__BackingField: {fileID: 0}
   - <Message>k__BackingField: Right now the ships should be safe, but soon, more
       ships will approach!
-    <IconOverride>k__BackingField: {fileID: 0}
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
   - <Message>k__BackingField: When that happens, I just have to click on the ships,
       and move them onto safe orbits, all while keeping them happy.
-    <IconOverride>k__BackingField: {fileID: 0}
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
   - <Message>k__BackingField: I can also drag with the right click and zoom with
       the mouse wheel, to get a better view.
     <IconOverride>k__BackingField: {fileID: 0}
   - <Message>k__BackingField: Ships have preferred orbits - if they're on them, they
       generate money for the Spaceloop Corporation!
-    <IconOverride>k__BackingField: {fileID: 0}
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 1229d9a81f257254d9cb2e43ecd8b7b8, type: 3}
   - <Message>k__BackingField: But that's not as important as not allowing them to
       crash!
-    <IconOverride>k__BackingField: {fileID: 0}
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 5b5b94519563f524aa7cb9f0658a1a7d, type: 3}
