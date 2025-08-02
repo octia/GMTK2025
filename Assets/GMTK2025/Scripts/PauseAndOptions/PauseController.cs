@@ -3,6 +3,7 @@ using PrimeTween;
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -23,9 +24,23 @@ public class PauseController : MonoBehaviour
     }
     private void Start()
     {
-        soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
-        soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
-        soundManager.PlayMusic(musicEventReference);
+        if(!bIsOnMainMenu)
+        {
+            if(!soundManager.soundManagerConfig.musicLoopInstance.isValid())
+            {
+                soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
+                soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
+                soundManager.PlayMusic(musicEventReference);
+            }
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
+            soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
+            soundManager.PlayMusic(musicEventReference);
+            this.gameObject.SetActive(false);
+        }
     }
     private void Update()
     {

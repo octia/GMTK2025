@@ -8,8 +8,6 @@ public class SoundManager
 {
     [Inject]
     public SoundManagerConfig soundManagerConfig;
-    public float fVolumeMusic = 0f;
-    public float fVolumeSfx = 0f;
     public void ChangeVolume(VolumeType volumeType, float volume)
     {
         switch (volumeType)
@@ -67,10 +65,10 @@ public class SoundManager
                 case VolumeType.None:
                     return;
                 case VolumeType.Music:
-                    fVolumeMusic = volume;
+                    soundManagerConfig.fVolumeMusic = volume;
                     break;
                 case VolumeType.Sfx:
-                    fVolumeSfx = volume;
+                    soundManagerConfig.fVolumeSfx = volume;
                     break;
             }
         }

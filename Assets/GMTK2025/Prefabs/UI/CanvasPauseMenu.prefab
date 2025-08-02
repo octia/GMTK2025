@@ -351,7 +351,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 408205770582738026}
   m_Father: {fileID: 5228167949660475899}
@@ -1116,6 +1116,7 @@ GameObject:
   - component: {fileID: 7772746945010988308}
   - component: {fileID: 3713258145794183563}
   - component: {fileID: 4207842841252714952}
+  - component: {fileID: 2621522895106384058}
   m_Layer: 5
   m_Name: MusicSlider
   m_TagString: Untagged
@@ -1165,7 +1166,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1223,6 +1224,28 @@ MonoBehaviour:
   volumeType: 1
   thisSlider: {fileID: 0}
   thisOtherSlider: {fileID: 3713258145794183563}
+--- !u!95 &2621522895106384058
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366400677845727470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73d34ecbd89d074449eb39491c581b68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2881154920572688885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1604,7 @@ GameObject:
   - component: {fileID: 5228167949660475899}
   - component: {fileID: 8093226369522212978}
   - component: {fileID: 4644537209782176406}
+  - component: {fileID: 8323507880082106298}
   m_Layer: 5
   m_Name: SfxSlider
   m_TagString: Untagged
@@ -1630,7 +1654,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1661,7 +1685,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4207842841252714952}
+      - m_Target: {fileID: 4644537209782176406}
         m_TargetAssemblyTypeName: VolumeChanger, Assembly-CSharp
         m_MethodName: VolumeChange
         m_Mode: 1
@@ -1688,6 +1712,28 @@ MonoBehaviour:
   volumeType: 2
   thisSlider: {fileID: 0}
   thisOtherSlider: {fileID: 8093226369522212978}
+--- !u!95 &8323507880082106298
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286331868915090171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14b6cc3d3cd99054c9f49ca3ee6ea002, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3287197198300115245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1898,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5228167949660475899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3785,7 +3831,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 452624837295127430}
   m_Father: {fileID: 5228167949660475899}
@@ -4409,6 +4455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd46c375f4b034f45835612558f53f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bIsOnMainMenu: 0
   goEnable: {fileID: 4244762868050823912}
   goOptions: {fileID: 8167051114406200217}
   goPause: {fileID: 2078141835719730418}

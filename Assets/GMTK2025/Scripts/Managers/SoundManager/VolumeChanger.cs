@@ -46,10 +46,10 @@ public class VolumeChanger : MonoBehaviour
                 case VolumeType.None:
                     return;
                 case VolumeType.Music:
-                    thisSlider.value = soundManager.fVolumeMusic;
+                    thisSlider.value = soundManager.soundManagerConfig.fVolumeMusic;
                     break;
                 case VolumeType.Sfx:
-                    thisSlider.value = soundManager.fVolumeSfx;
+                    thisSlider.value = soundManager.soundManagerConfig.fVolumeSfx;
                     break;
             }
         }
@@ -60,10 +60,10 @@ public class VolumeChanger : MonoBehaviour
                 case VolumeType.None:
                     return;
                 case VolumeType.Music:
-                    thisOtherSlider.value = soundManager.fVolumeMusic;
+                    thisOtherSlider.value = soundManager.soundManagerConfig.fVolumeMusic;
                     break;
                 case VolumeType.Sfx:
-                    thisOtherSlider.value = soundManager.fVolumeSfx;
+                    thisOtherSlider.value = soundManager.soundManagerConfig.fVolumeSfx;
                     break;
             }
         }
