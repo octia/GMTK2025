@@ -46,7 +46,7 @@ public class ShipDragAndDrop : MonoBehaviour
     {
         Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
         bool hoveringOverShip = MousePicking.PickObjectFromLayer(
-            x => true,
+            x => x.Orbit,
             shipLayerMask,
             out Ship ship,
             out Vector3 _,
@@ -152,7 +152,7 @@ public class ShipDragAndDrop : MonoBehaviour
             }
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
-                if (draggedShip && targetOrbit)
+                if (draggedShip && draggedShip.Orbit && targetOrbit)
                 {
                     draggedShip.ChangeOrbit(targetOrbit);
                 }
