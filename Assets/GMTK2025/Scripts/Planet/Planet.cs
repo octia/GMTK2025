@@ -13,11 +13,11 @@ public class Planet : MonoBehaviour
         var instance = Instantiate(planetProfile.prefab, transform);
         instance.GetComponentInChildren<Renderer>().sharedMaterial = planetProfile.material;
         var rotation = planetProfile.useRandomRotation ? Random.rotation : Quaternion.identity;
-        instance.transform.SetLocalPositionAndRotation(transform.position, rotation);
+        instance.transform.SetLocalPositionAndRotation(Vector3.zero, rotation);
     }
 
     private void Update()
     {
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime * timerManager.TimeScale);
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime * timerManager.TimeScale, Space.Self);
     }
 }

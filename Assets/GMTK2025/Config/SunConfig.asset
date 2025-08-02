@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3f1765e8f047947b58e4241b6b2d6b, type: 3}
+  m_Name: SunConfig
+  m_EditorClassIdentifier: 
+  planetConfigurations:
+  - prefab: {fileID: 2635751248725940804, guid: 6c0e35870e2406f45860ef7ac72443f5, type: 3}
+    material: {fileID: 2100000, guid: 4252741c794728648a0a619ab33aad90, type: 2}
+    useRandomRotation: 1
+  - prefab: {fileID: 8872279184722686018, guid: fa43c62a589375f4291ef20155a4e33c, type: 3}
+    material: {fileID: 2100000, guid: 4252741c794728648a0a619ab33aad90, type: 2}
+    useRandomRotation: 1

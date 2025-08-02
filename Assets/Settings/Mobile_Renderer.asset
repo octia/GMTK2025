@@ -92,4 +92,4 @@ MonoBehaviour:
     hue: 0
     saturation: 1
     affectSceneView: 0
-    whenToInsert: 500
+    whenToInsert: 600
