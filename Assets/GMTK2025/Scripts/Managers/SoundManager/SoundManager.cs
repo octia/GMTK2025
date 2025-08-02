@@ -86,6 +86,13 @@ public class SoundManager
         soundManagerConfig.activeLoopedSounds.Add(instance);
         return instance;
     }
+    public EventInstance PlayTextLoop()
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(soundManagerConfig.sfxTextPath);
+        instance.start();
+        soundManagerConfig.activeLoopedSounds.Add(instance);
+        return instance;
+    }
     public void StopLoop(EventInstance instance)
     {
         if (instance.isValid())
