@@ -5600,7 +5600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ccb8927acfd9db7809fd088666a82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LockCamera: 0
   camera: {fileID: 620638611}
   realCameraForOffset: {fileID: 330585546}
   origin: {fileID: 1351547177}
@@ -6033,9 +6032,81 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2144696922}
     m_Modifications:
+    - target: {fileID: 2343128077622078358, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4651810075817423628, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
       propertyPath: m_Name
       value: StationUpgradesScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651810075817423628, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679507912047658005, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4679507912047658005, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_lineSpacing
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679507912047658005, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4679507912047658005, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024887987014039524, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 06fba40585d62fa4baebd82a832ee61a, type: 3}
+    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 52be2f7cb5b05e04ab1d8987b4e2dafe, type: 2}
+    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_lineSpacing
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2305119185316451335, guid: 52be2f7cb5b05e04ab1d8987b4e2dafe, type: 2}
+    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5335187828510165262, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: NewOrbits.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347063129319507793, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347063129319507793, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347063129319507793, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347063129319507793, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748365048084382263, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748365048084382263, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6510887021585951800, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
       propertyPath: m_Pivot.x

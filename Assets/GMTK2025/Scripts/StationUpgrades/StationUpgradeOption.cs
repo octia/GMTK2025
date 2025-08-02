@@ -11,6 +11,13 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     [Space]
     [SerializeField]
+    private string upgradeName;
+    [TextArea]
+    [SerializeField]
+    private string upgradeDescription;
+
+    [Space]
+    [SerializeField]
     private StationUpgradesScreen screen;
 
     [SerializeField]
@@ -62,15 +69,32 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
-            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
-            upgradeManager.AddUpgrade();
-            screen.HideScreen();
+            switch (optionIndex)
+            {
+                // Orbit upgrade
+                case 0:
+                    if (upgradeManager.OrbitUpgradeAmount >= 5)
+                    {
+                        // TODO: There needs to be a better system for when this happens
+                        screen.HideScreen();
+                    }
+
+                    upgradeManager.AddUpgrade(true);
+                    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
+                    screen.BuyOrbit();
+                    break;
+                // Invalid upgrade
+                default:
+                    upgradeManager.AddUpgrade();
+                    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
+                    return;
+            }
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!screen.OnScreen)
+        if (!upgradeManager.OnScreen)
         {
             HideOption();
         }
@@ -87,7 +111,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
         statsPanel.transform.position = statsPoint.position;
         statsPanel.FollowTarget = statsPoint;
 
-        screen.UpdateStatsPanel(optionIndex);
+        screen.UpdateStatsPanel(upgradeName, upgradeDescription);
     }
 
     public void OnPointerExit(PointerEventData eventData)
