@@ -26,7 +26,7 @@ public class LifeController : MonoBehaviour
 
     private void OnLivesChanged()
     {
-        text.text = $"Lives: {lifeManager.LifeCount}";
+        Debug.Log("LIFE CHANGED");
         VisualLifeChange();
     }
 
