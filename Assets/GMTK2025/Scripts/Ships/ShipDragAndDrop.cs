@@ -11,6 +11,10 @@ public class ShipDragAndDrop : MonoBehaviour
     [SerializeField] private float ghostSimulationTimestep = 0.1f;
     [SerializeField] private int maxSimulationSteps = 30;
     [SerializeField] private int stepsPerGhost = 2;
+
+    [Inject]
+    private UIManager uiManager;
+
     private Ship[] ghostShips = null;
 
     private Ship draggedShip = null;
@@ -24,7 +28,8 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void Update()
     {
-        bool hoveringOverShip = MousePicking.PickObjectFromLayer(x => true, shipLayerMask, out Ship ship, out Vector3 _);
+        Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
+        bool hoveringOverShip = MousePicking.PickObjectFromLayer(x => true, shipLayerMask, out Ship ship, out Vector3 _, cam);
 
         if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
         {

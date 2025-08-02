@@ -11,5 +11,6 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
         builder.AddSingleton<TimerManager>();
         builder.AddSingleton<ShipCollisionManager>();
         builder.AddSingleton<FinanceManager>();
+        builder.AddSingleton<UIManager>();
     }
 }

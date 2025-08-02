@@ -12,7 +12,7 @@ public class TimerManager
 
     private float timeScale = 1f;
 
-    public bool isPaused = false;
+    public bool IsPaused = false;
 
     private HashSet<object> registeredPausers = new();
 
@@ -131,12 +131,12 @@ public class TimerManager
 
     private void SetGamePaused(bool state)
     {
-        isPaused = state;
+        IsPaused = state;
     }
 
     private float GetTimeScale()
     {
-        if (isPaused)
+        if (IsPaused)
         {
             return 0;
         }

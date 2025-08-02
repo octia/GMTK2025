@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class OrbitController : MonoBehaviour
 {
@@ -9,7 +9,10 @@ public class OrbitController : MonoBehaviour
     [SerializeField] private float mousePickRadius = 1.0f;
     [SerializeField] private LayerMask orbitLayerMask;
 
-    RaycastHit[] hits = null;
+    [Inject]
+    private UIManager uiManager;
+
+    private RaycastHit[] hits = null;
 
     public IEnumerable<Orbit> GetUnlockedOrbits() => orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
     public IEnumerable<Orbit> GetLockedOrbits() => orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
@@ -30,7 +33,8 @@ public class OrbitController : MonoBehaviour
     /// <returns>Whether an orbit was found or not</returns>
     public bool PickUnlockedOrbitWithMouse(out Orbit orbit, out Vector3 hitPosition)
     {
-        return MousePicking.PickObjectFromLayer(IsOrbitUnlocked, orbitLayerMask, out orbit, out hitPosition);
+        Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
+        return MousePicking.PickObjectFromLayer(IsOrbitUnlocked, orbitLayerMask, out orbit, out hitPosition, cam);
     }
 
     private OrbitWithData GetMatchingOrbitData(Orbit orbit) => orbitsWithData.First(x => x.Orbit == orbit);

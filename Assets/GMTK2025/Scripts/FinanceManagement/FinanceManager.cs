@@ -1,6 +1,3 @@
-using Reflex.Attributes;
-using UnityEngine;
-
 public class FinanceManager
 {
     public FinanceController FinanceController;

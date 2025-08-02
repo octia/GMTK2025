@@ -697,11 +697,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ccb8927acfd9db7809fd088666a82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LockCamera: 0
   camera: {fileID: 330585546}
   origin: {fileID: 728366199}
   useInertia: 1
-  currentPosition: {x: 0, y: 60}
+  CurrentPosition: {x: 0, y: 60}
   currentVelocity: {x: 0, y: 0}
+  CurrentDistanceFromPlanet: 50
+  DesiredDistanceFromPlanet: 50
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1185,6 +1188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2144696922}
     m_Modifications:
+    - target: {fileID: 642040093421687208, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: origin
+      value: 
+      objectReference: {fileID: 728366199}
     - target: {fileID: 995216895288804070, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1265,14 +1272,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2296387320955125259, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3600672474439295105, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: m_Name
       value: ShipSelectionScreen
       objectReference: {fileID: 0}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: newShipTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: stationUpgradesScreen
       value: 
       objectReference: {fileID: 1818941631}
+    - target: {fileID: 5621222168189124935, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -6,12 +6,12 @@ public class MousePicking
 {
     private static readonly RaycastHit[] hits = new RaycastHit[100];
 
-    public static bool PickObjectFromLayer<T>(Func<T, bool> acceptanceFilter, LayerMask mask, out T hitT, out Vector3 hitPosition, QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.UseGlobal) where T : MonoBehaviour
+    public static bool PickObjectFromLayer<T>(Func<T, bool> acceptanceFilter, LayerMask mask, out T hitT, out Vector3 hitPosition, Camera cam, QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.UseGlobal) where T : MonoBehaviour
     {
         hitT = null;
         hitPosition = Vector3.zero;
 
-        var ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
+        var ray = cam.ScreenPointToRay(Mouse.current.position.value);
 
         for (int attempt = 0; attempt <= 3; attempt++)
         {

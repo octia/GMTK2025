@@ -1,4 +1,4 @@
-using System.IO;
+using PrimeTween;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -19,6 +19,8 @@ public class ShipSelectionScreen : MonoBehaviour
     private ShipSelectionOption[] selectionOptions;
 
     [Space]
+    [SerializeField] private CameraController shipSelectionCam;
+
     [SerializeField]
     private GameObject background;
 
@@ -71,6 +73,9 @@ public class ShipSelectionScreen : MonoBehaviour
     private SoundManager soundManager;
 
     [Inject]
+    private UIManager uiManager;
+
+    [Inject]
     private PlayerDialogueController dialogueController;
 
     private bool hasTutorialPlayed = false;
@@ -85,6 +90,8 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private Sprite defaultPilotPreview;
 
+    private CameraController mainCam;
+
     private void Start()
     {
         currentNewShipTime = newShipTime;
@@ -92,6 +99,8 @@ public class ShipSelectionScreen : MonoBehaviour
         anim = GetComponent<Animator>();
 
         defaultPilotPreview = pilotPreview.sprite;
+
+        mainCam = Camera.main.GetComponent<CameraController>();
     }
 
     private void Update()
@@ -138,10 +147,22 @@ public class ShipSelectionScreen : MonoBehaviour
         {
             ShowScreen();
             anim.Play("Enter");
+
+            shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
+            shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
+            shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
+
+            uiManager.UICamera = shipSelectionCam.GetComponent<Camera>();
         }
         else
         {
             anim.Play("Exit");
+
+            shipSelectionCam.CurrentPosition = mainCam.CurrentPosition;
+            shipSelectionCam.CurrentDistanceFromPlanet = mainCam.CurrentDistanceFromPlanet;
+            shipSelectionCam.DesiredDistanceFromPlanet = mainCam.DesiredDistanceFromPlanet;
+
+            uiManager.UICamera = null;
         }
     }
 
@@ -153,6 +174,7 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         stationUpgradesScreen.SetActive(!OnScreen);
+        mainCam.LockCamera = OnScreen;
     }
 
     public void VisualizeButton()
@@ -163,6 +185,11 @@ public class ShipSelectionScreen : MonoBehaviour
 
     public void UpdateStatsPanel(int i)
     {
+        if (!OnScreen)
+        {
+            return;
+        }
+
         ShipData ship = newShips[i].data;
 
         temporaryText.gameObject.SetActive(ship.Temporary);
