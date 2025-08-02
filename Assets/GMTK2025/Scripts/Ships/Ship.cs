@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public bool IsDestroyed { get; private set; }
-
     [SerializeField]
     private Orbit orbit;
 
@@ -182,7 +180,6 @@ public class Ship : MonoBehaviour
 
     public void DestroyShip()
     {
-        IsDestroyed = true;
         Destroy(gameObject);
     }
 
