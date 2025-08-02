@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{d2a108cf-7b00-406f-8a77-9c7f0b44e3b3}">
+	<object class="AudioFile" id="{a73f6cc7-01a7-4131-a8f4-777e332e0401}">
 		<property name="assetPath">
-			<value>sfx_orbit_hover_1.mp3</value>
+			<value>Comtruise/sfx_vioce_comtruise_move_2.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.28</value>
+			<value>1.6979591836734693</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
