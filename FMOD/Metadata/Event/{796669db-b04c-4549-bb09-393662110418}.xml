@@ -56,7 +56,7 @@
 			<destination>{5a65feb4-d6bd-485c-ae35-a6b024d625bf}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{fe5799b6-33c6-4982-8f62-4c47a90f0cee}</destination>
+			<destination>{7695e4bb-06d0-4a96-9af4-801c91df0d84}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d7a7af70-7213-4f82-867a-84a9b155ef66}">
@@ -64,7 +64,7 @@
 			<value>3</value>
 		</property>
 		<property name="triggerCooldown">
-			<value>120</value>
+			<value>1400</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{7224e531-f326-47cc-ac83-aef84cec7984}" />
