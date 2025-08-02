@@ -1661,7 +1661,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4207842841252714952}
+      - m_Target: {fileID: 4644537209782176406}
         m_TargetAssemblyTypeName: VolumeChanger, Assembly-CSharp
         m_MethodName: VolumeChange
         m_Mode: 1
@@ -4409,6 +4409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd46c375f4b034f45835612558f53f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bIsOnMainMenu: 0
   goEnable: {fileID: 4244762868050823912}
   goOptions: {fileID: 8167051114406200217}
   goPause: {fileID: 2078141835719730418}

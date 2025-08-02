@@ -6903,10 +6903,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2144696922}
     m_Modifications:
-    - target: {fileID: 4244762868050823912, guid: b3ddbaea0db4271409f424fcd74569bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4546958359654906807, guid: b3ddbaea0db4271409f424fcd74569bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6990,10 +6986,6 @@ PrefabInstance:
     - target: {fileID: 9182725928558353904, guid: b3ddbaea0db4271409f424fcd74569bf, type: 3}
       propertyPath: m_Name
       value: CanvasPauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182725928558353904, guid: b3ddbaea0db4271409f424fcd74569bf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
