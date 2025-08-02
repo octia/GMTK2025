@@ -136,6 +136,10 @@ public class SoundManager
         soundManagerConfig.musicLoopInstance = RuntimeManager.CreateInstance(eventReference);
         soundManagerConfig.musicLoopInstance.start();
     }
+    public void SetMusic(string type)
+    {
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel("Gamestate", type);
+    }
     public void UpdateMusicDistance(float distance, float maxDistance)
     {
         float volume = distance * 100 / maxDistance;

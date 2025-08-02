@@ -118,6 +118,8 @@ fmod_editor.log
 
 # Ignore banks and cache
 /FMOD/.cache
+/FMOD/.user
+/FMOD/.unsaved
 /FMOD/Build
 
 # Rider and VSCode settings
