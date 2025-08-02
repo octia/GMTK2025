@@ -1,20 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
+using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class OrbitController : MonoBehaviour
 {
-    [SerializeField] private OrbitWithData[] orbitsWithData;
-    [SerializeField] private float mousePickRadius = 1.0f;
-    [SerializeField] private LayerMask orbitLayerMask;
+    [SerializeField]
+    private OrbitWithData[] orbitsWithData;
 
-    RaycastHit[] hits = null;
+    [SerializeField]
+    private float mousePickRadius = 1.0f;
 
-    public IEnumerable<Orbit> GetUnlockedOrbits() => orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
-    public IEnumerable<Orbit> GetLockedOrbits() => orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
+    [SerializeField]
+    private LayerMask orbitLayerMask;
+
+    [Inject]
+    private UIManager uiManager;
+
+    private RaycastHit[] hits = null;
+
+    public IEnumerable<Orbit> GetUnlockedOrbits() =>
+        orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
+
+    public IEnumerable<Orbit> GetLockedOrbits() =>
+        orbitsWithData.Where(x => x.Unlocked).Select(x => x.Orbit);
+
     public int GetOrbitPrice(Orbit orbit) => GetMatchingOrbitData(orbit).Price;
+
     public bool IsOrbitUnlocked(Orbit orbit) => GetMatchingOrbitData(orbit).Unlocked;
+
     public void UnlockOrbit(Orbit orbit)
     {
         var orbitWithData = GetMatchingOrbitData(orbit);
@@ -30,10 +44,18 @@ public class OrbitController : MonoBehaviour
     /// <returns>Whether an orbit was found or not</returns>
     public bool PickUnlockedOrbitWithMouse(out Orbit orbit, out Vector3 hitPosition)
     {
-        return MousePicking.PickObjectFromLayer(IsOrbitUnlocked, orbitLayerMask, out orbit, out hitPosition);
+        Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
+        return MousePicking.PickObjectFromLayer(
+            IsOrbitUnlocked,
+            orbitLayerMask,
+            out orbit,
+            out hitPosition,
+            cam
+        );
     }
 
-    private OrbitWithData GetMatchingOrbitData(Orbit orbit) => orbitsWithData.First(x => x.Orbit == orbit);
+    private OrbitWithData GetMatchingOrbitData(Orbit orbit) =>
+        orbitsWithData.First(x => x.Orbit == orbit);
 
     private void Start()
     {
@@ -43,7 +65,8 @@ public class OrbitController : MonoBehaviour
         }
     }
 
-    [System.Serializable] private class OrbitWithData
+    [System.Serializable]
+    private class OrbitWithData
     {
         public Orbit Orbit;
         public bool Unlocked;
