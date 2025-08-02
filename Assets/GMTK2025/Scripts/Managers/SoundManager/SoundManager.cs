@@ -95,11 +95,10 @@ public class SoundManager
             soundManagerConfig.activeLoopedSounds.Remove(instance);
         }
     }
-    public void PlayOneShotWithStatus(string path, string status_)
+    public void PlayOneShotWithStatus(string path, string status)
     {
-        (float status, string paramName) = FindStatus(status_);
         EventInstance instance = RuntimeManager.CreateInstance(path);
-        instance.setParameterByName(paramName, status);
+        instance.setParameterByNameWithLabel("Status", status);
         instance.start();
         instance.release();
     }
