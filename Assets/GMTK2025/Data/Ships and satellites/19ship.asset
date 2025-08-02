@@ -15,7 +15,7 @@ MonoBehaviour:
   Orbit: WIP
   Size: medium
   Profit: 2
-  Speed: 15
+  Speed: 0
   Clockwise: 0
   Temporary: 1
   ModelPrefab: {fileID: 8228420899863059082, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}

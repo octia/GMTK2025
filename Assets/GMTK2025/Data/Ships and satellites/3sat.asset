@@ -15,7 +15,7 @@ MonoBehaviour:
   Orbit: elliptical
   Size: Small
   Profit: 1
-  Speed: 15
+  Speed: 0
   Clockwise: 1
   Temporary: 0
   ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}

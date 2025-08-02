@@ -7,7 +7,7 @@ public class ShipData : ScriptableObject
     public string Orbit = "WIP";
     public string Size;
     public int Profit;
-    public int Speed;
+    public SpeedType Speed;
     public bool Clockwise;
     public bool Temporary;
     public GameObject ModelPrefab;

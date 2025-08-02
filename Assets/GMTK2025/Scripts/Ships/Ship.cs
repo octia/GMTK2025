@@ -43,6 +43,8 @@ public class Ship : MonoBehaviour
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
 
+    private readonly float[] speedTypeToFloat = { 12, 22, 32 };
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -96,18 +98,20 @@ public class Ship : MonoBehaviour
             wantedForward = nearestPoint + forward * 4 - transform.position;
         }
 
+        float shipSpeed = speedTypeToFloat[(int) shipData.Speed];
+
         // Ships move towards their forward vector
         var newPosition = Vector3.MoveTowards(
             transform.position,
             transform.position + transform.forward * 100,
-            timeStep * speed * shipData.Speed
+            timeStep * speed * shipSpeed
         );
 
         // They turn towards a wanted forward vector, with a maximum angle change per fixed step
         var allowedForward = LimitRotation(
             transform.forward,
             wantedForward,
-            timeStep * steerAngleChangeLimit * shipData.Speed
+            timeStep * steerAngleChangeLimit * shipSpeed
         );
 
         // Purely visual up vector
@@ -115,7 +119,7 @@ public class Ship : MonoBehaviour
         var allowedUp = LimitRotation(
             transform.up,
             calculatedUp,
-            timeStep * steerAngleChangeLimit * shipData.Speed
+            timeStep * steerAngleChangeLimit * shipSpeed
         );
 
         var newRotation = Quaternion.LookRotation(

@@ -15,7 +15,7 @@ MonoBehaviour:
   Orbit: circular
   Size: Small
   Profit: 3
-  Speed: 35
+  Speed: 2
   Clockwise: 0
   Temporary: 1
   ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
