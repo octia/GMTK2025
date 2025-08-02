@@ -11,6 +11,9 @@ public class LifeManager : IDisposable
     [Inject]
     private SceneManager sceneManager;
 
+    [Inject]
+    private GameOverController gameOverController;
+
     public int LifeCount { get; private set; } = 3;
 
     [Inject]
@@ -25,7 +28,7 @@ public class LifeManager : IDisposable
         OnLifeCountChanged?.Invoke();
         if (LifeCount <= 0)
         {
-            sceneManager.LoadGameplay();
+            gameOverController.GameOver();
         }
     }
 
