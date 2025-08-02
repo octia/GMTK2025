@@ -17,7 +17,7 @@ MonoBehaviour:
   <Dialogues>k__BackingField:
   - <Message>k__BackingField: Oh, several ships want to approach! I have to pick
       which one to approve.
-    <IconOverride>k__BackingField: {fileID: 0}
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 12271be7b6dbe0943b30a3c458b60890, type: 3}
   - <Message>k__BackingField: Fortunately, time conveniently slowed down, so I can
       think for as long as I want!
-    <IconOverride>k__BackingField: {fileID: 0}
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
