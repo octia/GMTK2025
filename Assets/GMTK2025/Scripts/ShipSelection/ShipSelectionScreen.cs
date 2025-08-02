@@ -187,7 +187,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
         temporaryText.gameObject.SetActive(ship.Temporary);
         nameText.text = ship.name;
-        orbitText.text = "Preferred Orbital: " + ship.Orbit;
+        orbitText.text = "Preferred Orbital: " + ship.PreferredOrbitShape.ToString();
         sizeText.text = "Size: " + ship.ModelPrefab.GetComponent<ShipModel>().Size;
         profitText.text = "Profit: " + ship.Profit + "$";
         speedText.text = "Speed: " + ship.Speed;

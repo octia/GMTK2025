@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 8 ship
   m_EditorClassIdentifier: 
   Orbit: elliptical
+  PreferredOrbitShape: 1
   Profit: 5
   Speed: 2
   Clockwise: 1

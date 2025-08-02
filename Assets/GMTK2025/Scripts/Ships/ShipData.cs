@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GMTK2025/Data/ShipData", fileName = "ShipData")]
 public class ShipData : ScriptableObject
 {
-    public string Orbit = "WIP";
+    public OrbitShape PreferredOrbitShape;
     public int Profit;
     public SpeedType Speed;
     public bool Clockwise;

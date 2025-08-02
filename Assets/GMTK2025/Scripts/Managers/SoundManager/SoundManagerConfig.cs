@@ -42,7 +42,6 @@ public class SoundManagerConfig : ScriptableObject
 
     [SerializeField]
     public string sfxUpgradePath = "event:/Upgrade";
-    public bool bSfxHoverOnce = false;
 
     public FMOD.Studio.EventInstance musicLoopInstance;
     public List<EventInstance> activeLoopedSounds = new List<EventInstance>();
