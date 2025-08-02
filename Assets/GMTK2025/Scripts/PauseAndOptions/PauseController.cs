@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
+    public bool bIsOnMainMenu = false;
     [Inject]
     private SoundManager soundManager;
     [SerializeField] private GameObject goEnable;
@@ -28,7 +29,7 @@ public class PauseController : MonoBehaviour
     }
     private void Update()
     {
-        if (pauseAction.triggered)
+        if (pauseAction.triggered && !bIsOnMainMenu)
         {
             PauseGame();
         }
