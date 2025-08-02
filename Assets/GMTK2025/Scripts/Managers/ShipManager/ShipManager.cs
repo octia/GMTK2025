@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -68,9 +69,20 @@ public class ShipManager
 
     private Orbit SelectOrbitForShip(ShipData shipdata)
     {
-        // TODO: Select Orbit based in ship parameters
-        var orbits = orbitController.GetUnlockedOrbits();
-        return orbits.RandomElement();
+        var unlockedOrbits = orbitController.GetUnlockedOrbits().ToList();
+        Shuffle(unlockedOrbits);
+
+        var chosenOrbit = unlockedOrbits[0];
+        foreach(var orbit in unlockedOrbits)
+        {
+            OrbitShape orbitShape = orbit.GetComponent<OrbitGenerator>().Eccentricity <= 0.01f ? OrbitShape.circular : OrbitShape.elliptical;
+            if(shipdata.PreferredOrbitShape == orbitShape)
+            {
+                chosenOrbit = orbit;
+                break;
+            }
+        }
+        return chosenOrbit;
     }
 
     public static void Shuffle<T>(IList<T> ts)
