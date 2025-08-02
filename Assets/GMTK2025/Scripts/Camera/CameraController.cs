@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    public bool LockCamera;
-
     [SerializeField]
     private new Transform camera;
+
+    [SerializeField]
+    private Transform realCameraForOffset;
 
     [SerializeField]
     private Transform origin;
@@ -27,13 +28,27 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Vector2 currentVelocity = new(0f, 0f);
 
+    [SerializeField]
+    private Vector3 minOffsetForUISelection = Vector3.right;
+
+    [SerializeField]
+    private Vector3 maxOffsetForUISelection = Vector3.right;
+
     [HideInInspector]
     public float CurrentDistanceFromPlanet = 50f;
 
     [HideInInspector]
     public float DesiredDistanceFromPlanet = 50f;
 
+    private float normalizedOffset = 0;
+
+    private float normalizedOffsetUse = 0;
+
+    private bool hasOffset = false;
+
     private Tween scrollTween;
+
+    private float normalizedDistance = 0f;
 
     private void Awake()
     {
@@ -42,13 +57,11 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (LockCamera)
-        {
-            return;
-        }
-
         HandleMovmenent();
-        HandleScroll();
+        if (!Mathf.Approximately(Mouse.current.scroll.value.y, 0))
+        {
+            HandleScroll();
+        }
 
         SetCameraPosition(CurrentPosition, CurrentDistanceFromPlanet);
     }
@@ -76,11 +89,29 @@ public class CameraController : MonoBehaviour
             CurrentDistanceFromPlanet,
             DesiredDistanceFromPlanet,
             config.ScrollSnapDuration,
-            (value) => CurrentDistanceFromPlanet = value
+            (value) =>
+            {
+                CurrentDistanceFromPlanet = value;
+                normalizedDistance = GetNormalizedDistance(value);
+                SetOffset();
+            }
         );
 
         //Update music distance
-        soundManager.UpdateMusicDistance(CurrentDistanceFromPlanet, config.MaxDistanceFromPlanet);
+        soundManager.UpdateMusicDistance(normalizedDistance);
+    }
+
+    private void SetOffset()
+    {
+        float normalizedOffset = normalizedDistance;
+        float offsetToUse = normalizedDistance * normalizedOffset;
+        var realOffset = Vector3.Lerp(
+            minOffsetForUISelection,
+            maxOffsetForUISelection,
+            normalizedDistance
+        );
+        realOffset *= normalizedOffsetUse;
+        realCameraForOffset.localPosition = realOffset;
     }
 
     private void HandleMovmenent()
@@ -185,5 +216,28 @@ public class CameraController : MonoBehaviour
         direction = currentRotation * direction;
         camera.position = origin.position + direction * distance;
         camera.LookAt(origin, Vector3.up);
+    }
+
+    public void SetCameraOffset(bool shouldHaveOffset)
+    {
+        hasOffset = shouldHaveOffset;
+        float startOffset = normalizedOffsetUse;
+        float endOffset = shouldHaveOffset ? 1 : 0;
+        var tween = Tween.Custom(
+            startOffset,
+            endOffset,
+            0.4f,
+            (newValue) => normalizedOffsetUse = newValue
+        );
+        tween.OnUpdate(this, (_, _) => SetOffset());
+    }
+
+    private float GetNormalizedDistance(float distance)
+    {
+        return Mathf.InverseLerp(
+            config.MinDistanceFromPlanet,
+            config.MaxDistanceFromPlanet,
+            distance
+        );
     }
 }

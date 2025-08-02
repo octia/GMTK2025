@@ -6,6 +6,7 @@ public class LifeController : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text text;
+
     [SerializeField]
     private UnityEngine.UI.Image[] heartsImages = new UnityEngine.UI.Image[3];
 
