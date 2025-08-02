@@ -15,6 +15,7 @@ public class LifeController : MonoBehaviour
     private void Awake()
     {
         lifeManager.OnLifeCountChanged += OnLivesChanged;
+        VisualLifeChange();
     }
 
     private void OnDisable()
@@ -25,9 +26,14 @@ public class LifeController : MonoBehaviour
     private void OnLivesChanged()
     {
         text.text = $"Lives: {lifeManager.LifeCount}";
-        for(int i =0; i<3; i++)
+        VisualLifeChange();
+    }
+
+    public void VisualLifeChange()
+    {
+        for (int i = 0; i < 3; i++)
         {
-            if(i< lifeManager.LifeCount)
+            if (i < lifeManager.LifeCount)
             {
                 heartsImages[i].sprite = lifeManager.config.heartSprite[0];
             }

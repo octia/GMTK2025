@@ -37,6 +37,9 @@ public class StationUpgradesScreen : MonoBehaviour
     [Inject]
     private OrbitController orbitController;
 
+    [Inject]
+    private SoundManager soundManager;
+
     [HideInInspector]
     public Orbit[] NewOrbits;
 
@@ -58,6 +61,7 @@ public class StationUpgradesScreen : MonoBehaviour
             )
         )
         {
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxErrorPath);
             return;
         }
 

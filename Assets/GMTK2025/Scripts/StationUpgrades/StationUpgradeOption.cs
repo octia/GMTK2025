@@ -47,6 +47,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Inject]
     private UpgradeManager upgradeManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     private bool mouseOver;
 
     // Initial
@@ -77,11 +80,13 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
                     }
 
                     upgradeManager.AddUpgrade(true);
+                    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
                     screen.BuyOrbit();
                     break;
                 // Invalid upgrade
                 default:
                     upgradeManager.AddUpgrade();
+                    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
                     return;
             }
         }
