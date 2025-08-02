@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6025010933110981361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 2634654966881761465}
   - component: {fileID: 2643733786656591348}
   - component: {fileID: 2774768812001043149}
+  - component: {fileID: 4377087009689051823}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -601,3 +602,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneTypeToLoad: 2
+--- !u!114 &4377087009689051823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195932416086332322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

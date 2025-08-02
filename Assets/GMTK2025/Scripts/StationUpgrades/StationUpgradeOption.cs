@@ -40,6 +40,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Inject]
     private UpgradeManager upgradeManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     private bool mouseOver;
 
     // Initial
@@ -59,6 +62,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
             upgradeManager.AddUpgrade();
             screen.HideScreen();
         }

@@ -27,6 +27,10 @@ public class SoundManagerConfig : ScriptableObject
     public string sfxHoverPath = "event:/Orbit_hover";
     [SerializeField]
     public string sfxExplosionPath = "event:/Ship_crash";
+    [SerializeField]
+    public string sfxErrorPath = "event:/Error";
+    [SerializeField]
+    public string sfxUpgradePath = "event:/Upgrade";
     public bool bSfxHoverOnce = false;
 
     public FMOD.Studio.EventInstance musicLoopInstance;

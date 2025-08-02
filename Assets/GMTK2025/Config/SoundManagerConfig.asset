@@ -14,42 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicVcaName: vca:/Music
   sfxVcaName: vca:/Sfx
-  sfxUiClickPath: path
-  sfxUiPointerPath: path
+  fVolumeMusic: 0
+  fVolumeSfx: 0
+  sfxUiClickPath: event:/UI_hover
+  sfxUiPointerPath: event:/UI_hover
+  sfxTextPath: event:/Text
   sfxSelectShipPath: event:/Ship_select
   sfxLoopShipFlyPath: event:/Ship_fly
-  sfxDriverPath:
-  - name: basic
-    sfxPath: event:/Ship_basic
-  - name: bbx
-    sfxPath: event:/Ship_bbx
-  - name: captain
-    sfxPath: event:/Ship_captain
-  - name: chirpy_1
-    sfxPath: event:/Ship_chirpy_1
-  - name: chirpy_2
-    sfxPath: event:/Ship_chirpy_2
-  - name: cockroach
-    sfxPath: event:/Ship_cockroach
-  - name: fiona
-    sfxPath: event:/Ship_fiona
-  - name: gibberish
-    sfxPath: event:/Ship_gibberish
-  - name: nat
-    sfxPath: event:/Ship_nat
-  - name: neutro
-    sfxPath: event:/Ship_neutro
-  - name: notbot
-    sfxPath: event:/Ship_notbot
-  - name: robot
-    sfxPath: event:/Ship_robot
-  - name: scoundrel
-    sfxPath: event:/Ship_scoundrel
-  - name: servant
-    sfxPath: event:/Ship_servant
-  - name: underpaid
-    sfxPath: event:/Ship_underpaid
-  - name: xeno
-    sfxPath: event:/Ship_xeno
-  - name: zemoo
-    sfxPath: event:/Ship_zemoo
+  sfxHoverPath: event:/Orbit_hover
+  sfxExplosionPath: event:/Ship_crash
+  bSfxHoverOnce: 0
