@@ -173,9 +173,10 @@ public class ShipDragAndDrop : MonoBehaviour
             foreach (var orbit in orbitController.GetUnlockedOrbits())
             {
                 var bestShip = draggedShip ? draggedShip : ship;
+                var clockwise = bestShip ? bestShip.ShipData.Clockwise : true;
                 if (orbit == targetOrbit)
                 {
-                    orbit.Clockwise = bestShip.ShipData.Clockwise;
+                    orbit.Clockwise = clockwise;
                     orbit.State = Orbit.VisualState.Selected;
                 }
                 else if (
@@ -183,7 +184,7 @@ public class ShipDragAndDrop : MonoBehaviour
                     || (hoveringOverShip && orbit == ship.PreferredOrbit)
                 )
                 {
-                    orbit.Clockwise = bestShip.ShipData.Clockwise;
+                    orbit.Clockwise = clockwise;
                     orbit.State = Orbit.VisualState.Hightlighted;
 
                     //SFX
