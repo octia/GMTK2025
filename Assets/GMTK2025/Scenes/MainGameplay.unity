@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
       propertyPath: shipData
       value: 
-      objectReference: {fileID: 11400000, guid: 1727cc5cff980da4aa3f5c37748c937c, type: 2}
+      objectReference: {fileID: 11400000, guid: 8c537f4e20894424aa8de4874d253a59, type: 2}
     - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
       propertyPath: preferredOrbit
       value: 
@@ -6093,6 +6093,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1816248404}
     - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
+      propertyPath: shipData
+      value: 
+      objectReference: {fileID: 11400000, guid: 81dc7ab9be3a34445a07c06144bbf713, type: 2}
+    - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
       propertyPath: preferredOrbit
       value: 
       objectReference: {fileID: 1816248404}
@@ -7047,6 +7051,14 @@ PrefabInstance:
     - target: {fileID: 2400328397337883862, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233686438909132325, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 107.19995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233686438909132325, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.849998
       objectReference: {fileID: 0}
     - target: {fileID: 3344694402569073564, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
       propertyPath: m_Color.b
