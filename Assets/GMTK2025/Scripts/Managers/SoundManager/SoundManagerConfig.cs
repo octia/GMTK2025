@@ -9,6 +9,8 @@ public class SoundManagerConfig : ScriptableObject
     public string musicVcaName = "vca:/Music";
     [SerializeField]
     public string sfxVcaName = "vca:/Sfx";
+    public float fVolumeMusic = 0f;
+    public float fVolumeSfx = 0f;
 
     [SerializeField]
     public string sfxUiClickPath = "path";

@@ -3,12 +3,16 @@ using PrimeTween;
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
+    public bool bIsOnMainMenu = false;
     [Inject]
     private SoundManager soundManager;
     [SerializeField] private GameObject goEnable;
+    [SerializeField] private GameObject goOptions;
+    [SerializeField] private GameObject goPause;
     private bool bOptionsOpen = false;
     private bool bPaused = false;
     [SerializeField] private InputAction pauseAction;
@@ -20,13 +24,27 @@ public class PauseController : MonoBehaviour
     }
     private void Start()
     {
-        soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
-        soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
-        soundManager.PlayMusic(musicEventReference);
+        if(!bIsOnMainMenu)
+        {
+            if(!soundManager.soundManagerConfig.musicLoopInstance.isValid())
+            {
+                soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
+                soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
+                soundManager.PlayMusic(musicEventReference);
+            }
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            soundManager.soundManagerConfig.music_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.musicVcaName);
+            soundManager.soundManagerConfig.sfx_VCA = FMODUnity.RuntimeManager.GetVCA(soundManager.soundManagerConfig.sfxVcaName);
+            soundManager.PlayMusic(musicEventReference);
+            this.gameObject.SetActive(false);
+        }
     }
     private void Update()
     {
-        if (pauseAction.triggered)
+        if (pauseAction.triggered && !bIsOnMainMenu)
         {
             PauseGame();
         }
@@ -48,6 +66,8 @@ public class PauseController : MonoBehaviour
     public void OptionsGame()
     {
         bOptionsOpen = !bOptionsOpen;
+        goOptions.SetActive(bOptionsOpen);
+        goPause.SetActive(!bOptionsOpen);
         //Book is popping out of nowhere
     }
 }

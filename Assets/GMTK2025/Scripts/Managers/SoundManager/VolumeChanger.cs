@@ -1,5 +1,6 @@
 using Reflex.Attributes;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class VolumeChanger : MonoBehaviour
 {
@@ -8,18 +9,74 @@ public class VolumeChanger : MonoBehaviour
     [SerializeField]
     private VolumeType volumeType;
 
+    [SerializeField]
     private UnityEngine.UI.Slider thisSlider;
+    [SerializeField]
+    private RadialSlider thisOtherSlider;
     private void Start()
     {
-        thisSlider = transform.GetComponent<UnityEngine.UI.Slider>();
-        soundManager.ResetVolume(volumeType, thisSlider);
+        if (thisSlider)
+        {
+            soundManager.PreResetVolume(volumeType);
+        }
+        else if (thisOtherSlider)
+        {
+            soundManager.PreResetVolume(volumeType);
+        }
+        ResetVolume();
     }
     private void OnEnable()
     {
-        soundManager.ResetVolume(volumeType, thisSlider);
+        if (thisSlider)
+        {
+            soundManager.PreResetVolume(volumeType);
+        }
+        else if (thisOtherSlider)
+        {
+            soundManager.PreResetVolume(volumeType);
+        }
+        ResetVolume();
+    }
+    private void ResetVolume()
+    {
+        if (thisSlider)
+        {
+            switch (volumeType)
+            {
+                case VolumeType.None:
+                    return;
+                case VolumeType.Music:
+                    thisSlider.value = soundManager.soundManagerConfig.fVolumeMusic;
+                    break;
+                case VolumeType.Sfx:
+                    thisSlider.value = soundManager.soundManagerConfig.fVolumeSfx;
+                    break;
+            }
+        }
+        else if (thisOtherSlider)
+        {
+            switch (volumeType)
+            {
+                case VolumeType.None:
+                    return;
+                case VolumeType.Music:
+                    thisOtherSlider.value = soundManager.soundManagerConfig.fVolumeMusic;
+                    break;
+                case VolumeType.Sfx:
+                    thisOtherSlider.value = soundManager.soundManagerConfig.fVolumeSfx;
+                    break;
+            }
+        }
     }
     public void VolumeChange()
     {
-        soundManager.ChangeVolume(volumeType, thisSlider.value);
+        if (thisSlider)
+        {
+            soundManager.ChangeVolume(volumeType, thisSlider.value);
+        }
+        else if (thisOtherSlider)
+        {
+            soundManager.ChangeVolume(volumeType, thisOtherSlider.fValue);
+        }
     }
 }

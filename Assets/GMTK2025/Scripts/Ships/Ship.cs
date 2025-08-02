@@ -1,3 +1,4 @@
+using EditorAttributes;
 using FMOD.Studio;
 using FMODUnity;
 using Reflex.Attributes;
@@ -42,6 +43,7 @@ public class Ship : MonoBehaviour
     public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
+    [ShowInInspector] public float DistanceToOrbit { get; private set; }
 
     [Space]
     [SerializeField]
@@ -137,14 +139,17 @@ public class Ship : MonoBehaviour
         {
             transform.SetLocalPositionAndRotation(newPosition, newRotation);
         }
-        SfxOrbit(nearestPoint, useRigidbody);
+
+        DistanceToOrbit = orbit ? Vector3.Distance(transform.position, nearestPoint) : Mathf.Infinity;
+
+        UpdateOrbitSFX();
+
         lastSpeed = speed;
     }
 
-    private void SfxOrbit(Vector3 nearestPoint, bool useRigidbody)
+    private void UpdateOrbitSFX()
     {
-        Vector3 distanceToTarget = this.transform.position - nearestPoint;
-        if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && !bOnce)
+        if (DistanceToOrbit >= 1 && enabled && !bOnce)
         {
             //The loop of the engine
             orbitEventInstance = soundManager.PlayLoop(
@@ -155,14 +160,14 @@ public class Ship : MonoBehaviour
             soundManager.PlayOneShotWithStatus(shipData.Captain.sfxPath, "Move");
             bOnce = true;
         }
-        else if (Vector3.SqrMagnitude(distanceToTarget) >= 1 && useRigidbody && bOnce)
+        else if (DistanceToOrbit >= 1 && enabled && bOnce)
         {
             if (orbitEventInstance.isValid())
             {
                 orbitEventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
             }
         }
-        else if (Vector3.SqrMagnitude(distanceToTarget) <= 1 && bOnce)
+        else if (DistanceToOrbit <= 1 && bOnce)
         {
             soundManager.StopLoop(orbitEventInstance);
             bOnce = false;

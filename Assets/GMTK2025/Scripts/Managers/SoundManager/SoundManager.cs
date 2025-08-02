@@ -1,4 +1,3 @@
-using System.IO;
 using FMOD.Studio;
 using FMODUnity;
 using Reflex.Attributes;
@@ -23,17 +22,17 @@ public class SoundManager
                 break;
         }
     }
-    public void ResetVolume(VolumeType volumeType, UnityEngine.UI.Slider slider)
+    public void PreResetVolume(VolumeType volumeType)
     {
         switch (volumeType)
         {
             case VolumeType.None:
                 return;
             case VolumeType.Music:
-                VolumeGet(soundManagerConfig.music_VCA, slider);
+                VolumeGet(soundManagerConfig.music_VCA, volumeType);
                 break;
             case VolumeType.Sfx:
-                VolumeGet(soundManagerConfig.sfx_VCA, slider);
+                VolumeGet(soundManagerConfig.sfx_VCA, volumeType);
                 break;
         }
     }
@@ -46,7 +45,7 @@ public class SoundManager
     }
     public void PausedGameVolume(bool bIsPaused)
     {
-        if(bIsPaused)
+        if (bIsPaused)
         {
             RuntimeManager.StudioSystem.setParameterByName("Pause", 0f);
         }
@@ -55,12 +54,23 @@ public class SoundManager
             RuntimeManager.StudioSystem.setParameterByName("Pause", 100f);
         }
     }
-    private void VolumeGet(FMOD.Studio.VCA VCA, UnityEngine.UI.Slider slider)
+    private void VolumeGet(FMOD.Studio.VCA VCA, VolumeType volumeType)
     {
         if (VCA.isValid())
         {
             VCA.getVolume(out float volume);
-            slider.value = volume;
+
+            switch (volumeType)
+            {
+                case VolumeType.None:
+                    return;
+                case VolumeType.Music:
+                    soundManagerConfig.fVolumeMusic = volume;
+                    break;
+                case VolumeType.Sfx:
+                    soundManagerConfig.fVolumeSfx = volume;
+                    break;
+            }
         }
     }
     public void PlayOneShot(string path)
@@ -95,11 +105,11 @@ public class SoundManager
     }
     private (float, string) FindStatus(string status_)
     {
-        if(status_ == "satelite" || status_ == "Satelite")
+        if (status_ == "satelite" || status_ == "Satelite")
         {
             return (3f, "ShipType");
         }
-        else if(status_ == "big" || status_ == "Big")
+        else if (status_ == "big" || status_ == "Big")
         {
             return (2f, "ShipType");
         }
@@ -110,22 +120,6 @@ public class SoundManager
         else if (status_ == "small" || status_ == "Small")
         {
             return (0f, "ShipType");
-        }
-        else if(status_ == "Accept")
-        {
-            return (0f, "Status");
-        }
-        else if (status_ == "Idle")
-        {
-            return (1f, "Status");
-        }
-        else if (status_ == "Closecall")
-        {
-            return (2f, "Status");
-        }
-        else if (status_ == "Move")
-        {
-            return (3f, "Status");
         }
         else
         {
@@ -148,3 +142,4 @@ public class SoundManager
         RuntimeManager.StudioSystem.setParameterByName("Distance", volume); //0 is near, 100 is far
     }
 }
+
