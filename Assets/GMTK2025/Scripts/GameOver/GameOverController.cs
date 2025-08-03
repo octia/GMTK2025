@@ -26,7 +26,6 @@ public class GameOverController : MonoBehaviour
     {
         retryButton.onClick.AddListener(Retry);
         leaderboardSubmitButton.onClick.AddListener(SubmitToLeaderboard);
-        Tween.Delay(3, () => GameOver());
     }
 
     public void GameOver()
