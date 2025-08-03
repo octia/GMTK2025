@@ -10,6 +10,9 @@ public class FinanceManager
     [Inject]
     private PlayerDialogueController playerDialogue;
 
+    [Inject]
+    private SoundManager soundManager;
+
     private bool hasPurchasedUpgradeOrSeenTutorial = false;
 
     private int money;
@@ -39,6 +42,7 @@ public class FinanceManager
     {
         if (money < amount)
         {
+            soundManager.PlayOneShot("event:/Error");
             return false;
         }
 

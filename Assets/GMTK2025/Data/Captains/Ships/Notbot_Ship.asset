@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_notbot
   PilotName: notbot
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - Greetings friend! My calculations have determined that your planet will be important
+    for my next mission. I just require your permission and I will continue my designation.

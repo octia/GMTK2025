@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_xeno
   PilotName: xeno
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - We are here to help. We are the solution. Your planet shall be ours. Your existence
+    shall be ours.

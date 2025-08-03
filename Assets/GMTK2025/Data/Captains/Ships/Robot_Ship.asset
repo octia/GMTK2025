@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_robot
   PilotName: robot
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - All my sequences have restarted in a [short moment]. I will not provide any [danger].
+    Please let me deploy in your [area].

@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_glorb
   PilotName: glorb
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - "Hi, they recommend your planet for this operation, but like, from what I seem
+    so far I am not for sure\u2026"

@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_servant
   PilotName: servant
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - Hey. I got my orders. You have yours. We shall make a nice arrangement and both
+    of us can be winners out of this situation.

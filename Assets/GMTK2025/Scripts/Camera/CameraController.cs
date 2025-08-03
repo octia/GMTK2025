@@ -73,7 +73,6 @@ public class CameraController : MonoBehaviour
         if (currentVelocity.sqrMagnitude > 25)
         {
             inertiaTime += Time.deltaTime;
-            Debug.Log(inertiaTime);
         }
         else
         {

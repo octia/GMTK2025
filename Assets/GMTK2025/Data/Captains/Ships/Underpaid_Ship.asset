@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_underpaid
   PilotName: underpaid
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - "Buddy. I will be totally honest with you. I don\u2019t get paid enough for this.
+    Just let me in for today and I won't cause any problems."

@@ -3618,7 +3618,6 @@ GameObject:
   - component: {fileID: 717123148}
   - component: {fileID: 717123147}
   - component: {fileID: 717123146}
-  - component: {fileID: 717123145}
   - component: {fileID: 717123144}
   m_Layer: 5
   m_Name: PlayButton
@@ -3661,19 +3660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9821332e30ae9743ad5e316de2b4596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &717123145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717123142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed19f0f9dd21524eb52070ff09218f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneTypeToLoad: 2
 --- !u!114 &717123146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3718,16 +3704,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 717123145}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 1
+      - m_Target: {fileID: 1811837193}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Fade Out
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &717123147
@@ -7622,6 +7608,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788292139}
   m_CullTransparentMesh: 1
+--- !u!95 &1811837193 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8904096748779133876, guid: cf2bd4392ca875c488a7a19dffef65a3, type: 3}
+  m_PrefabInstance: {fileID: 552303579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1813355723
 PrefabInstance:
   m_ObjectHideFlags: 0

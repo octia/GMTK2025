@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84f39d3a770a8e4bbe2d29ef4dad970, type: 3}
   m_Name: CameraControlConfig
   m_EditorClassIdentifier: 
-  <MaxVerticalAngle>k__BackingField: 89
+  <MaxVerticalAngle>k__BackingField: 88
   <HorizontalScrollMultiplier>k__BackingField: 10
-  <MaxVelocityDegPerSec>k__BackingField: 2696
+  <MaxVelocityDegPerSec>k__BackingField: 3040
   <HorizontalDrag>k__BackingField: 2
-  <VerticalDrag>k__BackingField: 12.9
+  <VerticalDrag>k__BackingField: 21.1
   <MinVelocityForInertia>k__BackingField: 200
   <MinDistanceFromPlanet>k__BackingField: 10
   <MaxDistanceFromPlanet>k__BackingField: 120
-  <DragSensitivity>k__BackingField: {x: 0.2, y: 0.2}
+  <DragSensitivity>k__BackingField: {x: 0.2, y: 0.14}
   <InertiaCalculationDuration>k__BackingField: 0.13
   <ScrollSensitivity>k__BackingField: 6.6
-  <ScrollSnapDuration>k__BackingField: 0.034
+  <ScrollSnapDuration>k__BackingField: 0.336
