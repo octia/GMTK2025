@@ -8,7 +8,7 @@ public class ShipSelectionScreen : MonoBehaviour
 {
     [Tooltip("Time necessary for a new ship to appear")]
     [SerializeField]
-    private float newShipTime;
+    private float[] newShipTime;
 
     [Space]
     [SerializeField]
@@ -87,6 +87,8 @@ public class ShipSelectionScreen : MonoBehaviour
     // ...
     private float currentNewShipTime;
 
+    private int newShipsAmount;
+
     public (ShipData data, Orbit orbit)[] NewShips;
 
     // Initial
@@ -96,7 +98,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private void Start()
     {
-        currentNewShipTime = newShipTime;
+        currentNewShipTime = newShipTime[0];
 
         anim = GetComponent<Animator>();
 
@@ -219,7 +221,8 @@ public class ShipSelectionScreen : MonoBehaviour
             }
         }
 
-        currentNewShipTime = newShipTime;
+        newShipsAmount++;
+        currentNewShipTime = newShipsAmount >= newShipTime.Length ? newShipTime[newShipTime.Length - 1] : newShipTime[newShipsAmount];
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         if (ship != null)
         {

@@ -1299,7 +1299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5133ed50c038b43af9916d43cab7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newShipTime: 25
+  newShipTime:
+  - 20
+  - 30
   stationUpgradesScreen: {fileID: 0}
   selectionOptions:
   - {fileID: 2561790994021808628}
