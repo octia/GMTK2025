@@ -214,8 +214,6 @@ GameObject:
   m_Component:
   - component: {fileID: 147585373}
   - component: {fileID: 147585372}
-  - component: {fileID: 147585375}
-  - component: {fileID: 147585383}
   - component: {fileID: 147585376}
   - component: {fileID: 147585378}
   - component: {fileID: 147585379}
@@ -256,19 +254,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &147585375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147585371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a9d036a3843ff45802b144d435a36c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1816248405}
 --- !u!114 &147585376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f2b34000655e7b89f1a138d295acb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customCursor: {fileID: 1950398821}
+  orbitController: {fileID: 1816248405}
+  scoreController: {fileID: 0}
   gameOverController: {fileID: 253678961}
   mainCamera: {fileID: 620638612}
 --- !u!114 &147585382
@@ -349,19 +337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeManagerConfig: {fileID: 11400000, guid: eae7636f9ec98f1469a463be7dc4dfa4, type: 2}
---- !u!114 &147585383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147585371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a934802591fe3f4c835800bac2983c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1950398821}
 --- !u!224 &253678960 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 76226258376229885, guid: 112457f311935fc94a11bef8e67f4046, type: 3}
