@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 1994385266965351183}
   - component: {fileID: 5348004768549940628}
   - component: {fileID: 8541098972930416622}
+  - component: {fileID: 3307044901546816584}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -250,6 +251,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3307044901546816584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523943765181407856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8bbe784cfa00d49b5da8894292fd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
 --- !u!1 &605782439223210781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1485,7 @@ GameObject:
   - component: {fileID: 5040989651626605422}
   - component: {fileID: 3610031705176410162}
   - component: {fileID: 7701823540167101773}
+  - component: {fileID: 8300760492362024746}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1593,6 +1611,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8300760492362024746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216825454137103215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8bbe784cfa00d49b5da8894292fd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
 --- !u!1 &3286331868915090171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,6 +1779,7 @@ GameObject:
   - component: {fileID: 672196465321725427}
   - component: {fileID: 8089878098416684408}
   - component: {fileID: 1536731372304396166}
+  - component: {fileID: 6578108751740087338}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1870,6 +1905,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6578108751740087338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287197198300115245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8bbe784cfa00d49b5da8894292fd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
 --- !u!1 &3449475434619162043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,6 +3001,7 @@ GameObject:
   - component: {fileID: 7477100248073834343}
   - component: {fileID: 8921536994636911302}
   - component: {fileID: 3428775010633203734}
+  - component: {fileID: 703222170008059682}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3075,6 +3127,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &703222170008059682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628133765045238349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8bbe784cfa00d49b5da8894292fd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
 --- !u!1 &5958764272868490285
 GameObject:
   m_ObjectHideFlags: 0

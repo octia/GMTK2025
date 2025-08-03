@@ -646,17 +646,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeTime:
-  - 1.5
   - 2
   - 2.5
   - 3
   - 4
+  - 5
   abilityCooldown:
+  - 40
+  - 35
+  - 30
+  - 25
   - 20
-  - 19
-  - 17
-  - 15
-  - 12
   button: {fileID: 2182183779627503009}
   cooldownBar: {fileID: 5100141338527872765}
   activeBar: {fileID: 0}
