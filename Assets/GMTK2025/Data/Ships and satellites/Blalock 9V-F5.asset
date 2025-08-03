@@ -17,5 +17,5 @@ MonoBehaviour:
   Speed: 0
   Clockwise: 1
   Temporary: 0
-  ModelPrefab: {fileID: 69199178942482842, guid: 1bebd2f6ea1942b47ae642e501b8c5d7, type: 3}
+  ModelPrefab: {fileID: 3223845005574558528, guid: 1ad1323235c2bcb4c9ff7272df3bb783, type: 3}
   Captain: {fileID: 11400000, guid: d25088275ae730042a7e24456a8e67f1, type: 2}

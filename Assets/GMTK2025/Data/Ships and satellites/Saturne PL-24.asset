@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 21sat
+  m_Name: Saturne PL-24
   m_EditorClassIdentifier: 
-  Orbit: elliptical
-  PreferredOrbitShape: 1
+  PreferredOrbitShape: 0
   Profit: 2
   Speed: 1
   Clockwise: 0
   Temporary: 0
-  ModelPrefab: {fileID: 8228420899863059082, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
-  Captain: {fileID: 11400000, guid: a98788038ad946048a520edae75b60af, type: 2}
+  ModelPrefab: {fileID: 69199178942482842, guid: 1bebd2f6ea1942b47ae642e501b8c5d7, type: 3}
+  Captain: {fileID: 11400000, guid: 59feb4b1be7e8d242a09dd9a24c99222, type: 2}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8374881874389749891}
   - component: {fileID: 644933906224511994}
   m_Layer: 0
-  m_Name: Satellite_1_Tyc Sm
+  m_Name: Satellite_1_Tyc Sm green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69199178942482842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.030365637, y: 0.06845943, z: 0.40432203, w: 0.91154534}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2496584343964178749}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 8.59, z: 47.84}
 --- !u!114 &644933906224511994
 MonoBehaviour:
   m_ObjectHideFlags: 0

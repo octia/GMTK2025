@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 34sat
+  m_Name: RP Zeus R-21
   m_EditorClassIdentifier: 
-  Orbit: elliptical
-  PreferredOrbitShape: 1
-  Profit: 4
-  Speed: 2
-  Clockwise: 0
+  PreferredOrbitShape: 0
+  Profit: 2
+  Speed: 0
+  Clockwise: 1
   Temporary: 0
-  ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Captain: {fileID: 11400000, guid: a98788038ad946048a520edae75b60af, type: 2}
+  ModelPrefab: {fileID: 4050563953702984272, guid: 1059da2a7034746438c7473de61be37c, type: 3}
+  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}

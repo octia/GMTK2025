@@ -321,7 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customCursor: {fileID: 1950398821}
   orbitController: {fileID: 1816248405}
-  scoreController: {fileID: 0}
   gameOverController: {fileID: 253678961}
   mainCamera: {fileID: 620638612}
 --- !u!114 &147585382
@@ -8421,6 +8420,26 @@ PrefabInstance:
     - target: {fileID: 1940865988119213203, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
+      propertyPath: 'activeTime.Array.data[0]'
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
+      propertyPath: 'activeTime.Array.data[1]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
+      propertyPath: 'activeTime.Array.data[2]'
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
+      propertyPath: 'activeTime.Array.data[3]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
+      propertyPath: 'activeTime.Array.data[4]'
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6887324426910899011, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
       propertyPath: m_Name

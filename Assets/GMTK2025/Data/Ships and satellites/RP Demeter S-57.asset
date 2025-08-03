@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 24sat
+  m_Name: RP Demeter S-57
   m_EditorClassIdentifier: 
-  Orbit: circular
-  Profit: 3
-  Speed: 1
+  PreferredOrbitShape: 1
+  Profit: 4
+  Speed: 0
   Clockwise: 0
   Temporary: 0
-  ModelPrefab: {fileID: 8228420899863059082, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
-  Captain: {fileID: 11400000, guid: 233dda706120c734a80845f902a26b22, type: 2}
+  ModelPrefab: {fileID: 2297562557029976924, guid: 00a935f71f357b54ea629a114e3b0e7c, type: 3}
+  Captain: {fileID: 11400000, guid: e0f5ea3144da6814387cc73d9fbc68b8, type: 2}

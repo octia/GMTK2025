@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 161520165420273457}
   - component: {fileID: -4768332229758838345}
   m_Layer: 0
-  m_Name: Satellite_2_Tyc Med
+  m_Name: Satellite_2_Tyc Med blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

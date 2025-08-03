@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 30sat
+  m_Name: Swan 50-NG
   m_EditorClassIdentifier: 
-  Orbit: elliptical
-  PreferredOrbitShape: 1
-  Profit: 1
-  Speed: 0
-  Clockwise: 0
+  PreferredOrbitShape: 0
+  Profit: 2
+  Speed: 1
+  Clockwise: 1
   Temporary: 0
-  ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
-  Captain: {fileID: 11400000, guid: 98eb899f0a5d42043afb1ec1a1368b42, type: 2}
+  ModelPrefab: {fileID: 2297562557029976924, guid: 00a935f71f357b54ea629a114e3b0e7c, type: 3}
+  Captain: {fileID: 11400000, guid: 61afa55ae5dcbd24dacb5431b992233a, type: 2}
