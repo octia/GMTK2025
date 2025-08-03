@@ -17,5 +17,5 @@ MonoBehaviour:
   <ChainType>k__BackingField: 3
   <Dialogues>k__BackingField:
   - <Message>k__BackingField: "Now look kid, you\u2019ve earned enough money for
-      an upgrade. Go ahead and check out the upgrade menu."
+      an upgrade. Go ahead and check out the upgrade menu in the bottom right corner.."
     <IconOverride>k__BackingField: {fileID: 21300000, guid: 5b5b94519563f524aa7cb9f0658a1a7d, type: 3}
