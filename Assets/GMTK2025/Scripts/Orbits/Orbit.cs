@@ -24,6 +24,9 @@ public class Orbit : MonoBehaviour
     [SerializeField]
     private Color currentColor;
 
+    [SerializeField]
+    private OrbitGenerator orbitGenerator;
+
     private float fillValue = 0.5f;
     private float scrollValue = 0;
     private float scrollSpeed;
@@ -43,6 +46,8 @@ public class Orbit : MonoBehaviour
             state = value;
         }
     }
+
+    public OrbitGenerator Generator => orbitGenerator;
 
     public bool Clockwise { get; set; }
 
@@ -164,6 +169,6 @@ public class Orbit : MonoBehaviour
         Hightlighted,
         Selected,
         Alert,
-        Current
+        Current,
     }
 }

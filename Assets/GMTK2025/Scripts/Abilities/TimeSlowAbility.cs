@@ -18,7 +18,16 @@ public class TimeSlowAbility : MonoBehaviour
     private Button button;
 
     [SerializeField]
+    private Scrollbar cooldownBar;
+
+    [SerializeField]
+    private Scrollbar activeBar;
+
+    [SerializeField]
     private TMP_Text abilityCooldownText;
+
+    [SerializeField]
+    private Color disabledColor;
 
     [Inject]
     private TimerManager timerManager;
@@ -28,6 +37,9 @@ public class TimeSlowAbility : MonoBehaviour
 
     private float currentActiveTime;
     private float currentAbilityCooldown;
+
+    private float startAbilityCooldown;
+    private float startActiveTime;
 
     // Initials
     private UIGameSlower gameSlower;
@@ -48,6 +60,7 @@ public class TimeSlowAbility : MonoBehaviour
         }
         
         currentActiveTime -= Time.deltaTime;
+        activeBar.size = currentActiveTime / startActiveTime;
 
         if (currentActiveTime < 0)
         {
@@ -57,6 +70,9 @@ public class TimeSlowAbility : MonoBehaviour
             {
                 gameSlower.enabled = false;
                 abilityCooldownText.gameObject.SetActive(true);
+                cooldownBar.gameObject.SetActive(true);
+                activeBar.gameObject.SetActive(false);
+                button.GetComponent<Image>().color = disabledColor;
             }
 
             if (currentAbilityCooldown < 0)
@@ -68,10 +84,13 @@ public class TimeSlowAbility : MonoBehaviour
 
                 button.interactable = true;
                 abilityCooldownText.gameObject.SetActive(false);
+                cooldownBar.gameObject.SetActive(false);
+                button.GetComponent<Image>().color = Color.white;
             }
             else
             {
                 abilityCooldownText.text = Math.Round(currentAbilityCooldown, 2) + "s";
+                cooldownBar.size = 1 - currentAbilityCooldown / startAbilityCooldown;
             }
         }
     }
@@ -85,9 +104,15 @@ public class TimeSlowAbility : MonoBehaviour
 
         gameSlower.enabled = true;
         button.interactable = false;
+        button.GetComponent<Image>().color = disabledColor;
 
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Time];
+
         currentActiveTime = activeTime[upgradeAmount];
+        startActiveTime = currentActiveTime;
+        activeBar.gameObject.SetActive(true);
+
         currentAbilityCooldown = abilityCooldown[upgradeAmount];
+        startAbilityCooldown = currentAbilityCooldown;
     }
 }

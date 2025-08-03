@@ -860,6 +860,7 @@ MonoBehaviour:
   selectColor: {r: 0.18828177, g: 1, b: 0, a: 1}
   alertColor: {r: 1, g: 0.009601215, b: 0, a: 1}
   currentColor: {r: 0.6117647, g: 0.14117648, b: 0.77647066, a: 1}
+  orbitGenerator: {fileID: 5670873286436756563}
   state: 0
 --- !u!64 &1828543357670475019
 MeshCollider:

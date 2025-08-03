@@ -84,6 +84,14 @@ public class ShipDragAndDrop : MonoBehaviour
         {
             OnSelect(ship);
         }
+        if (hoveringOverShip)
+        {
+            customCursor.ChangeCursorSprite(1);
+        }
+        else
+        {
+            customCursor.ChangeCursorSprite(0);
+        }
         if (draggedShip)
         {
             OnDragging();
@@ -136,7 +144,7 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void OnDragging()
     {
-        customCursor.ChangeCursorSprite(1);
+        customCursor.ChangeCursorSprite(2);
 
         if (
                 orbitController.PickUnlockedOrbitWithMouse(
@@ -204,8 +212,6 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void OnDeselect()
     {
-        customCursor.ChangeCursorSprite(0);
-
         if (draggedShip && draggedShip.Orbit && targetOrbit)
         {
             if (draggedShip.Orbit != targetOrbit)
