@@ -84,11 +84,10 @@ public class SoundManager
         RuntimeManager.PlayOneShot(path);
     }
 
-    public EventInstance PlayLoop(string path, string status_)
+    public EventInstance PlayLoop(string path, SizeType status, bool satelite)
     {
-        (float status, string paramName) = FindStatus(status_);
         EventInstance instance = RuntimeManager.CreateInstance(path);
-        instance.setParameterByName(paramName, status);
+        instance.setParameterByNameWithLabel("Shiptype", satelite ? "Satelite" : status.ToString());
         instance.start();
         soundManagerConfig.activeLoopedSounds.Add(instance);
         return instance;
@@ -118,30 +117,6 @@ public class SoundManager
         instance.setParameterByNameWithLabel("Status", status);
         instance.start();
         instance.release();
-    }
-
-    private (float, string) FindStatus(string status_)
-    {
-        if (status_ == "satelite" || status_ == "Satelite")
-        {
-            return (3f, "ShipType");
-        }
-        else if (status_ == "big" || status_ == "Big")
-        {
-            return (2f, "ShipType");
-        }
-        else if (status_ == "mid" || status_ == "Mid")
-        {
-            return (1f, "ShipType");
-        }
-        else if (status_ == "small" || status_ == "Small")
-        {
-            return (0f, "ShipType");
-        }
-        else
-        {
-            return (0f, "Status");
-        }
     }
 
     public void PlayMusic(EventReference eventReference)

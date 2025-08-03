@@ -58,6 +58,8 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         CurrentDistanceFromPlanet = DesiredDistanceFromPlanet;
+        normalizedDistance = GetNormalizedDistance(CurrentDistanceFromPlanet);
+        soundManager.UpdateMusicDistance(normalizedDistance);
     }
 
     private void Update()
