@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Notbot
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: 741c0b16090f7494cbd70783728b6d90, type: 3}
-  TypeTime: 0.2
+  TypeTime: 0.01
   sfxPath: event:/Ship_notbot
   PilotName: notbot
   PilotDialogs:
