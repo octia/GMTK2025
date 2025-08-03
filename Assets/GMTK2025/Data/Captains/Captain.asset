@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Captain
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: c4ca1c28df67c9c47ac1817a82c48ba2, type: 3}
-  TypeTime: 0.05
+  TypeTime: 0.2
   sfxPath: event:/Ship_captain
   PilotName: captain
   PilotDialogs:
