@@ -63,13 +63,13 @@ public class ScorePanel : MonoBehaviour
             for (int i = 0; i < highEntries.Count; i++)
             {
                 var entry = highEntries[i];
-                scoreDisplays[i].SetScoreEntry(entry.position, entry.name, entry.GetValueAsString());
+                scoreDisplays[i].SetScoreEntry(entry.position, entry.name, $"${entry.GetValueAsString()}");
             }
         }
         if (ownEntry != null)
         {
             var entry = ownEntry;
-            scoreDisplays[3].SetScoreEntry(entry.position, entry.name, $"{entry.GetValueAsString()} ({Score})");
+            scoreDisplays[3].SetScoreEntry(entry.position, entry.name, $"${entry.GetValueAsString()} (${Score})");
         }
         else
         {
