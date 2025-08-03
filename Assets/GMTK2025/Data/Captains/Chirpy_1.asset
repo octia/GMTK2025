@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chirpy_1
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: 000b7333a43b902499198f96012f556c, type: 3}
-  TypeTime: 0.2
+  TypeTime: 0.01
   sfxPath: event:/Ship_chirpy_1
   PilotName: chirpy_1
   PilotDialogs:
