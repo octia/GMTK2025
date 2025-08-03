@@ -534,8 +534,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7f405d27e835a4799ec3ed52583fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeTime: 3
-  abilityCooldown: 20
+  activeTime:
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 4
+  - 4
+  - 4
+  - 4
+  abilityCooldown:
+  - 30
+  - 20
+  - 18
+  - 16
+  - 15
+  - 15
+  - 13
+  - 11
+  - 10
+  - 9
   button: {fileID: 2182183779627503009}
   abilityCooldownText: {fileID: 2808227231682030680}
 --- !u!114 &3341971939263637430

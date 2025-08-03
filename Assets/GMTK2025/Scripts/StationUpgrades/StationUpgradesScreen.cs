@@ -154,9 +154,6 @@ public class StationUpgradesScreen : MonoBehaviour
             timeSlowAbility.SetActive(true);
             return;
         }
-
-        // TODO: Implement what happens on more time slow ability
-        Debug.LogWarning("Further time slow upgrade is not implemented yet!");
     }
 
     public void BuyDirectionSwitcher()
@@ -166,9 +163,6 @@ public class StationUpgradesScreen : MonoBehaviour
             directionSwitcherAbility.SetActive(true);
             return;
         }
-
-        // TODO: Implement what happens on more time slow ability
-        Debug.LogWarning("Further direction switching upgrade is not implemented yet!");
     }
 
     public void HideScreen()

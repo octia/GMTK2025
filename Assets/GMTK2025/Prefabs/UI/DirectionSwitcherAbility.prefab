@@ -534,7 +534,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9c35ef38c41d47bfaf3aa0c5a0802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityCooldown: 90
+  abilityCooldown:
+  - 110
+  - 90
+  - 80
+  - 70
+  - 60
+  - 55
+  - 50
+  - 45
+  - 40
+  - 35
   button: {fileID: 3485502726720270566}
   abilityCooldownText: {fileID: 977779732078167353}
 --- !u!1 &8307297793863356100

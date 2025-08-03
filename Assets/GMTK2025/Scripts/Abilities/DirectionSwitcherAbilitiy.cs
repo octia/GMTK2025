@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DirectionSwitcherAbilitiy : MonoBehaviour
 {
     [SerializeField]
-    private float abilityCooldown;
+    private float[] abilityCooldown;
 
     [Space]
     [SerializeField]
@@ -22,6 +22,9 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
 
     [Inject]
     private TimerManager timerManager;
+
+    [Inject]
+    private UpgradeManager upgradeManager;
 
     private float currentAbilityCooldown;
 
@@ -73,7 +76,9 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
         {
             SetTargetMode(false);
             abilityCooldownText.gameObject.SetActive(true);
-            currentAbilityCooldown = abilityCooldown;
+
+            int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
+            currentAbilityCooldown = abilityCooldown[upgradeAmount];
         }  
     }
 
@@ -88,7 +93,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
 
         button.interactable = false;
 
-        currentAbilityCooldown = abilityCooldown;
+        int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
+        currentAbilityCooldown = abilityCooldown[upgradeAmount];
     }
 
     private void SetTargetMode(bool value)

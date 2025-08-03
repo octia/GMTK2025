@@ -96,24 +96,19 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private bool BuyUpgrade()
     {
+        if (upgradeType != UpgradeType.Orbit && !financeManager.UseMoney(upgradeCost))
+        {
+            // TODO: There needs to be a better way to deal with this
+            screen.HideScreen();
+            return false;
+        }
+
         switch (upgradeType)
         {
             case UpgradeType.Orbit:
-                if (upgradeManager.UpgradeAmount[(int)UpgradeType.Orbit] >= 5)
-                {
-                    // TODO: There needs to be a better system for when this happens
-                    screen.HideScreen();
-                    return false;
-                }
-
                 screen.BuyOrbit();
                 break;
             case UpgradeType.Life:
-                if (!financeManager.UseMoney(upgradeCost))
-                {
-                    return false;
-                }
-
                 lifeManager.GainMaxLife();
                 break;
             case UpgradeType.Time:

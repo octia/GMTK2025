@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class TimeSlowAbility : MonoBehaviour
 {
     [SerializeField]
-    private float activeTime;
+    private float[] activeTime;
 
     [SerializeField]
-    private float abilityCooldown;
+    private float[] abilityCooldown;
 
     [Space]
     [SerializeField]
@@ -22,6 +22,9 @@ public class TimeSlowAbility : MonoBehaviour
 
     [Inject]
     private TimerManager timerManager;
+
+    [Inject]
+    private UpgradeManager upgradeManager;
 
     private float currentActiveTime;
     private float currentAbilityCooldown;
@@ -83,7 +86,8 @@ public class TimeSlowAbility : MonoBehaviour
         gameSlower.enabled = true;
         button.interactable = false;
 
-        currentActiveTime = activeTime;
-        currentAbilityCooldown = abilityCooldown;
+        int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Time];
+        currentActiveTime = activeTime[upgradeAmount];
+        currentAbilityCooldown = abilityCooldown[upgradeAmount];
     }
 }
