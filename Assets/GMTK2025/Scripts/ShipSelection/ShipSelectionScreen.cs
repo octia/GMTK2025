@@ -30,29 +30,11 @@ public class ShipSelectionScreen : MonoBehaviour
 
     [Space]
     [SerializeField]
-    private TMP_Text newShipTimeText;
+    private ShipStatsPanel shipStatsPanel;
 
     [Space]
     [SerializeField]
-    private TMP_Text nameText;
-
-    [SerializeField]
-    private TMP_Text temporaryText;
-
-    [SerializeField]
-    private TMP_Text orbitText;
-
-    [SerializeField]
-    private TMP_Text sizeText;
-
-    [SerializeField]
-    private TMP_Text profitText;
-
-    [SerializeField]
-    private TMP_Text speedText;
-
-    [SerializeField]
-    private TMP_Text directionText;
+    private TMP_Text newShipTimeText;
 
     [Space]
     [SerializeField]
@@ -187,15 +169,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
         ShipData ship = NewShips[i].data;
 
-        temporaryText.text = ship.Temporary ? $"Stays for {Mathf.RoundToInt(NewShips[i].stayTime)} Seconds" : "∞";
-        nameText.text = ship.name;
-        orbitText.text = "Preferred Orbital: " + ship.PreferredOrbitShape.ToString();
-        sizeText.text = "Size: " + ship.ModelPrefab.GetComponent<ShipModel>().Size;
-        profitText.text = "Profit: " + ship.Profit + "$";
-        speedText.text = "Speed: " + ship.Speed;
-        directionText.text = ship.Clockwise
-            ? "Direction: Clockwise"
-            : "Direction: Counter Clockwise";
+        shipStatsPanel.SetData(ship, NewShips[i].stayTime);
 
         pilotPreview.sprite = ship.Captain.PilotPortrait;
         // TODO: Randomize pilot dialog
