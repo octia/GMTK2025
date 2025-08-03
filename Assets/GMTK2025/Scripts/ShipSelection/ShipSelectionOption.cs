@@ -103,6 +103,7 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         var preferredOrbit = screen.NewShips[optionIndex].orbit;
         foreach (var orbit in orbitController.GetUnlockedOrbits())
         {
+            orbit.Clockwise = screen.NewShips[optionIndex].data.Clockwise;
             orbit.State =
                 preferredOrbit == orbit
                     ? Orbit.VisualState.Hightlighted
