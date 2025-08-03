@@ -31,3 +31,6 @@ MonoBehaviour:
   - prefab: {fileID: 8872279184722686018, guid: fa43c62a589375f4291ef20155a4e33c, type: 3}
     material: {fileID: 2100000, guid: f97b6059c92c6454cb4e7568551b855b, type: 2}
     useRandomRotation: 1
+  - prefab: {fileID: 8872279184722686018, guid: fa43c62a589375f4291ef20155a4e33c, type: 3}
+    material: {fileID: 2100000, guid: 3ec4a794c8a097b4c9659e2ca717d92f, type: 2}
+    useRandomRotation: 1
