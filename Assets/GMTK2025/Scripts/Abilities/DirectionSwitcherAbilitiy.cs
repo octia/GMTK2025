@@ -95,6 +95,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
 
             int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
             currentAbilityCooldown = abilityCooldown[upgradeAmount];
+
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxDirectionChangePath);
         }
     }
 
@@ -113,8 +115,6 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
         currentAbilityCooldown = abilityCooldown[upgradeAmount];
         startAbilityCooldown = currentAbilityCooldown;
-
-        soundManager.PlayOneShot("event:/Direction change");
     }
 
     private void SetTargetMode(bool value)
