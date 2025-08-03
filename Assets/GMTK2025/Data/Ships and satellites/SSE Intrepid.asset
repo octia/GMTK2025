@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 15ship
+  m_Name: SSE Intrepid
   m_EditorClassIdentifier: 
-  Orbit: elliptical
-  PreferredOrbitShape: 1
-  Profit: 5
-  Speed: 2
+  PreferredOrbitShape: 0
+  Profit: 3
+  Speed: 1
   Clockwise: 0
   Temporary: 1
-  ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Captain: {fileID: 11400000, guid: 1dde31a3842380f4eb4d4adfa7d5d7cd, type: 2}
+  ModelPrefab: {fileID: 3135798295465508883, guid: 2373889cd2f3cb242873953d0ff66053, type: 3}
+  Captain: {fileID: 11400000, guid: 7dc98eabf38a5c546b32aa2e38d3620a, type: 2}
