@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_neutro
   PilotName: neutro
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - My procedures have already been initiated. Send back the confirmation signal
+    and the deployment shall began shortly.

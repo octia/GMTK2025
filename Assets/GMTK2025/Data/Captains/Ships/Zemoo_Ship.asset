@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_zemoo
   PilotName: zemoo
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - "What\u2019s up! Between just me and you. I might be staying a little longer
+    than the documentation is saying."

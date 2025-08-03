@@ -17,5 +17,5 @@ MonoBehaviour:
   sfxPath: event:/Ship_scoundrel
   PilotName: scoundrel
   PilotDialogs:
-  - 'HeY! I wAs instrUctEd bY [REDACTED] tO dRoP tHiS sHip heRe. So [FRIEND] [SEND
-    THE SIGNAL FOR CONFIRMATION]'
+  - "Hey pal. I need some space for my hunt in the area. So. We can do this the easy
+    way or the hard way. It\u2019s your choice."
