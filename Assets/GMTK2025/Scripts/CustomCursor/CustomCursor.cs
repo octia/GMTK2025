@@ -43,7 +43,7 @@ public class CustomCursor : MonoBehaviour
     {
         if (TargetMode)
         {
-            cursorImage.sprite = cursorSprites[2];
+            cursorImage.sprite = cursorSprites[3];
             return;
         }
 
