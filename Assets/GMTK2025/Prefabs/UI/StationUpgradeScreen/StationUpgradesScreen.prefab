@@ -2846,15 +2846,15 @@ PrefabInstance:
       objectReference: {fileID: 8248598940634408091}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.b
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.g
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.r
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Pivot.x
