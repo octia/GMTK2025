@@ -1,5 +1,6 @@
 using PrimeTween;
 using Reflex.Attributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,6 +9,17 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     [SerializeField]
     private int optionIndex;
+
+    [Space]
+    [SerializeField]
+    private string upgradeName;
+
+    [TextArea]
+    [SerializeField]
+    private string upgradeDescription;
+
+    [SerializeField]
+    private int upgradeCost;
 
     [Space]
     [SerializeField]
@@ -22,6 +34,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     [SerializeField]
     private TransformFollower statsPanel;
+
+    [SerializeField]
+    private TMP_Text costText;
 
     [SerializeField]
     private Animator orbitAnim;
@@ -40,6 +55,15 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Inject]
     private UpgradeManager upgradeManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
+    [Inject]
+    private LifeManager lifeManager;
+
+    [Inject]
+    private FinanceManager financeManager;
+
     private bool mouseOver;
 
     // Initial
@@ -49,6 +73,8 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void Start()
     {
+        costText.text = upgradeCost == 0 ? "Free!" : upgradeCost + "$";
+
         // Grabbing initial variables
         defaultScale = transform.localScale;
 
@@ -59,14 +85,52 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
-            upgradeManager.AddUpgrade();
-            screen.HideScreen();
+            if (BuyUpgrade())
+            {
+                soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
+            }
         }
+    }
+
+    private bool BuyUpgrade()
+    {
+        switch (optionIndex)
+        {
+            // Orbit upgrade
+            case 0:
+                if (upgradeManager.OrbitUpgradeAmount >= 5)
+                {
+                    // TODO: There needs to be a better system for when this happens
+                    screen.HideScreen();
+                    return false;
+                }
+
+                upgradeManager.AddUpgrade(true);
+                screen.BuyOrbit();
+                break;
+            // Life upgrade
+            case 1:
+                if (!financeManager.UseMoney(upgradeCost))
+                {
+                    return false;
+                }
+
+                upgradeManager.AddUpgrade(false);
+                lifeManager.GainMaxLife();
+                screen.HideScreen();
+                break;
+            // Invalid upgrade
+            default:
+                upgradeManager.AddUpgrade();
+                return false;
+        }
+
+        return true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!screen.OnScreen)
+        if (!upgradeManager.OnScreen)
         {
             HideOption();
         }
@@ -83,7 +147,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
         statsPanel.transform.position = statsPoint.position;
         statsPanel.FollowTarget = statsPoint;
 
-        screen.UpdateStatsPanel(optionIndex);
+        screen.UpdateStatsPanel(upgradeName, upgradeDescription);
     }
 
     public void OnPointerExit(PointerEventData eventData)

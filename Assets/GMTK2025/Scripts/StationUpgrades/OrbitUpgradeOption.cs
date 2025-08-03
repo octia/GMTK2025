@@ -1,16 +1,24 @@
+using System.Linq;
 using PrimeTween;
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [Space]
     [SerializeField]
-    private GameObject highlightBackground;
+    private int optionIndex;
+
+    [SerializeField]
+    private StationUpgradesScreen screen;
 
     [SerializeField]
     private GameObject statsPanel;
+
+    [SerializeField]
+    [TextArea]
+    private string description;
 
     [Header("Visual")]
     [SerializeField]
@@ -22,6 +30,9 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [SerializeField]
     private int statsYOffset;
+
+    [Inject]
+    private OrbitController orbitController;
 
     private bool mouseOver;
 
@@ -45,6 +56,19 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
             // Add orbit
+            screen.HideScreen();
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == optionIndex)
+                {
+                    orbitController.UnlockOrbit(screen.NewOrbits[i]);
+                    screen.NewOrbits[i].State = Orbit.VisualState.Visible;
+                    continue;
+                }
+
+                screen.NewOrbits[i].State = Orbit.VisualState.Invisible;
+            }
         }
     }
 
@@ -52,18 +76,23 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         mouseOver = true;
 
+        // TODO: Show preview of the orbit
+
+        screen.NewOrbits[optionIndex].State = Orbit.VisualState.Hightlighted;
+
         // Visual
         Tween.Scale(transform, endValue: onHoverScale, hoverAnimTime);
 
-        highlightBackground.SetActive(true);
-        statsPanel.SetActive(true);
-        statsPanel.transform.position = transform.position + new Vector3(0, statsYOffset);
-
-        // TODO: screen.UpdateStatsPanel(optionIndex);
+        //statsPanel.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        for (int i = 0; i < 3; i++)
+        {
+            screen.NewOrbits[i].State = Orbit.VisualState.Alert;
+        }
+
         HideOption();
     }
 
@@ -76,10 +105,11 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         mouseOver = false;
 
+        // TODO: Hide preview of orbit
+
         // Visual
         Tween.Scale(transform, endValue: defaultScale, hoverAnimTime);
 
-        highlightBackground.SetActive(false);
-        statsPanel.SetActive(false);
+        //statsPanel.SetActive(false);
     }
 }

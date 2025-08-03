@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3187c90f20e6b0eb127506060da761, type: 3}
   m_Name: LifeConfig
   m_EditorClassIdentifier: 
-  <StartLifeCount>k__BackingField: 3
-  <MaxLifeCount>k__BackingField: 3
+  <StartLifeCount>k__BackingField: 2
+  <MaxLifeCount>k__BackingField: 2
+  heartSprite:
+  - {fileID: 21300000, guid: d89c2eccdec566f47a1f7a02fb8ce68b, type: 3}
+  - {fileID: 21300000, guid: 95fa9711893899d4282a30146ca45556, type: 3}

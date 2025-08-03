@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: 34sat
   m_EditorClassIdentifier: 
   Orbit: elliptical
-  Size: large
+  PreferredOrbitShape: 1
   Profit: 4
   Speed: 2
   Clockwise: 0
   Temporary: 0
   ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Icon: {fileID: 21300000, guid: 8ff0268563656e0419b6d9efe1ce7479, type: 3}
-  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}
+  Captain: {fileID: 11400000, guid: a98788038ad946048a520edae75b60af, type: 2}

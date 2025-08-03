@@ -12,26 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
   m_Name: FirstTutorial
   m_EditorClassIdentifier: 
+  <ShouldBlockInteraction>k__BackingField: 0
   <ChainType>k__BackingField: 1
   <Dialogues>k__BackingField:
-  - <Message>k__BackingField: 'Today is my first day as a spaceloop controller.
-
-      It
-      should be pretty easy... all I have to do is make sure that the spaceships
-      don''t crash.'
+  - <Message>k__BackingField: Alright kid, today is your first day as a spaceloop
+      controller! Nothing too complicated, just make sure nothing crashes in orbit.
     <IconOverride>k__BackingField: {fileID: 0}
   - <Message>k__BackingField: Right now the ships should be safe, but soon, more
       ships will approach!
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
+  - <Message>k__BackingField: "To start the day, there won\u2019t be too many ships
+      and satellites, so you can use that time to get acclimated."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
+  - <Message>k__BackingField: As the day goes on, more ships and satellites will
+      request to join an orbit. When you get a request, click on the one you want
+      to join and guide it to a safe orbit.
     <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: When that happens, I just have to click on the ships,
-      and move them onto safe orbits, all while keeping them happy.
-    <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: I can also drag with the right click and zoom with
-      the mouse wheel, to get a better view.
-    <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: Ships have preferred orbits - if they're on them, they
-      generate money for the Spaceloop Corporation!
-    <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: But that's not as important as not allowing them to
-      crash!
-    <IconOverride>k__BackingField: {fileID: 0}
+  - <Message>k__BackingField: Remember, you can always adjust the view by right clicking
+      and dragging around, and by using the mouse wheel to zoom in and out. Try it
+      out to see if you can find the bottom of the planet!
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 1229d9a81f257254d9cb2e43ecd8b7b8, type: 3}
+  - <Message>k__BackingField: 'It can be helpful to use that to see where a new ship
+      is coming from when you select one, and for making sure you have the best angle
+      on your current system.
+
+'
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 5b5b94519563f524aa7cb9f0658a1a7d, type: 3}
+  - <Message>k__BackingField: Each and every ship and satellite wants to be on a
+      specific orbit. The preferred orbit will be highlighted in yellow both when
+      you hover over one and when selecting one.
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
+  - <Message>k__BackingField: "Ships will usually make you more money, but they\u2019ll
+      leave orbit after a while. Satellites might make a little less, but they\u2019ll
+      stay until something crashes into them."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
+  - <Message>k__BackingField: If you make enough money, you can get some upgrades
+      for the system that should help make managing the ships a bit easier, like
+      more available orbits. Check the bottom right of your screen periodically to
+      see if you can afford an upgrade.
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 6b1cb82faed95ba4b87da762c903a1e8, type: 3}
+  - <Message>k__BackingField: "Good luck out there kid, you\u2019re gonna need it."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 5b5b94519563f524aa7cb9f0658a1a7d, type: 3}

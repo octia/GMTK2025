@@ -1,18 +1,27 @@
+using System.Collections.Generic;
 using Reflex.Attributes;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LifeController : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text text;
+    private Transform heartImagesContainer;
+
+    [SerializeField]
+    private Image heartImagePrefab;
 
     [Inject]
     private LifeManager lifeManager;
 
+    // ...
+    private List<Image> heartImages = new List<Image>();
+
     private void Awake()
     {
         lifeManager.OnLifeCountChanged += OnLivesChanged;
+        lifeManager.LifeController = this;
+        AddHeartImages(lifeManager.Config.MaxLifeCount);
     }
 
     private void OnDisable()
@@ -22,6 +31,27 @@ public class LifeController : MonoBehaviour
 
     private void OnLivesChanged()
     {
-        text.text = $"Lives: {lifeManager.LifeCount}";
+        Debug.Log("LIFE CHANGED " + lifeManager.LifeCount + " " + lifeManager.MaxLifeCount);
+        VisualLifeChange();
+    }
+
+    public void VisualLifeChange()
+    {
+        for (int i = 0; i < heartImages.Count; i++)
+        {
+            heartImages[i].sprite =
+                i < lifeManager.LifeCount
+                    ? lifeManager.Config.heartSprite[0]
+                    : lifeManager.Config.heartSprite[1];
+        }
+    }
+
+    public void AddHeartImages(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            Image newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
+            heartImages.Add(newHeartImage);
+        }
     }
 }

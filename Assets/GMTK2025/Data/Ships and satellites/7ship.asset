@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: 7ship
   m_EditorClassIdentifier: 
   Orbit: elliptical
-  Size: large
+  PreferredOrbitShape: 1
   Profit: 4
   Speed: 1
   Clockwise: 0
   Temporary: 1
   ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Icon: {fileID: 21300000, guid: 64a0b048887ec8c44ba67484943eaa74, type: 3}
-  Captain: {fileID: 11400000, guid: 98eb899f0a5d42043afb1ec1a1368b42, type: 2}
+  Captain: {fileID: 11400000, guid: ed765a1e7e2a89444a6f20c4a9ea6ba6, type: 2}

@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public bool IsDestroyed { get; private set; }
-
     [SerializeField]
     private Orbit orbit;
 
@@ -34,6 +32,10 @@ public class Ship : MonoBehaviour
 
     [Inject]
     private SoundManager soundManager;
+
+    [Inject]
+    private ShipManagerConfig shipManagerConfig;
+
     private EventInstance orbitEventInstance;
     private bool bOnce = false;
 
@@ -44,10 +46,7 @@ public class Ship : MonoBehaviour
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
     [ShowInInspector] public float DistanceToOrbit { get; private set; }
-
-    [Space]
-    [SerializeField]
-    private float[] speedTypeToFloat = { 12, 22, 32 };
+    
 
     private void Awake()
     {
@@ -63,6 +62,12 @@ public class Ship : MonoBehaviour
         if (shipData && enabled)
         {
             ReinstantiateShipModel();
+
+            orbitEventInstance = soundManager.PlayLoop(
+                soundManager.soundManagerConfig.sfxLoopShipFlyPath,
+                shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
+            );
+            bOnce = true;
         }
     }
 
@@ -102,7 +107,7 @@ public class Ship : MonoBehaviour
             wantedForward = nearestPoint + forward * 4 - transform.position;
         }
 
-        float shipSpeed = speedTypeToFloat[(int)shipData.Speed];
+        float shipSpeed = shipManagerConfig.SpeedTypeToFloat[(int)shipData.Speed];
 
         // Ships move towards their forward vector
         var newPosition = Vector3.MoveTowards(
@@ -176,8 +181,15 @@ public class Ship : MonoBehaviour
 
     public void DestroyShip()
     {
-        IsDestroyed = true;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (orbitEventInstance.isValid())
+        {
+            soundManager.StopLoop(orbitEventInstance);
+        }
     }
 
     private Vector3 LimitRotation(Vector3 from, Vector3 to, float maxAngle)
