@@ -98,7 +98,7 @@ public class ShipDragAndDrop : MonoBehaviour
     {
         draggedShip = ship;
         //sfx
-        soundManager.PlayOneShotWithStatus(draggedShip.shipData.Captain.sfxPath, "Idle");
+        soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Idle");
         //
         ghostShips[0] = Instantiate(draggedShip.gameObject).GetComponent<Ship>();
         ghostShips[0].enabled = false;
@@ -195,6 +195,17 @@ public class ShipDragAndDrop : MonoBehaviour
     {
         if (draggedShip && draggedShip.Orbit && targetOrbit)
         {
+            if (draggedShip.Orbit != targetOrbit)
+            {
+                if (draggedShip.IsCloseToCollision(out _))
+                {
+                    soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Closecall");
+                }
+                else
+                {
+                    soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Move");
+                }
+            }
             draggedShip.ChangeOrbit(targetOrbit);
         }
         DestroyGhosts();

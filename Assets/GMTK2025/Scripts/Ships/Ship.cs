@@ -2,6 +2,7 @@ using EditorAttributes;
 using FMOD.Studio;
 using FMODUnity;
 using Reflex.Attributes;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -13,7 +14,7 @@ public class Ship : MonoBehaviour
     private Orbit preferredOrbit;
 
     [SerializeField]
-    public ShipData shipData;
+    private ShipData shipData;
 
     [SerializeField]
     private GameObject modelInstance;
@@ -41,6 +42,7 @@ public class Ship : MonoBehaviour
 
     private Rigidbody rb;
     private float lastSpeed = 10;
+    private Bounds modelBounds;
 
     public Orbit Orbit => orbit;
     public ShipData ShipData => shipData;
@@ -91,6 +93,7 @@ public class Ship : MonoBehaviour
         float speed = lastSpeed;
         var wantedForward = transform.forward;
         nearestPoint = transform.position;
+        float shipSpeed = shipManagerConfig.SpeedTypeToFloat[(int)shipData.Speed];
 
         if (orbit)
         {
@@ -98,22 +101,23 @@ public class Ship : MonoBehaviour
                 transform.position,
                 out nearestPoint,
                 out Vector3 forward,
-                out speed
+                out var orbitSpeed
             );
             if (shipData.Clockwise)
             {
                 forward = -forward;
             }
             wantedForward = nearestPoint + forward * 4 - transform.position;
+            speed = orbitSpeed * shipSpeed;
         }
 
-        float shipSpeed = shipManagerConfig.SpeedTypeToFloat[(int)shipData.Speed];
+        
 
         // Ships move towards their forward vector
         var newPosition = Vector3.MoveTowards(
             transform.position,
             transform.position + transform.forward * 100,
-            timeStep * speed * shipSpeed
+            timeStep * speed
         );
 
         // They turn towards a wanted forward vector, with a maximum angle change per fixed step
@@ -161,8 +165,6 @@ public class Ship : MonoBehaviour
                 soundManager.soundManagerConfig.sfxLoopShipFlyPath,
                 shipData.ModelPrefab.GetComponent<ShipModel>().Size.ToString()
             );
-            //The one shot of the guy driving the engine
-            soundManager.PlayOneShotWithStatus(shipData.Captain.sfxPath, "Move");
             bOnce = true;
         }
         else if (DistanceToOrbit >= 1 && enabled && bOnce)
@@ -217,6 +219,13 @@ public class Ship : MonoBehaviour
         modelInstance.name = "ModelInstance";
         modelInstance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         SetGameobjectLayerRecursive(modelInstance, gameObject.layer);
+
+        Bounds bounds = new Bounds(shipData.ModelPrefab.transform.position, Vector3.zero);
+        foreach (var renderer in ShipData.ModelPrefab.GetComponentsInChildren<MeshRenderer>())
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+        modelBounds = bounds;
     }
 
     private void SetGameobjectLayerRecursive(GameObject gameObject, int layer)
@@ -234,5 +243,33 @@ public class Ship : MonoBehaviour
         this.preferredOrbit = preferredOrbit;
         orbit = preferredOrbit;
         ReinstantiateShipModel();
+    }
+
+    public bool IsCloseToCollision(out Vector3 scale)
+    {
+        var lengthScale = modelBounds.size.z + lastSpeed * 2.0f;
+        scale = new Vector3(modelBounds.size.x * 1.4f, modelBounds.size.y * 1.4f, lengthScale);
+        var hitColliders = Physics.OverlapBox(transform.position, scale * 0.5f, transform.rotation, 1 << gameObject.layer, QueryTriggerInteraction.Ignore);
+        foreach (var collider in hitColliders)
+        {
+            var hitShip = collider.GetComponentInParent<Ship>();
+            if (hitShip != this)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!ShipData || modelBounds.size == Vector3.zero)
+        {
+            return;
+        }
+        Gizmos.color = Color.red;
+        IsCloseToCollision(out Vector3 scale);
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, scale);
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     }
 }
