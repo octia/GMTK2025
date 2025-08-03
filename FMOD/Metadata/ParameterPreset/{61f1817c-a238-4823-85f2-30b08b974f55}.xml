@@ -20,8 +20,8 @@
 		</property>
 		<property name="enumerationLabels">
 			<value>Small</value>
-			<value>Mid</value>
-			<value>Big</value>
+			<value>Medium</value>
+			<value>Large</value>
 			<value>Satelite</value>
 		</property>
 		<property name="initialValue">
