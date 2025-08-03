@@ -147,12 +147,7 @@ public class ShipDragAndDrop : MonoBehaviour
     {
         customCursor.ChangeCursorSprite(2);
 
-        if (
-                orbitController.PickUnlockedOrbitWithMouse(
-                    out Orbit orbit,
-                    out Vector3 hitPosition
-                )
-            )
+        if (orbitController.PickUnlockedOrbitWithMouse(out Orbit orbit, out Vector3 hitPosition))
         {
             ghostShips[0].ChangeOrbit(orbit);
             ghostShips[0]
@@ -175,10 +170,7 @@ public class ShipDragAndDrop : MonoBehaviour
                         ghostShips[0].transform.rotation
                     );
                 }
-                if (
-                    Vector3.SqrMagnitude(ghostShips[0].transform.position - nearestPoint)
-                    <= 3f
-                )
+                if (Vector3.SqrMagnitude(ghostShips[0].transform.position - nearestPoint) <= 3f)
                 {
                     break;
                 }
@@ -219,11 +211,17 @@ public class ShipDragAndDrop : MonoBehaviour
             {
                 if (draggedShip.IsCloseToCollision(out _))
                 {
-                    soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Closecall");
+                    soundManager.PlayOneShotWithStatus(
+                        draggedShip.ShipData.Captain.sfxPath,
+                        "Closecall"
+                    );
                 }
                 else
                 {
-                    soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Move");
+                    soundManager.PlayOneShotWithStatus(
+                        draggedShip.ShipData.Captain.sfxPath,
+                        "Move"
+                    );
                 }
             }
             draggedShip.ChangeOrbit(targetOrbit);
@@ -250,6 +248,11 @@ public class ShipDragAndDrop : MonoBehaviour
         {
             var bestShip = draggedShip ? draggedShip : hoveredShip;
             var clockwise = bestShip ? bestShip.ShipData.Clockwise : true;
+            if (bestShip.InvertedDirection)
+            {
+                clockwise = !clockwise;
+            }
+
             if (orbit == targetOrbit)
             {
                 orbit.Clockwise = clockwise;
