@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PQE Heater
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 3
+  Profit: 15
   Speed: 2
   Clockwise: 1
   Temporary: 1

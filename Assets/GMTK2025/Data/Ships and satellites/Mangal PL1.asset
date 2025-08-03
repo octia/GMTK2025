@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mangal PL1
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 3
+  Profit: 13
   Speed: 0
   Clockwise: 1
   Temporary: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lune R12
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 4
+  Profit: 23
   Speed: 1
   Clockwise: 0
   Temporary: 0

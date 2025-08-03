@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: SW Ebon Toc
+  m_Name: SW Ebon Eagle
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 4
+  Profit: 19
   Speed: 1
   Clockwise: 1
   Temporary: 1

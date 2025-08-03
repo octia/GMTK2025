@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PQE Nirvana
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 6
+  Profit: 32
   Speed: 2
   Clockwise: 0
   Temporary: 1

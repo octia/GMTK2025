@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Clarba 9F
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 2
+  Profit: 10
   Speed: 2
   Clockwise: 1
   Temporary: 0

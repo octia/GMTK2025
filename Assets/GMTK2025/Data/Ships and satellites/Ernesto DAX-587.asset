@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ernesto DAX-587
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 6
+  Profit: 31
   Speed: 2
   Clockwise: 1
   Temporary: 0
