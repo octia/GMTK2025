@@ -7034,7 +7034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1611323392745922772, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1716253263768136861, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_Mesh
@@ -7042,11 +7042,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1844047251010062562, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2134621566936590842, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2428438284653074460, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_Mesh
@@ -7070,7 +7070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3591654881933285898, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4821852058223361500, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_Mesh
@@ -7086,11 +7086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5409716774522956730, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5755666365576232757, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6345541255553676041, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7166,7 +7166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8072203706858050375, guid: 665f9d722d06c6046b9366884391a083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
