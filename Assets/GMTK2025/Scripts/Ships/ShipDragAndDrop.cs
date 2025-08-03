@@ -34,6 +34,9 @@ public class ShipDragAndDrop : MonoBehaviour
     [Inject]
     private UpgradeManager upgradeManager;
 
+    [Inject]
+    private CustomCursor customCursor;
+
     private Ship[] ghostShips = null;
 
     private Ship draggedShip = null;
@@ -97,6 +100,12 @@ public class ShipDragAndDrop : MonoBehaviour
     private void OnSelect(Ship ship)
     {
         draggedShip = ship;
+
+        if (customCursor.TargetMode)
+        {
+            draggedShip.InvertedDirection = !draggedShip.InvertedDirection;
+        }
+
         //sfx
         soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Idle");
         //
@@ -127,6 +136,8 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void OnDragging()
     {
+        customCursor.ChangeCursorSprite(1);
+
         if (
                 orbitController.PickUnlockedOrbitWithMouse(
                     out Orbit orbit,
@@ -193,6 +204,8 @@ public class ShipDragAndDrop : MonoBehaviour
 
     private void OnDeselect()
     {
+        customCursor.ChangeCursorSprite(0);
+
         if (draggedShip && draggedShip.Orbit && targetOrbit)
         {
             if (draggedShip.Orbit != targetOrbit)

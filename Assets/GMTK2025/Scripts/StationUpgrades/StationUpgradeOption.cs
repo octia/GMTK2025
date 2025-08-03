@@ -4,24 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Tooltip("Starts the object with a upgrade data.\n Can be overwritten by the screen.")]
     [SerializeField]
-    private UpgradeType upgrade;
+    private UpgradeData startUpgradeData;
 
-    [Space]
-    [SerializeField]
-    private string upgradeName;
-
-    [TextArea]
-    [SerializeField]
-    private string upgradeDescription;
-
-    [SerializeField]
-    private int upgradeCost;
-
-    [Space]
     [SerializeField]
     private StationUpgradesScreen screen;
 
@@ -34,6 +24,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     [SerializeField]
     private TransformFollower statsPanel;
+
+    [SerializeField]
+    private Image upgradeIcon;
 
     [SerializeField]
     private TMP_Text costText;
@@ -64,6 +57,12 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Inject]
     private FinanceManager financeManager;
 
+    // Upgrade data info
+    private UpgradeType upgradeType;
+    private string upgradeName;
+    private string upgradeDescription;
+    private int upgradeCost;
+
     private bool mouseOver;
 
     // Initial
@@ -73,10 +72,13 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void Start()
     {
-        costText.text = upgradeCost == 0 ? "Free!" : upgradeCost + "$";
+        if (startUpgradeData != null)
+        {
+            SetUpgradeOption(startUpgradeData);
+        }
 
         // Grabbing initial variables
-        defaultScale = transform.localScale;
+            defaultScale = transform.localScale;
 
         interactAction = InputSystem.actions.FindAction("Click");
     }
@@ -94,7 +96,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private bool BuyUpgrade()
     {
-        switch (upgrade)
+        switch (upgradeType)
         {
             case UpgradeType.Orbit:
                 if (upgradeManager.UpgradeAmount[(int)UpgradeType.Orbit] >= 5)
@@ -117,14 +119,17 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
             case UpgradeType.Time:
                 screen.BuyTimeSlow();
                 break;
+            case UpgradeType.Direction:
+                screen.BuyDirectionSwitcher();
+                break;
         }
 
-        if (upgrade != UpgradeType.Orbit)
+        if (upgradeType != UpgradeType.Orbit)
         {
             screen.HideScreen();
         }
 
-        upgradeManager.AddUpgrade(upgrade);
+        upgradeManager.AddUpgrade(upgradeType);
         return true;
     }
 
@@ -148,6 +153,20 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
         statsPanel.FollowTarget = statsPoint;
 
         screen.UpdateStatsPanel(upgradeName, upgradeDescription);
+    }
+
+    public void SetUpgradeOption(UpgradeData upgradeData)
+    {
+        upgradeType = upgradeData.UpgradeType;
+
+        int upgradeAmount = upgradeManager.UpgradeAmount[(int)upgradeType];
+
+        upgradeName = upgradeData.Name[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Name.Length)];
+        upgradeDescription = upgradeData.Descriptions[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Descriptions.Length)];
+        upgradeCost = upgradeData.Cost[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Cost.Length)];
+        upgradeIcon.sprite = upgradeData.Icons[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Icons.Length)];
+
+        costText.text = upgradeCost == 0 ? "Free!" : upgradeCost + "$";
     }
 
     public void OnPointerExit(PointerEventData eventData)

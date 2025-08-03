@@ -438,7 +438,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.05
+  m_fontSize: 55.1
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1248,11 +1248,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1710600a58743cf4b99f2dac8659cb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradePool:
+  - {fileID: 11400000, guid: 5de1a47a78f1580499b0dfd95e5ac495, type: 2}
+  - {fileID: 11400000, guid: 548d272d2845e0b479b99ec8e8ee897b, type: 2}
+  - {fileID: 11400000, guid: aa270e2bc9b163842935bb64bcfdb0c0, type: 2}
   mainScreen: {fileID: 2343128077622078358}
   CostText: {fileID: 8958305202686710938}
   buyButton: {fileID: 8983215550224635792}
   timeSlowAbility: {fileID: 0}
-  upgradeOptions: {fileID: 2656193202842285409}
+  directionSwitcherAbility: {fileID: 0}
+  upgradeOptionsContainer: {fileID: 2656193202842285409}
+  orbitUpgradeOption: {fileID: 2863464262430048757}
+  randomUpgradeOptions:
+  - {fileID: 9196909228046755860}
+  - {fileID: 1630032574215038567}
+  - {fileID: 3861959922075249468}
   orbitOptions: {fileID: 3484160864136346494}
   statsDescriptionText: {fileID: 2545637737190524072}
   statsNameText: {fileID: 4679507912047658005}
@@ -2598,6 +2608,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
   m_PrefabInstance: {fileID: 128084179164837808}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9196909228046755860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+  m_PrefabInstance: {fileID: 128084179164837808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19f9afe97b40e7469de64ecb5451dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &715690231187849176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2744,18 +2765,18 @@ PrefabInstance:
     - target: {fileID: 5411184657071782334, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: FollowTarget
       value: 
-      objectReference: {fileID: 1473689206811290555}
+      objectReference: {fileID: 5661868729440751348}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.b
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.g
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.r
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Pivot.x
@@ -2844,7 +2865,7 @@ PrefabInstance:
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: statsPoint
       value: 
-      objectReference: {fileID: 6882676121860856727}
+      objectReference: {fileID: 7500341280466739852}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: optionIndex
       value: 0
@@ -2863,6 +2884,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
   m_PrefabInstance: {fileID: 5475963458809607320}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3861959922075249468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+  m_PrefabInstance: {fileID: 5475963458809607320}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19f9afe97b40e7469de64ecb5451dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6178954478311335231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2984,6 +3016,14 @@ PrefabInstance:
       value: Orbit Upgrade
       objectReference: {fileID: 0}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: startUpgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: db166afcd5bc3bc4f9ace6fc9ca1dbb7, type: 2}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: forcedUpgradeData
+      value: 
+      objectReference: {fileID: 11400000, guid: db166afcd5bc3bc4f9ace6fc9ca1dbb7, type: 2}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: upgradeDescription
       value: Select one of three news orbits to be bought
       objectReference: {fileID: 0}
@@ -2999,6 +3039,11 @@ PrefabInstance:
 --- !u!224 &856439515683842782 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+  m_PrefabInstance: {fileID: 6178954478311335231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2863464262430048757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8249785066434405578, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
   m_PrefabInstance: {fileID: 6178954478311335231}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6659275819049754668
@@ -3273,6 +3318,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+--- !u!114 &1630032574215038567 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+  m_PrefabInstance: {fileID: 7564356512989952451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19f9afe97b40e7469de64ecb5451dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3952857845150692898 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}

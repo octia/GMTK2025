@@ -1,6 +1,8 @@
 using System;
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TimeSlowAbility : MonoBehaviour
@@ -18,19 +20,30 @@ public class TimeSlowAbility : MonoBehaviour
     [SerializeField]
     private TMP_Text abilityCooldownText;
 
+    [Inject]
+    private TimerManager timerManager;
+
     private float currentActiveTime;
     private float currentAbilityCooldown;
 
     // Initials
     private UIGameSlower gameSlower;
 
+    private InputAction abilityAction;
+
     private void Awake()
     {
         gameSlower = GetComponent<UIGameSlower>();
+        abilityAction = InputSystem.actions.FindAction("TimeSlow");
     }
 
     private void Update()
     {
+        if (timerManager.IsPaused)
+        {
+            return;
+        }
+        
         currentActiveTime -= Time.deltaTime;
 
         if (currentActiveTime < 0)
@@ -45,6 +58,11 @@ public class TimeSlowAbility : MonoBehaviour
 
             if (currentAbilityCooldown < 0)
             {
+                if (abilityAction.WasPressedThisFrame())
+                {
+                    UseAbility();
+                }
+
                 button.interactable = true;
                 abilityCooldownText.gameObject.SetActive(false);
             }
@@ -57,7 +75,7 @@ public class TimeSlowAbility : MonoBehaviour
 
     public void UseAbility()
     {
-        if (currentAbilityCooldown > 0)
+        if (currentAbilityCooldown > 0 || timerManager.IsPaused)
         {
             return;
         }

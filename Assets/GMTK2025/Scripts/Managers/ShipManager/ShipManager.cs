@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FMOD.Studio;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -55,7 +56,7 @@ public class ShipManager
             Initialize();
         }
 
-        Shuffle(CurrentShipPool);
+        UtilityFunctions.Shuffle(CurrentShipPool);
 
         for (int i = 0; i < shipsToDraw; i++)
         {
@@ -70,7 +71,7 @@ public class ShipManager
     private Orbit SelectOrbitForShip(ShipData shipdata)
     {
         var unlockedOrbits = orbitController.GetUnlockedOrbits().ToList();
-        Shuffle(unlockedOrbits);
+        UtilityFunctions.Shuffle(unlockedOrbits);
 
         var chosenOrbit = unlockedOrbits[0];
         foreach(var orbit in unlockedOrbits)
@@ -83,18 +84,5 @@ public class ShipManager
             }
         }
         return chosenOrbit;
-    }
-
-    public static void Shuffle<T>(IList<T> ts)
-    {
-        var count = ts.Count;
-        var last = count - 1;
-        for (var i = 0; i < last; ++i)
-        {
-            var r = Random.Range(i, count);
-            var tmp = ts[i];
-            ts[i] = ts[r];
-            ts[r] = tmp;
-        }
     }
 }
