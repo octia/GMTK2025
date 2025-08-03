@@ -15,7 +15,13 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     private Button button;
 
     [SerializeField]
+    private Scrollbar scrollbar;
+
+    [SerializeField]
     private TMP_Text abilityCooldownText;
+
+    [SerializeField]
+    private Color disabledColor;
 
     [Inject]
     private CustomCursor customCursor;
@@ -27,6 +33,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     private UpgradeManager upgradeManager;
 
     private float currentAbilityCooldown;
+
+    private float startAbilityCooldown;
 
     private bool targetMode;
 
@@ -63,10 +71,13 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
 
             button.interactable = true;
             abilityCooldownText.gameObject.SetActive(false);
+            scrollbar.gameObject.SetActive(false);
+            button.GetComponent<Image>().color = Color.white;
         }
         else
         {
             abilityCooldownText.text = Math.Round(currentAbilityCooldown, 2) + "s";
+            scrollbar.size = 1 - currentAbilityCooldown / startAbilityCooldown;
         }
     }
 
@@ -76,6 +87,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
         {
             SetTargetMode(false);
             abilityCooldownText.gameObject.SetActive(true);
+            scrollbar.gameObject.SetActive(true);
+            button.GetComponent<Image>().color = disabledColor;
 
             int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
             currentAbilityCooldown = abilityCooldown[upgradeAmount];
@@ -92,9 +105,11 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
         SetTargetMode(true);
 
         button.interactable = false;
+        button.GetComponent<Image>().color = disabledColor;
 
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
         currentAbilityCooldown = abilityCooldown[upgradeAmount];
+        startAbilityCooldown = currentAbilityCooldown;
     }
 
     private void SetTargetMode(bool value)
