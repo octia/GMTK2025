@@ -17,7 +17,10 @@ MonoBehaviour:
   - Slow Time Upgrade
   Descriptions:
   - Adds the ability to slow down time for a short period.
-  - Decreases cooldown for ability.
-  Cost: 320000004b000000960000002c010000f4010000
+  - Increases duration and decreases the cooldown of the ability.
+  - Increases duration and decreases the cooldown of the ability.
+  - Increases duration and decreases the cooldown of the ability.
+  - Increases duration and decreases the cooldown of the ability.
+  Cost: 0a0000000f00000019000000320000004b000000
   Icons:
   - {fileID: 21300000, guid: b3afb52b8d6565042ba95d3887968688, type: 3}

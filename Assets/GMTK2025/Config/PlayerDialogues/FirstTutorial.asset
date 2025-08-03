@@ -20,9 +20,13 @@ MonoBehaviour:
       ships and satellites NOT crash into each other! Too many crashes and BOOM,
       you'll be fired."
     <IconOverride>k__BackingField: {fileID: 0}
-  - <Message>k__BackingField: "To start the day, there won\u2019t be too many of
-      them, so use that time to get acclimated. As the day goes on, more will request
-      to join orbit, so just pick which one you want."
+  - <Message>k__BackingField: "To start the day, there won\u2019t be too many things
+      to keep track of, so use that time to get acclimated. As the day goes on, more
+      will request to join orbit, so just pick which one you want."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
+  - <Message>k__BackingField: "You can adjust the view by right clicking and dragging
+      around, and using the mouse wheel to zoom in and out.\r\nTry it out now to
+      see if you can find the bottom of the planet!\r"
     <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
   - <Message>k__BackingField: 'Each and every ship and satellite wants to be on a
       specific orbit.
