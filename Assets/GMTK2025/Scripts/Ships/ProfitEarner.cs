@@ -39,8 +39,11 @@ public class ProfitEarner : MonoBehaviour
 
         if ((int)profitEarnedSoFar / 1 != (int)(profitEarnedSoFar + profitThisStep) / 1)
         {
-            profitParticles.Emit(1);
             financeManager.GenerateShipProfit(1);
+        }
+        if ((int)(profitEarnedSoFar * 4) / 1 != (int)((profitEarnedSoFar + profitThisStep) * 4) / 1)
+        {
+            profitParticles.Emit(1);
         }
         profitEarnedSoFar += profitThisStep;
     }
