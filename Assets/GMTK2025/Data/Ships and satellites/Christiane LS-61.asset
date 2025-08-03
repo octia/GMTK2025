@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 19ship
+  m_Name: Christiane LS-61
   m_EditorClassIdentifier: 
-  Orbit: WIP
-  Profit: 2
+  PreferredOrbitShape: 0
+  Profit: 1
   Speed: 0
   Clockwise: 0
-  Temporary: 1
-  ModelPrefab: {fileID: 8228420899863059082, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
-  Captain: {fileID: 11400000, guid: 208f848b969da394796f5d6dcde64c3f, type: 2}
+  Temporary: 0
+  ModelPrefab: {fileID: 69199178942482842, guid: 1bebd2f6ea1942b47ae642e501b8c5d7, type: 3}
+  Captain: {fileID: 11400000, guid: 61afa55ae5dcbd24dacb5431b992233a, type: 2}

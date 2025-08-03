@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Robot
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: c718909e12de47b418ea14509c2dd5ff, type: 3}
-  TypeTime: 0.05
+  TypeTime: 0.2
   sfxPath: event:/Ship_robot
   PilotName: robot
   PilotDialogs:

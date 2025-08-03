@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 16ship
+  m_Name: SSE Opal
   m_EditorClassIdentifier: 
-  Orbit: elliptical
-  PreferredOrbitShape: 1
-  Profit: 4
-  Speed: 2
-  Clockwise: 1
+  PreferredOrbitShape: 0
+  Profit: 3
+  Speed: 1
+  Clockwise: 0
   Temporary: 1
   ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
-  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}
+  Captain: {fileID: 11400000, guid: c19fbec3fc786ee43b46083bfe0d20f2, type: 2}

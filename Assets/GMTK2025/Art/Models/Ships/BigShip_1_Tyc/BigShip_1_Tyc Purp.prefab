@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6497481863829812290}
+  - component: {fileID: -5985882497535770176}
   m_Layer: 0
-  m_Name: BigShip_1_Tyc
+  m_Name: BigShip_1_Tyc Purp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,6 +39,20 @@ Transform:
   - {fileID: 2799025584985378096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5985882497535770176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625886190771256685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0739a811c5f9a46ba29911ecd324e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: b62be46e4f5c5ce45828adfe3ee7c1e1, type: 3}
+  Size: 2
 --- !u!1001 &77550854894994713
 PrefabInstance:
   m_ObjectHideFlags: 0
