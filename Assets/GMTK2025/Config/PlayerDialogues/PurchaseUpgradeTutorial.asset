@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a740502731dab025bdeccf416ca83a4, type: 3}
   m_Name: PurchaseUpgradeTutorial
   m_EditorClassIdentifier: 
-  <ShouldBlockInteraction>k__BackingField: 1
+  <ShouldBlockInteraction>k__BackingField: 0
   <ShouldBeSkippable>k__BackingField: 1
-  <ChainType>k__BackingField: 2
+  <ChainType>k__BackingField: 3
   <Dialogues>k__BackingField:
   - <Message>k__BackingField: Fortunately, the ships and satellites you have right
       now stop moving while making your choice.
