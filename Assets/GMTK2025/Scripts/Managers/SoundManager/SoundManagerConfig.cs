@@ -46,6 +46,12 @@ public class SoundManagerConfig : ScriptableObject
     [SerializeField]
     public string sfxSlowMotionPath = "event:/Slowmotion";
 
+    [SerializeField]
+    public string sfxNewLifePath = "event:/Getting life";
+
+    [SerializeField]
+    public string sfxDirectionChangePath = "event:/Direction change";
+
     public FMOD.Studio.EventInstance musicLoopInstance;
     public List<EventInstance> activeLoopedSounds = new List<EventInstance>();
     public FMOD.Studio.VCA music_VCA;

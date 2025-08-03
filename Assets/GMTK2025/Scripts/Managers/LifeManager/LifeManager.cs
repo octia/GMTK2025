@@ -44,7 +44,7 @@ public class LifeManager : IDisposable
         GainLife(amount);
         if (playSound)
         {
-            soundManager.PlayOneShot("event:/Getting life");
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxNewLifePath);
         }
     }
 
