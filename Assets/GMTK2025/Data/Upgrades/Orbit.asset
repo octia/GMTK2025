@@ -19,4 +19,4 @@ MonoBehaviour:
   - Adds an extra orbit to the planet from 3 possible orbits.
   Cost: 00000000
   Icons:
-  - {fileID: 21300000, guid: 709704984e4f96b46b99d9840c720492, type: 3}
+  - {fileID: 21300000, guid: d0f4451c6c46c1c4da497f4aa19c2cdb, type: 3}
