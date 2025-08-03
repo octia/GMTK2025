@@ -30,7 +30,13 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     private TimerManager timerManager;
 
     [Inject]
+    private SoundManager soundManager;
+
+    [Inject]
     private UpgradeManager upgradeManager;
+
+    [Inject]
+    private PlayerDialogueController playerDialogue;
 
     private float currentAbilityCooldown;
 
@@ -46,6 +52,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     {
         abilityAction = InputSystem.actions.FindAction("DirectionSwitcher");
         interactAction = InputSystem.actions.FindAction("Click");
+
+        playerDialogue.PlayTextChain(PlayerDialogueChainType.DirectionChangeTutorial);
     }
 
     private void Update()
@@ -92,7 +100,9 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
 
             int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
             currentAbilityCooldown = abilityCooldown[upgradeAmount];
-        }  
+
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxDirectionChangePath);
+        }
     }
 
     public void UseAbility()

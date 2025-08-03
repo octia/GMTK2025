@@ -10,17 +10,23 @@ public class GameOverController : MonoBehaviour
     [Inject]
     private SceneManager sceneManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     [SerializeField]
     private GameObject gameOverScreen;
+
+    [SerializeField]
+    private CanvasGroup terminationScreen;
+
+    [SerializeField]
+    private CanvasGroup scoresScreen;
 
     [SerializeField]
     private Button leaderboardSubmitButton;
 
     [SerializeField]
     private Button retryButton;
-
-    [SerializeField]
-    private TMP_InputField nameInput;
 
     private void Awake()
     {
@@ -33,6 +39,7 @@ public class GameOverController : MonoBehaviour
         gameObject.SetActive(true);
         gameOverScreen.transform.localScale = Vector3.one * 0.02f;
         ScaleGameOverScreen(true);
+        soundManager.PlayOneShot("event:/Danger!");
     }
 
     private void Retry()
@@ -42,12 +49,12 @@ public class GameOverController : MonoBehaviour
 
     private void SubmitToLeaderboard()
     {
-        var nameToSubmit = nameInput.text.Trim();
-        if (nameToSubmit != "")
-        {
-            Debug.Log($"Submitting to leaderboard with name {nameToSubmit}");
-        }
-        Retry();
+        terminationScreen.interactable = false;
+        Sequence.Create()
+            .Chain(Tween.Custom(1, 0, 0.4f, x => terminationScreen.alpha = x))
+            .ChainCallback(() => terminationScreen.gameObject.SetActive(false))
+            .ChainCallback(() => scoresScreen.gameObject.SetActive(true))
+            .Chain(Tween.Custom(0, 1, 0.4f, x => scoresScreen.alpha = x));
     }
 
     private void ScaleGameOverScreen(bool enabled, Action onComplete = null)

@@ -10,6 +10,9 @@ public class LifeManager : IDisposable
     [Inject]
     private GameOverController gameOverController;
 
+    [Inject]
+    private SoundManager soundManager;
+
     public LifeController LifeController;
 
     public int LifeCount { get; private set; } = 0;
@@ -32,14 +35,17 @@ public class LifeManager : IDisposable
         LifeController.VisualLifeChange();
     }
 
-    public void GainMaxLife(int amount = 1)
+    public void GainMaxLife(int amount = 1, bool playSound = true)
     {
         MaxLifeCount += amount;
 
         LifeController.AddHeartImages(amount);
-        Debug.Log("Adding hearts! " + amount);
 
         GainLife(amount);
+        if (playSound)
+        {
+            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxNewLifePath);
+        }
     }
 
     public void Dispose() { }
