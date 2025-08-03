@@ -169,24 +169,21 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
         upgradeType = data.UpgradeType;
 
+        UpdateData();
+    }
+
+    public void UpdateData()
+    {
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)upgradeType];
 
         upgradeName = data.Name[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Name.Length)];
         upgradeDescription = data.Descriptions[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Descriptions.Length)];
         upgradeIcon.sprite = data.Icons[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Icons.Length)];
-
-        UpdateCost();
-    }
-
-    public void UpdateCost()
-    {
-        int upgradeAmount = upgradeManager.UpgradeAmount[(int)upgradeType];
-        
         upgradeCost = data.Cost[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Cost.Length)];
         upgradeCost += upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.TotalUpgradeAmount];
 
         costText.text = upgradeCost + "$";
-    } 
+    }
 
     public void DisableUpgradeOption()
     {
@@ -201,7 +198,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void OnEnable()
     {
-        UpdateCost();  
+        UpdateData();  
     }
 
     private void OnDisable()
