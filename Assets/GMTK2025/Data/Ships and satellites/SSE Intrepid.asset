@@ -15,7 +15,7 @@ MonoBehaviour:
   PreferredOrbitShape: 0
   Profit: 3
   Speed: 1
-  Clockwise: 0
+  Clockwise: 1
   Temporary: 1
   ModelPrefab: {fileID: 3135798295465508883, guid: 2373889cd2f3cb242873953d0ff66053, type: 3}
   Captain: {fileID: 11400000, guid: 7dc98eabf38a5c546b32aa2e38d3620a, type: 2}
