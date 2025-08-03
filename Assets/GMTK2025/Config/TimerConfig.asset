@@ -15,5 +15,5 @@ MonoBehaviour:
   <StaticTimeScaleMultiplier>k__BackingField: 1
   <NormalTimeScale>k__BackingField: 1
   <SelectionTimeScale>k__BackingField: 0.128
-  <AbilitySlowTimeScale>k__BackingField: 0.2
+  <AbilitySlowTimeScale>k__BackingField: 0.5
   <TimeScaleChangeAnimDuration>k__BackingField: 0.15

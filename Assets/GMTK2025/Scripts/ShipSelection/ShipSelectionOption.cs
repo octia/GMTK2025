@@ -51,6 +51,8 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     private bool mouseOver;
 
+    private bool selected;
+
     // Initial
     private Vector2 defaultScale;
 
@@ -66,9 +68,10 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     private void Update()
     {
-        if (mouseOver && interactAction.WasPressedThisFrame())
+        if (mouseOver && interactAction.WasPressedThisFrame() && !selected)
         {
             screen.SelectNewShip(optionIndex);
+            selected = true;
         }
     }
 
@@ -76,6 +79,7 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         icon.sprite = ship.ModelPrefab.GetComponent<ShipModel>().Icon;
         nameText.text = ship.name;
+        selected = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -118,6 +122,7 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
 
     private void OnDisable()
     {
+        selected = false;
         HideOption();
     }
 
