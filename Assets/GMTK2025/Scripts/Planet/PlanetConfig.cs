@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GMTK2025/Config/PlanetConfig", fileName = "PlanetConfig")]
 public class PlanetConfig : ScriptableObject
 {
     [SerializeField]
-    private PlanetProfile[] planetConfigurations;
+    private List<PlanetProfile> planetConfigurations;
 
     [System.Serializable]
     public struct PlanetProfile
@@ -16,6 +17,13 @@ public class PlanetConfig : ScriptableObject
 
     public PlanetProfile GetPlanetProfile()
     {
-        return planetConfigurations[Random.Range(0, planetConfigurations.Length)];
+        return planetConfigurations.RandomElement();
+    }
+
+    public PlanetProfile GetPlanetProfileExcept(PlanetProfile exception)
+    {
+        return planetConfigurations[
+            planetConfigurations.RandomIndexDifferentFrom(planetConfigurations.IndexOf(exception))
+        ];
     }
 }
