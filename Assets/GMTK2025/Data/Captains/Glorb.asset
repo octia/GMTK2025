@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glorb
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: 000b7333a43b902499198f96012f556c, type: 3}
-  TypeTime: 0.05
+  TypeTime: 0.2
   sfxPath: event:/Ship_glorb
   PilotName: glorb
   PilotDialogs:

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 18ship
+  m_Name: PQE Heater
   m_EditorClassIdentifier: 
-  Orbit: circular
-  Profit: 6
+  PreferredOrbitShape: 0
+  Profit: 3
   Speed: 2
-  Clockwise: 0
+  Clockwise: 1
   Temporary: 1
-  ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Captain: {fileID: 11400000, guid: e36b7bd51ce98a646859dd776492376f, type: 2}
+  ModelPrefab: {fileID: 3135798295465508883, guid: 2373889cd2f3cb242873953d0ff66053, type: 3}
+  Captain: {fileID: 11400000, guid: 59feb4b1be7e8d242a09dd9a24c99222, type: 2}

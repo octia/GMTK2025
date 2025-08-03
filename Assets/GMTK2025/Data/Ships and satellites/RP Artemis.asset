@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 5ship
+  m_Name: RP Artemis
   m_EditorClassIdentifier: 
-  Orbit: circular
-  Profit: 3
+  PreferredOrbitShape: 0
+  Profit: 4
   Speed: 2
-  Clockwise: 0
+  Clockwise: 1
   Temporary: 1
-  ModelPrefab: {fileID: 2227757481870279663, guid: 174977ed529e7504284a60abce2b4327, type: 3}
-  Captain: {fileID: 11400000, guid: 59feb4b1be7e8d242a09dd9a24c99222, type: 2}
+  ModelPrefab: {fileID: 6050553204621768757, guid: 6de18682e7455ac449501f09cf37d4f4, type: 3}
+  Captain: {fileID: 11400000, guid: 9f75bc139ed2a624ba3cb6045358da69, type: 2}

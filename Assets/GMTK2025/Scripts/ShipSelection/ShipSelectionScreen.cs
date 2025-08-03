@@ -89,7 +89,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
     private int newShipsAmount;
 
-    public (ShipData data, Orbit orbit)[] NewShips;
+    public (ShipData data, Orbit orbit, float stayTime)[] NewShips;
 
     // Initial
     private Animator anim;
@@ -187,7 +187,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
         ShipData ship = NewShips[i].data;
 
-        temporaryText.gameObject.SetActive(ship.Temporary);
+        temporaryText.text = ship.Temporary ? $"Stays for {Mathf.RoundToInt(NewShips[i].stayTime)} Seconds" : "∞";
         nameText.text = ship.name;
         orbitText.text = "Preferred Orbital: " + ship.PreferredOrbitShape.ToString();
         sizeText.text = "Size: " + ship.ModelPrefab.GetComponent<ShipModel>().Size;

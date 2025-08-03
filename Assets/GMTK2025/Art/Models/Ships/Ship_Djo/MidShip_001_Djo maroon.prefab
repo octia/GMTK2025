@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5890792220492062621}
   - component: {fileID: 2067845953086879157}
   m_Layer: 11
-  m_Name: MidShip_001_Djo
+  m_Name: MidShip_001_Djo maroon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

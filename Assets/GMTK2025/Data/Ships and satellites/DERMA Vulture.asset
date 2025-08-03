@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
-  m_Name: 6ship
+  m_Name: DERMA Vulture
   m_EditorClassIdentifier: 
-  Orbit: circular
-  Size: Large
-  Profit: 4
-  Speed: 0
-  Clockwise: 1
+  PreferredOrbitShape: 0
+  Profit: 5
+  Speed: 2
+  Clockwise: 0
   Temporary: 1
-  ModelPrefab: {fileID: 3081256826458058320, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
-  Icon: {fileID: 21300000, guid: 9433f4f3499736a4ea5a6f5efe291f3a, type: 3}
-  Captain: {fileID: 11400000, guid: d25088275ae730042a7e24456a8e67f1, type: 2}
+  ModelPrefab: {fileID: 6050553204621768757, guid: 6de18682e7455ac449501f09cf37d4f4, type: 3}
+  Captain: {fileID: 11400000, guid: 5c404db4cbfe0174db815a354763eb24, type: 2}
