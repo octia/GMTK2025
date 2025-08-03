@@ -38,6 +38,9 @@ public class TimeSlowAbility : MonoBehaviour
     [Inject]
     private SoundManager soundManager;
 
+    [Inject]
+    private PlayerDialogueController playerDialogue;
+
     private float currentActiveTime;
     private float currentAbilityCooldown;
 
@@ -53,6 +56,8 @@ public class TimeSlowAbility : MonoBehaviour
     {
         gameSlower = GetComponent<UIGameSlower>();
         abilityAction = InputSystem.actions.FindAction("TimeSlow");
+
+        playerDialogue.PlayTextChain(PlayerDialogueChainType.TimeSlowTutorial);
     }
 
     private void Update()

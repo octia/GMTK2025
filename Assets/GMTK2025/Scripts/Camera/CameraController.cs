@@ -23,6 +23,9 @@ public class CameraController : MonoBehaviour
     [Inject]
     private SoundManager soundManager;
 
+    [Inject]
+    private PlayerDialogueController playerDialogueController;
+
     public Vector2 CurrentPosition = new(0f, 60f);
 
     [SerializeField]
@@ -45,6 +48,8 @@ public class CameraController : MonoBehaviour
     private float normalizedOffsetUse = 0;
 
     private bool hasOffset = false;
+    private float inertiaTime = 0;
+    private static bool hasPuked = false;
 
     private Tween scrollTween;
 
@@ -64,6 +69,22 @@ public class CameraController : MonoBehaviour
         }
 
         SetCameraPosition(CurrentPosition, CurrentDistanceFromPlanet);
+
+        if (currentVelocity.sqrMagnitude > 25)
+        {
+            inertiaTime += Time.deltaTime;
+            Debug.Log(inertiaTime);
+        }
+        else
+        {
+            inertiaTime = 0;
+        }
+
+        if (inertiaTime > 15 && !hasPuked)
+        {
+            hasPuked = true;
+            playerDialogueController.PlayTextChain(PlayerDialogueChainType.Eeeeugh);
+        }
     }
 
     private void HandleScroll()

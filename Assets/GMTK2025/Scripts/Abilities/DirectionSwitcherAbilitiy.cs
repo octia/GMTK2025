@@ -35,6 +35,9 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     [Inject]
     private UpgradeManager upgradeManager;
 
+    [Inject]
+    private PlayerDialogueController playerDialogue;
+
     private float currentAbilityCooldown;
 
     private float startAbilityCooldown;
@@ -49,6 +52,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     {
         abilityAction = InputSystem.actions.FindAction("DirectionSwitcher");
         interactAction = InputSystem.actions.FindAction("Click");
+
+        playerDialogue.PlayTextChain(PlayerDialogueChainType.DirectionChangeTutorial);
     }
 
     private void Update()
