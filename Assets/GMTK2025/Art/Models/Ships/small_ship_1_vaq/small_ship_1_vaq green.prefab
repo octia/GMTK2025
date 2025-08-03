@@ -613,6 +613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: small_ship_1_vaq
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 44b7398123fee184aab4816d1f1d8df3, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

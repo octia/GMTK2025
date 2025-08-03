@@ -24,6 +24,11 @@ MonoBehaviour:
       to keep track of, so use that time to get acclimated. As the day goes on, more
       will request to join orbit, so just pick which one you want."
     <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
+  - <Message>k__BackingField: "When you want to change a ship\u2019s orbit, click
+      on the ship and drag it to the orbit you want. When you release, the ship will
+      begin moving towards that orbit. Yes, we still use mice in the future, this
+      company cheaps out wherever possible."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: fe40fe75d7474bf45aba5790721e8c11, type: 3}
   - <Message>k__BackingField: "You can adjust the view by right clicking and dragging
       around, and using the mouse wheel to zoom in and out.\r\nTry it out now to
       see if you can find the bottom of the planet!\r"
