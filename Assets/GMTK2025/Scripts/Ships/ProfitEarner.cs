@@ -1,3 +1,4 @@
+using System.Collections;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class ProfitEarner : MonoBehaviour
 {
     [SerializeField]
     private ParticleSystem profitParticles;
+
+    [SerializeField]
+    private ParticleSystem sadParticles;
 
     [Inject]
     private TimerManager timerManager;
@@ -17,6 +21,24 @@ public class ProfitEarner : MonoBehaviour
 
     private float profitEarnedSoFar = 0;
 
+    public bool NotGeneratingMoney => !ship.enabled
+            || ship.PreferredOrbit == null
+            || ship.Orbit != ship.PreferredOrbit
+            || ship.DistanceToOrbit > 1.0f;
+
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(Random.value);
+        while (true)
+        {
+            if (NotGeneratingMoney && timerManager.TimeScale > 0.1f)
+            {
+                sadParticles.Emit(1);
+            }
+            yield return new WaitForSeconds(2.0f / ship.ShipData.Profit);
+        }
+    }
+
     private void Awake()
     {
         ship = GetComponent<Ship>();
@@ -24,12 +46,7 @@ public class ProfitEarner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (
-            !ship.enabled
-            || ship.PreferredOrbit == null
-            || ship.Orbit != ship.PreferredOrbit
-            || ship.DistanceToOrbit > 1.0f
-        )
+        if (NotGeneratingMoney)
         {
             return;
         }
