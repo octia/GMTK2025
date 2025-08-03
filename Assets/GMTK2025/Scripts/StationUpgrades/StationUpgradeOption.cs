@@ -65,6 +65,8 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     private bool disabled;
 
     // Upgrade data info
+    private UpgradeData data;
+
     private UpgradeType upgradeType;
     private string upgradeName;
     private string upgradeDescription;
@@ -75,15 +77,18 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private InputAction interactAction;
 
-    private void Start()
+    void Awake()
     {
         if (startUpgradeData != null)
         {
             SetUpgradeOption(startUpgradeData);
         }
+    }
 
+    private void Start()
+    {
         // Grabbing initial variables
-            defaultScale = transform.localScale;
+        defaultScale = transform.localScale;
 
         interactAction = InputSystem.actions.FindAction("Click");
     }
@@ -160,19 +165,28 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void SetUpgradeOption(UpgradeData upgradeData)
     {
-        upgradeType = upgradeData.UpgradeType;
+        data = upgradeData;
+
+        upgradeType = data.UpgradeType;
 
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)upgradeType];
 
-        upgradeName = upgradeData.Name[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Name.Length)];
-        upgradeDescription = upgradeData.Descriptions[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Descriptions.Length)];
-        upgradeIcon.sprite = upgradeData.Icons[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Icons.Length)];
+        upgradeName = data.Name[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Name.Length)];
+        upgradeDescription = data.Descriptions[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Descriptions.Length)];
+        upgradeIcon.sprite = data.Icons[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Icons.Length)];
 
-        upgradeCost = upgradeData.Cost[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Cost.Length)];
+        UpdateCost();
+    }
+
+    public void UpdateCost()
+    {
+        int upgradeAmount = upgradeManager.UpgradeAmount[(int)upgradeType];
+        
+        upgradeCost = data.Cost[UtilityFunctions.GetKeyOrLast(upgradeAmount, data.Cost.Length)];
         upgradeCost += upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.TotalUpgradeAmount];
 
         costText.text = upgradeCost + "$";
-    }
+    } 
 
     public void DisableUpgradeOption()
     {
@@ -183,6 +197,11 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerExit(PointerEventData eventData)
     {
         HideOption();
+    }
+
+    private void OnEnable()
+    {
+        UpdateCost();  
     }
 
     private void OnDisable()

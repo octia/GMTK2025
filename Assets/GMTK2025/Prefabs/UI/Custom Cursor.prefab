@@ -52,10 +52,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 22.5, y: -22.5}
   cursorSprites:
-  - {fileID: 21300000, guid: 41859f0bf9c8d314aa9dc7e621583392, type: 3}
-  - {fileID: 21300000, guid: f86dfe5caecd47748bf01fb52df2dd16, type: 3}
-  - {fileID: 21300000, guid: eea8f97e57a7aff4b8f8a4117c5c1305, type: 3}
+  - {fileID: 21300000, guid: 0a55d771ae8c1d3489df22b3ec287e88, type: 3}
+  - {fileID: 21300000, guid: b736f197b2d89204582d95f28c6dd114, type: 3}
+  - {fileID: 21300000, guid: aedc1bedeb9609f41aa6e71208217973, type: 3}
   cursorImage: {fileID: 174650229414211249}
+  TargetMode: 0
 --- !u!222 &4380596987390584553
 CanvasRenderer:
   m_ObjectHideFlags: 0
