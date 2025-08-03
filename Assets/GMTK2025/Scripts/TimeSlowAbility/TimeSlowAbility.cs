@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TimeSlowAbility : MonoBehaviour
@@ -24,9 +25,12 @@ public class TimeSlowAbility : MonoBehaviour
     // Initials
     private UIGameSlower gameSlower;
 
+    private InputAction abilityAction;
+
     private void Awake()
     {
         gameSlower = GetComponent<UIGameSlower>();
+        abilityAction = InputSystem.actions.FindAction("TimeSlow");
     }
 
     private void Update()
@@ -45,6 +49,11 @@ public class TimeSlowAbility : MonoBehaviour
 
             if (currentAbilityCooldown < 0)
             {
+                if (abilityAction.WasPressedThisFrame())
+                {
+                    UseAbility();
+                }
+
                 button.interactable = true;
                 abilityCooldownText.gameObject.SetActive(false);
             }
