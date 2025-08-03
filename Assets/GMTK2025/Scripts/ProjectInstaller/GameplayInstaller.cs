@@ -10,9 +10,6 @@ public class GameplayInstaller : MonoBehaviour, IInstaller
     private OrbitController orbitController;
 
     [SerializeField]
-    private ScoreController scoreController;
-
-    [SerializeField]
     private GameOverController gameOverController;
 
 
@@ -28,7 +25,6 @@ public class GameplayInstaller : MonoBehaviour, IInstaller
         
         builder.AddSingleton(customCursor);
         builder.AddSingleton(orbitController);
-        //builder.AddSingleton(scoreController);
         builder.AddSingleton(gameOverController);
 
         builder.AddSingleton(mainCamera);

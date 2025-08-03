@@ -126,6 +126,11 @@ public class ShipSelectionOption : MonoBehaviour, IPointerEnterHandler, IPointer
         HideOption();
     }
 
+    private void OnEnable()
+    {
+        HideOption();
+    }
+
     private void HideOption()
     {
         mouseOver = false;
