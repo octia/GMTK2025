@@ -16,9 +16,14 @@ MonoBehaviour:
   <ShouldBeSkippable>k__BackingField: 1
   <ChainType>k__BackingField: 3
   <Dialogues>k__BackingField:
-  - <Message>k__BackingField: Fortunately, the ships and satellites you have right
-      now stop moving while making your choice.
-    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
-  - <Message>k__BackingField: "Once you make your choice, a new ship will enter from
-      either above or below the other orbits, so they usually won\u2019t crash immediately."
-    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
+  - <Message>k__BackingField: "Now look kid, you\u2019ve earned enough money for
+      an upgrade. Go ahead and check out the upgrade menu."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 5b5b94519563f524aa7cb9f0658a1a7d, type: 3}
+  - <Message>k__BackingField: "It\u2019s important to remember: if you pick Time
+      Slow or Direction Changer, you\u2019ll get an ability that you can use to make
+      managing orbits a little easier."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: a902bfea296733e4f8c481d24e7ec1ac, type: 3}
+  - <Message>k__BackingField: Upon buying one of these, a button will appear in the
+      bottom left of your screen that you can click to activate the ability. You
+      can also use Q for Time Slow and E for Direction Changer.
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 1229d9a81f257254d9cb2e43ecd8b7b8, type: 3}
