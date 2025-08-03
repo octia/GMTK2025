@@ -253,7 +253,7 @@ public class Ship : MonoBehaviour
         foreach (var collider in hitColliders)
         {
             var hitShip = collider.GetComponentInParent<Ship>();
-            if (hitShip != this)
+            if (hitShip && hitShip != this)
             {
                 return true;
             }
@@ -267,8 +267,8 @@ public class Ship : MonoBehaviour
         {
             return;
         }
-        Gizmos.color = Color.red;
-        IsCloseToCollision(out Vector3 scale);
+        bool isClose = IsCloseToCollision(out Vector3 scale);
+        Gizmos.color = isClose ? Color.red : Color.green;
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, scale);
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     }
