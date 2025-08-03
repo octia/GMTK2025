@@ -1,6 +1,10 @@
+using UnityEngine.Events;
+
 public class FinanceManager
 {
     public FinanceController FinanceController;
+
+    public UnityEvent<int> OnProfitGenerated = new();
 
     private int money;
     public int Money
@@ -19,6 +23,7 @@ public class FinanceManager
     public void GenerateShipProfit(int profit)
     {
         Money = money + profit;
+        OnProfitGenerated.Invoke(profit);
     }
 
     public bool UseMoney(int amount)
