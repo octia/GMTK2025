@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EditorAttributes;
 using Reflex.Attributes;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScorePanel : MonoBehaviour
 {
@@ -10,13 +12,10 @@ public class ScorePanel : MonoBehaviour
 
     [Inject] private FinanceManager financeManager;
 
+    [SerializeField] private ScoreDisplay[] scoreDisplays;
+    [SerializeField] private TMP_InputField nameInputField;
 
     public int Score { get; private set; }
-
-    private void Awake()
-    {
-        financeManager.OnProfitGenerated.AddListener(AddToScore);
-    }
 
     private void AddToScore(int profit) => Score += profit;
 
@@ -37,10 +36,45 @@ public class ScorePanel : MonoBehaviour
         string name = GetName();
         if (name.IsNullOrEmpty())
         {
-            name = "Anonymous Controller";
+            name = "Employee 80";
             UpdateName(name);
         }
         await leaderboardServerBridge.SendUserValue(name, Score);
+    }
+
+    [Inject]
+    public void Init()
+    {
+        financeManager.OnProfitGenerated.AddListener(AddToScore);
+        nameInputField.text = GetName();
+        nameInputField.onValueChanged.AddListener(UpdateName);
+    }
+
+    private async void OnEnable()
+    {
+        foreach(var display in scoreDisplays)
+        {
+            display.SetScoreEntry(0, "", "");
+        }
+        await UploadScore();
+        var (highEntries, ownEntry) = await GetScores();
+        if (highEntries != null)
+        {
+            for (int i = 0; i < highEntries.Count; i++)
+            {
+                var entry = highEntries[i];
+                scoreDisplays[i].SetScoreEntry(entry.position, entry.name, entry.GetValueAsString());
+            }
+        }
+        if (ownEntry != null)
+        {
+            var entry = ownEntry;
+            scoreDisplays[3].SetScoreEntry(entry.position, entry.name, $"{entry.GetValueAsString()} ({Score})");
+        }
+        else
+        {
+            scoreDisplays[3].SetScoreEntry(1, GetName(), Score.ToString());
+        }
     }
 
     public async Task<(List<LeaderboardEntry> highEntries, LeaderboardEntry ownEntry)> GetScores()
