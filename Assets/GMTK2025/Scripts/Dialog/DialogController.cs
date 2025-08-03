@@ -18,7 +18,7 @@ public class DialogController : MonoBehaviour
         this.typeTime = typeTime;
 
         StopAllCoroutines();
-        if (gameObject.activeSelf)
+        if (gameObject.activeInHierarchy)
         {
             StartCoroutine(TypeDialogLine());
         }
