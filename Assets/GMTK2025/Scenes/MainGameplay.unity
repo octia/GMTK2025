@@ -7886,7 +7886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560881637913940425, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 4560881637913940425, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8259,6 +8259,10 @@ PrefabInstance:
     - target: {fileID: 3095160912046121675, guid: 112457f311935fc94a11bef8e67f4046, type: 3}
       propertyPath: m_Name
       value: GameOverScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095160912046121675, guid: 112457f311935fc94a11bef8e67f4046, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

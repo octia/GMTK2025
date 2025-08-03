@@ -419,9 +419,73 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6579594304148017134, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5252676521181155175, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4936647010904397242, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2563545736037429593, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2534836225601286365, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2336912909881668946, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1196277179757311320, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 30568473661304159, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
       propertyPath: m_Name
       value: BigShip_1_Tyc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140172032299157156, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229844604791550561, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386644203403523871, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436880629033673445, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237388995700171893, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055591447599808465, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035630685757012477, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608812018913678367, guid: c89521d6b150fcd46a068b0eecec00db, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
