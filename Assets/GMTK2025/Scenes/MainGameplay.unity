@@ -5897,12 +5897,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1818941631}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+<<<<<<< Updated upstream
       propertyPath: 'newShipTime.Array.data[2]'
+=======
+      propertyPath: newShipTime.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: 'newShipTime.Array.data[1]'
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: 'newShipTime.Array.data[2]'
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: 'newShipTime.Array.data[3]'
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: 'newShipTime.Array.data[4]'
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: 'newShipTime.Array.data[5]'
+>>>>>>> Stashed changes
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: 'newShipTime.Array.data[3]'
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
+      propertyPath: 'newShipTime.Array.data[8]'
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6445367770693103975, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: m_IsActive

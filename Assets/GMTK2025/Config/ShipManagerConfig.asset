@@ -48,6 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 930498a0f7e2c7e46ba43b446c279cd1, type: 2}
   <ShipPrefab>k__BackingField: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
   SpeedTypeToFloat:
+<<<<<<< Updated upstream
   - 15
   - 17
   - 20
@@ -56,3 +57,9 @@ MonoBehaviour:
   - 27
   - 30
   SpawnToOrbitJoinTime: 7
+=======
+  - 12
+  - 20
+  - 25
+  SpawnToOrbitJoinTime: 6
+>>>>>>> Stashed changes
