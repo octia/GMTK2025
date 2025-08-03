@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{51870166-a4d6-4e68-80b3-632e532d73e2}">
+		<property name="assetPath">
+			<value>sfx_upgrade_slowmotion.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.0081632653061225</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f5b54dea-5744-4f1c-8cd6-aaa08a31eeff}</destination>
+		</relationship>
+	</object>
+</objects>

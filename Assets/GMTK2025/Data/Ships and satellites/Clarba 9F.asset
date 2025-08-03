@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4cf5cb4ed63c544a9f74372c5afc36, type: 3}
+  m_Name: Clarba 9F
+  m_EditorClassIdentifier: 
+  PreferredOrbitShape: 0
+  Profit: 2
+  Speed: 2
+  Clockwise: 1
+  Temporary: 0
+  ModelPrefab: {fileID: 69199178942482842, guid: 1bebd2f6ea1942b47ae642e501b8c5d7, type: 3}
+  Captain: {fileID: 11400000, guid: 233dda706120c734a80845f902a26b22, type: 2}

@@ -35,7 +35,7 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
     private PlayerDialogueConfig config;
 
     [Inject]
-    SoundManager soundManager;
+    private SoundManager soundManager;
 
     private Tween textAnimTween;
 
@@ -89,6 +89,7 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
         currentDialogueIndex = 0;
         SetInteractionBlockEnabled(false);
         SetEnabled(false);
+        soundManager.PlayOneShot("event:/Ship_select");
     }
 
     private void PlayCurrentDialogue()
