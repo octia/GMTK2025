@@ -174,6 +174,8 @@ public class ShipSelectionScreen : MonoBehaviour
         pilotPreview.sprite = ship.Captain.PilotPortrait;
         // TODO: Randomize pilot dialog
         pilotDialog.StartDialog(ship.Captain.PilotDialogs[0], ship.Captain.TypeTime);
+
+        soundManager.PlayOneShot($"event:/Spaceship_preview/Ship_{ship.Captain.PilotName}_preview");
     }
 
     public void ResetDialogPanel()
@@ -196,7 +198,9 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         newShipsAmount++;
-        currentNewShipTime = newShipTime[UtilityFunctions.GetKeyOrLast(newShipsAmount, newShipTime.Length)];
+        currentNewShipTime = newShipTime[
+            UtilityFunctions.GetKeyOrLast(newShipsAmount, newShipTime.Length)
+        ];
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         if (ship != null)
         {
