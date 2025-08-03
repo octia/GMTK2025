@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7878985058200476226
 RectTransform:
   m_ObjectHideFlags: 0
@@ -187,8 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7562f361453e3ba4ab9c25bb0f642658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightBackground: {fileID: 0}
+  optionIndex: 0
+  screen: {fileID: 0}
   statsPanel: {fileID: 0}
+  description: 
   onHoverScale: {x: 1.025, y: 1.025}
   hoverAnimTime: 0.2
   statsYOffset: 200
@@ -220,8 +222,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 709704984e4f96b46b99d9840c720492, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

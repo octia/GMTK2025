@@ -20,4 +20,4 @@ MonoBehaviour:
   - Decreases cooldown for ability.
   Cost: 320000004b000000960000002c010000f4010000
   Icons:
-  - {fileID: 21300000, guid: 5a8af78b0aba1bb46b24977d51a2bac9, type: 3}
+  - {fileID: 21300000, guid: b3afb52b8d6565042ba95d3887968688, type: 3}
