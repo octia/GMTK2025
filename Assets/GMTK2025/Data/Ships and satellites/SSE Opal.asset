@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSE Opal
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 3
+  Profit: 15
   Speed: 1
   Clockwise: 0
   Temporary: 1

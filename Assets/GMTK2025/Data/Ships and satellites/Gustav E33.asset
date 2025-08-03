@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gustav E33
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 2
+  Profit: 26
   Speed: 1
   Clockwise: 1
   Temporary: 0

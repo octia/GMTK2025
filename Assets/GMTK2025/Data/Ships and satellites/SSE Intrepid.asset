@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSE Intrepid
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 3
+  Profit: 16
   Speed: 1
   Clockwise: 1
   Temporary: 1

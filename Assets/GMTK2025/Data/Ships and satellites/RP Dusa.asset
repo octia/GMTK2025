@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RP Dusa
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 6
+  Profit: 31
   Speed: 2
   Clockwise: 0
   Temporary: 1

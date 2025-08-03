@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RP Zeus R-21
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 2
+  Profit: 9
   Speed: 0
   Clockwise: 1
   Temporary: 0

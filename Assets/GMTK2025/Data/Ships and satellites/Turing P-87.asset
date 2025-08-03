@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Turing P-87
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 4
+  Profit: 22
   Speed: 1
   Clockwise: 1
   Temporary: 0

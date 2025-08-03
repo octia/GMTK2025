@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swan 50-NG
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 2
+  Profit: 11
   Speed: 1
   Clockwise: 1
   Temporary: 0

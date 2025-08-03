@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Leon H2-42
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 3
+  Profit: 14
   Speed: 1
   Clockwise: 0
   Temporary: 0
