@@ -109,7 +109,7 @@ public class TimeSlowAbility : MonoBehaviour
         button.interactable = false;
         button.GetComponent<Image>().color = disabledColor;
 
-        soundManager.PlayOneShot("event:/Slowmotion");
+        soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSlowMotionPath);
 
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Time];
 
