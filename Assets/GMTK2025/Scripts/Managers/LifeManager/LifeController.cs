@@ -9,7 +9,7 @@ public class LifeController : MonoBehaviour
     private Transform heartImagesContainer;
 
     [SerializeField]
-    private GameObject heartImagePrefab;
+    private Image heartImagePrefab;
 
     [Inject]
     private LifeManager lifeManager;
@@ -29,8 +29,10 @@ public class LifeController : MonoBehaviour
     {
         for (int i = 0; i < heartImages.Count; i++)
         {
-            Debug.Log(i < lifeManager.LifeCount ? "Did not lose life" : "Lost life");
-            heartImages[i].sprite = i < lifeManager.LifeCount ? lifeManager.Config.heartSprite[0] : lifeManager.Config.heartSprite[1];
+            heartImages[i].sprite =
+                i < lifeManager.LifeCount
+                    ? lifeManager.Config.heartSprite[0]
+                    : lifeManager.Config.heartSprite[1];
         }
     }
 
@@ -38,8 +40,8 @@ public class LifeController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
-            heartImages.Add(newHeartImage.GetComponent<Image>());
+            Image newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
+            heartImages.Add(newHeartImage);
         }
     }
 }

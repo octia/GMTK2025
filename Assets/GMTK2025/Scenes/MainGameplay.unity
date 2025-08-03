@@ -6316,6 +6316,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3137770874993646361, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: heartImagePrefab
+      value: 
+      objectReference: {fileID: 6003392364498120908, guid: de989a9c71103ad4798c8e72029185d6, type: 3}
+    - target: {fileID: 3137770874993646361, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
       propertyPath: 'heartsImages.Array.data[0]'
       value: 
       objectReference: {fileID: 0}

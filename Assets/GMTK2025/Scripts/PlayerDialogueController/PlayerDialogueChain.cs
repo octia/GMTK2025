@@ -11,6 +11,9 @@ public class PlayerDialogueChain : ScriptableObject
     public bool ShouldBlockInteraction { get; private set; } = false;
 
     [field: SerializeField]
+    public bool ShouldBeSkippable { get; private set; } = true;
+
+    [field: SerializeField]
     public PlayerDialogueChainType ChainType { get; private set; }
 
     [field: SerializeField]
