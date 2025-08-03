@@ -15,6 +15,10 @@ public class StationUpgradesScreen : MonoBehaviour
     private GameObject buyButton;
 
 
+    [SerializeField]
+    private GameObject timeSlowAbility;
+
+
     [Space]
     [SerializeField]
     private GameObject upgradeOptions;
@@ -64,7 +68,7 @@ public class StationUpgradesScreen : MonoBehaviour
     {
         if (
             !financeManager.UseMoney(
-                upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.UpgradeAmount]
+                upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.TotalUpgradeAmount]
             )
         )
         {
@@ -112,6 +116,18 @@ public class StationUpgradesScreen : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void BuyTimeSlow()
+    {
+        if (upgradeManager.UpgradeAmount[(int)UpgradeType.Time] == 0)
+        {
+            timeSlowAbility.SetActive(true);
+            return;
+        }
+
+        // TODO: Implement what happens on more time slow ability
+        Debug.LogWarning("Further time slow is not implemented yet!");
     }
 
     public void HideScreen()
