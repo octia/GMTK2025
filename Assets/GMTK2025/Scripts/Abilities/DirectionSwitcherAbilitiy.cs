@@ -30,6 +30,9 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
     private TimerManager timerManager;
 
     [Inject]
+    private SoundManager soundManager;
+
+    [Inject]
     private UpgradeManager upgradeManager;
 
     private float currentAbilityCooldown;
@@ -92,7 +95,7 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
 
             int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
             currentAbilityCooldown = abilityCooldown[upgradeAmount];
-        }  
+        }
     }
 
     public void UseAbility()
@@ -110,6 +113,8 @@ public class DirectionSwitcherAbilitiy : MonoBehaviour
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Direction];
         currentAbilityCooldown = abilityCooldown[upgradeAmount];
         startAbilityCooldown = currentAbilityCooldown;
+
+        soundManager.PlayOneShot("event:/Direction change");
     }
 
     private void SetTargetMode(bool value)

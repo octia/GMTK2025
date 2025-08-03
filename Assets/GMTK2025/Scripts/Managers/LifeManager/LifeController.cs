@@ -20,7 +20,7 @@ public class LifeController : MonoBehaviour
     private void Awake()
     {
         lifeManager.LifeController = this;
-        lifeManager.GainMaxLife(lifeManager.Config.MaxLifeCount);
+        lifeManager.GainMaxLife(lifeManager.Config.MaxLifeCount, false);
 
         VisualLifeChange();
     }

@@ -17,6 +17,9 @@ public class OrbitController : MonoBehaviour
     [Inject]
     private UIManager uiManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     private RaycastHit[] hits = null;
 
     public IEnumerable<Orbit> GetUnlockedOrbits() =>
@@ -34,6 +37,8 @@ public class OrbitController : MonoBehaviour
         var orbitWithData = GetMatchingOrbitData(orbit);
         orbitWithData.Unlocked = true;
         orbitWithData.Orbit.State = Orbit.VisualState.Visible;
+
+        soundManager.PlayOneShot("event:/Orbit_spawn");
     }
 
     /// <summary>

@@ -10,6 +10,9 @@ public class GameOverController : MonoBehaviour
     [Inject]
     private SceneManager sceneManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     [SerializeField]
     private GameObject gameOverScreen;
 
@@ -33,6 +36,7 @@ public class GameOverController : MonoBehaviour
         gameObject.SetActive(true);
         gameOverScreen.transform.localScale = Vector3.one * 0.02f;
         ScaleGameOverScreen(true);
+        soundManager.PlayOneShot("event:/Danger!");
     }
 
     private void Retry()

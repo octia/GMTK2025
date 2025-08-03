@@ -35,6 +35,9 @@ public class TimeSlowAbility : MonoBehaviour
     [Inject]
     private UpgradeManager upgradeManager;
 
+    [Inject]
+    private SoundManager soundManager;
+
     private float currentActiveTime;
     private float currentAbilityCooldown;
 
@@ -58,7 +61,7 @@ public class TimeSlowAbility : MonoBehaviour
         {
             return;
         }
-        
+
         currentActiveTime -= Time.deltaTime;
         activeBar.size = currentActiveTime / startActiveTime;
 
@@ -105,6 +108,8 @@ public class TimeSlowAbility : MonoBehaviour
         gameSlower.enabled = true;
         button.interactable = false;
         button.GetComponent<Image>().color = disabledColor;
+
+        soundManager.PlayOneShot("event:/Slowmotion");
 
         int upgradeAmount = upgradeManager.UpgradeAmount[(int)UpgradeType.Time];
 
