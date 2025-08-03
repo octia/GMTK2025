@@ -22,17 +22,27 @@ public class ShipManager
 
     public void SpawnShip(ShipData ship, Orbit preferredOrbit, float leaveTime = 60)
     {
-        Vector3 randomPlanarStart = Quaternion.Euler(0, Random.value * 360, 0) * Vector3.forward * 1000;
+        Vector3 randomPlanarStart =
+            Quaternion.Euler(0, Random.value * 360, 0) * Vector3.forward * 1000;
 
-        preferredOrbit.GetNearestPoint(randomPlanarStart, out Vector3 nearestPoint, out _, out float speed);
+        preferredOrbit.GetNearestPoint(
+            randomPlanarStart,
+            out Vector3 nearestPoint,
+            out _,
+            out float speed
+        );
 
         Vector3 planarToOrbitDirection = nearestPoint - randomPlanarStart;
         planarToOrbitDirection.y = 0;
         planarToOrbitDirection.Normalize();
 
         Vector3 spawnOffsetDirection = (-planarToOrbitDirection * 2 + Vector3.up * 1).normalized;
-        Vector3 spawnPosition = nearestPoint
-            + config.SpawnToOrbitJoinTime * config.SpeedTypeToFloat[(int)ship.Speed] * speed * spawnOffsetDirection;
+        Vector3 spawnPosition =
+            nearestPoint
+            + config.SpawnToOrbitJoinTime
+                * config.SpeedTypeToFloat[(int)ship.Speed]
+                * speed
+                * spawnOffsetDirection;
         var spawnedShip = Object.Instantiate(
             config.ShipPrefab,
             spawnPosition,
@@ -56,33 +66,47 @@ public class ShipManager
             Initialize();
         }
 
-        UtilityFunctions.Shuffle(CurrentShipPool);
+        List<Orbit> orbits = new(shipsToDraw);
 
         for (int i = 0; i < shipsToDraw; i++)
         {
-            var shipData = CurrentShipPool[i];
-            var orbit = SelectOrbitForShip(shipData);
+            var shipData = CurrentShipPool.RandomElement();
+            var orbit = SelectOrbitForShip(shipData, orbits);
+            orbits.Add(orbit);
             newShips[i] = (shipData, orbit, shipData.Temporary ? 50 + 10 * Random.Range(0, 4) : 0);
         }
 
         return newShips;
     }
 
-    private Orbit SelectOrbitForShip(ShipData shipdata)
+    private Orbit SelectOrbitForShip(ShipData shipdata, List<Orbit> differentFrom)
     {
-        var unlockedOrbits = orbitController.GetUnlockedOrbits().ToList();
-        UtilityFunctions.Shuffle(unlockedOrbits);
+        var avaliableOrbits = orbitController.GetUnlockedOrbits().ToList();
 
-        var chosenOrbit = unlockedOrbits[0];
-        foreach(var orbit in unlockedOrbits)
+        for (int i = 0; i < avaliableOrbits.Count; i++)
         {
-            OrbitShape orbitShape = orbit.GetComponent<OrbitGenerator>().Eccentricity <= 0.01f ? OrbitShape.circular : OrbitShape.elliptical;
-            if(shipdata.PreferredOrbitShape == orbitShape)
+            Orbit orbit = avaliableOrbits[i];
+            if (differentFrom.Contains(orbit))
             {
-                chosenOrbit = orbit;
-                break;
+                avaliableOrbits.Remove(orbit);
+                i--;
+                continue;
+            }
+
+            OrbitShape orbitShape =
+                orbit.Generator.Eccentricity <= 0.01f ? OrbitShape.circular : OrbitShape.elliptical;
+            if (shipdata.PreferredOrbitShape != orbitShape)
+            {
+                avaliableOrbits.Remove(orbit);
+                i--;
             }
         }
-        return chosenOrbit;
+
+        var toReturn =
+            avaliableOrbits.Count > 0
+                ? avaliableOrbits.RandomElement()
+                : orbitController.GetUnlockedOrbits().RandomElement();
+
+        return toReturn;
     }
 }
