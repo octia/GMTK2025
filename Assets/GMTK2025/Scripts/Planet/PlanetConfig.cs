@@ -3,7 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GMTK2025/Config/PlanetConfig", fileName = "PlanetConfig")]
 public class PlanetConfig : ScriptableObject
 {
-    [SerializeField] private PlanetProfile[] planetConfigurations;
+    [SerializeField]
+    private PlanetProfile[] planetConfigurations;
 
     [System.Serializable]
     public struct PlanetProfile

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SetMusicType : MonoBehaviour
 {
-    [Inject] SoundManager soundManager;
-    [SerializeField] MusicType musicType;
+    [Inject]
+    SoundManager soundManager;
+
+    [SerializeField]
+    MusicType musicType;
 
     private void Start()
     {

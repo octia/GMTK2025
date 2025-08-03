@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 26sat
   m_EditorClassIdentifier: 
   Orbit: elliptical
+  PreferredOrbitShape: 1
   Profit: 2
   Speed: 0
   Clockwise: 1

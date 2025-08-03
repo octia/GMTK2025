@@ -57,7 +57,7 @@ public class OrbitUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             // Add orbit
             screen.HideScreen();
-            
+
             for (int i = 0; i < 3; i++)
             {
                 if (i == optionIndex)
