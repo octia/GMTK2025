@@ -9,7 +9,7 @@ public class LifeController : MonoBehaviour
     private Transform heartImagesContainer;
 
     [SerializeField]
-    private GameObject heartImagePrefab;
+    private Image heartImagePrefab;
 
     [Inject]
     private LifeManager lifeManager;
@@ -21,7 +21,7 @@ public class LifeController : MonoBehaviour
     {
         lifeManager.OnLifeCountChanged += OnLivesChanged;
         lifeManager.LifeController = this;
-        lifeManager.GainMaxLife(lifeManager.Config.MaxLifeCount);
+        AddHeartImages(lifeManager.Config.MaxLifeCount);
     }
 
     private void OnDisable()
@@ -31,7 +31,7 @@ public class LifeController : MonoBehaviour
 
     private void OnLivesChanged()
     {
-        Debug.Log("LIFE CHANGED");
+        Debug.Log("LIFE CHANGED " + lifeManager.LifeCount + " " + lifeManager.MaxLifeCount);
         VisualLifeChange();
     }
 
@@ -39,7 +39,10 @@ public class LifeController : MonoBehaviour
     {
         for (int i = 0; i < heartImages.Count; i++)
         {
-            heartImages[i].sprite = i < lifeManager.LifeCount ? lifeManager.Config.heartSprite[0] : lifeManager.Config.heartSprite[1];
+            heartImages[i].sprite =
+                i < lifeManager.LifeCount
+                    ? lifeManager.Config.heartSprite[0]
+                    : lifeManager.Config.heartSprite[1];
         }
     }
 
@@ -47,8 +50,8 @@ public class LifeController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
-            heartImages.Add(newHeartImage.GetComponent<Image>());
+            Image newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
+            heartImages.Add(newHeartImage);
         }
     }
 }
