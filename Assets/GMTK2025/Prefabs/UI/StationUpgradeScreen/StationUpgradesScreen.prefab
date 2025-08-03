@@ -108,7 +108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 88.09498}
+  m_AnchoredPosition: {x: 0, y: 75}
   m_SizeDelta: {x: -50, y: -216.19003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &673871170068772919
@@ -141,8 +141,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: UPGRADE TEMPLATE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac8431d332eceb04a952eddd0d663549, type: 2}
+  m_sharedMaterial: {fileID: 973594596242217679, guid: ac8431d332eceb04a952eddd0d663549, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.1
+  m_fontSize: 55.05
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1251,6 +1251,7 @@ MonoBehaviour:
   mainScreen: {fileID: 2343128077622078358}
   CostText: {fileID: 8958305202686710938}
   buyButton: {fileID: 8983215550224635792}
+  timeSlowAbility: {fileID: 0}
   upgradeOptions: {fileID: 2656193202842285409}
   orbitOptions: {fileID: 3484160864136346494}
   statsDescriptionText: {fileID: 2545637737190524072}
@@ -1866,8 +1867,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -50, y: -40}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: -50, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &10043672580341883
 CanvasRenderer:
@@ -1897,7 +1898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "UPGRADE \nTEXT \nEXAMPLE"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
   m_sharedMaterial: {fileID: -5252513781324821264, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
@@ -1927,11 +1928,11 @@ MonoBehaviour:
   m_fontSize: 30
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2552,6 +2553,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5335187828510165262}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: orbitAnim
       value: 
       objectReference: {fileID: 8011017268437887869}
@@ -2566,6 +2571,18 @@ PrefabInstance:
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: optionIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgradeCost
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgradeName
+      value: Life Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgradeDescription
+      value: You gain +1 max health!
       objectReference: {fileID: 0}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: highlightBackground
@@ -3125,7 +3142,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1188540212831721364, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_text
-      value: WIP UPGRADE
+      value: CLOCK UPGRADE
       objectReference: {fileID: 0}
     - target: {fileID: 5411184657071782334, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: FollowTarget
@@ -3133,15 +3150,15 @@ PrefabInstance:
       objectReference: {fileID: 1473689206811290555}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.b
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.g
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703086408434417440, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Color.r
-      value: 0.511
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783161490728751073, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: m_Pivot.x
@@ -3216,6 +3233,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5335187828510165262}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgrade
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: orbitAnim
       value: 
       objectReference: {fileID: 8011017268437887869}
@@ -3230,6 +3251,18 @@ PrefabInstance:
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: optionIndex
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgradeCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgradeName
+      value: Clock Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
+      propertyPath: upgradeDescription
+      value: You get the slow time ability
       objectReference: {fileID: 0}
     - target: {fileID: 9108239798409797540, guid: bb5e7b1edcc62804bacb5cc51903a61f, type: 3}
       propertyPath: highlightBackground

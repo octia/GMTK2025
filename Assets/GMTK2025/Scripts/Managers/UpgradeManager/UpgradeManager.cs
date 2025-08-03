@@ -1,3 +1,4 @@
+using System;
 using Reflex.Attributes;
 
 public class UpgradeManager
@@ -9,27 +10,30 @@ public class UpgradeManager
 
     public bool OnScreen;
 
-    public int OrbitUpgradeAmount;
+    public int[] UpgradeAmount;
 
-    private int upgradeAmount;
-    public int UpgradeAmount
+    private int totalUpgradeAmount;
+    public int TotalUpgradeAmount
     {
         set
         {
-            upgradeAmount = value;
+            totalUpgradeAmount = value;
             StationUpgradesScreen.CostText.text =
-                "(" + Config.UpgradeCostPerPurchase[UpgradeAmount] + "$)";
+                "(" + Config.UpgradeCostPerPurchase[TotalUpgradeAmount] + "$)";
         }
-        get { return upgradeAmount; }
+        get { return totalUpgradeAmount; }
     }
 
-    public void AddUpgrade(bool orbitUpgrade = false)
+    [Inject]
+    public void Initialize()
     {
-        UpgradeAmount = upgradeAmount + 1;
+        UpgradeAmount = new int[Enum.GetNames(typeof(UpgradeType)).Length];
+    }
 
-        if (orbitUpgrade)
-        {
-            OrbitUpgradeAmount++;
-        }
+    public void AddUpgrade(UpgradeType upgrade)
+    {
+        TotalUpgradeAmount = totalUpgradeAmount + 1;
+
+        UpgradeAmount[(int)upgrade]++;
     }
 }

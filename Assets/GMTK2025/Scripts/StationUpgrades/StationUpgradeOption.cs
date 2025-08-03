@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
-    private int optionIndex;
+    private UpgradeType upgrade;
 
     [Space]
     [SerializeField]
@@ -94,37 +94,37 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private bool BuyUpgrade()
     {
-        switch (optionIndex)
+        switch (upgrade)
         {
-            // Orbit upgrade
-            case 0:
-                if (upgradeManager.OrbitUpgradeAmount >= 5)
+            case UpgradeType.Orbit:
+                if (upgradeManager.UpgradeAmount[(int)UpgradeType.Orbit] >= 5)
                 {
                     // TODO: There needs to be a better system for when this happens
                     screen.HideScreen();
                     return false;
                 }
 
-                upgradeManager.AddUpgrade(true);
                 screen.BuyOrbit();
                 break;
-            // Life upgrade
-            case 1:
+            case UpgradeType.Life:
                 if (!financeManager.UseMoney(upgradeCost))
                 {
                     return false;
                 }
 
-                upgradeManager.AddUpgrade(false);
                 lifeManager.GainMaxLife();
-                screen.HideScreen();
                 break;
-            // Invalid upgrade
-            default:
-                upgradeManager.AddUpgrade();
-                return false;
+            case UpgradeType.Time:
+                screen.BuyTimeSlow();
+                break;
         }
 
+        if (upgrade != UpgradeType.Orbit)
+        {
+            screen.HideScreen();
+        }
+
+        upgradeManager.AddUpgrade(upgrade);
         return true;
     }
 
