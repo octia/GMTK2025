@@ -18,6 +18,9 @@ MonoBehaviour:
   Descriptions:
   - Adds the ability to change the direction of a selected ship.
   - Decreases cooldown for ability.
-  Cost: 320000004b000000960000002c010000f4010000
+  - Decreases cooldown for ability.
+  - Decreases cooldown for ability.
+  - Decreases cooldown for ability.
+  Cost: 050000000a0000000f0000001900000032000000
   Icons:
   - {fileID: 21300000, guid: 582815ea1edb33a488c29f2254eefd6c, type: 3}
