@@ -77,6 +77,9 @@ MonoBehaviour:
   - Orbit: {fileID: 2802295085503564614}
     Unlocked: 0
     Price: 10
+  - Orbit: {fileID: 4663873367587895509}
+    Unlocked: 0
+    Price: 10
   - Orbit: {fileID: 101134776786284952}
     Unlocked: 0
     Price: 10
