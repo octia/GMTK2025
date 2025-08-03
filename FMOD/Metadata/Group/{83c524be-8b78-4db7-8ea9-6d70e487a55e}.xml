@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{83c524be-8b78-4db7-8ea9-6d70e487a55e}">
+		<property name="name">
+			<value>sidechain ship fly</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{40943bac-00bb-42ea-825d-6595ce31837c}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{9c86ab1f-91c5-40c8-9ad2-0bef16ab9d45}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{fe5799b6-33c6-4982-8f62-4c47a90f0cee}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{40943bac-00bb-42ea-825d-6595ce31837c}">
+		<relationship name="effects">
+			<destination>{e2f179e1-180c-468f-bf05-5ab85deddc3c}</destination>
+			<destination>{46572b2c-a5a3-474d-b671-ca1c221ef443}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{9c86ab1f-91c5-40c8-9ad2-0bef16ab9d45}" />
+	<object class="CompressorEffect" id="{e2f179e1-180c-468f-bf05-5ab85deddc3c}">
+		<property name="threshold">
+			<value>-58</value>
+		</property>
+		<property name="ratio">
+			<value>50</value>
+		</property>
+		<property name="attackTime">
+			<value>0.949999988</value>
+		</property>
+		<property name="releaseTime">
+			<value>420</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{f1d0e0f6-9ce3-4954-8ee1-2e8ff631adcf}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusFader" id="{46572b2c-a5a3-474d-b671-ca1c221ef443}" />
+</objects>
