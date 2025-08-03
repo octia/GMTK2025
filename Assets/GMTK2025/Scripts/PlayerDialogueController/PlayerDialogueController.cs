@@ -16,6 +16,9 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
     private GameObject interactionBlocker;
 
     [SerializeField]
+    private GameObject skipButton;
+
+    [SerializeField]
     private TMP_Text dialogueTextBox;
 
     [SerializeField]
@@ -74,10 +77,18 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        SetEnabled(true);
         currentChain = chainToUse;
         currentDialogueIndex = 0;
+        SetEnabled(true);
         PlayCurrentDialogue();
+    }
+
+    public void SkipAllText()
+    {
+        currentChain = null;
+        currentDialogueIndex = 0;
+        SetInteractionBlockEnabled(false);
+        SetEnabled(false);
     }
 
     private void PlayCurrentDialogue()
@@ -141,6 +152,11 @@ public class PlayerDialogueController : MonoBehaviour, IPointerClickHandler
         if (status)
         {
             dialogueBox.SetActive(status);
+        }
+
+        if (currentChain)
+        {
+            skipButton.SetActive(currentChain.ShouldBeSkippable);
         }
 
         var startTweenValue = status ? 0f : 1f;

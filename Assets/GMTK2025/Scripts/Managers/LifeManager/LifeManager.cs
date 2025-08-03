@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class LifeManager : IDisposable
 {
-    public Action OnLifeCountChanged;
-
     [Inject]
-    public LifeConfig config;
-
-    [Inject]
-    private SceneManager sceneManager;
+    public LifeConfig Config;
 
     [Inject]
     private GameOverController gameOverController;
 
-    public int LifeCount { get; private set; } = 3;
+    public LifeController LifeController;
 
-    [Inject]
-    private void Initialize()
-    {
-        LifeCount = config.StartLifeCount;
-    }
+    public int LifeCount { get; private set; } = 0;
+    public int MaxLifeCount;
 
     public void LoseLife()
     {
         LifeCount--;
-        OnLifeCountChanged?.Invoke();
+        LifeController.VisualLifeChange();
         if (LifeCount <= 0)
         {
             gameOverController.GameOver();
@@ -35,8 +27,19 @@ public class LifeManager : IDisposable
 
     public void GainLife(int livesToGain = 1)
     {
-        LifeCount += livesToGain;
-        OnLifeCountChanged?.Invoke();
+        LifeCount += Mathf.Clamp(livesToGain, 0, MaxLifeCount);
+
+        LifeController.VisualLifeChange();
+    }
+
+    public void GainMaxLife(int amount = 1)
+    {
+        MaxLifeCount += amount;
+
+        LifeController.AddHeartImages(amount);
+        Debug.Log("Adding hearts! " + amount);
+
+        GainLife(amount);
     }
 
     public void Dispose() { }
