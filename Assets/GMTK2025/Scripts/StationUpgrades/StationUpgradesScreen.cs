@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Unity.VisualStudio.Editor;
 using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class StationUpgradesScreen : MonoBehaviour
     public TMP_Text CostText;
 
     [SerializeField]
-    private GameObject buyButton;
+    private GameObject upgradeButton;
 
 
     [SerializeField]
@@ -32,10 +33,10 @@ public class StationUpgradesScreen : MonoBehaviour
     private GameObject upgradeOptionsContainer;
 
     [SerializeField]
-    private GameObject orbitUpgradeOption;
+    private StationUpgradeOption orbitUpgradeOption;
 
-    [SerializeField]
-    private StationUpgradeOption[] randomUpgradeOptions;
+    //[SerializeField]
+    //private StationUpgradeOption[] randomUpgradeOptions;
 
     [SerializeField]
     private GameObject orbitOptions;
@@ -53,9 +54,6 @@ public class StationUpgradesScreen : MonoBehaviour
 
     [Inject]
     private UpgradeManager upgradeManager;
-
-    [Inject]
-    private FinanceManager financeManager;
 
     [Inject]
     private OrbitController orbitController;
@@ -78,40 +76,40 @@ public class StationUpgradesScreen : MonoBehaviour
         mainScreen.SetActive(false);
     }
 
-    public void BuyButton()
+    public void UpgradeButton()
     {
-        if (
-            !financeManager.UseMoney(
-                upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.TotalUpgradeAmount]
-            )
-        )
-        {
-            soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxErrorPath);
-            return;
-        }
+        //if (
+        //    !financeManager.UseMoney(
+        //        upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.TotalUpgradeAmount]
+        //    )
+        //)
+        //{
+        //    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxErrorPath);
+        //    return;
+        //}
 
-        mainScreen.SetActive(true);
-        upgradeOptionsContainer.SetActive(true);
-        orbitOptions.SetActive(false);
+        upgradeManager.OnScreen = !upgradeManager.OnScreen;
 
-        upgradeManager.OnScreen = true;
-
-        buyButton.SetActive(false);
+        mainScreen.SetActive(upgradeManager.OnScreen);
+        upgradeOptionsContainer.SetActive(upgradeManager.OnScreen);
+        orbitOptions.SetActive(!upgradeManager.OnScreen);
 
         // In case player picks 5 orbits it doesnt show this options anymore
         if (upgradeManager.UpgradeAmount[(int)UpgradeType.Orbit] >= 5)
         {
-            orbitUpgradeOption.gameObject.SetActive(false);
-            randomUpgradeOptions[2].gameObject.SetActive(true);
+            orbitUpgradeOption.DisableUpgradeOption();
+
+            //orbitUpgradeOption.gameObject.SetActive(false);
+            //randomUpgradeOptions[2].gameObject.SetActive(true);
         }
 
         // Shuffling upgrades to buttons
-        UtilityFunctions.Shuffle(upgradePool);
-
-        for (int i = 0; i < 3; i++)
-        {
-            randomUpgradeOptions[i].SetUpgradeOption(upgradePool[i]);
-        }
+        //UtilityFunctions.Shuffle(upgradePool);
+        //
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    randomUpgradeOptions[i].SetUpgradeOption(upgradePool[i]);
+        //}
     }
 
     public void UpdateStatsPanel(string name, string description)
@@ -122,10 +120,9 @@ public class StationUpgradesScreen : MonoBehaviour
 
     public void BuyOrbit()
     {
+        upgradeButton.SetActive(false);
         upgradeOptionsContainer.SetActive(false);
         orbitOptions.SetActive(true);
-
-        // TODO: Shuffle the orbits
 
         NewOrbits = new Orbit[3];
 
@@ -154,6 +151,9 @@ public class StationUpgradesScreen : MonoBehaviour
             timeSlowAbility.SetActive(true);
             return;
         }
+
+        // TODO: Implement what happens on more time slow ability
+        Debug.LogWarning("Further time slow upgrade is not implemented yet!");
     }
 
     public void BuyDirectionSwitcher()
@@ -163,6 +163,9 @@ public class StationUpgradesScreen : MonoBehaviour
             directionSwitcherAbility.SetActive(true);
             return;
         }
+
+        // TODO: Implement what happens on more time slow ability
+        Debug.LogWarning("Further direction switching upgrade is not implemented yet!");
     }
 
     public void HideScreen()
@@ -170,6 +173,6 @@ public class StationUpgradesScreen : MonoBehaviour
         mainScreen.SetActive(false);
         upgradeManager.OnScreen = false;
 
-        buyButton.SetActive(true);
+        upgradeButton.SetActive(true);
     }
 }

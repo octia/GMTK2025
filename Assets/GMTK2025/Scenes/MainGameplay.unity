@@ -6613,20 +6613,8 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: 06fba40585d62fa4baebd82a832ee61a, type: 3}
-    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
-      propertyPath: m_lineSpacing
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5025600858068644523, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
-      propertyPath: m_hasFontAssetChanged
+    - target: {fileID: 5084516326527513755, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5335187828510165262, guid: 4e9d9c0d4f7d9a7b39540d650831fe44, type: 3}

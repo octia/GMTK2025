@@ -38,6 +38,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [SerializeField]
     private Vector2 onHoverScale;
 
+    [SerializeField]
+    private GameObject disabledVisual;
+
     [Tooltip("Time for the hover to occur")]
     [SerializeField]
     private float hoverAnimTime;
@@ -57,13 +60,15 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Inject]
     private FinanceManager financeManager;
 
+    private bool mouseOver;
+
+    private bool disabled;
+
     // Upgrade data info
     private UpgradeType upgradeType;
     private string upgradeName;
     private string upgradeDescription;
     private int upgradeCost;
-
-    private bool mouseOver;
 
     // Initial
     private Vector2 defaultScale;
@@ -96,7 +101,7 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private bool BuyUpgrade()
     {
-        if (upgradeType != UpgradeType.Orbit && !financeManager.UseMoney(upgradeCost))
+        if (!financeManager.UseMoney(upgradeCost) || disabled)
         {
             return false;
         }
@@ -128,6 +133,11 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (disabled)
+        {
+            return;
+        }
+
         if (!upgradeManager.OnScreen)
         {
             HideOption();
@@ -156,10 +166,18 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
         upgradeName = upgradeData.Name[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Name.Length)];
         upgradeDescription = upgradeData.Descriptions[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Descriptions.Length)];
-        upgradeCost = upgradeData.Cost[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Cost.Length)];
         upgradeIcon.sprite = upgradeData.Icons[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Icons.Length)];
 
-        costText.text = upgradeCost == 0 ? "Free!" : upgradeCost + "$";
+        upgradeCost = upgradeData.Cost[UtilityFunctions.GetKeyOrLast(upgradeAmount, upgradeData.Cost.Length)];
+        upgradeCost += upgradeManager.Config.UpgradeCostPerPurchase[upgradeManager.TotalUpgradeAmount];
+
+        costText.text = upgradeCost + "$";
+    }
+
+    public void DisableUpgradeOption()
+    {
+        disabled = true;
+        disabledVisual.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
