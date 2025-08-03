@@ -19,19 +19,9 @@ public class LifeController : MonoBehaviour
 
     private void Awake()
     {
-        lifeManager.OnLifeCountChanged += OnLivesChanged;
         lifeManager.LifeController = this;
         lifeManager.GainMaxLife(lifeManager.Config.MaxLifeCount);
-    }
 
-    private void OnDisable()
-    {
-        lifeManager.OnLifeCountChanged -= OnLivesChanged;
-    }
-
-    private void OnLivesChanged()
-    {
-        Debug.Log("LIFE CHANGED");
         VisualLifeChange();
     }
 
@@ -39,6 +29,7 @@ public class LifeController : MonoBehaviour
     {
         for (int i = 0; i < heartImages.Count; i++)
         {
+            Debug.Log(i < lifeManager.LifeCount ? "Did not lose life" : "Lost life");
             heartImages[i].sprite = i < lifeManager.LifeCount ? lifeManager.Config.heartSprite[0] : lifeManager.Config.heartSprite[1];
         }
     }

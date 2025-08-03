@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LifeManager : IDisposable
 {
-    public Action OnLifeCountChanged;
-
     [Inject]
     public LifeConfig Config;
 
@@ -14,20 +12,13 @@ public class LifeManager : IDisposable
 
     public LifeController LifeController;
 
-    public int LifeCount { get; private set; } = 2;
+    public int LifeCount { get; private set; } = 0;
     public int MaxLifeCount;
-
-    [Inject]
-    private void Initialize()
-    {
-        LifeCount = Config.StartLifeCount;
-        MaxLifeCount = Config.MaxLifeCount;
-    }
 
     public void LoseLife()
     {
         LifeCount--;
-        OnLifeCountChanged?.Invoke();
+        LifeController.VisualLifeChange();
         if (LifeCount <= 0)
         {
             gameOverController.GameOver();
@@ -37,7 +28,8 @@ public class LifeManager : IDisposable
     public void GainLife(int livesToGain = 1)
     {
         LifeCount += Mathf.Clamp(livesToGain, 0, MaxLifeCount);
-        OnLifeCountChanged?.Invoke();
+
+        LifeController.VisualLifeChange();
     }
 
     public void GainMaxLife(int amount = 1)
@@ -45,6 +37,7 @@ public class LifeManager : IDisposable
         MaxLifeCount += amount;
 
         LifeController.AddHeartImages(amount);
+        Debug.Log("Adding hearts! " + amount);
 
         GainLife(amount);
     }

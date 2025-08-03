@@ -52,6 +52,7 @@ public class StationUpgradesScreen : MonoBehaviour
     private void Awake()
     {
         upgradeManager.StationUpgradesScreen = this;
+        CostText.text = upgradeManager.Config.UpgradeCostPerPurchase[0] + "$";
     }
 
     private void OnDisable()
