@@ -16,9 +16,13 @@ MonoBehaviour:
   <ShouldBeSkippable>k__BackingField: 1
   <ChainType>k__BackingField: 5
   <Dialogues>k__BackingField:
-  - <Message>k__BackingField: Fortunately, the ships and satellites you have right
-      now stop moving while making your choice.
-    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
-  - <Message>k__BackingField: "Once you make your choice, a new ship will enter from
-      either above or below the other orbits, so they usually won\u2019t crash immediately."
-    <IconOverride>k__BackingField: {fileID: 21300000, guid: b4bbc7d15be8fb3418c68d09405fd50e, type: 3}
+  - <Message>k__BackingField: "Alright kid, good job. Now that you\u2019ve bought
+      the direction change ability, there\u2019s a button in the bottom left corner
+      of the screen."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: 6b1cb82faed95ba4b87da762c903a1e8, type: 3}
+  - <Message>k__BackingField: "When you click it, the next time you click on a ship,
+      it\u2019ll swap directions. You can also activate this ability by pressing
+      E."
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: a902bfea296733e4f8c481d24e7ec1ac, type: 3}
+  - <Message>k__BackingField: It will refresh after a short cooldown.
+    <IconOverride>k__BackingField: {fileID: 21300000, guid: a1c9a1c0701b8f14d86c0d1fe0818022, type: 3}
