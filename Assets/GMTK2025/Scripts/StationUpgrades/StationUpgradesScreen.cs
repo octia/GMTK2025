@@ -14,6 +14,7 @@ public class StationUpgradesScreen : MonoBehaviour
     [SerializeField]
     private GameObject buyButton;
 
+
     [Space]
     [SerializeField]
     private GameObject upgradeOptions;
@@ -21,12 +22,16 @@ public class StationUpgradesScreen : MonoBehaviour
     [SerializeField]
     private GameObject orbitOptions;
 
+
     [Space]
     [SerializeField]
     private TMP_Text statsDescriptionText;
 
     [SerializeField]
     private TMP_Text statsNameText;
+
+
+    // Managers
 
     [Inject]
     private UpgradeManager upgradeManager;
@@ -39,6 +44,7 @@ public class StationUpgradesScreen : MonoBehaviour
 
     [Inject]
     private SoundManager soundManager;
+
 
     [HideInInspector]
     public Orbit[] NewOrbits;

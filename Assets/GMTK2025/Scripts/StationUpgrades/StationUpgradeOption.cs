@@ -1,5 +1,6 @@
 using PrimeTween;
 using Reflex.Attributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -12,9 +13,13 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Space]
     [SerializeField]
     private string upgradeName;
+
     [TextArea]
     [SerializeField]
     private string upgradeDescription;
+
+    [SerializeField]
+    private int upgradeCost;
 
     [Space]
     [SerializeField]
@@ -29,6 +34,9 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     [SerializeField]
     private TransformFollower statsPanel;
+
+    [SerializeField]
+    private TMP_Text costText;
 
     [SerializeField]
     private Animator orbitAnim;
@@ -50,6 +58,12 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     [Inject]
     private SoundManager soundManager;
 
+    [Inject]
+    private LifeManager lifeManager;
+
+    [Inject]
+    private FinanceManager financeManager;
+
     private bool mouseOver;
 
     // Initial
@@ -59,6 +73,8 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void Start()
     {
+        costText.text = upgradeCost == 0 ? "Free!" : upgradeCost + "$";
+
         // Grabbing initial variables
         defaultScale = transform.localScale;
 
@@ -69,28 +85,47 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (mouseOver && interactAction.WasPressedThisFrame())
         {
-            switch (optionIndex)
+            if (BuyUpgrade())
             {
-                // Orbit upgrade
-                case 0:
-                    if (upgradeManager.OrbitUpgradeAmount >= 5)
-                    {
-                        // TODO: There needs to be a better system for when this happens
-                        screen.HideScreen();
-                        return;
-                    }
-
-                    upgradeManager.AddUpgrade(true);
-                    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
-                    screen.BuyOrbit();
-                    break;
-                // Invalid upgrade
-                default:
-                    upgradeManager.AddUpgrade();
-                    soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
-                    return;
+                soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxUpgradePath);
             }
         }
+    }
+
+    private bool BuyUpgrade()
+    {
+        switch (optionIndex)
+        {
+            // Orbit upgrade
+            case 0:
+                if (upgradeManager.OrbitUpgradeAmount >= 5)
+                {
+                    // TODO: There needs to be a better system for when this happens
+                    screen.HideScreen();
+                    return false;
+                }
+
+                upgradeManager.AddUpgrade(true);
+                screen.BuyOrbit();
+                break;
+            // Life upgrade
+            case 1:
+                if (!financeManager.UseMoney(upgradeCost))
+                {
+                    return false;
+                }
+
+                upgradeManager.AddUpgrade(false);
+                lifeManager.GainMaxLife();
+                screen.HideScreen();
+                break;
+            // Invalid upgrade
+            default:
+                upgradeManager.AddUpgrade();
+                return false;
+        }
+
+        return true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

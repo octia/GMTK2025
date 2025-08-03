@@ -328,10 +328,12 @@ MonoBehaviour:
   optionIndex: 0
   upgradeName: 
   upgradeDescription: 
+  upgradeCost: 0
   screen: {fileID: 0}
   statsPoint: {fileID: 0}
   highlightBackground: {fileID: 0}
   statsPanel: {fileID: 0}
+  costText: {fileID: 1974791286357302080}
   orbitAnim: {fileID: 0}
   onHoverScale: {x: 1.025, y: 1.025}
   hoverAnimTime: 0.2

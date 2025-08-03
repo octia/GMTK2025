@@ -7,20 +7,21 @@ public class LifeManager : IDisposable
     public Action OnLifeCountChanged;
 
     [Inject]
-    public LifeConfig config;
-
-    [Inject]
-    private SceneManager sceneManager;
+    public LifeConfig Config;
 
     [Inject]
     private GameOverController gameOverController;
 
-    public int LifeCount { get; private set; } = 3;
+    public LifeController LifeController;
+
+    public int LifeCount { get; private set; } = 2;
+    public int MaxLifeCount;
 
     [Inject]
     private void Initialize()
     {
-        LifeCount = config.StartLifeCount;
+        LifeCount = Config.StartLifeCount;
+        MaxLifeCount = Config.MaxLifeCount;
     }
 
     public void LoseLife()
@@ -35,8 +36,17 @@ public class LifeManager : IDisposable
 
     public void GainLife(int livesToGain = 1)
     {
-        LifeCount += livesToGain;
+        LifeCount += Mathf.Clamp(livesToGain, 0, MaxLifeCount);
         OnLifeCountChanged?.Invoke();
+    }
+
+    public void GainMaxLife(int amount = 1)
+    {
+        MaxLifeCount += amount;
+
+        LifeController.AddHeartImages(amount);
+
+        GainLife(amount);
     }
 
     public void Dispose() { }
