@@ -9002,14 +9002,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 3233686438909132325, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 107.19995
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233686438909132325, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 14.849998
-      objectReference: {fileID: 0}
     - target: {fileID: 3344694402569073564, guid: 82d453a9b9a9b86cda4888492ee299b9, type: 3}
       propertyPath: m_Color.b
       value: 0
