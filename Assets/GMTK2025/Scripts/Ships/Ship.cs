@@ -2,7 +2,6 @@ using EditorAttributes;
 using FMOD.Studio;
 using FMODUnity;
 using Reflex.Attributes;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -48,7 +47,10 @@ public class Ship : MonoBehaviour
     public ShipData ShipData => shipData;
     public Orbit PreferredOrbit => preferredOrbit;
     [ShowInInspector] public float DistanceToOrbit { get; private set; }
-    
+
+    [HideInInspector]
+    public bool InvertedDirection;
+
 
     private void Awake()
     {
@@ -103,7 +105,7 @@ public class Ship : MonoBehaviour
                 out Vector3 forward,
                 out var orbitSpeed
             );
-            if (shipData.Clockwise)
+            if ((shipData.Clockwise && !InvertedDirection) || (!shipData.Clockwise && InvertedDirection))
             {
                 forward = -forward;
             }

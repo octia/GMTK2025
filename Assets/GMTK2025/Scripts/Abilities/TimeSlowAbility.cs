@@ -1,4 +1,5 @@
 using System;
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,9 @@ public class TimeSlowAbility : MonoBehaviour
     [SerializeField]
     private TMP_Text abilityCooldownText;
 
+    [Inject]
+    private TimerManager timerManager;
+
     private float currentActiveTime;
     private float currentAbilityCooldown;
 
@@ -35,6 +39,11 @@ public class TimeSlowAbility : MonoBehaviour
 
     private void Update()
     {
+        if (timerManager.IsPaused)
+        {
+            return;
+        }
+        
         currentActiveTime -= Time.deltaTime;
 
         if (currentActiveTime < 0)
@@ -66,7 +75,7 @@ public class TimeSlowAbility : MonoBehaviour
 
     public void UseAbility()
     {
-        if (currentAbilityCooldown > 0)
+        if (currentAbilityCooldown > 0 || !timerManager.IsPaused)
         {
             return;
         }

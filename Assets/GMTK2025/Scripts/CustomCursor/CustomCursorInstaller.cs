@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class CustomCursorInstaller : MonoBehaviour, IInstaller
 {
-    [SerializeField] CustomCursor controller;
+    [SerializeField]
+    private CustomCursor controller;
 
     public void InstallBindings(ContainerBuilder containerBuilder)
     {

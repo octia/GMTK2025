@@ -100,6 +100,15 @@ public class ShipDragAndDrop : MonoBehaviour
     private void OnSelect(Ship ship)
     {
         draggedShip = ship;
+        
+        print("Hmmmm " + ship.name + ", targetmode?" + customCursor.TargetMode);
+
+        if (customCursor.TargetMode)
+        {
+            print("Invert! " + ship.name);
+            draggedShip.InvertedDirection = !draggedShip.InvertedDirection;
+        }
+
         //sfx
         soundManager.PlayOneShotWithStatus(draggedShip.ShipData.Captain.sfxPath, "Idle");
         //

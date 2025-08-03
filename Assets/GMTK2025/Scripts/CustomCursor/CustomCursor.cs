@@ -13,6 +13,9 @@ public class CustomCursor : MonoBehaviour
     [SerializeField]
     private Image cursorImage;
 
+    [HideInInspector]
+    public bool TargetMode;
+
     // Input actions
     private InputAction cursorPos;
 
@@ -38,6 +41,12 @@ public class CustomCursor : MonoBehaviour
 
     public void ChangeCursorSprite(int i)
     {
+        if (TargetMode)
+        {
+            cursorImage.sprite = cursorSprites[2];
+            return;
+        }
+
         cursorImage.sprite = cursorSprites[i];
     }
 }
