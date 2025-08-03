@@ -98,8 +98,6 @@ public class StationUpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (upgradeType != UpgradeType.Orbit && !financeManager.UseMoney(upgradeCost))
         {
-            // TODO: There needs to be a better way to deal with this
-            screen.HideScreen();
             return false;
         }
 
