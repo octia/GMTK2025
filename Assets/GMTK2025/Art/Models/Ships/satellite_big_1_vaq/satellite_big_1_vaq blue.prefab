@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8139561751729018601}
+  - component: {fileID: -515847460326707736}
   m_Layer: 0
   m_Name: satellite_big_1_vaq blue
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 8842902609579690498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 70}
+--- !u!114 &-515847460326707736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5055275529659814451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0739a811c5f9a46ba29911ecd324e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: df3f5cabfa5ffe44998282f4ccc916c0, type: 3}
+  Size: 2
 --- !u!1001 &9021541761790651881
 PrefabInstance:
   m_ObjectHideFlags: 0

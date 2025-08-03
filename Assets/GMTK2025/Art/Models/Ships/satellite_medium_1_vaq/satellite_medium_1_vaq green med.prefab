@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8935121628879078905}
+  - component: {fileID: -5005031445756261736}
   m_Layer: 0
   m_Name: satellite_medium_1_vaq green med
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 8631452427187938685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 52.13}
+--- !u!114 &-5005031445756261736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7875602927840278023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0739a811c5f9a46ba29911ecd324e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 2e038d7cc0547bc4088ebfcc205cb132, type: 3}
+  Size: 1
 --- !u!1001 &8089499834073285270
 PrefabInstance:
   m_ObjectHideFlags: 0
