@@ -254,11 +254,19 @@ public class ShipDragAndDrop : MonoBehaviour
             )
             {
                 orbit.Clockwise = clockwise;
-                if(orbit.State != Orbit.VisualState.Hightlighted)
+                if (orbit.State != Orbit.VisualState.Hightlighted)
                 {
                     soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxHoverPath);
                 }
                 orbit.State = Orbit.VisualState.Hightlighted;
+            }
+            else if (
+                (draggedShip && orbit == draggedShip.Orbit)
+                || (hoveredShip && orbit == hoveredShip.Orbit)
+            )
+            {
+                orbit.Clockwise = clockwise;
+                orbit.State = Orbit.VisualState.Alert;
             }
             else
             {
