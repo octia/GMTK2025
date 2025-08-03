@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TOYPHO Royal
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 27
+  Profit: 5
   Speed: 1
   Clockwise: 1
   Temporary: 1

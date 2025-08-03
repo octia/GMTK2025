@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Oswald G5S
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 18
+  Profit: 3
   Speed: 2
   Clockwise: 1
   Temporary: 0

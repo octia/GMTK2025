@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LF Cruisin Vengeance
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 22
+  Profit: 4
   Speed: 1
   Clockwise: 0
   Temporary: 1

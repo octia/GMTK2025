@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SW Starhammer
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 9
+  Profit: 2
   Speed: 0
   Clockwise: 1
   Temporary: 1

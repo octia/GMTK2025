@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RP Artemis
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 22
+  Profit: 5
   Speed: 2
   Clockwise: 1
   Temporary: 1

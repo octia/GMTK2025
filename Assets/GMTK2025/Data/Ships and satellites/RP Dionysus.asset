@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RP Dionysus
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 34
+  Profit: 7
   Speed: 2
   Clockwise: 1
   Temporary: 1

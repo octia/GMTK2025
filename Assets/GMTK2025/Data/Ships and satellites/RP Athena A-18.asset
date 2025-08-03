@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RP Athena A-18
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 18
+  Profit: 4
   Speed: 1
   Clockwise: 1
   Temporary: 0

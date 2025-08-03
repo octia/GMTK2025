@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dhara KU-51
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 6
+  Profit: 2
   Speed: 0
   Clockwise: 0
   Temporary: 0

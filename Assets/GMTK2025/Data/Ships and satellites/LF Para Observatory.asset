@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LF Para Observatory
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 33
+  Profit: 6
   Speed: 1
   Clockwise: 1
   Temporary: 1

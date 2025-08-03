@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RP Icarus
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 33
+  Profit: 7
   Speed: 2
   Clockwise: 0
   Temporary: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KLY Nomadic
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 1
-  Profit: 19
+  Profit: 4
   Speed: 1
   Clockwise: 1
   Temporary: 1

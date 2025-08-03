@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alicia CO-25
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 14
+  Profit: 3
   Speed: 2
   Clockwise: 1
   Temporary: 0

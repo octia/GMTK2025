@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Saturne PL-24
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 11
+  Profit: 2
   Speed: 1
   Clockwise: 0
   Temporary: 0

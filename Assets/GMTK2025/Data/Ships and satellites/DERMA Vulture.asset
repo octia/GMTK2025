@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DERMA Vulture
   m_EditorClassIdentifier: 
   PreferredOrbitShape: 0
-  Profit: 25
+  Profit: 5
   Speed: 2
   Clockwise: 0
   Temporary: 1
