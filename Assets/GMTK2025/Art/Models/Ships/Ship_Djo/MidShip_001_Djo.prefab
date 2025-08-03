@@ -185,12 +185,16 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.25
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -201,8 +205,12 @@ PrefabInstance:
       value: VFX_SpaceShip_Trail_001
       objectReference: {fileID: 0}
     - target: {fileID: 5083858790294269005, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083858790294269005, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 4.61
       objectReference: {fileID: 0}
     - target: {fileID: 8584519425999117898, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.x
@@ -214,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8584519425999117898, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.913
+      value: -0.22
       objectReference: {fileID: 0}
     - target: {fileID: 8584519425999117898, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalRotation.w
@@ -275,12 +283,16 @@ PrefabInstance:
       value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.456
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -373,12 +385,16 @@ PrefabInstance:
       value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.456
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1364822095779226157, guid: c47d534a3a8c9464cb8ea812b6b82135, type: 3}
       propertyPath: m_ConstrainProportionsScale

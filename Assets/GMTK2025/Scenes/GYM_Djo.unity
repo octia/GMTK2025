@@ -1226,13 +1226,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872822197}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.014488577, y: -0.9839424, z: 0.15048799, w: 0.094873086}
-  m_LocalPosition: {x: 0.37342012, y: 1.0027436, z: 3.7413383}
+  m_LocalRotation: {x: 0, y: -0.9848078, z: 0.17364816, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 10, y: -179.986, z: 0.002}
+  m_LocalEulerAnglesHint: {x: 20, y: -180, z: 0}
 --- !u!114 &1872822201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1556,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallShip_001_Djo
       objectReference: {fileID: 0}
+    - target: {fileID: 4217033637380242983, guid: 174977ed529e7504284a60abce2b4327, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217033637380242983, guid: 174977ed529e7504284a60abce2b4327, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217033637380242983, guid: 174977ed529e7504284a60abce2b4327, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996217096819634247, guid: 174977ed529e7504284a60abce2b4327, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.472
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996217096819634247, guid: 174977ed529e7504284a60abce2b4327, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996217096819634247, guid: 174977ed529e7504284a60abce2b4327, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.313
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1740,6 +1764,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 309764609667199829, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 309764609667199829, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5890792220492062621, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9
@@ -1780,9 +1812,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7274839315743040993, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
+      propertyPath: m_LengthScale
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274839315743040993, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
+      propertyPath: m_VelocityScale
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 8228420899863059082, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
       propertyPath: m_Name
       value: MidShip_001_Djo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271541216375327036, guid: 3c1bb2074ed89b643a449244b83b1653, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1925,7 +1969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8412014855166357982, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 16.75
       objectReference: {fileID: 0}
     - target: {fileID: 8412014855166357982, guid: 8a523a54f74fc7d4684fcb20b1420a4f, type: 3}
       propertyPath: m_LocalRotation.w
