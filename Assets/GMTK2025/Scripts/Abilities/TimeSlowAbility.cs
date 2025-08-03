@@ -75,7 +75,7 @@ public class TimeSlowAbility : MonoBehaviour
 
     public void UseAbility()
     {
-        if (currentAbilityCooldown > 0 || !timerManager.IsPaused)
+        if (currentAbilityCooldown > 0 || timerManager.IsPaused)
         {
             return;
         }

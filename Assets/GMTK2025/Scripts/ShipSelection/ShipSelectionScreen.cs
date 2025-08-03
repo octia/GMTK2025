@@ -222,7 +222,7 @@ public class ShipSelectionScreen : MonoBehaviour
         }
 
         newShipsAmount++;
-        currentNewShipTime = newShipsAmount >= newShipTime.Length ? newShipTime[newShipTime.Length - 1] : newShipTime[newShipsAmount];
+        currentNewShipTime = newShipTime[UtilityFunctions.GetKeyOrLast(newShipsAmount, newShipTime.Length)];
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         if (ship != null)
         {

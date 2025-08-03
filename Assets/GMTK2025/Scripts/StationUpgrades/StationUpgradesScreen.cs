@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Reflex.Attributes;
@@ -6,6 +7,10 @@ using UnityEngine;
 
 public class StationUpgradesScreen : MonoBehaviour
 {
+    [Space]
+    [SerializeField]
+    private List<UpgradeData> upgradePool;
+
     [SerializeField]
     private GameObject mainScreen;
 
@@ -18,10 +23,19 @@ public class StationUpgradesScreen : MonoBehaviour
     [SerializeField]
     private GameObject timeSlowAbility;
 
+    [SerializeField]
+    private GameObject directionSwitcherAbility;
+
 
     [Space]
     [SerializeField]
-    private GameObject upgradeOptions;
+    private GameObject upgradeOptionsContainer;
+
+    [SerializeField]
+    private GameObject orbitUpgradeOption;
+
+    [SerializeField]
+    private StationUpgradeOption[] randomUpgradeOptions;
 
     [SerializeField]
     private GameObject orbitOptions;
@@ -77,12 +91,27 @@ public class StationUpgradesScreen : MonoBehaviour
         }
 
         mainScreen.SetActive(true);
-        upgradeOptions.SetActive(true);
+        upgradeOptionsContainer.SetActive(true);
         orbitOptions.SetActive(false);
 
         upgradeManager.OnScreen = true;
 
         buyButton.SetActive(false);
+
+        // In case player picks 5 orbits it doesnt show this options anymore
+        if (upgradeManager.UpgradeAmount[(int)UpgradeType.Orbit] >= 5)
+        {
+            orbitUpgradeOption.gameObject.SetActive(false);
+            randomUpgradeOptions[2].gameObject.SetActive(true);
+        }
+
+        // Shuffling upgrades to buttons
+        UtilityFunctions.Shuffle(upgradePool);
+
+        for (int i = 0; i < 3; i++)
+        {
+            randomUpgradeOptions[i].SetUpgradeOption(upgradePool[i]);
+        }
     }
 
     public void UpdateStatsPanel(string name, string description)
@@ -93,7 +122,7 @@ public class StationUpgradesScreen : MonoBehaviour
 
     public void BuyOrbit()
     {
-        upgradeOptions.SetActive(false);
+        upgradeOptionsContainer.SetActive(false);
         orbitOptions.SetActive(true);
 
         // TODO: Shuffle the orbits
@@ -101,7 +130,7 @@ public class StationUpgradesScreen : MonoBehaviour
         NewOrbits = new Orbit[3];
 
         List<Orbit> lockedOrbits = orbitController.GetLockedOrbits().ToList();
-        ShipManager.Shuffle(lockedOrbits);
+        UtilityFunctions.Shuffle(lockedOrbits);
 
         int n = 0;
         foreach (var orbit in lockedOrbits)
@@ -127,7 +156,19 @@ public class StationUpgradesScreen : MonoBehaviour
         }
 
         // TODO: Implement what happens on more time slow ability
-        Debug.LogWarning("Further time slow is not implemented yet!");
+        Debug.LogWarning("Further time slow upgrade is not implemented yet!");
+    }
+
+    public void BuyDirectionSwitcher()
+    {
+        if (upgradeManager.UpgradeAmount[(int)UpgradeType.Direction] == 0)
+        {
+            directionSwitcherAbility.SetActive(true);
+            return;
+        }
+
+        // TODO: Implement what happens on more time slow ability
+        Debug.LogWarning("Further direction switching upgrade is not implemented yet!");
     }
 
     public void HideScreen()

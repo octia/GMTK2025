@@ -2,5 +2,6 @@ public enum UpgradeType
 {
     Orbit,
     Life,
-    Time
+    Time,
+    Direction
 }
