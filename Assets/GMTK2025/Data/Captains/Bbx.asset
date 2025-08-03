@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bbx
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: 074ff693dc840c44b8732c8090e5e803, type: 3}
-  TypeTime: 0.05
+  TypeTime: 0.2
   sfxPath: event:/Ship_bbx
   PilotName: bbx
   PilotDialogs:

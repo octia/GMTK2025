@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scoundrel
   m_EditorClassIdentifier: 
   PilotPortrait: {fileID: 21300000, guid: a4430bf1de5982641a088b03906bcbcd, type: 3}
-  TypeTime: 0.05
+  TypeTime: 0.2
   sfxPath: event:/Ship_scoundrel
   PilotName: scoundrel
   PilotDialogs:

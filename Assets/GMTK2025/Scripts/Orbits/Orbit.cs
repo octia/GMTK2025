@@ -21,8 +21,11 @@ public class Orbit : MonoBehaviour
     [SerializeField]
     private Color alertColor;
 
-    float fillValue = 0.5f;
-    float scrollValue = 0;
+    [SerializeField]
+    private Color currentColor;
+
+    private float fillValue = 0.5f;
+    private float scrollValue = 0;
     private float scrollSpeed;
 
     /// <summary>
@@ -75,7 +78,7 @@ public class Orbit : MonoBehaviour
         OnVisualStateChange(State, true);
     }
 
-    void Update()
+    private void Update()
     {
         scrollValue += Time.deltaTime * (Clockwise ? scrollSpeed : -scrollSpeed);
         material.SetTextureOffset(mainTextureId, new Vector2(fillValue, scrollValue));
@@ -89,6 +92,7 @@ public class Orbit : MonoBehaviour
             VisualState.Hightlighted => highlightColor,
             VisualState.Selected => selectColor,
             VisualState.Alert => alertColor,
+            VisualState.Current => currentColor,
             _ => new Color(1, 1, 1, 0),
         };
         var targetFill = newState switch
@@ -160,5 +164,6 @@ public class Orbit : MonoBehaviour
         Hightlighted,
         Selected,
         Alert,
+        Current
     }
 }
