@@ -111,9 +111,41 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4993752052999552130, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2563545736037429593, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2336912909881668946, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -980898356468748055, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
       propertyPath: m_Name
       value: Satellite_2_Tyc
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077437920703299562, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628084954483458077, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736926981667097727, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295928437391868124, guid: c12bf343e3ed862439f9f416d607f6f7, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
