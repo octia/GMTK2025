@@ -20,7 +20,7 @@ public class ShipManager
         CurrentShipPool.AddRange(config.BaseShipPool);
     }
 
-    public void SpawnShip(ShipData ship, Orbit preferredOrbit)
+    public void SpawnShip(ShipData ship, Orbit preferredOrbit, float leaveTime = 60)
     {
         Vector3 randomPlanarStart = Quaternion.Euler(0, Random.value * 360, 0) * Vector3.forward * 1000;
 
@@ -41,13 +41,13 @@ public class ShipManager
         spawnedShip.InitializeWith(ship, preferredOrbit);
         if (ship.Temporary && spawnedShip.TryGetComponent(out LeaveTimer timer))
         {
-            timer.SetTimer(60.0f);
+            timer.SetTimer(leaveTime);
         }
     }
 
-    public (ShipData, Orbit)[] DrawShips(int shipsToDraw)
+    public (ShipData, Orbit, float)[] DrawShips(int shipsToDraw)
     {
-        (ShipData, Orbit)[] newShips = new (ShipData, Orbit)[shipsToDraw];
+        (ShipData, Orbit, float)[] newShips = new (ShipData, Orbit, float)[shipsToDraw];
 
         Debug.Log(CurrentShipPool.Count);
 
@@ -62,7 +62,7 @@ public class ShipManager
         {
             var shipData = CurrentShipPool[i];
             var orbit = SelectOrbitForShip(shipData);
-            newShips[i] = (shipData, orbit);
+            newShips[i] = (shipData, orbit, shipData.Temporary ? 50 + 10 * Random.Range(0, 4) : 0);
         }
 
         return newShips;
