@@ -7908,50 +7908,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DirectionSwitcherAbility
       objectReference: {fileID: 0}
-    - target: {fileID: 7857694268047466532, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: abilityCooldown.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[0]'
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[1]'
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[2]'
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[3]'
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[4]'
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[5]'
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[6]'
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[7]'
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956761694638113779, guid: e7235898fd036054b9a2ebe16f2194e3, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[8]'
-      value: 35
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8454,81 +8410,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: activeTime.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'activeTime.Array.data[0]'
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'activeTime.Array.data[1]'
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'activeTime.Array.data[2]'
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'activeTime.Array.data[3]'
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'activeTime.Array.data[4]'
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'activeTime.Array.data[5]'
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: abilityCooldown.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[0]'
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[1]'
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[2]'
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[3]'
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[4]'
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[5]'
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[6]'
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[7]'
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043539662698230437, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: 'abilityCooldown.Array.data[8]'
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 6887324426910899011, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
       propertyPath: m_Name
       value: TimeSlowAbility
-      objectReference: {fileID: 0}
-    - target: {fileID: 6887324426910899011, guid: 1e481ce255b5c864caf9e254c4bb106f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
