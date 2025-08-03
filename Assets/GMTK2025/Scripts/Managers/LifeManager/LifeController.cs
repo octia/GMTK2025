@@ -9,7 +9,7 @@ public class LifeController : MonoBehaviour
     private Transform heartImagesContainer;
 
     [SerializeField]
-    private Image heartImagePrefab;
+    private GameObject heartImagePrefab;
 
     [Inject]
     private LifeManager lifeManager;
@@ -40,8 +40,8 @@ public class LifeController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            Image newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
-            heartImages.Add(newHeartImage);
+            GameObject newHeartImage = Instantiate(heartImagePrefab, heartImagesContainer);
+            heartImages.Add(newHeartImage.GetComponent<Image>());
         }
     }
 }

@@ -5823,20 +5823,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1818941631}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
-      propertyPath: newShipTime.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
-      propertyPath: 'newShipTime.Array.data[0]'
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
-      propertyPath: 'newShipTime.Array.data[1]'
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: 'newShipTime.Array.data[2]'
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4495955593425426351, guid: 4c8385addad367ba59a98e93f1240968, type: 3}
       propertyPath: 'newShipTime.Array.data[3]'
