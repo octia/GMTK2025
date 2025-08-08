@@ -127,6 +127,7 @@ public class ShipDragAndDrop : MonoBehaviour
         ghostShips[0].enabled = false;
         DestroyImmediate(ghostShips[0].GetComponent<Rigidbody>());
         DestroyImmediate(ghostShips[0].GetComponent<ProfitEarner>());
+        DestroyImmediate(ghostShips[0].GetComponent<LeaveTimer>());
         foreach (var _renderer in ghostShips[0].GetComponentsInChildren<MeshRenderer>())
         {
             if ((shipLayerMask.value & (1 << _renderer.gameObject.layer)) == 0)
