@@ -99,10 +99,11 @@ public class ShipSelectionScreen : MonoBehaviour
         if (!OnScreen)
         {
             currentNewShipTime -= Time.deltaTime * timerManager.TimeScale;
-            Debug.Log(currentNewShipTime);
-            // Debug
-            //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
+            if (newShipTimeText)
+            {
+                newShipTimeText.text = Mathf.Round(currentNewShipTime) + "s";
+            }
             if (newShipTimeoutBar)
             {
                 newShipTimeoutBar.rectTransform.localScale = new Vector3(Mathf.Clamp01(currentNewShipTime / lastNewShipTime), 1, 1);
