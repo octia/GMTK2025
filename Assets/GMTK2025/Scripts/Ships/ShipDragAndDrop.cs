@@ -247,8 +247,8 @@ public class ShipDragAndDrop : MonoBehaviour
         foreach (var orbit in orbitController.GetUnlockedOrbits())
         {
             var bestShip = draggedShip ? draggedShip : hoveredShip;
-            var clockwise = bestShip ? bestShip.ShipData.Clockwise : true;
-            if (bestShip.InvertedDirection)
+            var clockwise = bestShip != null ? bestShip.ShipData.Clockwise : true;
+            if (bestShip && bestShip.InvertedDirection)
             {
                 clockwise = !clockwise;
             }
