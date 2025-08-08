@@ -2,6 +2,7 @@ using Reflex.Attributes;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ShipSelectionScreen : MonoBehaviour
@@ -31,6 +32,10 @@ public class ShipSelectionScreen : MonoBehaviour
     [Space]
     [SerializeField]
     private ShipStatsPanel shipStatsPanel;
+
+    [Space]
+    [SerializeField]
+    private Image newShipTimeoutBar;
 
     [Space]
     [SerializeField]
@@ -68,6 +73,7 @@ public class ShipSelectionScreen : MonoBehaviour
 
     // ...
     private float currentNewShipTime;
+    private float lastNewShipTime;
 
     private int newShipsAmount;
 
@@ -81,6 +87,7 @@ public class ShipSelectionScreen : MonoBehaviour
     private void Start()
     {
         currentNewShipTime = newShipTime[0];
+        lastNewShipTime = currentNewShipTime;
 
         anim = GetComponent<Animator>();
 
@@ -92,10 +99,16 @@ public class ShipSelectionScreen : MonoBehaviour
         if (!OnScreen)
         {
             currentNewShipTime -= Time.deltaTime * timerManager.TimeScale;
+            Debug.Log(currentNewShipTime);
             // Debug
             //newShipTimeText.text = Math.Round(currentNewShipTime, 2) + "s";
 
-            if (currentNewShipTime < 0)
+            if (newShipTimeoutBar)
+            {
+                newShipTimeoutBar.rectTransform.localScale = new Vector3(Mathf.Clamp01(currentNewShipTime / lastNewShipTime), 1, 1);
+            }
+
+            if (currentNewShipTime < 0 && !Mouse.current.leftButton.isPressed || currentNewShipTime <= -2.0f)
             {
                 StartSelection();
             }
@@ -201,6 +214,7 @@ public class ShipSelectionScreen : MonoBehaviour
         currentNewShipTime = newShipTime[
             UtilityFunctions.GetKeyOrLast(newShipsAmount, newShipTime.Length)
         ];
+        lastNewShipTime = currentNewShipTime;
         soundManager.PlayOneShot(soundManager.soundManagerConfig.sfxSelectShipPath);
         if (ship != null)
         {
