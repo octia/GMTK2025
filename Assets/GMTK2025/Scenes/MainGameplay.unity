@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3873480890816198312, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
+      propertyPath: <InitialTime>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4352243234557347103, guid: 810224452dcfc5d45a1796f46593ce85, type: 3}
       propertyPath: orbit
       value: 

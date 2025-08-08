@@ -1,3 +1,4 @@
+using System;
 using EditorAttributes;
 using PrimeTween;
 using Reflex.Attributes;
@@ -11,7 +12,7 @@ public class LeaveTimer : MonoBehaviour
     [Inject]
     TimerManager timerManager;
 
-    [field: ShowInInspector] public float InitialTime { get; private set; } = 0;
+    [field: SerializeField] public float InitialTime { get; private set; } = 0;
 
     [field: ShowInInspector] public float TimeLeft { get; private set; } = 0;
 
@@ -22,6 +23,14 @@ public class LeaveTimer : MonoBehaviour
     private void Awake()
     {
         ship = GetComponent<Ship>();
+    }
+
+    private void Start()
+    {
+        if (InitialTime > 0 && TimeLeft == 0)
+        {
+            SetTimer(InitialTime);
+        }
     }
 
     [Button]
