@@ -11,11 +11,9 @@ public class LeaveTimer : MonoBehaviour
     [Inject]
     TimerManager timerManager;
 
-    [ShowInInspector]
-    private float initialTime = 0;
+    [field: ShowInInspector] public float InitialTime { get; private set; } = 0;
 
-    [ShowInInspector]
-    private float timeLeft = 0;
+    [field: ShowInInspector] public float TimeLeft { get; private set; } = 0;
 
     [SerializeField]
     private BarIndicator barIndicator;
@@ -29,21 +27,21 @@ public class LeaveTimer : MonoBehaviour
     [Button]
     public void SetTimer(float time)
     {
-        initialTime = time;
-        timeLeft = time;
+        InitialTime = time;
+        TimeLeft = time;
     }
 
     private void FixedUpdate()
     {
-        if (timeLeft <= 0)
+        if (TimeLeft <= 0)
         {
             return;
         }
 
-        timeLeft -= Time.fixedDeltaTime * timerManager.TimeScale;
-        if (timeLeft <= 0)
+        TimeLeft -= Time.fixedDeltaTime * timerManager.TimeScale;
+        if (TimeLeft <= 0)
         {
-            timeLeft = 0;
+            TimeLeft = 0;
             ship.ChangeOrbit(null);
             destroySequence = Sequence
                 .Create()
@@ -53,7 +51,7 @@ public class LeaveTimer : MonoBehaviour
         }
         if (barIndicator)
         {
-            barIndicator.SetRatio(timeLeft / initialTime);
+            barIndicator.SetRatio(TimeLeft / InitialTime);
         }
     }
 

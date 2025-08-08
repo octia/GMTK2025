@@ -11,6 +11,9 @@ public class ShipDragAndDrop : MonoBehaviour
     private readonly OrbitController orbitController;
 
     [SerializeField]
+    private ShipStatsPanel shipStatsPanel;
+
+    [SerializeField]
     private LayerMask shipLayerMask;
 
     [SerializeField]
@@ -43,6 +46,8 @@ public class ShipDragAndDrop : MonoBehaviour
     private Orbit targetOrbit = null;
 
     private bool allowedToInteract;
+    private bool didDeselectAllOrbits;
+
     public bool AllowedToInteract
     {
         get => allowedToInteract;
@@ -66,11 +71,6 @@ public class ShipDragAndDrop : MonoBehaviour
     {
         AllowedToInteract = !timerManager.IsPaused && !upgradeManager.OnScreen;
 
-        if (!AllowedToInteract)
-        {
-            return;
-        }
-
         Camera cam = uiManager.UICamera == null ? Camera.main : uiManager.UICamera;
         bool hoveringOverShip = MousePicking.PickObjectFromLayer(
             x => x.Orbit,
@@ -79,6 +79,13 @@ public class ShipDragAndDrop : MonoBehaviour
             out Vector3 _,
             cam
         );
+
+        UpdateVisualStates(draggedShip, hoveringOverShip ? ship : null);
+
+        if (!AllowedToInteract)
+        {
+            return;
+        }
 
         if (hoveringOverShip && Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -97,7 +104,6 @@ public class ShipDragAndDrop : MonoBehaviour
             OnDragging();
         }
 
-        UpdateVisualStates(draggedShip, hoveringOverShip ? ship : null);
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             OnDeselect();
@@ -244,6 +250,19 @@ public class ShipDragAndDrop : MonoBehaviour
 
     public void UpdateVisualStates(Ship draggedShip, Ship hoveredShip)
     {
+        if (draggedShip == null && hoveredShip == null)
+        {
+            if (didDeselectAllOrbits)
+            {
+                return;
+            }
+            didDeselectAllOrbits = true;
+        }
+        else
+        {
+            didDeselectAllOrbits = false;
+        }
+
         foreach (var orbit in orbitController.GetUnlockedOrbits())
         {
             var bestShip = draggedShip ? draggedShip : hoveredShip;
@@ -251,6 +270,17 @@ public class ShipDragAndDrop : MonoBehaviour
             if (bestShip && bestShip.InvertedDirection)
             {
                 clockwise = !clockwise;
+            }
+
+            if (bestShip)
+            {
+                shipStatsPanel.gameObject.SetActive(true);
+                var leaveTimer = bestShip.GetComponent<LeaveTimer>();
+                shipStatsPanel.SetData(bestShip.ShipData, (int)leaveTimer.TimeLeft);
+            }
+            else
+            {
+                shipStatsPanel.gameObject.SetActive(false);
             }
 
             if (orbit == targetOrbit)
