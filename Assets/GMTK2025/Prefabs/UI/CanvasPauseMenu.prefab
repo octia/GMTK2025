@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
+  m_sharedMaterial: {fileID: -422511111667286525, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &3307044901546816584
@@ -265,8 +265,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  normalFont: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
+  normalMaxFontSize: 54
+  hoverMaxFontSize: 74
 --- !u!1 &605782439223210781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,8 +1544,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
+  m_sharedMaterial: {fileID: -422511111667286525, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1608,7 +1610,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &8300760492362024746
@@ -1625,8 +1627,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  normalFont: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
+  normalMaxFontSize: 54
+  hoverMaxFontSize: 74
 --- !u!1 &3286331868915090171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,8 +1840,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
+  m_sharedMaterial: {fileID: -422511111667286525, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1902,7 +1906,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &6578108751740087338
@@ -1919,8 +1923,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  normalFont: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
+  normalMaxFontSize: 54
+  hoverMaxFontSize: 74
 --- !u!1 &3449475434619162043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,7 +3064,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2057df299f07b684b87c45b1b520729b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3141,8 +3147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalColor: {r: 0.57254905, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  normalFont: {fileID: 11400000, guid: c216d44695eff54459b5a8a4064ae95f, type: 2}
+  normalFont: {fileID: 11400000, guid: e0ae0c013c2d6aa47b830f345c586d38, type: 2}
   hoverFont: {fileID: 11400000, guid: 2f0dc47711e104c4dafd6d4645f6705b, type: 2}
+  normalMaxFontSize: 54
+  hoverMaxFontSize: 74
 --- !u!1 &5958764272868490285
 GameObject:
   m_ObjectHideFlags: 0
