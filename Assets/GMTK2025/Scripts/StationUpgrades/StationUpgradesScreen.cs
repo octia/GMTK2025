@@ -47,6 +47,13 @@ public class StationUpgradesScreen : MonoBehaviour
     [SerializeField]
     private TMP_Text statsNameText;
 
+    [Space]
+    [SerializeField]
+    private UnityEngine.UI.Image upgradeButtonImage;
+
+    [SerializeField]
+    private Sprite[] upgradeButtonSprite;
+
 
     // Managers
 
@@ -89,6 +96,14 @@ public class StationUpgradesScreen : MonoBehaviour
         upgradeManager.OnScreen = !upgradeManager.OnScreen;
 
         mainScreen.SetActive(upgradeManager.OnScreen);
+        if (upgradeManager.OnScreen)
+        {
+            upgradeButtonImage.sprite = upgradeButtonSprite[1];
+        }
+        else
+        {
+            upgradeButtonImage.sprite = upgradeButtonSprite[0];
+        }
         upgradeOptionsContainer.SetActive(upgradeManager.OnScreen);
         orbitOptions.SetActive(!upgradeManager.OnScreen);
 
