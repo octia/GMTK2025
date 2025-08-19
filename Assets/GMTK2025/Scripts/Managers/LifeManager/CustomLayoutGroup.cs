@@ -1,11 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Custom layout group that arranges children in a spiral:
-/// Up → Left → Down → Right → repeat.
-/// Behaves like Unity's Horizontal/VerticalLayoutGroup for child sizing.
-/// </summary>
 [AddComponentMenu("Layout/Custom Layout Group")]
 public class CustomLayoutGroup : LayoutGroup
 {
@@ -73,7 +68,6 @@ public class CustomLayoutGroup : LayoutGroup
         float parentHeight = rectTransform.rect.height - padding.vertical;
         float parentWidth = rectTransform.rect.width - padding.horizontal;
 
-        // Base cell sizes (like standard layout)
         float w = cellWidth;
         float h = cellHeight;
 
@@ -101,11 +95,9 @@ public class CustomLayoutGroup : LayoutGroup
                 continue;
             }
 
-            // Place child
             SetChildAlongAxis(child, 0, x, w);
             SetChildAlongAxis(child, 1, y, h);
 
-            // Spiral logic
             switch (dir)
             {
                 case Direction.Up:
