@@ -185,6 +185,7 @@ public class StationUpgradesScreen : MonoBehaviour
     {
         mainScreen.SetActive(false);
         upgradeManager.OnScreen = false;
+        upgradeButtonImage.sprite = upgradeButtonSprite[0];
 
         upgradeButton.SetActive(true);
     }
